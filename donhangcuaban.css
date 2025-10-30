@@ -1,0 +1,431 @@
+.taikhoan-container {
+  display: flex;
+  justify-content: center;
+  padding: 60px 0;
+  background: #f8f9fa;
+  
+}
+.account-box {
+  background: #fff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  width: 500px;
+}
+
+.account-box h1 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.info-section label {
+  display: block;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.info-section input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.btn-group {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-group button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-group button:hover {
+  background: #0056b3;
+}
+
+.address-section h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#address-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 15px;
+}
+
+.address-item {
+  background: #f3f3f3;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin: 6px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.address-item .actions button {
+  margin-left: 5px;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background: #ffc107;
+  color: #000;
+}
+
+.delete-btn {
+  background: #dc3545;
+  color: white;
+}
+
+.add-address {
+  display: flex;
+  gap: 10px;
+}
+
+.add-address input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.add-address button {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.add-address button:hover {
+  background: #218838;
+}
+
+.button-group {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.button-group button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#back-home { background-color: #007bff; color: white; }
+#logout-btn { background-color: #dc3545; color: white; }
+
+.account-page {
+  background: linear-gradient(to bottom, #d9e8f4, #f6f9fc);
+  min-height: 80vh;
+  padding: 40px 0;
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+
+
+.account-wrapper {
+  display: flex;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  width: 85%;
+  max-width: 1200px;
+  overflow: hidden;
+}
+
+/* Cột trái */
+.account-sidebar {
+  width: 30%;
+  background: #fff;
+  border-right: 1px solid #eee;
+  padding: 30px;
+}
+
+.account-user {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.box-thongtincanhan{
+  width: 295px;
+  height: 40px;
+  background-color: white;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #1331ab;
+  border-radius: 15px;
+   border: 1px solid #1331ab;
+}
+.box-thongtindonhang{
+  width: 295px;
+  height: 40px;
+  background-color: #1331ab;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 15px;
+}
+
+.avatar-circle {
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
+  border-radius: 50%;
+  background: #6a6afc;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 0 auto 10px;
+}
+
+.account-user h2 {
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+.account-user p {
+  color: #777;
+  font-size: 14px;
+}
+
+.account-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menu-item {
+  border: none;
+  padding: 12px;
+  border-radius: 30px;
+  font-size: 15px;
+  background: #e8e8e8;
+  cursor: pointer;
+  text-align: left;
+  transition: 0.2s;
+}
+
+.menu-item i {
+  margin-right: 8px;
+}
+
+.menu-item:hover,
+.menu-item.active {
+  background: #003cff;
+  color: white;
+}
+
+/* Cột phải */
+.account-content {
+  width: 70%;
+  padding: 40px 50px;
+}
+
+.account-content h1 {
+  font-size: 22px;
+  margin-bottom: 25px;
+  color: #111;
+}
+
+.account-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.account-form label {
+  font-weight: 500;
+  color: #333;
+}
+
+.account-form input,
+.account-form select {
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.account-form input:focus,
+.account-form select:focus {
+  border-color: #003cff;
+}
+
+.gender-group {
+  display: flex;
+  gap: 20px;
+}
+
+.update-btn {
+  margin-top: 15px;
+  background: #003cff;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 0;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.update-btn:hover {
+  background: #002dcc;
+}
+
+.text-dangxuat{
+  position: absolute;
+  top: 18px;
+  cursor: pointer;
+}
+
+.text-thongtin{
+  position: absolute;
+  top: -3px;
+  cursor: pointer;
+}
+sanpham{
+  font-family:sans-serif;
+  background-color: #fff;
+  height: 250px;
+  border-radius: 4px;
+  border: 1px solid #BABABC;
+}
+.tieude{
+  display: flex;
+  margin: 20px;
+  border-bottom: 1px solid #BABABC;
+}
+.info{
+  margin: 20px;
+  display: flex;
+}
+.u1{
+  margin-left: 150px;
+}
+.u3{
+  margin-left: 190px;
+}
+.u4{
+  margin-left: 120px;
+}
+.product-actions{
+  display: flex;
+  flex-direction: column;
+
+}
+.remove{
+ text-align: center;
+}
+
+.btn-xoa{
+  width:50px;
+}
+.cart-item h3{
+  margin-left: 20px;
+  color:#1B1B1B;
+}
+.cart-item {
+  margin-left: 10px;
+  display: flex;
+}
+.product-name{
+  margin-left: 20px;
+}
+.product-desc{
+  margin-left: 20px;
+  color: #BABABC;
+}
+.total-price{
+  color:#1B1B1B;
+  margin: 25px 0 0 150px;
+}
+.price{
+  color: red;
+}
+.product-img{
+   border: 1px solid #BABABC;
+  width: 100px;
+  height: 120px;
+}
+.product-count{
+  font-size: 14px;
+  color: #1331ab ;
+  text-decoration: underline;
+  margin-left: 450px;
+}
+.khung-tablist{
+  width: 720px;
+  height: 70px;
+  align-items: center;
+  display: flex;
+  gap: 18px;
+
+}
+
+.khung-tablist .khung-text-hoanthanh{
+  position: relative;
+  width: 200px;
+  height: 40px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+
+   border-bottom: 3px solid #1331ab;
+   color: #1B1B1B;
+}
+.khung-tablist .khung-text-choxacnhan{
+  position: relative;
+  width: 200px;
+  height: 40px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+
+   border-bottom: 3px solid #BABABC;
+   color: #1B1B1B;
+}
+.box-mualai{
+    width: 720px;
+    height: 90px;
+    background-color: white;
+    margin: 20px 0 0 0;
+    border: 1px solid #BABABC;
+
+}
+
+.box-mualai .box-thanhtien{
+    position: relative;
+    margin: 5px 0 0 450px;
+}
+
+.box-text-mualai{
+    width: 90px;
+    height: 40px;
+    background-color: #1331ab;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+}

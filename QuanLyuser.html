@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang Quản Trị</title>
+  <link rel="stylesheet" href="QuanLyuser.css">
+  <link rel="stylesheet" href="fontinter.css">
+  <link rel="stylesheet" href="root.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Menu bên trái -->
+    <nav class="sidebar">
+      <h2 class="logo">Admin Panel</h2>
+      <ul class="menu">
+        <li><a href="dashboard.html">🏠 Dashboard</a></li>
+        <li><a href="QuanLyuser.html">👤 Quản lý người dùng / Khách hàng</a></li>
+        <li><a href="QuanLySanPham.html">🛒 Quản lý sản phẩm</a></li>
+        <li><a href="NhaphangGiaban.html">📦 Nhập hàng & Giá bán</a></li>
+        <li><a href="DonhangTonkho.html">🧾 Đơn hàng & Tồn kho</a></li>
+      </ul>
+    </nav>
+
+    <!-- Nội dung bên phải -->
+    <main class="content">
+      <h1>Quản lý người dùng</h1>
+       <div class="khung-table">
+        <div class="user-list">
+            <table>
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên</th>
+                        <th>Email</th>
+                        <th>Trạng Thái</th>
+                        <th>Thao Tác</th>
+                    </tr>
+                </thead>
+                <tbody id="user-table">
+                    <tr>
+                        <td>1</td>
+                        <td>Nguyễn Văn A</td>
+                        <td>nguyenvana@example.com</td>
+                        <td id="status-1">Đang hoạt động</td>
+                        <td>
+                            <button class="reset-password" onclick="datlaimatkhau(1)">Reset Mật Khẩu</button>
+                            <button class="lock-unlock" onclick="chuyendoikhoa(1)">Khóa Tài Khoản</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Trần Thị B</td>
+                        <td>tranthib@example.com</td>
+                        <td id="status-2">Đang hoạt động</td>
+                        <td>
+                            <button class="reset-password" onclick="datlaimatkhau(2)">Reset Mật Khẩu</button>
+                            <button class="lock-unlock" onclick="chuyendoikhoa(2)">Khóa Tài Khoản</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Lê Minh C</td>
+                        <td>leminhc@example.com</td>
+                        <td id="status-3">Đang hoạt động</td>
+                        <td>
+                            <button class="reset-password" onclick="datlaimatkhau(3)">Reset Mật Khẩu</button>
+                            <button class="lock-unlock" onclick="chuyendoikhoa(3)">Khóa Tài Khoản</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+       </div>
+    </main>
+  </div>
+  <script src="QuanLyuser.js"></script>
+</body>
+</html>

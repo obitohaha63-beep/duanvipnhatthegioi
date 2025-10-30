@@ -1,0 +1,801 @@
+  *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      text-decoration: none;
+      font-family: "Inter", sans-serif;
+      list-style: none;
+  }
+
+  
+  .headertop{
+      background-color: #0F5E9F;
+      width: 100%;
+      height: 70px;
+      margin :0 auto;
+      
+  }
+
+  .headertop .container {
+      width: 1200px;
+      height: 66px;
+      background-color: #0F5E9F;
+      margin: 0 auto;
+
+      display: flex;             /* bật flex */
+      align-items: center;       /* căn giữa theo chiều dọc */
+      justify-content: flex-start; /* hoặc flex-start nếu muốn sát nhau */
+  }
+
+
+  .containerlogo{
+      width: 300px;
+      background-color: #0F5E9F;
+  }
+
+  .containerlogo .logo{
+    line-height: 12px;
+    
+      display: flex;             /* bật flex */
+      align-items: center;       /* căn giữa theo chiều dọc */
+      justify-content: center;
+  }
+
+  .container  .containerSearch{
+      position: relative;
+      width :395px;
+      height: 40px;
+      background-color: #0F5E9F;
+  }
+
+  .containerSearch .search {
+    /* quan trọng */
+        /* cách mép trên 100px */
+          /* cách mép trái 200px */
+    width: 380px;    
+    height: 40px;   
+    margin-left: 15px;
+      /* chiều rộng khung */
+  }
+
+  .containerSearch .search input {
+    width: 100%;         /* 100% chiều rộng khung cha */
+    height: 40px;        /* chiều cao khung tìm kiếm */
+    padding: 0 40px 0 10px; /* chừa chỗ cho icon */
+    font-size: 16px;     /* cỡ chữ */
+    border: 1px solid #0F5E9F;
+    border-radius: 12px;
+    box-sizing: border-box;
+    border: none; 
+    
+  }
+
+  .containerSearch .search i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #1b1b1b;
+    font-size: 18px; /* chỉnh cỡ icon */
+    cursor: pointer;
+  }
+
+  .container .containercontac{
+    position: relative;
+    width: 505px;
+    height: 37px;
+    background-color: #0F5E9F;
+    display: block;             /* bật flex */
+      align-items: center;       /* căn giữa theo chiều dọc */
+    line-height: 19.6px;
+    padding-left:40px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .containercontac {
+    width: 505px;
+    background-color: #0F5E9F;
+    padding-left: 15px;
+    color: #fff;
+    font-size: 14px;
+  
+  }
+
+  .containercontac ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+  
+  }
+
+  .containercontac li a {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+
+  .boxtext {
+    margin-left: 5px;
+  }
+
+  .boxtext.column {
+    display: flex;
+    flex-direction: column; /* chữ chính trên, phụ dưới */
+  }
+
+.containercontac .container-login{
+  position: relative;
+  width: 130px;
+  height: 44px;
+  background-color: #0F5E9F;
+  margin-left: 170px;
+  margin-top: -42px;
+}
+.container-login a{
+  color: #fff;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.container-login .text-dangnhap {
+  position: absolute;
+  top:-3px;
+}
+
+
+.container-login .logo-person{
+  position: relative;
+  margin-top: 5px;
+}
+
+  .listitemcart .boxtext {
+    display: inline; /* giỏ hàng giữ 1 dòng */
+    margin-left: 5px;
+  }
+
+
+
+  .jscart{
+    background-color: darkred;
+    border-bottom-left-radius:50%;
+    border-bottom-right-radius:50%;
+    border-top-left-radius:50%;
+    border-top-right-radius:50%;
+    bottom:12px
+  }
+  .containercart button {
+    background: transparent;     /* không tô màu */
+    border: 2px solid white;     /* viền trắng */
+    color: white;                /* chữ trắng */
+    padding: 6px 2px;
+    border-radius: 15px;          /* bo góc nhẹ */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;   /* hiệu ứng hover */
+  }
+
+  /* Icon trong nút giỏ hàng */
+  .containercart .boxicon {
+    position: relative; /* để badge bám vào */
+    display: inline-block;
+  }
+
+  /* Badge số lượng trong giỏ */
+  .jscart {
+    position: absolute;
+    top: -6px;        /* đẩy lên trên icon */
+    right: -2px;      /* đẩy sang phải icon */
+    background-color: darkred;
+    width: 15px;
+    height: 15px;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 50%;  /* hình tròn */
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .headerbot{
+    position: relative;
+    width: 100%;
+    height: 38px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;      
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+          /* cao hơn container */
+    
+  }
+  .headerbot .containerbot{
+    position: relative;
+    width: 1200px;
+    height: 38px;
+    background-color: darkred;
+
+  }
+
+  .containerbot .khungxanhmucluc {
+    width: 298px;
+    height: 38px;
+    background-color: #1332AB;
+    display: flex;              /* Cho icon và chữ nằm ngang */
+    align-items: center;        /* Căn giữa theo chiều dọc */
+    padding-left: 10px;         /* Thêm khoảng cách bên trái */
+    color: white;               /* Chữ trắng cho dễ đọc */
+    font-weight: 600;
+    cursor: pointer; 
+  }
+
+  
+
+  .khungxanhmucluc .icon{
+    position: relative;
+    display: flex;
+    margin-left: 9px;
+  }
+
+  .khungxanhmucluc .textmucluc{
+    position: relative;
+    display: flex;
+    
+  }
+
+  /* CHUẨN BỊ CHO SỔ XUỐNG  MỤC LỤC*/
+
+  /* MENU xổ ra khi click "DANH MỤC SẢN PHẨM" */
+.khungtrangmenu-dropdown {
+  position: absolute;
+  top: 29px; /* nằm ngay dưới thanh DANH MỤC */
+  left: -57px;
+  width: 298px;
+  height: 368px;
+  background: #fff;
+  border: 1px solid #BABABC;
+  display: none; /* ẩn mặc định */
+  z-index: 999;
+  
+}
+
+.khungtrangmenu-dropdown ul {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 5px 20px;
+}
+
+.khungtrangmenu-dropdown li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1b1b1b;
+  height: 40px;
+  text-decoration: none;
+}
+
+.khungtrangmenu-dropdown li a:hover {
+  color: #0F5E9F;
+}
+
+
+
+/*-----------------------------------------------------------------------------*/
+
+  .containerbot .navmenu{
+    position: absolute;
+    width: 902px;
+    height: 38px;            /* Cho icon và chữ nằm ngang */
+    background-color: #ffffff;
+    margin-left: 288px;
+    
+  }
+
+  .navmenu ul{
+    display: flex;
+
+  }
+
+  .navmenu a{
+    font-size: 14px;
+    padding-right: 50px;
+    padding-top:5.5px;
+    margin-left: 15px;
+    display: flex;             /* bật flex */
+    align-items: center;   
+    color: #1b1b1b;    /* căn giữa theo chiều dọc */
+    font-weight: 400;
+
+    
+  }
+
+  .icon{
+    padding-right: 8px;
+  }
+
+  .navmenu{
+    z-index: 2;      
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+          /* cao hơn container */
+  }
+
+  body{
+    position: static;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #f5f5f5;
+    margin-top: 110px;
+  }
+
+  header{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    z-index:1000;
+    background-color: #fff;
+  }
+  .containerhome {
+    position: relative;
+    width: 1200px;
+    height: auto;
+    margin: 0 auto;   /* Căn giữa ngang */
+    background-color: #f5f5f5;
+    
+  }
+
+  .containerhome .container-back{
+    position: relative;
+    width: 1200px;
+    height: 38px;
+    display: flex; 
+    align-items: center;
+    gap:10px;
+  }
+
+  .container-back a {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 18px;
+    color: #1B1B1B;
+  } 
+  .container-back span{
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 18px;
+    color: #1B1B1B;
+  }
+
+  .containerhome .container-select{
+    position: relative;
+    width: 298px;
+    height: 1320px;
+    border-radius: 15px;
+    justify-items: center;
+    background-color: #ffffff;
+    
+  }
+
+  
+ h3 {
+  color: #1B1B1B;
+  text-align: center;
+  padding: 20px 0; /* tạo khoảng cách bên trong, không đẩy container */
+}
+
+.containerhome .container-select label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0;
+  text-align: left;
+}
+
+.containerhome .container-select input[type="checkbox"] {
+  transform: scale(1.5); /* phóng to 1.5 lần */
+  margin-right: 6px;     /* cách chữ một chút */
+  accent-color: #0F5E9F;    /* đổi màu tích (Chrome, Edge, Firefox) */
+  cursor: pointer;       /* hiển thị bàn tay khi di chuột */
+}
+
+.containerhome .container-sanpham{
+  position: relative;
+  width: 884px;
+  height: 1722px;
+  background-color: #f5f5f5;
+  margin-left:316px;
+  margin-top: -1330px;
+  display: flex;
+}
+
+.container-sanpham {
+  display: flex;
+  flex-direction: column; /* xếp con theo chiều dọc */
+  align-items: center;    /* căn giữa ngang toàn khối */
+  gap: 20px;              /* khoảng cách giữa các phần tử con */
+}
+
+.container-sanpham .khung-sapxep {
+  position: relative;
+  margin-top: -20px;
+  width: 884px;
+  height: 61px;
+  background-color: #ffffff;
+  display: flex;              /* bật flexbox */
+  align-items: center;        /* căn giữa theo chiều dọc */
+  justify-content: flex-end;  /* đẩy phần tử con sang phải */
+  padding-right: 100px;        /* cách lề phải 1 chút cho đẹp */
+  gap: 10px;      
+  border-radius: 15px;            /* nếu có nhiều phần tử thì giữ khoảng cách */
+}
+
+
+#idsapxep {
+  width: 180px;              /* tăng chiều rộng */
+  height: 40px;              /* tăng chiều cao */
+  padding: 2.5px 5px;         /* khoảng cách trong */
+  font-size: 16px;
+  font-weight: 500;           /* chữ to hơn */
+  border-radius: 8px;       /* bo góc */
+  border: 2px solid #BABABC;    /* viền nhẹ */
+  background-color: #0F5E9F;    /* nền trắng */
+  color: #ffffff;               /* màu chữ */
+  transition: all 0.3s ease; /* hiệu ứng mượt khi hover */
+  cursor: pointer;          /* đổi con trỏ chuột */
+}
+
+#idsapxep:hover {
+  border-color: white;     /* viền đổi màu khi hover */
+  color: white;            /* đổi màu chữ */
+  box-shadow: 0 0 5px #0F5E9F66; /* ánh sáng nhẹ */
+}
+
+#idsapxep:focus {
+  outline: none;              /* bỏ viền mặc định khi bấm vào */
+  border-color: #0F5E9F;
+  box-shadow: 0 0 6px #0F5E9F88;
+}
+ .container-sanphambot {
+  position: relative;
+  margin-top: -20px;
+  width: 884px;
+  height: auto;             /* tự co giãn theo nội dung */
+  display: flex;
+  flex-wrap: wrap;          /* cho phép xuống hàng */
+  gap: 18px;                /* khoảng cách giữa các box */
+  justify-content: center;  /* căn giữa các box */
+  border-radius: 15px;   
+  background: #ffffff;
+  padding: 18px;            /* thêm chút đệm trong */
+}
+
+
+.container-sanphambot .box {
+  flex: 0 0 calc(33.333% - 18px);  /* 3 box mỗi hàng */
+  height: 343px;
+  background: #fff;
+  border: 2px solid #BABABC;
+}
+
+.containerhot .container-arcsaber{
+    position: relative;
+    background-color: #f5f5f5;
+    width: 250px;
+    height: 240px;
+    margin-top: 9px;
+    justify-self: center;
+  }
+
+
+.box .container-anh{
+    position: relative;
+    background-color: #f5f5f5;
+    width: 250px;
+    height: 240px;
+    margin-top: 9px;
+    justify-self: center;
+  }
+
+  .container-anh .anh-arcsaber{
+    position: relative;
+    width: 160px;
+    height:240px; 
+    margin-left: 50px;
+    display: flex;
+  }
+
+  
+  .mausac-arsaber{
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 17px;
+    display: flex;
+    color: #000000;
+  }
+
+.gia{
+    font-size: 14px;
+    color: #E70303;
+    font-weight: 600;
+  }
+
+  .container-anh button{
+    position: absolute;
+    background-color: #008ee6;
+    cursor: pointer; 
+    border: none;         
+    color: white;          /* Xóa viền mặc định */
+    border-radius: 5px; 
+    font-size: 16px; 
+    font-weight: bold;              /* Chữ đậm */
+    transition: all 0.25s ease;
+    height: 30px;
+    width: 100px;
+    top: 290px;
+    left: 150px;
+
+  }
+
+  .container-anh button:hover {
+  background-color: #0F5E9F;      /* Màu đậm hơn khi hover */
+  transform: scale(1.05);         /* Nút hơi phóng to nhẹ */
+}
+.container-phantrang {
+  position: relative;
+  width: 884px;
+  height: 61px;
+  background-color: #f5f5f5;
+  margin-top: -20px;
+
+  display: flex;              /* biến container thành flex container */
+  justify-content: flex-end;  /* đẩy tất cả con sang bên phải */
+  align-items: center;        /* canh giữa theo chiều dọc */
+}
+
+.container-phantrang .pagination {
+  display: flex; /* dùng flex thay vì inline-block */
+  gap: 6px;      /* tạo khoảng cách giữa các nút */
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  border: 1px solid #ddd;
+  margin: 0 4px;
+  border-radius: 6px;
+}
+
+.pagination a.active {
+  background-color: #0F5E9F;
+  color: white;
+  border: 1px solid #0F5E9F;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+.container-goiy{
+  position: relative;
+  width: 884px;
+  height: 508px;
+  background-color: #ffffff;
+  border-radius: 15px;
+}
+
+.container-goiy span{
+  font-size: 15px;
+  font-weight: 400px;
+  margin-left: 18px;
+}
+
+.container-footer{
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background-color: #212121;
+    display: flex;
+    justify-self: center;
+  }
+
+  .container-footer .khungchinh{
+    position: relative;
+    width: 1200px;
+    height: 400px;
+    background-color:#212121;
+    margin:  0 auto;
+    gap:18px;
+    display: flex;
+    
+  }
+
+  .khungchinh .col{
+    flex:1;
+    background: #212121;
+    
+  }
+
+  .logo-footer{
+    position: relative;
+    margin-left: 28px;
+    width:245px;
+  }
+
+  .gioithieu-footer p{
+    position: relative;
+    display: flex;
+    color: #fff;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400px;
+    margin-left: 28px;
+    margin-top: 10px;
+
+  }
+
+  .col .khung-col1{
+    margin-top: 25px;
+  }
+  .thongtin-col1 ul{
+    margin-left: 25px;
+    margin-top: 18px;
+  
+  }
+
+  .thongtin-col1 li{
+    display: flex;
+    align-items: center;
+    gap:8px;
+    height: 40px;
+  }
+
+  .thongtin-col1  a{
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400px;
+    color: #fff;
+    
+  }
+
+  .col .chinhsach{
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff;
+    margin-top: 42px;
+  }
+
+  .thongtin-col2 ul{
+    margin-top: 18px;
+    
+  
+  }
+
+  .thongtin-col2 li{
+    display: flex;
+    align-items: center;
+    gap:8px;
+    height: 40px;
+    
+  }
+
+  .thongtin-col2  a{
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400px;
+    color: #fff;
+    list-style-type: disc;
+  }
+
+  .col .hoidap{
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff;
+    margin-top: 42px;
+  }
+
+  .thongtin-col3 ul{
+    margin-top: 18px;
+    
+  }
+
+  .thongtin-col3 li{
+    display: flex;
+    align-items: center;
+    gap:8px;
+    height: 40px;
+  }
+
+  .thongtin-col3  a{
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400px;
+    color: #fff;
+    list-style-type: disc;
+  }
+
+  .col .mocua{
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff;
+    margin-top: 42px;
+  }
+
+  .thongtin-col4 ul{
+    margin-top: 18px;
+    
+  }
+
+  .thongtin-col4 li{
+    display: flex;
+    align-items: center;
+    gap:8px;
+    height: 40px;
+  }
+
+  .thongtin-col4  a{
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400px;
+    color: #fff;
+    list-style-type: disc;
+  }
+
+  .col .text-thanhtoan{
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff;
+    margin-top: 10px;
+  }
+
+  .anh-phuong-thuc-thanh-toan{
+    margin-top:18px;
+  }
+
+  .bo-cong-thuong{
+    margin-top:18px;
+  }
+
+  .copyright{
+    width: 100%;
+    position: relative;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    background-color: black;
+    margin: 0 auto;
+  }
+
+  .copyright .container{
+    position: absolute;
+    background-color: #000000;
+    width: 1200px;
+    margin: 0 auto;
+    justify-self: center;
+    height: 20px;
+    top:10px;
+  }
+  .copyright .container  .copyright-text{
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400px;
+    color: #fff;
+  }

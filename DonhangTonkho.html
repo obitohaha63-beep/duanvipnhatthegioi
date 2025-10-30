@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đơn hàng & Tồn kho - Trang Quản Trị</title>
+  <link rel="stylesheet" href="DonhangTonkho.css">
+  <link rel="stylesheet" href="fontinter.css">
+  <link rel="stylesheet" href="root.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Menu bên trái -->
+    <nav class="sidebar">
+      <h2 class="logo">Admin Panel</h2>
+      <ul class="menu">
+        <li><a href="dashboard.html">🏠 Dashboard</a></li>
+        <li><a href="QuanLyuser.html">👤 Quản lý người dùng / Khách hàng</a></li>
+        <li><a href="QuanLySanPham.html">🛒 Quản lý sản phẩm</a></li>
+        <li><a href="NhaphangGiaban.html">📦 Nhập hàng & Giá bán</a></li>
+        <li><a href="DonhangTonkho.html" style="background:#2a2a3b; color:#00bfff; border-left:4px solid #00bfff;">🧾 Đơn hàng & Tồn kho</a></li>
+      </ul>
+    </nav>
+
+    <!-- Nội dung bên phải -->
+    <main class="content">
+      <a href="DonhangTonkho.html">
+      <header class="header">
+        <h1>Quản lý số lượng tồn sản phẩm</h1>
+      
+      </header>
+      </a>
+      <a href="QuanLyDonDatHang.html">
+       <header class="header-duoi">
+        <h1>Quản lý đơn đặt hàng của khách hàng</h1>
+        
+      </header>
+      </a>
+
+      <div class="page-container">
+
+        <!-- 1. Tra cứu tồn kho -->
+        <section class="card">
+          <h2>Tra cứu số lượng tồn của sản phẩm</h2>
+          <div class="form-group">
+            <input type="text" placeholder="Nhập tên hoặc mã sản phẩm...">
+            <button>Tìm kiếm</button>
+          </div>
+          <div class="result-box">
+            <p><strong>Sản phẩm:</strong> Vợt cầu lông Yonex Nanoflare 1000</p>
+            <p><strong>Số lượng tồn:</strong> 12</p>
+          </div>
+        </section>
+
+        <!-- 2. Tra cứu theo loại -->
+        <section class="card">
+          <h2>Tra cứu tồn theo loại sản phẩm</h2>
+          <div class="form-group">
+            <select>
+              <option>Chọn loại sản phẩm</option>
+              <option>Vợt cầu lông</option>
+              <option>Giày cầu lông</option>
+              <option>Balo thể thao</option>
+            </select>
+            <button>Hiển thị</button>
+          </div>
+          <table>
+            <tr>
+              <th>Tên sản phẩm</th>
+              <th>Số lượng tồn</th>
+            </tr>
+            <tr>
+              <td>Yonex Astrox 100ZZ</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>Yonex Nanoflare 1000</td>
+              <td>12</td>
+            </tr>
+          </table>
+        </section>
+
+        <!-- 3. Cảnh báo hết hàng -->
+        <section class="card">
+          <h2>Sản phẩm sắp hết hàng</h2>
+          <table>
+            <tr>
+              <th>Tên sản phẩm</th>
+              <th>Số lượng tồn</th>
+              <th>Trạng thái</th>
+            </tr>
+            <tr>
+              <td>Giày cầu lông Lining Turbo</td>
+              <td>3</td>
+              <td><span class="alert">Sắp hết hàng</span></td>
+            </tr>
+            <tr>
+              <td>Balo thể thao Yonex</td>
+              <td>2</td>
+              <td><span class="alert">Sắp hết hàng</span></td>
+            </tr>
+          </table>
+        </section>
+
+        <!-- 4. Báo cáo nhập - xuất - tồn -->
+        <section class="card">
+          <h2>Báo cáo nhập – xuất – tồn</h2>
+          <div class="form-group">
+            <label>Từ ngày:</label>
+            <input type="date">
+            <label>Đến ngày:</label>
+            <input type="date">
+            <button>Tra cứu</button>
+          </div>
+          <table>
+            <tr>
+              <th>Sản phẩm</th>
+              <th>Nhập</th>
+              <th>Xuất</th>
+              <th>Tồn cuối kỳ</th>
+            </tr>
+            <tr>
+              <td>Vợt Yonex Nanoflare 1000</td>
+              <td>20</td>
+              <td>8</td>
+              <td>12</td>
+            </tr>
+            <tr>
+              <td>Giày cầu lông Lining Turbo</td>
+              <td>10</td>
+              <td>7</td>
+              <td>3</td>
+            </tr>
+          </table>
+        </section>
+
+      </div>
+    </main>
+  </div>
+</body>
+</html>

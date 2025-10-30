@@ -1,0 +1,16 @@
+:root{
+  --font-family: 'Inter', sans-serif;
+  --font-size-base: 16px;
+  --font-size-small: 14px;
+  --font-size-large: 18px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 600;
+
+  --card-w: 360px;
+  --accent: #2b6ef6;
+  --bg-overlay: rgba(0,0,0,0.45);
+  --radius: 12px;
+  --muted: #9aa4b2;
+
+  }

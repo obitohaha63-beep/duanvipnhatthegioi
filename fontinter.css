@@ -1,0 +1,41 @@
+/* ===============================
+   INTER VARIABLE FONT - OFFLINE
+   =============================== */
+
+/* Regular + Weight axis (100 → 900) */
+@font-face {
+  font-family: 'Inter';
+  src: url('Inter/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+  font-weight: 100 900;  /* hỗ trợ toàn dải */
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Italic + Weight axis (100 → 900) */
+@font-face {
+  font-family: 'Inter';
+  src: url('Inter/Inter-Italic-VariableFont_opsz,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Áp dụng mặc định cho toàn trang */
+body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Ví dụ: tùy chỉnh khi cần */
+h1, h2, h3 {
+  font-weight: 700; /* Bold */
+}
+
+em, i {
+  font-style: italic;
+}
+
+strong {
+  font-weight: 600;
+}

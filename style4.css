@@ -1,0 +1,724 @@
+  *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      text-decoration: none;
+      font-family: "Inter", sans-serif;
+      list-style: none;
+  }
+h3{
+  color: #1b1b1b;
+}
+  .headertop{
+      background-color: #0F5E9F;
+      width: 100%;
+      height: 70px;
+      margin :0 auto;
+      
+  }
+
+  .headertop .container {
+      width: 1200px;
+      height: 66px;
+      background-color: #0F5E9F;
+      margin: 0 auto;
+
+      display: flex;             /* bật flex */
+      align-items: center;       /* căn giữa theo chiều dọc */
+      justify-content: flex-start; /* hoặc flex-start nếu muốn sát nhau */
+  }
+
+
+  .containerlogo{
+      width: 300px;
+      background-color: #0F5E9F;
+  }
+
+  .containerlogo .logo{
+    line-height: 12px;
+    
+      display: flex;             /* bật flex */
+      align-items: center;       /* căn giữa theo chiều dọc */
+      justify-content: center;
+  }
+
+  .container  .containerSearch{
+      position: relative;
+      width :395px;
+      height: 40px;
+      background-color: #0F5E9F;
+  }
+  .containerSearch2{
+    z-index: 10;
+    background-color: #0F5E9F;
+    position: absolute;
+    height: 36px;
+    width: 64px;
+    left: 328px;
+    top: 2px;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+  .search-icon{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    left: 20px;
+    top: 5px;
+  }
+  .containerSearch .search {
+    /* quan trọng */
+        /* cách mép trên 100px */
+          /* cách mép trái 200px */
+    width: 380px;    
+    height: 40px;   
+    margin-left: 15px;
+      /* chiều rộng khung */
+  }
+
+  .containerSearch .search input {
+    width: 100%;         /* 100% chiều rộng khung cha */
+    height: 40px;        /* chiều cao khung tìm kiếm */
+    padding: 0 40px 0 10px; /* chừa chỗ cho icon */
+    font-size: 16px;     /* cỡ chữ */
+    border: 1px solid #0F5E9F;
+    border-radius: 12px;
+    box-sizing: border-box;
+    border: none; 
+    
+  }
+
+  .containerSearch .search i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #000000;
+    font-size: 18px; /* chỉnh cỡ icon */
+    cursor: pointer;
+  }
+
+  .container .containercontac{
+    position: relative;
+    width: 505px;
+    height: 37px;
+    background-color: #0F5E9F;
+    display: block;             /* bật flex */
+      align-items: center;       /* căn giữa theo chiều dọc */
+    line-height: 19.6px;
+    padding-left:40px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .containercontac {
+    width: 505px;
+    background-color: #0F5E9F;
+    padding-left: 15px;
+    color: #fff;
+    font-size: 14px;
+  
+  }
+
+  .containercontac ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+  
+  }
+
+  .containercontac li a {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+
+  .boxtext {
+    margin-left: 5px;
+  }
+
+  .boxtext.column {
+    display: flex;
+    flex-direction: column; /* chữ chính trên, phụ dưới */
+  }
+
+.containercontac .container-login{
+  position: relative;
+  width: 130px;
+  height: 44px;
+  background-color: #0F5E9F;
+  margin-left: 170px;
+  margin-top: -42px;
+}
+.container-login a{
+  color: #fff;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.container-login .text-dangnhap {
+  position: absolute;
+  top:-3px;
+}
+
+
+.container-login .logo-person{
+  position: relative;
+  margin-top: 5px;
+}
+
+  .listitemcart .boxtext {
+    display: inline; /* giỏ hàng giữ 1 dòng */
+    margin-left: 5px;
+  }
+
+
+
+  .jscart{
+    background-color: darkred;
+    border-bottom-left-radius:50%;
+    border-bottom-right-radius:50%;
+    border-top-left-radius:50%;
+    border-top-right-radius:50%;
+    bottom:12px
+  }
+  .containercart button {
+    background: transparent;     /* không tô màu */
+    border: 2px solid white;     /* viền trắng */
+    color: white;                /* chữ trắng */
+    padding: 6px 2px;
+    border-radius: 15px;          /* bo góc nhẹ */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;   /* hiệu ứng hover */
+  }
+
+  /* Icon trong nút giỏ hàng */
+  .containercart .boxicon {
+    position: relative; /* để badge bám vào */
+    display: inline-block;
+  }
+
+  /* Badge số lượng trong giỏ */
+  .jscart {
+    position: absolute;
+    top: -6px;        /* đẩy lên trên icon */
+    right: -2px;      /* đẩy sang phải icon */
+    background-color: darkred;
+    width: 15px;
+    height: 15px;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 50%;  /* hình tròn */
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .headerbot{
+    position: relative;
+    width: 100%;
+    height: 38px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;      
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+          /* cao hơn container */
+    
+  }
+  .headerbot .containerbot{
+    position: relative;
+    width: 1200px;
+    height: 38px;
+    background-color: darkred;
+
+  }
+  
+  header{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    z-index:1000;
+    background-color: #fff;
+  }
+
+  .containerbot .khungxanhmucluc {
+    width: 298px;
+    height: 38px;
+    background-color: #1332AB;
+    display: flex;              /* Cho icon và chữ nằm ngang */
+    align-items: center;        /* Căn giữa theo chiều dọc */
+    padding-left: 10px;         /* Thêm khoảng cách bên trái */
+    color: white;               /* Chữ trắng cho dễ đọc */
+    font-weight: 600;
+    cursor: pointer; 
+  }
+
+  .khungxanhmucluc .icon{
+    position: relative;
+    display: flex;
+    margin-left: 9px;
+  }
+
+  .khungxanhmucluc .textmucluc{
+    position: relative;
+    display: flex;
+    
+  }
+
+  /* CHUẨN BỊ CHO SỔ XUỐNG  MỤC LỤC*/
+
+  /* MENU xổ ra khi click "DANH MỤC SẢN PHẨM" */
+.khungtrangmenu-dropdown {
+  position: absolute;
+  top: 29px; /* nằm ngay dưới thanh DANH MỤC */
+  left: -57px;
+  width: 298px;
+  height: 368px;
+  background: #fff;
+  border: 1px solid #BABABC;
+  display: none; /* ẩn mặc định */
+  z-index: 999;
+}
+
+.khungtrangmenu-dropdown ul {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 5px 20px;
+}
+
+.khungtrangmenu-dropdown li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1b1b1b;
+  height: 40px;
+  text-decoration: none;
+}
+
+.khungtrangmenu-dropdown li a:hover {
+  color: #0F5E9F;
+}
+
+
+
+/*-----------------------------------------------------------------------------*/
+
+  .containerbot .navmenu{
+    position: absolute;
+    width: 902px;
+    height: 38px;            /* Cho icon và chữ nằm ngang */
+    background-color: #ffffff;
+    margin-left: 288px;
+    
+  }
+
+  .navmenu ul{
+    display: flex;
+
+  }
+
+  .navmenu a{
+    font-size: 14px;
+    padding-right: 50px;
+    padding-top:5.5px;
+    margin-left: 15px;
+    display: flex;             /* bật flex */
+    align-items: center;   
+    color: #1b1b1b;    /* căn giữa theo chiều dọc */
+    font-weight: 400;
+
+    
+  }
+
+  .icon{
+    padding-right: 8px;
+  }
+
+  .navmenu{
+    z-index: 2;      
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+          /* cao hơn container */
+  }
+
+  body{
+    position: static;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #f5f5f5;
+  }
+  .containerhome {
+    position: relative;
+    width: 1200px;
+    height: 100%;
+    background-color: #f5f5f5;
+    margin: 0 auto;   /* Căn giữa ngang */
+  }
+
+  .containerhome .khungbannerngang{
+    position: relative;
+    width: 1200px;
+    margin-top: 108px;
+    background-color: #f5f5f5;
+  }
+
+  .containerhome .khungtrangmenu{
+    position: relative;
+    width: 298px;
+    height: 368px;
+    background-color: #fff;
+    border: 1px solid #BABABC;
+
+  }
+
+  .khungtrangmenu ul {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;               /* khoảng cách giữa các mục */
+    padding: 5px 20px;      /* padding trong khung */
+  }
+
+  .khungtrangmenu li a {
+    display: flex;
+    align-items: center;     /* căn giữa icon và chữ theo chiều dọc */
+    gap: 10px;               /* cách icon và chữ ra */
+    font-size: 15px;
+    font-weight: 500;
+    color: #1b1b1b;
+    text-decoration: none;
+    height: 40px;            /* mỗi dòng cao 40px để đều nhau */
+  }
+
+
+
+
+  .khungbannerngang .khungbanner img {
+    position: absolute;
+    right: 0;             /* dính sát lề phải */
+    bottom: 0;               /* (nếu muốn ở trên cùng) */
+    width: 885px;
+    height: 350px;
+    background-color: darkgreen;
+    
+  }
+
+  .containerhome .optionsale {
+    position: absolute;
+    width: 1200px;
+    height: 191px;
+    top: 386px;
+    background-color: #fff;
+    border-radius: 15px;
+
+    display: flex;
+
+    padding: 0 18px;  /* cách viền trái + phải 18px */
+    box-sizing: border-box;
+    gap: 18px;        /* khoảng cách giữa các khối */
+  }
+
+  .optionsale .khunganhsale {
+    flex: 1;   /* chia đều 3 khối */
+    display: flex;
+    justify-content: space-between; /* khoảng cách đều giữa 3 khối */
+    align-items: center;
+  }
+
+  .khunganhsale img {
+    object-fit: cover; /* ảnh không méo, crop vừa khung */
+    border-radius: 15px;
+  }
+  .containerhome .sanphambanchay{
+    position: relative;
+    margin-top: 226px;
+    width: 1200px;
+    height: 524px;
+    background-color: #0F5E9F;
+    border-radius: 15px;
+    display: flex;
+  }
+
+  .sanphambanchay .textbanchay{
+    position: absolute;
+    font-size: 20px;
+    color: #fff;
+    left:36px;
+    top:36px;
+    font-weight: 700;
+
+  }
+
+
+  .sanphambanchay .containerhot {
+    position: relative;
+    margin-top: 94px;
+    margin-left: 36px;
+    width: 1129px;
+    height: 342px;
+    
+    display: flex;
+    gap: 18px;            /* khoảng cách giữa các box */
+
+    background: #0F5E9F;     /* để dễ nhìn */
+    border-radius: 15px;
+  }
+
+  /* Box con */
+  .containerhot .box {
+    flex: 1;               /* chia đều 4 box */
+    height: 100%;          /* cao bằng container */
+    background: rgb(255, 255, 255); /* màu tạm để test */
+  }
+
+  .gia{
+    font-size: 14px;
+    color: #E70303;
+    font-weight: 600;
+  }
+
+  
+  .containerhot .container-arcsaber{
+    position: relative;
+    background-color: #f5f5f5;
+    width: 250px;
+    height: 240px;
+    margin-top: 9px;
+    justify-self: center;
+  }
+
+  .container-arcsaber .anh-arcsaber{
+    position: relative;
+    width: 160px;
+    height:240px; 
+    margin-left: 50px;
+    display: flex;
+  }
+
+  .anh-arcsaber .text-acrsaber{
+    position: relative;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500px;
+  }
+
+  .mausac-arsaber{
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 17px;
+    display: flex;
+    color: #000000;
+  }
+
+
+
+  .container-footer{
+    position: relative;
+    margin-top: 18px;
+    width: 100%;
+    height: 400px;
+    background-color: #212121;
+    display: flex;
+    justify-self: center;
+  }
+
+  .container-footer .khungchinh{
+    position: relative;
+    width: 1200px;
+    height: 400px;
+    background-color:#212121;
+    margin:  0 auto;
+    gap:18px;
+    display: flex;
+    
+  }
+
+  .khungchinh .col{
+    flex:1;
+    background: #212121;
+    
+  }
+
+  .logo-footer{
+    position: relative;
+    margin-left: 28px;
+    width:245px;
+  }
+
+  .gioithieu-footer p{
+    position: relative;
+    display: flex;
+    color: #fff;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400px;
+    margin-left: 28px;
+    margin-top: 10px;
+
+  }
+
+  .col .khung-col1{
+    margin-top: 25px;
+  }
+  .thongtin-col1 ul{
+    margin-left: 25px;
+    margin-top: 18px;
+  
+  }
+
+  .thongtin-col1 li{
+    display: flex;
+    align-items: center;
+    gap:8px;
+    height: 40px;
+  }
+
+  .thongtin-col1  a{
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400px;
+    color: #fff;
+    
+  }
+
+  .col .chinhsach{
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff;
+    margin-top: 42px;
+  }
+
+  .thongtin-col2 ul{
+    margin-top: 18px;
+    
+  
+  }
+
+  .thongtin-col2 li{
+    display: flex;
+    align-items: center;
+    gap:8px;
+    height: 40px;
+    
+  }
+
+  .thongtin-col2  a{
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400px;
+    color: #fff;
+    list-style-type: disc;
+  }
+
+  .col .hoidap{
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff;
+    margin-top: 42px;
+  }
+
+  .thongtin-col3 ul{
+    margin-top: 18px;
+    
+  }
+
+  .thongtin-col3 li{
+    display: flex;
+    align-items: center;
+    gap:8px;
+    height: 40px;
+  }
+
+  .thongtin-col3  a{
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400px;
+    color: #fff;
+    list-style-type: disc;
+  }
+
+  .col .mocua{
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff;
+    margin-top: 42px;
+  }
+
+  .thongtin-col4 ul{
+    margin-top: 18px;
+    
+  }
+
+  .thongtin-col4 li{
+    display: flex;
+    align-items: center;
+    gap:8px;
+    height: 40px;
+  }
+
+  .thongtin-col4  a{
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400px;
+    color: #fff;
+    list-style-type: disc;
+  }
+
+  .col .text-thanhtoan{
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff;
+    margin-top: 10px;
+  }
+
+  .anh-phuong-thuc-thanh-toan{
+    margin-top:18px;
+  }
+
+  .bo-cong-thuong{
+    margin-top:18px;
+  }
+
+  .copyright{
+    width: 100%;
+    position: relative;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    background-color: black;
+    margin: 0 auto;
+  }
+
+  .copyright .container{
+    position: absolute;
+    background-color: #000000;
+    width: 1200px;
+    margin: 0 auto;
+    justify-self: center;
+    height: 20px;
+    top:10px;
+  }
+  .copyright .container  .copyright-text{
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400px;
+    color: #fff;
+  }
+

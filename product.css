@@ -1,0 +1,831 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Inter", sans-serif;
+    list-style: none;
+}
+
+.headertop{
+    background-color: #0F5E9F;
+    width: 100%;
+    height: 70px;
+    margin :0 auto;
+    
+}
+
+.headertop .container {
+    width: 1200px;
+    height: 66px;
+    background-color: #0F5E9F;
+    margin: 0 auto;
+
+    display: flex;             /* bật flex */
+    align-items: center;       /* căn giữa theo chiều dọc */
+    justify-content: flex-start; /* hoặc flex-start nếu muốn sát nhau */
+}
+
+
+.containerlogo{
+    width: 300px;
+    background-color: #0F5E9F;
+}
+
+.containerlogo .logo{
+  line-height: 12px;
+  
+    display: flex;             /* bật flex */
+    align-items: center;       /* căn giữa theo chiều dọc */
+    justify-content: center;
+}
+
+.container  .containerSearch{
+    position: relative;
+    width :395px;
+    height: 40px;
+    background-color: #0F5E9F;
+}
+
+.containerSearch .search {
+  /* quan trọng */
+       /* cách mép trên 100px */
+         /* cách mép trái 200px */
+  width: 380px;    
+  height: 40px;   
+  margin-left: 15px;
+    /* chiều rộng khung */
+}
+
+.containerSearch .search input {
+  width: 100%;         /* 100% chiều rộng khung cha */
+  height: 40px;        /* chiều cao khung tìm kiếm */
+  padding: 0 40px 0 10px; /* chừa chỗ cho icon */
+  font-size: 16px;     /* cỡ chữ */
+  border: 1px solid #0F5E9F;
+  border-radius: 12px;
+  box-sizing: border-box;
+  border: none; 
+  
+}
+
+.containerSearch .search i {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #000000;
+  font-size: 18px; /* chỉnh cỡ icon */
+  cursor: pointer;
+}
+
+.container .containercontac{
+  position: relative;
+  width: 505px;
+  height: 37px;
+  background-color: #0F5E9F;
+  display: block;             /* bật flex */
+    align-items: center;       /* căn giữa theo chiều dọc */
+  line-height: 19.6px;
+  padding-left:40px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.containercontac {
+  width: 505px;
+  background-color: #0F5E9F;
+  padding-left: 15px;
+  color: #fff;
+  font-size: 14px;
+ 
+}
+
+.containercontac ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+ 
+}
+
+.containercontac li a {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+
+.boxtext {
+  margin-left: 5px;
+}
+
+.boxtext.column {
+  display: flex;
+  flex-direction: column; /* chữ chính trên, phụ dưới */
+}
+
+.smalltext {
+  font-size: 14px;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.listitemcart .boxtext {
+  display: inline; /* giỏ hàng giữ 1 dòng */
+  margin-left: 5px;
+}
+
+
+
+.jscart{
+  background-color: darkred;
+  border-bottom-left-radius:50%;
+  border-bottom-right-radius:50%;
+  border-top-left-radius:50%;
+  border-top-right-radius:50%;
+  bottom:12px
+}
+.containercart button {
+  background: transparent;     /* không tô màu */
+  border: 2px solid white;     /* viền trắng */
+  color: white;                /* chữ trắng */
+  padding: 6px 2px;
+  border-radius: 15px;          /* bo góc nhẹ */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;   /* hiệu ứng hover */
+}
+
+/* Icon trong nút giỏ hàng */
+.containercart .boxicon {
+  position: relative; /* để badge bám vào */
+  display: inline-block;
+}
+
+/* Badge số lượng trong giỏ */
+.jscart {
+  position: absolute;
+  top: -6px;        /* đẩy lên trên icon */
+  right: -2px;      /* đẩy sang phải icon */
+  background-color: darkred;
+  width: 15px;
+  height: 15px;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 50%;  /* hình tròn */
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerbot{
+  position: relative;
+  width: 100%;
+  height: 38px;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;      
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  
+}
+.headerbot .containerbot{
+  position: relative;
+  width: 1200px;
+  height: 38px;
+  background-color: darkred;
+
+}
+
+.containerbot .khungxanhmucluc {
+  width: 298px;
+  height: 38px;
+  background-color: #1332AB;
+  display: flex;              /* Cho icon và chữ nằm ngang */
+  align-items: center;        /* Căn giữa theo chiều dọc */
+  padding-left: 10px;         /* Thêm khoảng cách bên trái */
+  color: white;               /* Chữ trắng cho dễ đọc */
+  font-weight: 600;
+}
+
+.khungxanhmucluc .icon{
+  position: relative;
+  display: flex;
+  margin-left: 9px;
+}
+
+.khungxanhmucluc .textmucluc{
+  position: relative;
+  display: flex;
+  
+}
+
+
+.containerbot .navmenu{
+  position: absolute;
+  width: 903px;
+  height: 38px;
+  background-color: rgb(255, 255, 255);
+  margin-left: 288px;
+  
+}
+
+.navmenu ul{
+  display: flex;
+
+}
+
+.navmenu a{
+  font-size: 14px;
+  padding-right: 50px;
+  padding-top:5.5px;
+  margin-left: 15px;
+  display: flex;             /* bật flex */
+  align-items: center;   
+  color: #1b1b1b;    /* căn giữa theo chiều dọc */
+  font-weight: 400;
+
+  
+}
+
+.icon{
+  padding-right: 8px;
+}
+
+.navmenu{
+  z-index: 2;      
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+ body{
+  position: static;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #f5f5f5;
+  margin-top: 110px;
+}
+
+
+header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.mid-content {
+  width: 1200px;
+  height: 1100px;
+  margin: 0 auto;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  transition: height 0.6s ease;
+}
+.important-content{
+  display: flex;
+  flex-wrap: wrap;
+}
+.bigcontent{
+  background-color: #ffffff;
+  width: 910px;
+  height: 700px;
+  border-radius: 5px;
+}
+
+.linkedline{
+  width: 1200px;
+  margin: 0 auto;
+  height: 40px;
+  background-color: #f5f5f5;
+}
+.linkedline-content{
+  position: relative;
+  top: 10px;
+  font-size: 13px;
+}
+.product{
+    position: absolute;
+    height: 502px;
+    width: 492px;
+    background-color: #ffffff;
+    margin-top: 10px;
+    margin-left: 15px;
+    border: 0.2px solid black;
+}
+.small-product{
+  margin-top: 21px;
+  width: 491px;
+  height: 140px;
+  background-color: #ffffff;
+}
+.small-product ul{
+  display: flex;
+  gap: 15px;
+}
+.main-image{
+  width: 490px;
+  height: 500px;
+}
+.aboutproduct{
+  position: relative;
+  left: 520px;
+  top: 12px;
+  height: 502px;
+  width: 336px;
+}
+.racket-name{
+  font-size: 25px;
+  font-weight: 700;
+}
+.trademark1{
+  font-size: 14px;
+  margin-top: 10px;
+}
+.aboutproduct a
+{
+  color: #0F5E9F;
+  font-weight: 700;
+  font-size: 17px;
+}
+.value{
+  font-size: 25px;
+  color: red;
+  font-weight: 700;
+}
+.DenVang{
+  position: absolute;
+  left: 90px;
+  top: 191px;
+  font-size: 17px;
+  font-weight: 700;
+}
+.choosingcolor{
+  position: absolute;
+  top: 240px;
+  left: 0px;
+  height: 44px;
+  width: 126px;
+  border-radius: 15px;
+  border: 0.5px solid red;
+}
+.choosingcolor a{
+  color: black;
+  text-decoration: none;
+}
+.choosingcolor2{
+  position: absolute;
+  top: 0px;
+  left: 57px;
+  height: 15px;
+  width: 15px;
+  background-color: white;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 15px solid red;
+}
+.text-racketcolor{
+  position: absolute;
+  left: 43px;
+  top: 12px;
+  font-size: 14px;
+  font-weight: 100;
+}
+.half-content{
+  position: absolute;
+  height: 316px;
+  width: 380px;
+  top: 310px;
+  left: 0px;
+}
+
+.choosingracket1, .choosingracket2 {
+  position: absolute;
+  top: 64px;
+  width: 50px;
+  height: 44px;
+  border-radius: 15px;
+  border: 0.5px solid grey;
+  text-align: center;
+  padding-top: 12px;
+  font-size: 14px;
+  background-color: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.choosingracket1 { left: 0px; }
+.choosingracket2 { left: 63px; }
+
+.active {
+  border: 2px solid red !important;
+  color: red;
+}
+.active::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 15px solid red;
+  display: block;
+}
+.countamountofitem {
+  position: absolute;
+  top: 135px;
+  left: 0px;
+  height: 55px;
+  width: 122px;
+  border-radius: 5px;
+  border: 0.5px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  font-family: Arial, sans-serif;
+}
+
+.minus, .plus {
+  font-size: 24px;
+  cursor: pointer;
+  user-select: none;
+  width: 25px;
+  text-align: center;
+  transition: color 0.2s ease, transform 0.1s ease;
+}
+
+.minus:hover, .plus:hover {
+  color: red;
+  transform: scale(1.2);
+}
+
+.numbercount {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  width: 30px;
+}
+.add-Gio-Hang{
+  position: absolute;
+  width: 100%;
+  height: 68px;
+  top: 215px;
+  left: 0;
+  background-color: #E90707;
+  text-align: center;
+  border-radius: 15px;  
+  cursor: pointer;
+}
+.communicate-with-us-on-zalo{
+  position: absolute;
+  width: 100%;
+  height: 68px;
+  top: 295px;
+  left: 0;
+  background-color: #008FE5;
+  text-align: center;
+  border-radius: 15px;
+}
+
+.sales-commitment{
+  padding-top: 15px;
+  margin-left: 15px;
+  background-color: #ffffff;
+  height: 700px;
+  width: 275px;
+}
+
+.sales-commitment ul{
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.sales-commitment ul li{
+  gap: 10px;
+}
+
+.sales-commitment-content{
+  border-radius: 6px;
+  margin: 0 auto;
+  height: 335px;
+  width: 255px;
+  border: 0.5px solid rgb(110, 105, 105);
+}
+.sales-commitment-frame{
+  border-radius: 5px;
+  background-color: #06c520;
+  height: 33px;
+  width: 100%;
+  font-size: 17px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  padding-top: 5px;
+}
+.sales-commitment-list{
+  padding: 5px;
+  list-style: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #222;
+}
+.sales-commitment-list li{
+  display: flex;
+  align-items: flex-start;
+  gap: 0px;
+}
+.sales-commitment-list li img{
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0; 
+  margin-top: 3px;   
+}
+/* Hiệu ứng xem thêm / thu gọn */
+.detail-of-items {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px;
+  background-color: #ffffff;
+  margin-top: 50px;
+  overflow: hidden;
+  transition: height 0.6s ease;
+  position: relative;
+  border-radius: 5px;
+  width: 910px;
+}
+
+/* Chiều cao ban đầu khi bị thu gọn */
+.detail-of-items.collapsed {
+  height: 200px;
+}
+
+/* Khi mở rộng */
+.detail-of-items.expanded {
+  height: auto;
+}
+
+/* Nút “Xem thêm” */
+.show-more {
+  background-color: #f3f3f3;
+  text-align: center;
+  width: 910px;
+  padding: 10px 0;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.show-more:hover {
+  background-color: #e6e6e6;
+}
+
+.bold1{
+  font-size: 24px;
+  font-weight: 700;
+}
+.bold2{
+  font-size: 20px;
+  font-weight: 700;
+}
+.sizetext{
+  font-size: 17px;
+}
+
+
+
+
+
+
+
+
+
+
+
+footer{
+  margin-top: 50px;
+}
+.container-footer{
+  position: relative;
+  margin-top: 18px;
+  width: 100%;
+  height: 400px;
+  background-color: #212121;
+  display: flex;
+  justify-self: center;
+}
+
+.container-footer .khungchinh{
+  position: relative;
+  width: 1200px;
+  height: 400px;
+  background-color:#212121;
+  margin:  0 auto;
+  gap:18px;
+  display: flex;
+  
+}
+
+.khungchinh .col{
+  flex:1;
+  background: #212121;
+  
+}
+
+.logo-footer{
+  position: relative;
+  margin-left: 28px;
+  width:245px;
+}
+
+.gioithieu-footer p{
+  position: relative;
+  display: flex;
+  color: #fff;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400px;
+  margin-left: 28px;
+
+}
+
+.col .khung-col1{
+  margin-top: 25px;
+}
+.thongtin-col1 ul{
+  margin-left: 25px;
+  margin-top: 18px;
+ 
+}
+
+.thongtin-col1 li{
+  display: flex;
+  align-items: center;
+  gap:8px;
+  height: 40px;
+}
+
+.thongtin-col1  a{
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400px;
+  color: #fff;
+}
+
+.col .chinhsach{
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+  margin-top: 42px;
+}
+
+.thongtin-col2 ul{
+  margin-top: 18px;
+  list-style: none;
+}
+
+.thongtin-col2 li{
+  display: flex;
+  align-items: center;
+  gap:8px;
+  height: 40px;
+}
+
+.thongtin-col2  a{
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400px;
+  color: #fff;
+  list-style-type: disc;
+}
+
+.col .hoidap{
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+  margin-top: 42px;
+}
+
+.thongtin-col3 ul{
+  margin-top: 18px;
+  list-style: none;
+}
+
+.thongtin-col3 li{
+  display: flex;
+  align-items: center;
+  gap:8px;
+  height: 40px;
+}
+
+.thongtin-col3  a{
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400px;
+  color: #fff;
+  list-style-type: disc;
+}
+
+.col .mocua{
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+  margin-top: 42px;
+}
+
+.thongtin-col4 ul{
+  margin-top: 18px;
+  
+}
+
+.thongtin-col4 li{
+  display: flex;
+  align-items: center;
+  gap:8px;
+  height: 40px;
+}
+
+.thongtin-col4  a{
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400px;
+  color: #fff;
+  list-style-type: disc;
+}
+
+.col .text-thanhtoan{
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.anh-phuong-thuc-thanh-toan{
+  margin-top:18px;
+}
+
+.bo-cong-thuong{
+  margin-top:18px;
+}
+
+.copyright {
+  width: 100%;
+  background-color: black;
+  text-align: center; /* căn giữa chữ */
+  padding: 10px 0;
+}
+.copyright .container {
+  background-color: #000;
+  width: 1200px;      /* thêm px */
+  margin: 0 auto;     /* căn giữa khung */
+}
+
+.copyright .copyright-text {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #fff;
+}
+.copyright-text a{
+  color: white;
+   list-style-type: disc;
+}

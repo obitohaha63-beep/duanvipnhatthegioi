@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Cửa hàng (Web tĩnh, đầy đủ CSS+JS)</title>
+  <style>
+    :root{--accent:#1f6feb;--muted:#6b7280;--danger:#dc2626;--ok:#10b981}
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,Arial,sans-serif;margin:0;background:#f3f6fb;color:#102a43}
+    header{background:linear-gradient(90deg,var(--accent),#2563eb);color:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+    header h1{margin:0;font-size:18px}
+    nav{display:flex;gap:8px;flex-wrap:wrap}
+    nav a{color:#fff;text-decoration:none;padding:8px 10px;border-radius:8px;opacity:0.95}
+    nav a.active{background:rgba(255,255,255,0.12)}
+    .wrap{max-width:1200px;margin:18px auto;padding:0 16px}
+    .card{background:#fff;border-radius:10px;padding:14px;margin-bottom:12px;box-shadow:0 6px 18px rgba(15,41,67,0.06)}
+    .flex{display:flex;gap:10px;align-items:center}
+    .right{margin-left:auto}
+    label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+    input,select,textarea,button{font-family:inherit}
+    input[type=text],input[type=date],input[type=number],select,textarea{width:100%;padding:8px;border-radius:8px;border:1px solid #e6eef8}
+    textarea{min-height:80px}
+    button{background:var(--accent);color:#fff;border:0;padding:8px 10px;border-radius:8px;cursor:pointer}
+    button.ghost{background:transparent;color:var(--accent);border:1px solid rgba(31,111,235,0.12)}
+    table{width:100%;border-collapse:collapse;margin-top:10px}
+    th,td{padding:8px;border-bottom:1px solid #eef2f7;text-align:left;font-size:14px}
+    th{background:#fbfdff}
+    .img-thumb{width:64px;height:64px;object-fit:cover;border-radius:6px;border:1px solid #e6eef8}
+    .muted{color:var(--muted);font-size:13px}
+    .status{padding:6px 8px;border-radius:8px;color:#fff;font-weight:600;font-size:13px}
+    .s-new{background:#f59e0b}.s-confirm{background:#3b82f6}.s-delivered{background:#10b981}.s-cancel{background:#ef4444}
+    .hidden{display:none}
+    .warn{color:var(--danger);font-weight:700}
+    footer{padding:12px;text-align:center;color:var(--muted);font-size:13px}
+    .small{font-size:13px;color:var(--muted)}
+    .badge{background:#eef4ff;color:var(--accent);padding:6px 8px;border-radius:8px;font-weight:700}
+  </style>
+</head>
+<body>
+<header>
+  <div style="display:flex;gap:12px;align-items:center">
+    <h1>Admin - Quản lý cửa hàng (Web tĩnh)</h1>
+    <nav>
+      <a href="#/admin-login" data-link>Login</a>
+      <a href="#/dashboard" data-link>Dashboard</a>
+      <a href="#/users" data-link>Người dùng</a>
+      <a href="#/types" data-link>Loại SP</a>
+      <a href="#/categories" data-link>Danh mục</a>
+      <a href="#/products" data-link>Sản phẩm</a>
+      <a href="#/purchases" data-link>Phiếu nhập</a>
+      <a href="#/prices" data-link>Giá bán</a>
+      <a href="#/orders" data-link>Đơn hàng</a>
+      <a href="#/inventory" data-link>Tồn kho</a>
+    </nav>
+  </div>
+  <div id="adminInfo" class="small">Đăng nhập: <strong id="adminEmail">admin@example.com</strong></div>
+</header>
+
+<div class="wrap">
+  <!-- LOGIN -->
+  <section id="loginView" class="card">
+    <h2>Đăng nhập quản trị (trang riêng - demo)</h2>
+    <div style="max-width:420px">
+      <label>Email</label>
+      <input id="loginEmail" type="text" value="admin@example.com">
+      <label>Mật khẩu</label>
+      <input id="loginPass" type="password" value="admin123">
+      <div style="margin-top:10px"><button id="btnLogin">Đăng nhập</button></div>
+      <p class="muted">Lưu ý: mật khẩu demo: <code>admin123</code>. Đây là bản tĩnh dùng localStorage để mô phỏng.</p>
+    </div>
+  </section>
+
+  <!-- APP VIEWS CONTAINER -->
+  <div id="app" class="hidden">
+    <div id="view"></div>
+  </div>
+</div>
+
+<footer>© 2025 — Khoa CNTT - SGU. Giao diện tĩnh mô phỏng chức năng admin.</footer>
+
+<script>
+// ---------- Simple client router ----------
+const routes = ['#/admin-login','#/dashboard','#/users','#/types','#/categories','#/products','#/purchases','#/prices','#/orders','#/inventory'];
+function goHash(h){location.hash = h}
+function router(){
+  const h = location.hash || '#/admin-login';
+  document.querySelectorAll('header nav a').forEach(a=>a.classList.remove('active'));
+  const nav = document.querySelector(`header nav a[href="${h}"]`); if(nav) nav.classList.add('active');
+  if(!sessionStorage.getItem('isAdmin')){ document.getElementById('loginView').classList.remove('hidden'); document.getElementById('app').classList.add('hidden'); return }
+  document.getElementById('loginView').classList.add('hidden'); document.getElementById('app').classList.remove('hidden');
+  render(h);
+}
+window.addEventListener('hashchange',router);
+
+// ---------- Simple DB (localStorage) ----------
+const DB = {
+  adminKey: 'sgu_admin_v1',
+  usersKey: 'sgu_users_v1',
+  typesKey: 'sgu_types_v1',
+  catsKey: 'sgu_cats_v1',
+  productsKey: 'sgu_products_v1',
+  purchasesKey: 'sgu_purchases_v1',
+  pricesKey: 'sgu_prices_v1',
+  ordersKey: 'sgu_orders_v1'
+};
+function read(k){return JSON.parse(localStorage.getItem(k) || 'null')}
+function write(k,v){localStorage.setItem(k, JSON.stringify(v))}
+
+function seed(){
+  if(!read(DB.adminKey)) write(DB.adminKey, {email:'admin@example.com',name:'Admin'});
+  if(!read(DB.usersKey)) write(DB.usersKey, [
+    {id:1,email:'kh1@example.com',name:'Nguyen Van A',phone:'090000001',locked:0,password:'pwd1'},
+    {id:2,email:'kh2@example.com',name:'Tran Thi B',phone:'090000002',locked:0,password:'pwd2'}
+  ]);
+  if(!read(DB.typesKey)) write(DB.typesKey, [ {id:1,name:'Thời trang',hidden:0},{id:2,name:'Điện tử',hidden:0} ]);
+  if(!read(DB.catsKey)) write(DB.catsKey, [ {id:1,typeId:1,name:'Áo'}, {id:2,typeId:1,name:'Quần'}, {id:3,typeId:2,name:'Điện thoại'} ]);
+  if(!read(DB.productsKey)) write(DB.productsKey, [
+    {id:1,typeId:1,catId:1,code:'P001',name:'Áo thun trắng',desc:'Cotton',images:[],cost:100000,stock:10,hidden:0},
+    {id:2,typeId:1,catId:2,code:'P002',name:'Quần jean',desc:'Denim',images:[],cost:200000,stock:5,hidden:0},
+    {id:3,typeId:2,catId:3,code:'P003',name:'Điện thoại X',desc:'Model X',images:[],cost:3000000,stock:2,hidden:0}
+  ]);
+  if(!read(DB.purchasesKey)) write(DB.purchasesKey, [
+    {id:1001,date:'2025-09-20',completed:1,items:[{productId:1,qty:10,cost:90000}]}
+  ]);
+  if(!read(DB.pricesKey)) write(DB.pricesKey, { // structure: {typeProfits:{typeId:percent}, productProfits:{productId:percent}}
+    typeProfits: {1:0.3,2:0.25}, productProfits: {3:0.15}
+  });
+  if(!read(DB.ordersKey)) write(DB.ordersKey, [
+    {id:5001,customerId:1,customerName:'Nguyen Van A',date:'2025-10-01',address:'Q1',items:[{productId:1,qty:2,price:130000}],total:260000,status:'new'},
+    {id:5002,customerId:2,customerName:'Tran Thi B',date:'2025-10-05',address:'Q3',items:[{productId:3,qty:1,price:3500000}],total:3500000,status:'confirmed'}
+  ]);
+}
+seed();
+
+// ---------- Auth ----------
+document.getElementById('btnLogin').onclick = ()=>{
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass = document.getElementById('loginPass').value.trim();
+  const admin = read(DB.adminKey);
+  if(email === admin.email && pass === 'admin123'){
+    sessionStorage.setItem('isAdmin','1');
+    document.getElementById('adminEmail').innerText = admin.email;
+    location.hash = '#/dashboard';
+  } else alert('Sai thông tin đăng nhập (demo: mật khẩu admin123)');
+}
+
+// ---------- Render per route ----------
+function render(hash){ const view = document.getElementById('view'); view.innerHTML = '';
+  switch(hash){
+    case '#/dashboard': renderDashboard(view); break;
+    case '#/users': renderUsers(view); break;
+    case '#/types': renderTypes(view); break;
+    case '#/categories': renderCats(view); break;
+    case '#/products': renderProducts(view); break;
+    case '#/purchases': renderPurchases(view); break;
+    case '#/prices': renderPrices(view); break;
+    case '#/orders': renderOrders(view); break;
+    case '#/inventory': renderInventory(view); break;
+    default: location.hash = '#/dashboard';
+  }
+}
+
+// ---------- Dashboard ----------
+function renderDashboard(root){
+  const card = el('div', {class:'card'});
+  card.innerHTML = `<h2>Dashboard</h2><div class="flex" style="gap:14px;margin-top:10px">
+    <div class="card"><div class="small">Người dùng</div><div class="badge">${(read(DB.usersKey)||[]).length}</div></div>
+    <div class="card"><div class="small">Sản phẩm</div><div class="badge">${(read(DB.productsKey)||[]).length}</div></div>
+    <div class="card"><div class="small">Tồn kho tổng</div><div class="badge">${totalStock()}</div></div>
+  </div></div>`;
+  root.appendChild(card);
+}
+
+// ---------- Helpers ----------
+function el(tag,attrs={}){ const e = document.createElement(tag); for(const k in attrs) e.setAttribute(k,attrs[k]); return e }
+function totalStock(){ const prods = read(DB.productsKey)||[]; return prods.reduce((s,p)=>s+(p.stock||0),0) }
+function uid(list){ return (list.reduce((m,x)=>Math.max(m,x.id||0),0)||0)+1 }
+
+// ---------- USERS ----------
+function renderUsers(root){
+  const container = el('div',{class:'card'}); container.innerHTML = `<h2>Quản lý Người dùng</h2>`;
+  const users = read(DB.usersKey)||[];
+  const controls = el('div',{class:'flex'});
+  const addBtn = el('button'); addBtn.textContent='Thêm khách hàng'; addBtn.onclick = ()=>openUserForm('add');
+  controls.appendChild(addBtn);
+  const search = el('input'); search.placeholder='Tìm theo email hoặc tên'; search.style.width='240px'; search.oninput = ()=>refreshUsers(search.value);
+  controls.appendChild(search);
+  container.appendChild(controls);
+
+  const tableWrap = el('div'); tableWrap.innerHTML = `<table><thead><tr><th>Email</th><th>Tên</th><th>SDT</th><th>Trạng thái</th><th>Hành động</th></tr></thead><tbody id='usersTbody'></tbody></table>`;
+  container.appendChild(tableWrap);
+  root.appendChild(container);
+
+  function refreshUsers(q=''){ const tbody = document.getElementById('usersTbody'); tbody.innerHTML=''; const data = (read(DB.usersKey)||[]).filter(u=>u.email.toLowerCase().includes(q.toLowerCase())|| (u.name||'').toLowerCase().includes(q.toLowerCase()));
+    data.forEach(u=>{ const tr = el('tr'); tr.innerHTML = `<td>${u.email}</td><td>${u.name||''}</td><td>${u.phone||''}</td><td>${u.locked?'<span class="muted">Khóa</span>':'Hoạt động'}</td><td><div class='flex'><button class='ghost btn' data-edit='${u.id}'>Sửa</button><button class='ghost btn' data-reset='${u.id}'>Reset PW</button><button data-lock='${u.id}'>${u.locked? 'Mở khoá':'Khoá'}</button></div></td>`; tbody.appendChild(tr) });
+  }
+  refreshUsers();
+
+  tableWrap.onclick = (e)=>{
+    const edit = e.target.closest('[data-edit]'); const reset = e.target.closest('[data-reset]'); const lock = e.target.closest('[data-lock]');
+    if(edit){ const id = Number(edit.dataset.edit); openUserForm('edit', id) }
+    if(reset){ const id = Number(reset.dataset.reset); if(confirm('Reset mật khẩu về "password123"?')){ const list = read(DB.usersKey)||[]; const idx = list.findIndex(x=>x.id===id); if(idx>-1){list[idx].password='password123'; write(DB.usersKey,list); alert('Đã reset mật khẩu thành "password123"'); refreshUsers();}}}
+    if(lock){ const id = Number(lock.dataset.lock); const list = read(DB.usersKey)||[]; const idx = list.findIndex(x=>x.id===id); if(idx>-1){ list[idx].locked = list[idx].locked?0:1; write(DB.usersKey,list); refreshUsers(); }}
+  }
+
+  // form modal (simple)
+  function openUserForm(mode, id){ const modal = el('div',{class:'card'}); modal.style.position='relative'; modal.innerHTML = `<h3>${mode==='add'?'Thêm':'Sửa'} người dùng</h3><label>Email</label><input id='uEmail' type='text'><label>Tên</label><input id='uName' type='text'><label>SDT</label><input id='uPhone' type='text'><label>Trạng thái</label><select id='uLocked'><option value='0'>Hoạt động</option><option value='1'>Khóa</option></select><div style='margin-top:8px' class='flex'><button id='saveUser'>Lưu</button><button id='cancelUser' class='ghost'>Hủy</button></div>`;
+    container.insertBefore(modal, tableWrap);
+    if(mode==='edit'){ const list = read(DB.usersKey)||[]; const u = list.find(x=>x.id===id); if(u){ modal.querySelector('#uEmail').value=u.email; modal.querySelector('#uName').value=u.name||''; modal.querySelector('#uPhone').value=u.phone||''; modal.querySelector('#uLocked').value=u.locked?1:0 } }
+    modal.querySelector('#cancelUser').onclick = ()=>modal.remove();
+    modal.querySelector('#saveUser').onclick = ()=>{
+      const email = modal.querySelector('#uEmail').value.trim(); if(!email){alert('Email required');return}
+      const name = modal.querySelector('#uName').value; const phone = modal.querySelector('#uPhone').value; const locked = Number(modal.querySelector('#uLocked').value);
+      const list = read(DB.usersKey)||[];
+      if(mode==='add'){ const idn = uid(list); list.push({id:idn,email,name,phone,locked,password:'password123'}); write(DB.usersKey,list); modal.remove(); refreshUsers(); }
+      else { const idx = list.findIndex(x=>x.id===id); if(idx>-1){ list[idx].email=email; list[idx].name=name; list[idx].phone=phone; list[idx].locked=locked; write(DB.usersKey,list); modal.remove(); refreshUsers(); }}
+    }
+  }
+}
+
+// ---------- TYPES ----------
+function renderTypes(root){ const container = el('div',{class:'card'}); container.innerHTML = `<h2>Quản lý Loại sản phẩm</h2><div class='flex'><button id='addType'>Thêm loại</button><input id='searchType' placeholder='Tìm loại...' style='width:240px'></div><div style='margin-top:10px'><table><thead><tr><th>Tên loại</th><th>Trạng thái</th><th>Hành động</th></tr></thead><tbody id='typesTbody'></tbody></table></div>`; root.appendChild(container);
+  const load = ()=>{ const tbody = document.getElementById('typesTbody'); tbody.innerHTML=''; const data = read(DB.typesKey)||[]; const q = document.getElementById('searchType').value||''; data.filter(t=>t.name.toLowerCase().includes(q.toLowerCase())).forEach(t=>{ const tr=el('tr'); tr.innerHTML=`<td>${t.name}</td><td>${t.hidden?'<span class="muted">Ẩn</span>':'Hiện'}</td><td><div class='flex'><button data-edit='${t.id}' class='ghost'>Sửa</button><button data-hide='${t.id}'>${t.hidden? 'Hiện':'Ẩn'}</button><button data-del='${t.id}'>Xóa</button></div></td>`; tbody.appendChild(tr) }) }
+  document.getElementById('addType').onclick = ()=>{ openTypeForm('add') }
+  document.getElementById('searchType').oninput = load
+  container.onclick = (e)=>{ const edit = e.target.closest('[data-edit]'); const hide = e.target.closest('[data-hide]'); const del = e.target.closest('[data-del]'); if(edit){ openTypeForm('edit', Number(edit.dataset.edit)) } if(hide){ const id = Number(hide.dataset.hide); const list = read(DB.typesKey)||[]; const i = list.findIndex(x=>x.id===id); if(i>-1){ list[i].hidden = list[i].hidden?0:1; write(DB.typesKey,list); load(); }} if(del){ const id = Number(del.dataset.del); if(confirm('Xóa loại sẽ không tự động xóa sản phẩm; bạn có thể chọn ẩn thay vì xóa. Xác nhận xóa?')){ const list = (read(DB.typesKey)||[]).filter(x=>x.id!==id); write(DB.typesKey,list); load(); }} }
+  load();
+  function openTypeForm(mode,id){ const modal = el('div',{class:'card'}); modal.innerHTML = `<h3>${mode==='add'?'Thêm':'Sửa'} loại</h3><label>Tên</label><input id='tName' type='text'><div style='margin-top:8px' class='flex'><button id='saveType'>Lưu</button><button id='cancelType' class='ghost'>Hủy</button></div>`; container.insertBefore(modal, container.children[1]); if(mode==='edit'){ const list = read(DB.typesKey)||[]; const t = list.find(x=>x.id===id); if(t) modal.querySelector('#tName').value = t.name } modal.querySelector('#cancelType').onclick = ()=>modal.remove(); modal.querySelector('#saveType').onclick = ()=>{ const name=modal.querySelector('#tName').value.trim(); if(!name){alert('Tên required');return} const list = read(DB.typesKey)||[]; if(mode==='add'){ list.push({id:uid(list),name,hidden:0}); write(DB.typesKey,list); modal.remove(); load() } else { const idx = list.findIndex(x=>x.id===id); if(idx>-1){ list[idx].name = name; write(DB.typesKey,list); modal.remove(); load() } } }
+  }
+}
+
+// ---------- CATEGORIES ----------
+function renderCats(root){ const container = el('div',{class:'card'}); container.innerHTML = `<h2>Quản lý Danh mục</h2><div class='flex'><button id='addCat'>Thêm danh mục</button></div><div style='margin-top:10px'><table><thead><tr><th>Danh mục</th><th>Loại</th><th>Hành động</th></tr></thead><tbody id='catsTbody'></tbody></table></div>`; root.appendChild(container);
+  function load(){ const tbody = document.getElementById('catsTbody'); tbody.innerHTML=''; const cats = read(DB.catsKey)||[]; const types = (read(DB.typesKey)||[]); cats.forEach(c=>{ const t = types.find(x=>x.id===c.typeId); const tr=el('tr'); tr.innerHTML=`<td>${c.name}</td><td>${t? t.name:'-'}</td><td><div class='flex'><button data-edit='${c.id}' class='ghost'>Sửa</button><button data-del='${c.id}'>Xóa</button></div></td>`; tbody.appendChild(tr) }) }
+  document.getElementById('addCat').onclick = ()=>openForm('add');
+  container.onclick = (e)=>{ const edit = e.target.closest('[data-edit]'); const del = e.target.closest('[data-del]'); if(edit) openForm('edit', Number(edit.dataset.edit)); if(del){ if(confirm('Xóa danh mục?')){ const id = Number(del.dataset.del); write(DB.catsKey,(read(DB.catsKey)||[]).filter(x=>x.id!==id)); load() }} }
+  load();
+  function openForm(mode,id){ const modal = el('div',{class:'card'}); modal.innerHTML = `<h3>${mode==='add'?'Thêm':'Sửa'} danh mục</h3><label>Tên</label><input id='cName' type='text'><label>Loại</label><select id='cType'></select><div style='margin-top:8px' class='flex'><button id='saveC'>Lưu</button><button id='cancelC' class='ghost'>Hủy</button></div>`; container.insertBefore(modal, container.children[1]); const sel = modal.querySelector('#cType'); (read(DB.typesKey)||[]).forEach(t=>{ sel.appendChild(new Option(t.name,t.id)) }); if(mode==='edit'){ const list = read(DB.catsKey)||[]; const c = list.find(x=>x.id===id); if(c){ modal.querySelector('#cName').value=c.name; modal.querySelector('#cType').value=c.typeId } } modal.querySelector('#cancelC').onclick = ()=>modal.remove(); modal.querySelector('#saveC').onclick = ()=>{ const name=modal.querySelector('#cName').value.trim(); const typeId=Number(modal.querySelector('#cType').value); if(!name){alert('Tên required');return} const list = read(DB.catsKey)||[]; if(mode==='add'){ list.push({id:uid(list),typeId,name}); write(DB.catsKey,list); modal.remove(); load() } else { const idx = list.findIndex(x=>x.id===id); if(idx>-1){ list[idx].name=name; list[idx].typeId=typeId; write(DB.catsKey,list); modal.remove(); load() } } }
+  }
+}
+
+// ---------- PRODUCTS ----------
+function renderProducts(root){ const container = el('div',{class:'card'}); container.innerHTML = `<h2>Quản lý Sản phẩm</h2><div class='flex'><button id='addProd'>Thêm sản phẩm</button><input id='searchProd' placeholder='Tìm mã/tên...' style='width:240px'></div><div style='margin-top:10px'><table><thead><tr><th>Hình</th><th>Mã</th><th>Tên</th><th>Loại/Danh mục</th><th>Giá vốn</th><th>Stock</th><th>Hành động</th></tr></thead><tbody id='prodsTbody'></tbody></table></div>`; root.appendChild(container);
+  function load(q=''){ const tbody=document.getElementById('prodsTbody'); tbody.innerHTML=''; const prods=(read(DB.productsKey)||[]); const types = read(DB.typesKey)||[]; const cats = read(DB.catsKey)||[]; prods.filter(p=>p.name.toLowerCase().includes(q.toLowerCase())||p.code.toLowerCase().includes(q.toLowerCase())).forEach(p=>{ const t=types.find(x=>x.id===p.typeId); const c=cats.find(x=>x.id===p.catId); const tr=el('tr'); const img = p.images && p.images[0] ? `<img src='${p.images[0]}' class='img-thumb'>` : ''; tr.innerHTML=`<td>${img}</td><td>${p.code}</td><td>${p.name}${p.hidden?'<div class="muted">(Ẩn)</div>':''}</td><td>${t? t.name:''} / ${c? c.name:''}</td><td>${(p.cost||0).toLocaleString()}</td><td>${p.stock||0}</td><td><div class='flex'><button data-edit='${p.id}' class='ghost'>Sửa</button><button data-hide='${p.id}'>${p.hidden? 'Hiện':'Ẩn'}</button><button data-del='${p.id}'>Xóa</button></div></td>`; tbody.appendChild(tr) }) }
+  document.getElementById('addProd').onclick = ()=>openForm('add'); document.getElementById('searchProd').oninput = (e)=>load(e.target.value);
+  container.onclick = (e)=>{ const edit = e.target.closest('[data-edit]'); const hide = e.target.closest('[data-hide]'); const del = e.target.closest('[data-del]'); if(edit) openForm('edit', Number(edit.dataset.edit)); if(hide){ const id=Number(hide.dataset.hide); const list = read(DB.productsKey)||[]; const idx=list.findIndex(x=>x.id===id); if(idx>-1){ list[idx].hidden = list[idx].hidden?0:1; write(DB.productsKey,list); load() }} if(del){ const id = Number(del.dataset.del); if(confirm('Xóa sản phẩm?')){ write(DB.productsKey,(read(DB.productsKey)||[]).filter(x=>x.id!==id)); load() }} }
+  load();
+  function openForm(mode,id){ const modal = el('div',{class:'card'}); modal.innerHTML = `<h3>${mode==='add'?'Thêm':'Sửa'} sản phẩm</h3><label>Loại</label><select id='pType'></select><label>Danh mục</label><select id='pCat'></select><label>Mã</label><input id='pCode' type='text'><label>Tên</label><input id='pName' type='text'><label>Mô tả</label><textarea id='pDesc'></textarea><label>Giá vốn</label><input id='pCost' type='number'><label>Số lượng kho</label><input id='pStock' type='number' value='0'><label>Hình ảnh</label><input id='pImage' type='file' accept='image/*'><div style='margin-top:8px'><img id='pPreview' class='img-thumb hidden'></div><div style='margin-top:8px' class='flex'><button id='saveP'>Lưu</button><button id='cancelP' class='ghost'>Hủy</button></div>`; container.insertBefore(modal, container.children[1]); const selType = modal.querySelector('#pType'); (read(DB.typesKey)||[]).forEach(t=> selType.appendChild(new Option(t.name,t.id))); const selCat = modal.querySelector('#pCat'); (read(DB.catsKey)||[]).forEach(c=> selCat.appendChild(new Option(c.name,c.id)));
+    if(mode==='edit'){ const list = read(DB.productsKey)||[]; const p = list.find(x=>x.id===id); if(p){ modal.querySelector('#pType').value = p.typeId; modal.querySelector('#pCat').value = p.catId; modal.querySelector('#pCode').value = p.code; modal.querySelector('#pName').value = p.name; modal.querySelector('#pDesc').value = p.desc; modal.querySelector('#pCost').value = p.cost||0; modal.querySelector('#pStock').value = p.stock||0; if(p.images && p.images[0]){ modal.querySelector('#pPreview').src = p.images[0]; modal.querySelector('#pPreview').classList.remove('hidden'); modal.querySelector('#pPreview').dataset.src = p.images[0] } } }
+    modal.querySelector('#cancelP').onclick = ()=>modal.remove();
+    modal.querySelector('#pImage').onchange = (e)=>{ const f = e.target.files[0]; if(!f) return; const r = new FileReader(); r.onload = ()=>{ modal.querySelector('#pPreview').src = r.result; modal.querySelector('#pPreview').dataset.src = r.result; modal.querySelector('#pPreview').classList.remove('hidden') }; r.readAsDataURL(f) }
+    modal.querySelector('#saveP').onclick = ()=>{ const typeId = Number(modal.querySelector('#pType').value); const catId = Number(modal.querySelector('#pCat').value); const code = modal.querySelector('#pCode').value.trim(); const name = modal.querySelector('#pName').value.trim(); if(!code || !name){alert('Mã và tên required');return} const desc = modal.querySelector('#pDesc').value; const cost = Number(modal.querySelector('#pCost').value)||0; const stock = Number(modal.querySelector('#pStock').value)||0; const img = modal.querySelector('#pPreview').dataset.src ? [modal.querySelector('#pPreview').dataset.src] : [];
+      const list = read(DB.productsKey)||[];
+      if(mode==='add'){ list.push({id:uid(list),typeId,catId,code,name,desc,images:img,cost,stock,hidden:0}); write(DB.productsKey,list); modal.remove(); load() } else { const idx = list.findIndex(x=>x.id===id); if(idx>-1){ list[idx].typeId=typeId; list[idx].catId=catId; list[idx].code=code; list[idx].name=name; list[idx].desc=desc; list[idx].cost=cost; list[idx].stock=stock; if(img.length) list[idx].images=img; write(DB.productsKey,list); modal.remove(); load() } } }
+  }
+}
+
+// ---------- PURCHASES (Phiếu nhập) ----------
+function renderPurchases(root){ const container=el('div',{class:'card'}); container.innerHTML=`<h2>Quản lý Phiếu nhập</h2><div class='flex'><button id='addPur'>Thêm phiếu nhập</button><input id='searchPur' placeholder='Tìm mã/ghi chú...' style='width:240px'></div><div style='margin-top:10px'><table><thead><tr><th>Mã</th><th>Ngày</th><th>Trạng thái</th><th>Hành động</th></tr></thead><tbody id='pursTbody'></tbody></table></div>`; root.appendChild(container);
+  function load(q=''){ const tbody=document.getElementById('pursTbody'); tbody.innerHTML=''; const purs = read(DB.purchasesKey)||[]; purs.filter(p=> (p.id+'').includes(q) || (p.note||'').toLowerCase().includes(q.toLowerCase())).forEach(p=>{ const tr=el('tr'); tr.innerHTML=`<td>${p.id}</td><td>${p.date}</td><td>${p.completed? 'Hoàn thành':'Chưa'}</td><td><div class='flex'><button data-edit='${p.id}' class='ghost'>Sửa</button><button data-complete='${p.id}'>Hoàn thành</button><button data-view='${p.id}'>Xem</button></div></td>`; tbody.appendChild(tr) }) }
+  document.getElementById('addPur').onclick = ()=>openPurForm('add'); document.getElementById('searchPur').oninput = (e)=>load(e.target.value);
+  container.onclick = (e)=>{ const edit = e.target.closest('[data-edit]'); const comp = e.target.closest('[data-complete]'); const view = e.target.closest('[data-view]'); if(edit) openPurForm('edit', Number(edit.dataset.edit)); if(comp){ const id=Number(comp.dataset.complete); const list = read(DB.purchasesKey)||[]; const idx=list.findIndex(x=>x.id===id); if(idx>-1){ if(list[idx].completed){ alert('Phiếu đã hoàn thành, không thể sửa'); } else if(confirm('Hoàn thành phiếu? (sẽ cập nhật tồn kho)')){ list[idx].completed=1; write(DB.purchasesKey,list); // update stock
+        list[idx].items.forEach(it=>{ const prods = read(DB.productsKey)||[]; const pidx = prods.findIndex(x=>x.id===it.productId); if(pidx>-1){ prods[pidx].stock = (prods[pidx].stock||0) + it.qty; write(DB.productsKey,prods) } }); load(); } } } if(view) viewPurchase(Number(view.dataset.view)); }
+  load();
+  function openPurForm(mode,id){ const modal = el('div',{class:'card'}); modal.innerHTML=`<h3>${mode==='add'?'Thêm':'Sửa'} phiếu nhập</h3><label>Ngày</label><input id='purDate' type='date' value='${new Date().toISOString().slice(0,10)}'><div id='itemsBox'></div><div style='margin-top:8px' class='flex'><button id='addItem'>Thêm mặt hàng</button><button id='savePur'>Lưu</button><button id='cancelPur' class='ghost'>Hủy</button></div>`; container.insertBefore(modal, container.children[1]); const itemsBox = modal.querySelector('#itemsBox'); function addItemRow(it){ const row = el('div',{class:'flex'}); row.style.gap='8px'; row.style.marginTop='8px'; const sel = el('select'); (read(DB.productsKey)||[]).forEach(p=> sel.appendChild(new Option(p.name,p.id))); if(it) sel.value = it.productId; const cost = el('input'); cost.type='number'; cost.placeholder='Giá nhập'; cost.value = it? it.cost:0; const qty = el('input'); qty.type='number'; qty.placeholder='Số lượng'; qty.value = it? it.qty:1; const del = el('button'); del.className='ghost'; del.textContent='Xóa'; del.onclick = ()=>row.remove(); row.appendChild(sel); row.appendChild(cost); row.appendChild(qty); row.appendChild(del); itemsBox.appendChild(row); }
+    modal.querySelector('#addItem').onclick = ()=>addItemRow(); modal.querySelector('#cancelPur').onclick = ()=>modal.remove();
+    if(mode==='edit'){ const list = read(DB.purchasesKey)||[]; const p = list.find(x=>x.id===id); if(p){ modal.querySelector('#purDate').value=p.date; (p.items||[]).forEach(it=>addItemRow(it)) } }
+    modal.querySelector('#savePur').onclick = ()=>{ const date = modal.querySelector('#purDate').value; const rows = Array.from(itemsBox.children); if(rows.length===0){alert('Thêm ít nhất 1 mặt hàng');return} const items = rows.map(r=>({productId:Number(r.querySelector('select').value),cost:Number(r.querySelectorAll('input')[0].value)||0,qty:Number(r.querySelectorAll('input')[1].value)||0})); const list = read(DB.purchasesKey)||[]; if(mode==='add'){ const idn = uid(list); list.push({id:idn,date,completed:0,items}); write(DB.purchasesKey,list); modal.remove(); load() } else { const idx = list.findIndex(x=>x.id===id); if(idx>-1){ if(list[idx].completed){ alert('Phiếu đã hoàn thành, không thể sửa'); return } list[idx].date=date; list[idx].items=items; write(DB.purchasesKey,list); modal.remove(); load() } } }
+  }
+  function viewPurchase(id){ const p = (read(DB.purchasesKey)||[]).find(x=>x.id===id); if(!p) return alert('Không tồn tại'); const modal = el('div',{class:'card'}); modal.innerHTML = `<h3>Phiếu ${p.id}</h3><p>Ngày: ${p.date}</p><p>Trạng thái: ${p.completed? 'Hoàn':'Chưa'}</p><table><thead><tr><th>Sản phẩm</th><th>Số lượng</th><th>Giá nhập</th></tr></thead><tbody>${p.items.map(it=>{ const prod = (read(DB.productsKey)||[]).find(x=>x.id===it.productId); return `<tr><td>${prod?prod.name:it.productId}</td><td>${it.qty}</td><td>${it.cost.toLocaleString()}</td></tr>` }).join('')}</tbody></table><div style='margin-top:8px' class='flex'><button class='ghost' id='closePur'>Đóng</button></div>`; container.insertBefore(modal, container.children[1]); modal.querySelector('#closePur').onclick = ()=>modal.remove(); }
+}
+
+// ---------- PRICES ----------
+function renderPrices(root){ const container = el('div',{class:'card'}); container.innerHTML=`<h2>Quản lý Giá bán</h2><div class='flex'><button id='editTypeProf'>Sửa % theo loại</button><button id='editProdProf'>Sửa % theo sản phẩm</button><input id='searchPrice' placeholder='Tìm sản phẩm...' style='width:240px'></div><div id='priceResult' style='margin-top:10px'></div>`; root.appendChild(container);
+  document.getElementById('editTypeProf').onclick = ()=>openTypeProfit(); document.getElementById('editProdProf').onclick = ()=>openProdProfit(); document.getElementById('searchPrice').oninput = ()=>display(); display();
+  function display(){ const q = document.getElementById('searchPrice').value.toLowerCase(); const prods = read(DB.productsKey)||[]; const prices = read(DB.pricesKey)||{typeProfits:{},productProfits:{}}; const types = read(DB.typesKey)||[]; const cats = read(DB.catsKey)||[]; const rows = prods.filter(p=>p.name.toLowerCase().includes(q)||p.code.toLowerCase().includes(q)).map(p=>{ const tp = prices.productProfits[p.id] ?? prices.typeProfits[p.typeId] ?? 0; const sell = Math.round((p.cost||0) * (1+tp)); const t = types.find(x=>x.id===p.typeId); return `<tr><td>${p.code}</td><td>${p.name}</td><td>${t? t.name:''}</td><td>${(p.cost||0).toLocaleString()}</td><td>${Math.round(tp*100)}%</td><td>${sell.toLocaleString()}</td></tr>` }).join(''); document.getElementById('priceResult').innerHTML = `<table><thead><tr><th>Mã</th><th>Tên</th><th>Loại</th><th>Giá vốn</th><th>%Lợi nhuận</th><th>Giá bán</th></tr></thead><tbody>${rows}</tbody></table>` }
+  function openTypeProfit(){ const modal = el('div',{class:'card'}); modal.innerHTML = `<h3>Sửa % lợi nhuận theo loại</h3><div id='typeProfBox'></div><div style='margin-top:8px' class='flex'><button id='saveTypeProf'>Lưu</button><button id='cancelTP' class='ghost'>Hủy</button></div>`; container.insertBefore(modal, container.children[1]); const box = modal.querySelector('#typeProfBox'); (read(DB.typesKey)||[]).forEach(t=>{ const row = el('div'); row.style.marginTop='8px'; row.innerHTML = `<label>${t.name}</label><input data-type='${t.id}' type='number' step='0.01' placeholder='tỉ lệ (vd 0.3 = 30%)' value='${(read(DB.pricesKey)||{typeProfits:{}}).typeProfits[t.id] || 0}'>`; box.appendChild(row) }); modal.querySelector('#cancelTP').onclick = ()=>modal.remove(); modal.querySelector('#saveTypeProf').onclick = ()=>{ const inputs = box.querySelectorAll('input'); const prices = read(DB.pricesKey)||{typeProfits:{},productProfits:{}}; inputs.forEach(inp=> prices.typeProfits[inp.dataset.type] = Number(inp.value)||0); write(DB.pricesKey,prices); modal.remove(); display(); }
+  }
+  function openProdProfit(){ const modal = el('div',{class:'card'}); modal.innerHTML = `<h3>Sửa % lợi nhuận theo sản phẩm</h3><div id='prodProfBox'></div><div style='margin-top:8px' class='flex'><button id='saveProdProf'>Lưu</button><button id='cancelPP' class='ghost'>Hủy</button></div>`; container.insertBefore(modal, container.children[1]); const box = modal.querySelector('#prodProfBox'); (read(DB.productsKey)||[]).forEach(p=>{ const row = el('div'); row.style.marginTop='8px'; row.innerHTML = `<label>${p.name} (${p.code})</label><input data-prod='${p.id}' type='number' step='0.01' placeholder='tỉ lệ' value='${(read(DB.pricesKey)||{productProfits:{}}).productProfits[p.id] ?? ''}'>`; box.appendChild(row) }); modal.querySelector('#cancelPP').onclick = ()=>modal.remove(); modal.querySelector('#saveProdProf').onclick = ()=>{ const inputs = box.querySelectorAll('input'); const prices = read(DB.pricesKey)||{typeProfits:{},productProfits:{}}; inputs.forEach(inp=>{ if(inp.value==='') delete prices.productProfits[inp.dataset.prod]; else prices.productProfits[inp.dataset.prod] = Number(inp.value)||0 }); write(DB.pricesKey,prices); modal.remove(); display(); }
+  }
+}
+
+// ---------- ORDERS ----------
+function renderOrders(root){ const container=el('div',{class:'card'}); container.innerHTML=`<h2>Quản lý Đơn hàng</h2><div class='flex'><label>Từ</label><input id='oFrom' type='date'><label>Đến</label><input id='oTo' type='date'><label>Trạng thái</label><select id='oStatus'><option value='all'>Tất cả</option><option value='new'>Mới</option><option value='confirmed'>Đã xử lý</option><option value='delivered'>Đã giao</option><option value='cancel'>Hủy</option></select><button id='filterOrders'>Lọc</button></div><div style='margin-top:10px'><table><thead><tr><th>Mã</th><th>Khách</th><th>Ngày</th><th>Tổng</th><th>Trạng thái</th><th>Hành động</th></tr></thead><tbody id='ordersTbody'></tbody></table></div>`; root.appendChild(container);
+  function load(list){ const tbody=document.getElementById('ordersTbody'); tbody.innerHTML=''; const statusLabel = s=> s==='new'?'<span class="status s-new">Mới</span>': s==='confirmed'?'<span class="status s-confirm">Xác nhận</span>': s==='delivered'?'<span class="status s-delivered">Giao</span>':'<span class="status s-cancel">Hủy</span>';
+    list.forEach(o=>{ const tr=el('tr'); tr.innerHTML=`<td>${o.id}</td><td>${o.customerName}</td><td>${o.date}</td><td>${o.total.toLocaleString()}</td><td>${statusLabel(o.status)}</td><td><div class='flex'><select data-change='${o.id}'><option value='new'>new</option><option value='confirmed'>confirmed</option><option value='delivered'>delivered</option><option value='cancel'>cancel</option></select><button data-view='${o.id}' class='ghost'>Xem</button></div></td>`; tbody.appendChild(tr); tbody.querySelector('tr:last-child select').value = o.status }) }
+  const all = read(DB.ordersKey)||[]; load(all);
+  document.getElementById('filterOrders').onclick = ()=>{ let list = read(DB.ordersKey)||[]; const from = document.getElementById('oFrom').value; const to = document.getElementById('oTo').value; if(from) list = list.filter(x=>x.date>=from); if(to) list = list.filter(x=>x.date<=to); const st = document.getElementById('oStatus').value; if(st!=='all') list = list.filter(x=>x.status===st); load(list); }
+  container.onclick = (e)=>{ const ch = e.target.closest('[data-change]'); const view = e.target.closest('[data-view]'); if(ch){ const id = Number(ch.dataset.change); const list = read(DB.ordersKey)||[]; const idx = list.findIndex(x=>x.id===id); if(idx>-1){ list[idx].status = ch.value; write(DB.ordersKey,list); renderOrders(root) }} if(view) showOrder(Number(view.dataset.view)); }
+  function showOrder(id){ const o = (read(DB.ordersKey)||[]).find(x=>x.id===id); if(!o) return alert('Không tìm thấy'); const modal = el('div',{class:'card'}); modal.innerHTML = `<h3>Đơn ${o.id}</h3><p>Khách: ${o.customerName} - ${o.address}</p><p>Ngày: ${o.date}</p><table><thead><tr><th>Sản phẩm</th><th>SL</th><th>Giá</th></tr></thead><tbody>${o.items.map(i=>{ const p = (read(DB.productsKey)||[]).find(x=>x.id===i.productId); return `<tr><td>${p? p.name:i.productId}</td><td>${i.qty}</td><td>${i.price.toLocaleString()}</td></tr>` }).join('')}</tbody></table><p><strong>Tổng:</strong> ${o.total.toLocaleString()}</p><div class='flex' style='margin-top:8px'><button id='closeOrder' class='ghost'>Đóng</button></div>`; container.insertBefore(modal, container.children[1]); modal.querySelector('#closeOrder').onclick = ()=>modal.remove(); }
+}
+
+// ---------- INVENTORY ----------
+function renderInventory(root){ const container = el('div',{class:'card'}); container.innerHTML=`<h2>Quản lý Tồn kho</h2><div class='flex'><input id='invSearch' placeholder='Tìm sản phẩm...' style='width:280px'><button id='checkInv'>Tra cứu</button></div><div id='invResult' style='margin-top:10px'></div>`; root.appendChild(container);
+  document.getElementById('checkInv').onclick = ()=>display(); document.getElementById('invSearch').oninput = ()=>display(); display();
+  function display(){ const q = document.getElementById('invSearch').value.toLowerCase(); const prods = (read(DB.productsKey)||[]).filter(p=>p.name.toLowerCase().includes(q)||p.code.toLowerCase().includes(q)); if(prods.length===0) return document.getElementById('invResult').innerHTML = '<p class="muted">Không tìm thấy sản phẩm</p>'; const rows = prods.map(p=>{ const inQty = calcIn(p.id); const outQty = calcOut(p.id); const stock = p.stock || 0; const warn = stock <= 5 ? '<div class="warn">Sắp hết hàng</div>' : ''; return `<div class='card'><div style='display:flex;gap:16px;align-items:center'><div><strong>${p.name}</strong><div class='muted'>${p.code}</div></div><div class='right'><div>Nhập: ${inQty}</div><div>Xuất: ${outQty}</div><div>Hiện có: ${stock}</div>${warn}</div></div></div>` }).join(''); document.getElementById('invResult').innerHTML = rows }
+  function calcIn(pid){ const purs = read(DB.purchasesKey)||[]; return purs.reduce((s,p)=> s + (p.items? p.items.filter(i=>i.productId===pid && p.completed).reduce((ss,it)=>ss+it.qty,0):0), 0) }
+  function calcOut(pid){ const ords = read(DB.ordersKey)||[]; return ords.reduce((s,o)=> s + (o.items? o.items.filter(i=>i.productId===pid).reduce((ss,it)=>ss+it.qty,0):0), 0) }
+}
+
+// ---------- Init ----------
+router();
+
+</script>
+</body>
+</html>
