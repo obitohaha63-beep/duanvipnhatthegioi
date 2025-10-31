@@ -6,8 +6,8 @@
   <title>CoolNet</title>
   <link rel="stylesheet" href="style4.css">
   <link rel="stylesheet" href="root.css">
-  <link rel="stylesheet" href="choxacnhan.css">
   <link rel="stylesheet" href="fontinter.css">
+  <link rel="stylesheet" href="dangnhapdangky.css">
 </head>
 <body>
 <header>
@@ -30,7 +30,7 @@
             <div class="containercontac">
                 <ul class="thongitn">
                     <li class="listitemcall"> 
-                        <a class="groupitemcall" href="#"><span class="boxicon">
+                        <a class="groupitemcall" href="tel:0796556438"><span class="boxicon">
                             <img src="hinhanh/ringer-volume.png" style="width:24px">
                           </span>
                           <span class="boxtext column">
@@ -43,16 +43,14 @@
                       
 
                       <li class="listitemcart"> 
-                        <a class="groupitemcart" href="">
+                        <a class="groupitemcart" href="login.html">
                           <div class="containercart">
                             <button>
                               <span class="boxicon">
                                 <img src="hinhanh/shopping-cart.png" style="width:24px">
                                 <span class="jscart">0</span>
                               </span>
-                              <a href="Giohang.html">
                               <span class="boxtext">Giỏ hàng</span>
-                              </a>
                             </button>
                           </div>
                         </a>
@@ -61,8 +59,8 @@
                 
 <div class="container-login">
   <img class="logo-person" src="hinhanh/Person.png" alt="logo của brand" style="width:24px; height: 24px">
-  <a class="text-thongtin" href="taikhoan.html">Thông tin</a>
-  <a class="text-dangxuat" href="html4.html">Đăng xuất</a>
+<a class="text-dangnhap" href="login.html">Đăng nhập</a>
+<a class="text-dangky" href="register.html">Đăng ký</a>
 </div>
 
 
@@ -105,15 +103,15 @@
             <div class="navmenu">
               
               <ul>
-                <li class><a href="allsanpham1.html" ><span class="icon">
+                <li class><a href="allsanpham.html"><span class="icon">
                   <img src="hinhanh/Get a Discount.png" style="width:24px"></span>
                 Sản phẩm khuyến mãi</a></li>
 
-                <li class><a href="allsanpham1.html" ><span class="icon">
+                <li class><a href="allsanpham.html"><span class="icon">
                 <img src="hinhanh/Megaphone.png" style="width:24px"></span>
                 Sản phẩm nổi bật</a></li>
 
-                <li class><a href="allsanpham1.html" ><span class="icon">
+                <li class><a href="allsanpham.html"><span class="icon">
                 <img src="hinhanh/unpacking.png" style="width:24px"></span>
                 Tất cả sản phẩm</a></li>
                 
@@ -128,97 +126,58 @@
       </div>
     </div>
 </header>
-<main class="account-page">
-  <div class="account-wrapper">
-    <!-- Cột trái -->
-    <aside class="account-sidebar">
-      <div class="account-user">
-        <div class="avatar-circle">Name</div>
-        <h2 id="account-email">Email</h2>
-      </div>
-      <nav class="account-menu">
-        <a href="taikhoan.html">
-        <div class="box-thongtincanhan">
-          Thông tin cá nhân
+<main>
+<section id ="register-page">
+<div class="register-container">
+    <div class="register-left">
+      <h2>TẠO TÀI KHOẢN MỚI</h2>
+      <p>Điền thông tin của bạn để tạo tài khoản CoolNet.</p><br>
+
+      <form action="login.html" method="GET">
+        <div class="form-row">
+          <label for="fullname"><strong>HỌ VÀ TÊN<span style="color: red">*</span></strong></label>
+          <input type="text" id="fullname" placeholder="Nhập họ tên của bạn" required>
         </div>
-        </a>
-        <a href="donhangcuaban.html">
-        <div class="box-thongtindonhang">
-          Đơn mua
+
+        <div class="form-row">
+          <label for="email-register"><strong>EMAIL<span style="color: red">*</span></strong></label>
+          <input type="email" id="email-register" name="email" placeholder="Nhập địa chỉ email" required>
         </div>
-        </a>
-      </nav>
-    </aside>
 
-    <!-- Cột phải -->
-    <section class="account-content">
-      <div class="khung-tablist">
-        <a href="donhangcuaban.html">
-        <div class="khung-text-hoanthanh">
-          Hoàn thành
+        <div class="form-row">
+          <label for="password-register"><strong>MẬT KHẨU<span style="color: red">*</span></strong></label>
+          <input type="password" id="password-register" name="password" placeholder="Tạo mật khẩu" required>
         </div>
-        </a>
-        <a href="#">
-        <div class="khung-text-choxacnhan">
-          Chờ xác nhận
+
+        <div class="form-row">
+          <label for="confirm-password"><strong>XÁC NHẬN MẬT KHẨU<span style="color: red">*</span></strong></label>
+          <input type="password" id="confirm-password" placeholder="Nhập lại mật khẩu" required>
         </div>
-        </a>
-      </div>
-      <form class="account-form">
-        <div class="sanpham">
 
-            <div class="tieude">
-            
-            <span class="product-count">Chờ thanh toán </span></h2>
-            </div>
-
-            
-
-              <div class="cart-item">
-              
-              <img src="hinhanh/11tour.png" alt="Vợt cầu lông " class="product-img">
-             
-                <div class="product-info">
-                <p class="product-name">Vợt cầu lông Yonex Arcsaber 11 Pro <br>Chính Hãng</p>
-                <p class="product-desc">Đỏ / 4UG5 </p>
-                <p class="product-name">x1</p>
-                <p class="product-name-thongtin">Thành Phát Anh Hưng
-                    <br>
-                    0796556438
-                    <br>
-                    273 An Dương Vương, Phường Chợ Quán, TPHCM.
-                </p>
-
-                
-               
-                </div>
-                  <div class="product-actions">
-                
-                    <p class="total-price">3.200.000₫</p>
-                    
-                </div>
-                
-                  
-            </div>
-            <div class="box-mualai">
-                <div class="box-thanhtien">
-                    <h3>Thành tiền: <span class="price"> 3.200.000đ</span> </h3>
-                    
-                    <div class="box-text-mualai">
-                        Đang xử lí
-                    </div>
-                    
-                    
-
-                </div>
-            </div>
-            </div>
+        <div class="show-password">
+          <input type="checkbox" id="showPassRegister">
+          <label for="showPassRegister">Hiện mật khẩu</label>
+        </div>
+        
+        <button type="submit" class="btn-register-form">ĐĂNG KÝ</button>
+        
       </form>
-    </section>
+    </div>
+
+    <div class="register-right">
+      <h2>QUYỀN LỢI THÀNH VIÊN</h2>
+      <ul>
+        <li>✔ Theo dõi đơn hàng và lịch sử mua.</li>
+        <li>✔ Nhận ưu đãi và phiếu giảm giá thành viên.</li>
+        <li>✔ Cập nhật tin tức và sản phẩm mới nhất.</li>
+      </ul>
+      <a href="login.html"><button class="btn-back-login">QUAY LẠI ĐĂNG NHẬP</button></a>
+    </div>
   </div>
+</section>
+
+
 </main>
-
-
 </body>
 <footer>
   <div class="container-footer">
@@ -255,19 +214,19 @@
             </div>
           <div class="thongtin-col2">
             <ul>
-              <li><a href="">• Chính sách giao hàng và đổi trả</a></li>
+              <li><a href="#">• Chính sách giao hàng và đổi trả</a></li>
 
-              <li><a href="">• Chính sách bảo mật thông tin</a></li>
+              <li><a href="#">• Chính sách bảo mật thông tin</a></li>
 
-              <li><a href="">• Liên hệ CSKH Online</a></li>
+              <li><a href="#">• Liên hệ CSKH Online</a></li>
 
-              <li><a href="">• Chính sách thanh toán</a></li>
+              <li><a href="#">• Chính sách thanh toán</a></li>
 
-              <li><a href="">• Điều khoản dịch vụ</a></li>
+              <li><a href="#">• Điều khoản dịch vụ</a></li>
 
-              <li><a href="">• Chính sách bảo hành</a></li>
+              <li><a href="#">• Chính sách bảo hành</a></li>
 
-              <li><a href="">• Kiểm tra đơn hàng</a></li>
+              <li><a href="#">• Kiểm tra đơn hàng</a></li>
             </ul>
           </div>
         </div>     
@@ -312,4 +271,13 @@
     </div>
   </div>
 </footer>
+
+
+
+  
+
+
+
+
+
 </html>
