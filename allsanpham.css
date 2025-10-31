@@ -9,7 +9,7 @@
 
   
   .headertop{
-      background-color: #0F5E9F;
+      background-color: var(--xanhchudao);
       width: 100%;
       height: 70px;
       margin :0 auto;
@@ -19,7 +19,7 @@
   .headertop .container {
       width: 1200px;
       height: 66px;
-      background-color: #0F5E9F;
+      background-color: var(--xanhchudao);
       margin: 0 auto;
 
       display: flex;             /* bật flex */
@@ -30,7 +30,7 @@
 
   .containerlogo{
       width: 300px;
-      background-color: #0F5E9F;
+      background-color: var(--xanhchudao);
   }
 
   .containerlogo .logo{
@@ -45,7 +45,7 @@
       position: relative;
       width :395px;
       height: 40px;
-      background-color: #0F5E9F;
+      background-color: var(--xanhchudao);
   }
 
   .containerSearch .search {
@@ -63,7 +63,7 @@
     height: 40px;        /* chiều cao khung tìm kiếm */
     padding: 0 40px 0 10px; /* chừa chỗ cho icon */
     font-size: 16px;     /* cỡ chữ */
-    border: 1px solid #0F5E9F;
+    border: 1px solid var(--xanhchudao);
     border-radius: 12px;
     box-sizing: border-box;
     border: none; 
@@ -84,7 +84,7 @@
     position: relative;
     width: 505px;
     height: 37px;
-    background-color: #0F5E9F;
+    background-color: var(--xanhchudao);
     display: block;             /* bật flex */
       align-items: center;       /* căn giữa theo chiều dọc */
     line-height: 19.6px;
@@ -96,7 +96,7 @@
 
   .containercontac {
     width: 505px;
-    background-color: #0F5E9F;
+    background-color: var(--xanhchudao);
     padding-left: 15px;
     color: #fff;
     font-size: 14px;
@@ -134,7 +134,7 @@
   position: relative;
   width: 130px;
   height: 44px;
-  background-color: #0F5E9F;
+  background-color: var(--xanhchudao);
   margin-left: 170px;
   margin-top: -42px;
 }
@@ -290,7 +290,7 @@
 }
 
 .khungtrangmenu-dropdown li a:hover {
-  color: #0F5E9F;
+  color: var(--xanhchudao);
 }
 
 
@@ -410,7 +410,7 @@
 .containerhome .container-select input[type="checkbox"] {
   transform: scale(1.5); /* phóng to 1.5 lần */
   margin-right: 6px;     /* cách chữ một chút */
-  accent-color: #0F5E9F;    /* đổi màu tích (Chrome, Edge, Firefox) */
+  accent-color: var(--xanhchudao);    /* đổi màu tích (Chrome, Edge, Firefox) */
   cursor: pointer;       /* hiển thị bàn tay khi di chuột */
 }
 
@@ -454,7 +454,7 @@
   font-weight: 500;           /* chữ to hơn */
   border-radius: 8px;       /* bo góc */
   border: 2px solid #BABABC;    /* viền nhẹ */
-  background-color: #0F5E9F;    /* nền trắng */
+  background-color: var(--xanhchudao);    /* nền trắng */
   color: #ffffff;               /* màu chữ */
   transition: all 0.3s ease; /* hiệu ứng mượt khi hover */
   cursor: pointer;          /* đổi con trỏ chuột */
@@ -468,7 +468,7 @@
 
 #idsapxep:focus {
   outline: none;              /* bỏ viền mặc định khi bấm vào */
-  border-color: #0F5E9F;
+  border-color: var(--xanhchudao);
   box-shadow: 0 0 6px #0F5E9F88;
 }
  .container-sanphambot {
@@ -553,7 +553,7 @@
   }
 
   .container-anh button:hover {
-  background-color: #0F5E9F;      /* Màu đậm hơn khi hover */
+  background-color: var(--xanhchudao);      /* Màu đậm hơn khi hover */
   transform: scale(1.05);         /* Nút hơi phóng to nhẹ */
 }
 .container-phantrang {
@@ -585,9 +585,9 @@
 }
 
 .pagination a.active {
-  background-color: #0F5E9F;
+  background-color: var(--xanhchudao);
   color: white;
-  border: 1px solid #0F5E9F;
+  border: 1px solid var(--xanhchudao);
 }
 
 .pagination a:hover:not(.active) {

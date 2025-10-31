@@ -14,7 +14,7 @@ body {
   height: 100vh;
 }
 
-/* --- Sidebar --- */
+
 .sidebar {
   width: 250px;
   background-color: #1e1e2d;
@@ -53,7 +53,7 @@ body {
   border-left: 4px solid #00bfff;
 }
 
-/* --- Content --- */
+
 .content {
   flex: 1;
   padding: 40px;
@@ -110,27 +110,19 @@ img {
   font-size: 14px;
 }
 
-.add-btn {
-  background-color: #00bfff;
-  color: white;
-  margin-bottom: 10px;
-}
 
-.edit-btn {
-  background-color: #ffc107;
-}
 
 .delete-btn {
-  background-color: #dc3545;
+  background-color: var(--nutxanhla);
   color: white;
 }
 
 .hide-btn {
-  background-color: #6c757d;
+  background-color: var(--nutcam);
   color: white;
 }
 
-/* --- Modal --- */
+
 .modal {
   display: none;
   position: fixed;
@@ -173,6 +165,108 @@ img {
 
 .cancel-btn {
   background-color: #ccc;
+}
+
+
+
+.form-section {
+  background: #fff;
+  border-radius: 10px;
+  padding: 25px 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-section h2 {
+  color: #333;
+  margin-bottom: 20px;
+  border-left: 4px solid #00bfff;
+  padding-left: 10px;
+  font-size: 1.4em;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="file"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #00bfff;
+  box-shadow: 0 0 5px rgba(0, 191, 255, 0.3);
+  outline: none;
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.save-btn {
+  background-color: #00b894;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.save-btn:hover {
+
+  transform: translateY(-2px);
+}
+
+.cancel-btn {
+  background-color: #ccc;
+  color: #333;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+
+
+
+
+
+
+.delete-btn:hover {
+
+  transform: scale(1.05);
+}
+
+.hide-btn:hover {
+
+  transform: scale(1.05);
 }
 
 

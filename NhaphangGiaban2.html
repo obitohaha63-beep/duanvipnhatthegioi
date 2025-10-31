@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang Quản Trị</title>
+  <link rel="stylesheet" href="NhaphangGiaban.css">
+  <link rel="stylesheet" href="fontinter.css">
+  <link rel="stylesheet" href="root.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Menu bên trái -->
+    <nav class="sidebar">
+      <h2 class="logo">Admin Panel</h2>
+      <ul class="menu">
+        <li><a href="dashboard.html">🏠 Dashboard</a></li>
+        <li><a href="QuanLyuser.html">👤 Quản lý người dùng / Khách hàng</a></li>
+        <li><a href="QuanLySanPham.html">🛒 Quản lý sản phẩm</a></li>
+        <li><a href="NhaphangGiaban.html">📦 Nhập hàng & Giá bán</a></li>
+        <li><a href="#">🧾 Đơn hàng & Tồn kho</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      <div class="sub-container">
+        <!-- SIDEBAR PHỤ -->
+        <nav class="sub-sidebar">
+          <h2 style="text-align: center;">  Quản lý kho</h2>
+          <ul>
+            <li ><a href="NhaphangGiaban.html">Quản lý nhập hàng</a></li>
+            <li class="active"><a href="NhaphangGiaban2.html" style="color: white;" >Quản lý giá bán</a></li>
+          </ul>
+        </nav>
+
+            <!-- SECTION: Giá bán -->
+            <section class="sub-section">
+              <h2>Quản lý giá bán</h2>
+              <p class="desc">Thông tin giá vốn, lợi nhuận và giá bán</p>
+
+              <div class="search-box">
+                <label for="search-giaban">Tra cứu sản phẩm</label>
+                <input type="text" id="search-giaban" placeholder="Nhập tên sản phẩm..." />
+              </div>
+
+                <table class="data-table" id="table-giaban">
+                  <thead>
+                    <tr>
+                      <th>Tên sản phẩm</th>
+                      <th>Giá vốn (VNĐ)</th>
+                      <th>Lợi nhuận (%)</th>
+                      <th>Giá bán (VNĐ)</th>
+                      <th>Thao tác</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Vợt cầu lông Yonex Muscle Power 29 Light Chính Hãng</td>
+                      <td>712,000</td>
+                      <td>20%</td>
+                      <td>890,000</td>
+                      <td><button class="btn-delete">Xóa</button></td>
+                    </tr>
+                    <tr>
+                      <td>Vợt cầu lông Yonex Astrox Smash Chính Hãng</td>
+                      <td>1,192,500</td>
+                      <td>25%</td>
+                      <td>1,590,000</td>
+                      <td><button class="btn-delete"> Xóa</button></td>
+                    </tr>
+                    <tr>
+                      <td>Vợt cầu lông Yonex Arcsaber 11 Tour Chính Hãng</td>
+                      <td>2,017,500</td>
+                      <td>25%</td>
+                      <td>2,690,000</td>
+                      <td><button class="btn-delete">Xóa</button></td>
+                    </tr>
+                    <tr>
+                      <td>Vợt Cầu Lông Lining Windstorm 72 Chính Hãng</td>
+                      <td>1,837,500</td>
+                      <td>25%</td>
+                      <td>2,450,000</td>
+                      <td><button class="btn-delete">Xóa</button></td>
+                    </tr>
+                    <tr>
+                      <td>Vợt cầu lông Lining Turbo Charging 75 Chính Hãng</td>
+                      <td>1,417,500</td>
+                      <td>25%</td>
+                      <td>1,890,000</td>
+                      <td><button class="btn-delete">Xóa</button></td>
+                    </tr>
+                    <tr>
+                      <td>Vợt Cầu Lông Lining Aeronaut 9000C Chính Hãng</td>
+                      <td>2,960,000</td>
+                      <td>20%</td>
+                      <td>3,700,000</td>
+                      <td><button class="btn-delete">Xóa</button></td>
+                    </tr>
+                    <tr>
+                      <td>Vợt Cầu Lông Lining Windstorm 78-S Chính Hãng</td>
+                      <td>792,000</td>
+                      <td>20%</td>
+                      <td>990,000</td>
+                      <td><button class="btn-delete">Xóa</button></td>
+                    </tr>
+                    <tr>
+                      <td>Vợt Cầu Lông Yonex Nanoflare 1000 Game Chính Hãng</td>
+                      <td>3,039,200</td>
+                      <td>20%</td>
+                      <td>3,799,000</td>
+                      <td><button class="btn-delete">Xóa</button></td>
+                    </tr>
+                    <tr>
+                      <td>Vợt cầu lông Yonex Astrox 88S Play Chính Hãng</td>
+                      <td>1,567,500</td>
+                      <td>25%</td>
+                      <td>2,090,000</td>
+                      <td><button class="btn-delete">Xóa</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+
+            </section>
+          </div>
+          <!-- FORM thêm / sửa sản phẩm -->
+        <div class="form-container">
+            <h3>Thêm giá bán sản phẩm<h3>
+
+            <form class="form-giaban">
+              <div class="form-row">
+                <label for="ten">Tên sản phẩm</label>
+                <input type="text" id="ten" placeholder="Nhập Tên Sản Phẩm" required>
+              </div>
+
+              <div class="form-row">
+                <label for="giavon">Giá vốn (VNĐ)</label>
+                <input type="number" id="giavon" placeholder="Nhập Giá Vốn" required>
+              </div>
+
+              <div class="form-row">
+                <label for="loinhuan">Lợi nhuận (%)</label>
+                <input type="number" id="loinhuan" placeholder="% Lợi Nhuận" required>
+              </div>
+
+              <div class="form-row">
+                <label for="giaban">Giá bán (VNĐ)</label>
+                <input type="number" id="giaban" placeholder="Nhập Giá Bán" required>
+              </div>
+
+              <div class="form-buttons">
+                <button type="submit" class="btn btn-save">Hoàn Thành</button>
+                <button type="reset" class="btn btn-cancel">Hủy</button>
+              </div>
+            </form>
+        </div>
+
+        <div class="form-container">
+            <h3>Sửa Giá Bán Sản Phẩm<h3>
+
+            <form class="form-giaban">
+              <div class="form-row">
+                <label for="ten">Tên sản phẩm</label>
+                <input type="text" id="ten" placeholder="Nhập Tên Sản Phẩm Muốn Sửa" required>
+              </div>
+
+              <div class="form-row">
+                <label for="giavon">Giá vốn (VNĐ)</label>
+                <input type="number" id="giavon" placeholder="Nhập Giá Vốn Muốn Sửa" required>
+              </div>
+
+              <div class="form-row">
+                <label for="loinhuan">Lợi nhuận (%)</label>
+                <input type="number" id="loinhuan" placeholder="% Lợi Nhuận Muốn Sửa" required>
+              </div>
+
+              <div class="form-row">
+                <label for="giaban">Giá bán (VNĐ)</label>
+                <input type="number" id="giaban" placeholder="Nhập Giá Bán Muốn Sửa" required>
+              </div>
+
+              <div class="form-buttons">
+                <button type="submit" class="btn btn-save">Hoàn Thành</button>
+                <button type="reset" class="btn btn-cancel">Hủy</button>
+              </div>
+            </form>
+        </div>
+    </main>
+  </div>
+</body>
+</html>

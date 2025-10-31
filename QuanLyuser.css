@@ -108,6 +108,7 @@ button {
     border: none;
     border-radius: 5px;
     transition: background-color 0.3s;
+    
 }
 
 button.reset-password {
@@ -116,28 +117,27 @@ button.reset-password {
 }
 
 button.reset-password:hover {
-    background-color: #e07b00;
+    transform: scale(1.05); 
 }
 
 button.lock-unlock {
     background-color: #4caf50;
     color: white;
+    
 }
-
-button.lock-unlock:hover {
-    background-color: #45a049;
-}
-
-button.lock-unlock.locked {
+button.unlock {
+    
+    color: white;
     background-color: #f44336;
 }
 
-button.lock-unlock.locked:hover {
-    background-color: #e31c1c;
+button.unlock:hover{
+  transform: scale(1.05);
 }
 
-button:disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
+button.lock-unlock:hover {
+    transform: scale(1.05);
 }
+
+
 

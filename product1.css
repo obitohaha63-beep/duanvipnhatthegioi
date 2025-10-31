@@ -8,7 +8,7 @@
 }
 
 .headertop{
-    background-color: #0F5E9F;
+    background-color: var(--xanhchudao);
     width: 100%;
     height: 70px;
     margin :0 auto;
@@ -18,7 +18,7 @@
 .headertop .container {
     width: 1200px;
     height: 66px;
-    background-color: #0F5E9F;
+    background-color: var(--xanhchudao);
     margin: 0 auto;
 
     display: flex;             /* bật flex */
@@ -29,7 +29,7 @@
 
 .containerlogo{
     width: 300px;
-    background-color: #0F5E9F;
+    background-color: var(--xanhchudao);
 }
 
 .containerlogo .logo{
@@ -44,7 +44,7 @@
     position: relative;
     width :395px;
     height: 40px;
-    background-color: #0F5E9F;
+    background-color: var(--xanhchudao);
 }
 
 .containerSearch .search {
@@ -62,7 +62,7 @@
   height: 40px;        /* chiều cao khung tìm kiếm */
   padding: 0 40px 0 10px; /* chừa chỗ cho icon */
   font-size: 16px;     /* cỡ chữ */
-  border: 1px solid #0F5E9F;
+  border: 1px solid var(--xanhchudao);
   border-radius: 12px;
   box-sizing: border-box;
   border: none; 
@@ -83,7 +83,7 @@
   position: relative;
   width: 505px;
   height: 37px;
-  background-color: #0F5E9F;
+  background-color: var(--xanhchudao);
   display: block;             /* bật flex */
     align-items: center;       /* căn giữa theo chiều dọc */
   line-height: 19.6px;
@@ -95,7 +95,7 @@
 
 .containercontac {
   width: 505px;
-  background-color: #0F5E9F;
+  background-color: var(--xanhchudao);
   padding-left: 15px;
   color: #fff;
   font-size: 14px;

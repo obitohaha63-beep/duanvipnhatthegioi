@@ -10,7 +10,7 @@ h3{
   color: #1b1b1b;
 }
   .headertop{
-      background-color: #0F5E9F;
+      background-color: var(--xanhchudao);
       width: 100%;
       height: 70px;
       margin :0 auto;
@@ -20,9 +20,9 @@ h3{
   .headertop .container {
       width: 1200px;
       height: 66px;
-      background-color: #0F5E9F;
+      background-color: var(--xanhchudao);
       margin: 0 auto;
-
+    
       display: flex;             /* bật flex */
       align-items: center;       /* căn giữa theo chiều dọc */
       justify-content: flex-start; /* hoặc flex-start nếu muốn sát nhau */
@@ -31,7 +31,7 @@ h3{
 
   .containerlogo{
       width: 300px;
-      background-color: #0F5E9F;
+      background-color: var(--xanhchudao);
   }
 
   .containerlogo .logo{
@@ -46,11 +46,11 @@ h3{
       position: relative;
       width :395px;
       height: 40px;
-      background-color: #0F5E9F;
+      background-color: var(--xanhchudao);
   }
   .containerSearch2{
     z-index: 10;
-    background-color: #0F5E9F;
+    background-color: var(--xanhchudao);
     position: absolute;
     height: 36px;
     width: 64px;
@@ -81,7 +81,7 @@ h3{
     height: 40px;        /* chiều cao khung tìm kiếm */
     padding: 0 40px 0 10px; /* chừa chỗ cho icon */
     font-size: 16px;     /* cỡ chữ */
-    border: 1px solid #0F5E9F;
+    border: 1px solid var(--xanhchudao);
     border-radius: 12px;
     box-sizing: border-box;
     border: none; 
@@ -102,7 +102,7 @@ h3{
     position: relative;
     width: 505px;
     height: 37px;
-    background-color: #0F5E9F;
+    background-color: var(--xanhchudao);
     display: block;             /* bật flex */
       align-items: center;       /* căn giữa theo chiều dọc */
     line-height: 19.6px;
@@ -114,7 +114,7 @@ h3{
 
   .containercontac {
     width: 505px;
-    background-color: #0F5E9F;
+    background-color: var(--xanhchudao);
     padding-left: 15px;
     color: #fff;
     font-size: 14px;
@@ -152,7 +152,7 @@ h3{
   position: relative;
   width: 130px;
   height: 44px;
-  background-color: #0F5E9F;
+  background-color: var(--xanhchudao);
   margin-left: 170px;
   margin-top: -42px;
 }
@@ -314,7 +314,7 @@ h3{
 }
 
 .khungtrangmenu-dropdown li a:hover {
-  color: #0F5E9F;
+  color: var(--xanhchudao);
 }
 
 
@@ -371,6 +371,8 @@ h3{
     height: 100%;
     background-color: #f5f5f5;
     margin: 0 auto;   /* Căn giữa ngang */
+    justify-content: center;
+    margin-top: 110px;
   }
 
   .containerhome .khungbannerngang{
@@ -451,7 +453,7 @@ h3{
     margin-top: 226px;
     width: 1200px;
     height: 524px;
-    background-color: #0F5E9F;
+    background-color: var(--xanhchudao);
     border-radius: 15px;
     display: flex;
   }
@@ -477,7 +479,7 @@ h3{
     display: flex;
     gap: 18px;            /* khoảng cách giữa các box */
 
-    background: #0F5E9F;     /* để dễ nhìn */
+    background: var(--xanhchudao);     /* để dễ nhìn */
     border-radius: 15px;
   }
 
@@ -722,3 +724,60 @@ h3{
     color: #fff;
   }
 
+
+
+    .containerhome .deadend-container {
+      position: relative;
+      margin : 0 auto;
+      text-align: center;
+      background: #ffffff;
+      padding: 60px 40px;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      max-width: auto;
+    }
+
+
+    .deadend-container h1 {
+      font-size: 28px;
+      color: var(--xanhchudao);
+      margin-bottom: 16px;
+    }
+
+    .deadend-container p {
+      font-size: 16px;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .deadend-btn {
+      background-color: var(--xanhchudao);
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .deadend-btn:hover {
+      background-color: #0d4e84;
+      transform: scale(1.03);
+    }
+
+    input .khungemail{
+      width: 300px;
+    }
+
+    @media (max-width: 768px) {
+      .deadend-container {
+        margin: 0 20px;
+        padding: 40px 20px;
+      }
+
+      .deadend-container h1 {
+        font-size: 22px;
+      }
+    }

@@ -22,254 +22,168 @@
       </ul>
     </nav>
 
-<main class="content">
-  <div class="sub-container">
-    <!-- SIDEBAR PHỤ -->
-    <nav class="sub-sidebar">
-      <h2>📦 Quản lý kho</h2>
-      <ul>
-        <li id="tab-nhap" class="active">Quản lý nhập hàng</li>
-        <li id="tab-giaban">Quản lý giá bán</li>
-      </ul>
-    </nav>
-
-        <!-- SECTION: Nhập hàng -->
-        <section id="section-nhap" class="sub-section">
-          <h2>📥 Quản lý nhập hàng</h2>
-          <p class="desc">Danh sách phiếu nhập</p>
-
-          <div class="search-box">
-            <label for="search-nhap">🔎 Tra cứu phiếu nhập</label>
-            <input type="text" id="search-nhap" placeholder="Nhập tên sản phẩm..." />
-          </div>
-
-          <table class="data-table" id="table-nhap">
-            <thead>
-              <tr>
-                <th>Tên sản phẩm</th>
-                <th>Giá nhập (VNĐ)</th>
-                <th>Số lượng</th>
-                <th>Ngày nhập</th>
-                <th>Thao tác</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Vợt cầu lông Yonex Muscle Power 29 Light Chính Hãng</td>
-                <td>3,560,000</td>
-                <td>5</td>
-                <td>2025-10-15</td>
-                <td><button class="btn-sua">✏️ Sửa</button></td>
-              </tr>
-              <tr>
-                <td>Vợt cầu lông Yonex Astrox Smash Chính Hãng</td>
-                <td>11,925,000</td>
-                <td>10</td>
-                <td>2025-10-16</td>
-                <td><button class="btn-sua">✏️ Sửa</button></td>
-              </tr>
-              <tr>
-                <td>Vợt cầu lông Yonex Arcsaber 11 Tour Chính Hãng</td>
-                <td>40,350,000</td>
-                <td>20</td>
-                <td>2025-10-17</td>
-                <td><button class="btn-sua">✏️ Sửa</button></td>
-              </tr>
-              <tr>
-                <td>Vợt Cầu Lông Lining Windstorm 72 Chính Hãng</td>
-                <td>27,562,500</td>
-                <td>15</td>
-                <td>2025-10-17</td>
-                <td><button class="btn-sua">✏️ Sửa</button></td>
-              </tr>
-              <tr>
-                <td>Vợt cầu lông Lining Turbo Charging 75 Chính Hãng</td>
-                <td>42,525,500</td>
-                <td>30</td>
-                <td>2025-10-17</td>
-                <td><button class="btn-sua">✏️ Sửa</button></td>
-              </tr>
-              <tr>
-                <td>Vợt Cầu Lông Lining Aeronaut 9000C Chính Hãng</td>
-                <td>44,400,000</td>
-                <td>15</td>
-                <td>2025-10-15</td>
-                <td><button class="btn-sua">✏️ Sửa</button></td>
-              </tr>
-              <tr>
-                <td>Vợt Cầu Lông Lining Windstorm 78-S Chính Hãng</td>
-                <td>25,344,000</td>
-                <td>32</td>
-                <td>2025-10-15</td>
-                <td><button class="btn-sua">✏️ Sửa</button></td>
-              </tr>
-              <tr>
-                <td>Vợt Cầu Lông Yonex Nanoflare 1000 Game Chính Hãng</td>
-                <td>109,411,200</td>
-                <td>36</td>
-                <td>2025-10-17</td>
-                <td><button class="btn-sua">✏️ Sửa</button></td>
-              </tr>
-              <tr>
-                <td>Vợt cầu lông Yonex Astrox 88S Play Chính Hãng</td>
-                <td>23,512,500</td>
-                <td>15</td>
-                <td>2025-10-17</td>
-                <td><button class="btn-sua">✏️ Sửa</button></td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="sub-buttons">
-            <button id="btn-them-nhap">➕ Thêm</button>
-            <button id="btn-hoanthanh-nhap">✅ Hoàn thành</button>
-          </div>
-        </section>
-
-        <!-- SECTION: Giá bán -->
-        <section id="section-giaban" class="sub-section hidden">
-          <h2>💰 Quản lý giá bán</h2>
-          <p class="desc">Thông tin giá vốn, lợi nhuận và giá bán</p>
-
-          <div class="search-box">
-            <label for="search-giaban">🔎 Tra cứu sản phẩm</label>
-            <input type="text" id="search-giaban" placeholder="Nhập tên sản phẩm..." />
-          </div>
-
-          <table class="data-table" id="table-giaban">
-            <thead>
-              <tr>
-                <th>Tên sản phẩm</th>
-                <th>Giá vốn (VNĐ)</th>
-                <th>Lợi nhuận (%)</th>
-                <th>Giá bán (VNĐ)</th>
-                <th>Thao tác</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Vợt cầu lông Yonex Muscle Power 29 Light Chính Hãng</td>
-                <td>712,000</td>
-                <td>20%</td>
-                <td>890,000</td>
-                <td><button class="btn-sua">✏️ Sửa</button></td>
-              </tr>
-              <tr>
-                <td>Vợt cầu lông Yonex Astrox Smash Chính Hãng</td>
-                <td>1,192,500</td>
-                <td>25%</td>
-                <td>1,590,000</td>
-                <td><button class="btn-sua">✏️ Sửa</button></td>
-              </tr>
-              <tr>
-                <td>Vợt cầu lông Yonex Arcsaber 11 Tour Chính Hãng</td>
-                <td>2,017,500</td>
-                <td>25%</td>
-                <td>2,690,000</td>
-                <td><button class="btn-sua">✏️ Sửa</button></td>
-              </tr>
-              <tr>
-                <td>Vợt Cầu Lông Lining Windstorm 72 Chính Hãng</td>
-                <td>1,837,500</td>
-                <td>25%</td>
-                <td>2,450,000</td>
-                <td><button class="btn-sua">✏️ Sửa</button></td>
-              </tr>
-              <tr>
-                <td>Vợt cầu lông Lining Turbo Charging 75 Chính Hãng</td>
-                <td>1,417,500</td>
-                <td>25%</td>
-                <td>1,890,000</td>
-                <td><button class="btn-sua">✏️ Sửa</button></td>
-              </tr>
-              <tr>
-                <td>Vợt Cầu Lông Lining Aeronaut 9000C Chính Hãng</td>
-                <td>2,960,000</td>
-                <td>20%</td>
-                <td>3,700,000</td>
-                <td><button class="btn-sua">✏️ Sửa</button></td>
-              </tr>
-              <tr>
-                <td>Vợt Cầu Lông Lining Windstorm 78-S Chính Hãng</td>
-                <td>792,000</td>
-                <td>20%</td>
-                <td>990,000</td>
-                <td><button class="btn-sua">✏️ Sửa</button></td>
-              </tr>
-              <tr>
-                <td>Vợt Cầu Lông Yonex Nanoflare 1000 Game Chính Hãng</td>
-                <td>3,039,200</td>
-                <td>20%</td>
-                <td>3,799,000</td>
-                <td><button class="btn-sua">✏️ Sửa</button></td>
-              </tr>
-              <tr>
-                <td>Vợt cầu lông Yonex Astrox 88S Play Chính Hãng</td>
-                <td>1,567,500</td>
-                <td>25%</td>
-                <td>2,090,000</td>
-                <td><button class="btn-sua">✏️ Sửa</button></td>
+    <main class="content">
+      <div class="sub-container">
+        <!-- SIDEBAR PHỤ -->
+        <nav class="sub-sidebar">
+          <h2 style="text-align: center;"> Quản lý kho</h2>
+          <ul>
+            <li class="active"><a href="NhaphangGiaban2.html" style="color: white;">Quản lý nhập hàng</a></li>
+            <li><a href="NhaphangGiaban2.html">Quản lý giá bán</a></li>
+          </ul>
+        </nav>
+          <!-- SECTION: Nhập hàng -->
+          <section class="sub-section">
+            <h2> Quản lý nhập hàng</h2>
+            <p class="desc">Danh sách phiếu nhập</p>
+          
+            <div class="search-box">
+              <label for="search-nhap">Tra cứu phiếu nhập</label>
+              <input type="text" id="search-nhap" placeholder="Nhập tên sản phẩm..." />
+            </div>
+          
+            <table class="data-table" id="table-nhap">
+              <thead>
+                <tr>
+                  <th>Tên sản phẩm</th>
+                  <th>Giá nhập (VNĐ)</th>
+                  <th>Số lượng</th>
+                  <th>Ngày nhập</th>
+                  <th>Thao tác</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Vợt cầu lông Yonex Muscle Power 29 Light Chính Hãng</td>
+                  <td>3,560,000</td>
+                  <td>5</td>
+                  <td>2025-10-15</td>
+                  <td><button class="btn-delete">🗑️ Xóa</button></td>
+                </tr>
+                <tr>
+                  <td>Vợt cầu lông Yonex Astrox Smash Chính Hãng</td>
+                  <td>11,925,000</td>
+                  <td>10</td>
+                  <td>2025-10-16</td>
+                  <td><button class="btn-delete">🗑️ Xóa</button></td>
+                </tr>
+                <tr>
+                  <td>Vợt cầu lông Yonex Arcsaber 11 Tour Chính Hãng</td>
+                  <td>40,350,000</td>
+                  <td>20</td>
+                  <td>2025-10-17</td>
+                  <td><button class="btn-delete">🗑️ Xóa</button></td>
+                </tr>
+                <tr>
+                  <td>Vợt Cầu Lông Lining Windstorm 72 Chính Hãng</td>
+                  <td>27,562,500</td>
+                  <td>15</td>
+                  <td>2025-10-17</td>
+                  <td><button class="btn-delete">🗑️ Xóa</button></td>
+                </tr>
+                <tr>
+                  <td>Vợt cầu lông Lining Turbo Charging 75 Chính Hãng</td>
+                  <td>42,525,500</td>
+                  <td>30</td>
+                  <td>2025-10-17</td>
+                  <td><button class="btn-delete">🗑️ Xóa</button></td>
+                </tr>
+                <tr>
+                  <td>Vợt Cầu Lông Lining Aeronaut 9000C Chính Hãng</td>
+                  <td>44,400,000</td>
+                  <td>15</td>
+                  <td>2025-10-15</td>
+                  <td><button class="btn-delete">🗑️ Xóa</button></td>
+                </tr>
+                <tr>
+                  <td>Vợt Cầu Lông Lining Windstorm 78-S Chính Hãng</td>
+                  <td>25,344,000</td>
+                  <td>32</td>
+                  <td>2025-10-15</td>
+                  <td><button class="btn-delete">🗑️ Xóa</button></td>
+                </tr>
+                <tr>
+                  <td>Vợt Cầu Lông Yonex Nanoflare 1000 Game Chính Hãng</td>
+                  <td>109,411,200</td>
+                  <td>36</td>
+                  <td>2025-10-17</td>
+                  <td><button class="btn-delete">🗑️ Xóa</button></td>
+                </tr>
+                <tr>
+                  <td>Vợt cầu lông Yonex Astrox 88S Play Chính Hãng</td>
+                  <td>23,512,500</td>
+                  <td>15</td>
+                  <td>2025-10-17</td>
+                  <td><button class="btn-delete">🗑️ Xóa</button></td>
+                </tr>
               </tbody>
-              </tr>
-          </table>
+            </table>
 
-          <div class="sub-buttons">
-            <button id="btn-them-giaban">➕ Thêm</button>
-            <button id="btn-hoanthanh-giaban">✅ Hoàn thành</button>
-          </div>
-        </section>
+          </section>
       </div>
-    </main>
-  </div>
+                <!-- FORM thêm / sửa sản phẩm -->
+        <div class="form-container">
+            <h3>Thêm Phiếu Nhập<h3>
 
-  <!-- Popup -->
-  <div id="popup" class="popup hidden">
-    <div class="popup-content">
-      <h3 id="popup-title">Thêm dữ liệu</h3>
+            <form class="form-giaban">
+              <div class="form-row">
+                <label for="ten">Tên sản phẩm</label>
+                <input type="text" id="ten" placeholder="Nhập Tên Sản Phẩm" required>
+              </div>
 
-      <label>Tên sản phẩm</label>
-      <input type="text" placeholder="Tên sản phẩm" />
+              <div class="form-row">
+                <label for="giavon">Giá Nhập</label>
+                <input type="number" id="giavon" placeholder="Nhập Giá Nhập" required>
+              </div>
 
-      <label>Giá nhập về</label>
-      <input type="number" placeholder="Giá nhập về(VNĐ)" />
+              <div class="form-row">
+                <label for="loinhuan">Số Lượng</label>
+                <input type="number" id="loinhuan" placeholder="Nhập Số Lượng" required>
+              </div>
 
-      <label>Số lượng </label>
-      <input type="number" placeholder="Nhập số lượng " />
+              <div class="form-row">
+                <label for="giaban">Ngày Nhập</label>
+                <input type="number" id="giaban" placeholder="Thời Điểm Nhập Hàng" required>
+              </div>
 
-      <label>Ngày nhập hàng</label>
-      <input type="date" />
+              <div class="form-buttons">
+                <button type="submit" class="btn btn-save">Hoàn Thành</button>
+                <button type="reset" class="btn btn-cancel">Hủy</button>
+              </div>
+            </form>
+        </div>
 
-      <div class="popup-buttons">
-        <button id="popup-luu" class="luu">💾 Lưu</button>
-        <button id="popup-huy" class="huy">❌ Hủy</button>
-      </div>
-    </div>
-  </div>
+        <div class="form-container">
+            <h3>Sửa Phiếu Nhập<h3>
 
+            <form class="form-giaban">
+              <div class="form-row">
+                <label for="ten">Tên sản phẩm</label>
+                <input type="text" id="ten" placeholder="Nhập Tên Sản Phẩm Của Phiếu Nhập Muốn Sửa" required>
+              </div>
 
-  <div id="popup-GiaBan" class="popup hidden">
-    <div class="popup-content">
-      <h3 id="popup-titleGiaBan">Thêm dữ liệu</h3>
+              <div class="form-row">
+                <label for="giavon">Giá Nhập</label>
+                <input type="number" id="giavon" placeholder="Nhập Giá Nhập Muốn Sửa" required>
+              </div>
 
-      <label>Tên sản phẩm</label>
-      <input type="text" placeholder="Tên sản phẩm" />
+              <div class="form-row">
+                <label for="loinhuan">Số Lượng</label>
+                <input type="number" id="loinhuan" placeholder="Số Lượng Muốn Sửa" required>
+              </div>
 
-      <label>Giá vốn</label>
-      <input type="number" placeholder="Giá vốn (VNĐ)" />
+              <div class="form-row">
+                <label for="giaban">Ngày Nhập</label>
+                <input type="number" id="giaban" placeholder="Nhập Thời Điểm Nhập Hàng Muốn Sửa" required>
+              </div>
 
-      <label>% lợi nhuận</label>
-      <input type="number" placeholder="Nhập phần trăm lợi nhuận" />
-
-      <label>Giá bán</label>
-      <input type="number" placeholder="Nhập phần trăm lợi nhuận" />
-
-      <div class="popup-buttons">
-        <button id="popup-luuGiaBan" class="luu">💾 Lưu</button>
-        <button id="popup-huyGiaBan" class="huy">❌ Hủy</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="NhaphangGiaban.js"></script>
+              <div class="form-buttons">
+                <button type="submit" class="btn btn-save">Hoàn Thành</button>
+                <button type="reset" class="btn btn-cancel">Hủy</button>
+              </div>
+            </form>
+        </div>  
+    </main>   
+  </div>   
 </body>
 </html>

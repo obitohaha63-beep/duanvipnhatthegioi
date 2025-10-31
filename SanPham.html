@@ -6,6 +6,7 @@
   <title>CoolNet</title>
   <link rel="icon" type="image/png" href="hinhanh/coolnet.png">
   <link rel="stylesheet" href="product.css">
+  <link rel="stylesheet" href="root.css">
 </head>
 <body>
 <header>
@@ -39,7 +40,7 @@
                       </li>
 
                       <li class="listitemuser"> 
-                        <a class="groupitemuser"><span class="boxicon">
+                        <a class="groupitemuser" href="login.html"><span class="boxicon">
                             <img src="hinhanh/Person.png" style="width:24px">
                           </span>
                           <span class="boxtext column">
@@ -119,9 +120,9 @@
          <img class="main-image" src="hinhanh/votto.png" alt="Ảnh lớn">
           <div class="small-product">
             <ul>
-              <li><img class="thumb" src="hinhanh/votnho.png" data-big="hinhanh/votto.png" alt="vot nhỏ"></li>
-              <li><img class="thumb" src="hinhanh/headnho.png" data-big="hinhanh/headto.png" alt="head nhỏ"></li>
-              <li><img class="thumb" src="hinhanh/bodynho.png" data-big="hinhanh/bodyto.png" alt="body nhỏ"></li>
+              <li><img style="cursor: pointer;" src="hinhanh/votnho.png" data-big="hinhanh/votto.png" alt="vot nhỏ"></li>
+              <li><img style="cursor: pointer;" src="hinhanh/headnho.png" data-big="hinhanh/headto.png" alt="head nhỏ"></li>
+              <li><img style="cursor: pointer;" src="hinhanh/bodynho.png" data-big="hinhanh/bodyto.png" alt="body nhỏ"></li>
             </ul>
           </div>
         </div>
@@ -144,11 +145,11 @@
           <div class = "half-content">
             <hr>
             <p style="font-size: 13px; margin-top: 26px">Trọng lượng: </p>
-            <div class = "choosingracket1"> 4UG5</div>
+            <div class = "choosingracket1" id="active"> 4UG5</div>
             <div class = "choosingracket2"> 4UG6</div>
             <div class = "countamountofitem">
               <div class = "minus">-</div>
-              <div class = "numbercount"> </div>
+              <div class = "numbercount"> 1 </div>
               <div class = "plus">+</div> 
             </div>
             <a href="login.html">
@@ -237,7 +238,7 @@
       </div>
       <div class="show-more" id="toggleButton">
           <span>
-          ➕ Xem thêm
+          - Thu Gọn -
           </span>
       </div>
     </div>

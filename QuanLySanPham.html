@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trang Quản Trị</title>
-  <link rel="stylesheet" href="QuanLySanPham.css">
   <link rel="stylesheet" href="fontinter.css">
   <link rel="stylesheet" href="root.css">
+  <link rel="stylesheet" href="QuanLySanPham.css">
 </head>
 <body>
   <div class="container">
-    <!-- Menu bên trái -->
+    <!-- Sidebar -->
     <nav class="sidebar">
       <h2 class="logo">Admin Panel</h2>
       <ul class="menu">
@@ -22,14 +22,13 @@
       </ul>
     </nav>
 
-    
+    <!-- Nội dung -->
     <main class="content">
       <h1>Quản lý Loại & Danh mục Sản phẩm</h1>
 
-      
+      <!-- Bảng loại sản phẩm -->
       <section class="table-section">
         <h2>Loại sản phẩm</h2>
-        <button class="btn add-btn" onclick="openModal('modalLoai')">+ Thêm loại</button>
         <table>
           <thead>
             <tr>
@@ -45,19 +44,19 @@
               <td>Vợt cầu lông</td>
               <td>Hiển thị</td>
               <td>
-                <button class="btn edit-btn" onclick="showActionModal('edit')">Sửa</button>
-                <button class="btn delete-btn" onclick="showActionModal('delete')">Xóa</button>
-                <button class="btn hide-btn" onclick="showActionModal('hide')">Ẩn</button>
+                <button class="btn delete-btn">Thêm</button>
+                <button class="btn hide-btn">Sửa</button>
+                <button class="btn delete-btn">Xóa</button>
+                <button class="btn hide-btn">Ẩn</button>
               </td>
             </tr>
           </tbody>
         </table>
       </section>
 
-      
+      <!-- Bảng danh mục sản phẩm -->
       <section class="table-section">
         <h2>Danh mục sản phẩm</h2>
-        <button class="btn add-btn" onclick="openModal('modalSanPham')">+ Thêm sản phẩm</button>
         <table>
           <thead>
             <tr>
@@ -81,101 +80,89 @@
               <td>4UG5</td>
               <td>Cây vợt siêu cân bằng</td>
               <td>
-                <button class="btn edit-btn" onclick="showActionModal('edit')">Sửa</button>
-                <button class="btn delete-btn" onclick="showActionModal('delete')">Xóa</button>
+                
+                <button class="btn delete-btn">Xóa</button>
+                <button class="btn hide-btn">Ẩn</button>
               </td>
             </tr>
           </tbody>
         </table>
       </section>
+
+      <!-- Form thêm sản phẩm -->
+      <section class="form-section">
+        <h2>Thêm sản phẩm mới</h2>
+        <form>
+          <label>Loại sản phẩm:</label>
+          <select>
+            <option value="">-- Chọn loại --</option>
+            <option value="Vợt">Vợt</option>
+            <option value="Giày">Giày</option>
+            <option value="Phụ kiện">Phụ kiện</option>
+          </select>
+
+          <label>Mã sản phẩm:</label>
+          <input type="text" name="masp" placeholder="VD: SP02">
+
+          <label>Tên sản phẩm:</label>
+          <input type="text" name="tensp" placeholder="VD: Giày cầu lông Yonex 88D">
+
+          <label>Hình sản phẩm:</label>
+          <input type="file" name="hinhanh">
+
+          <label>Màu sắc:</label>
+          <input type="text" name="mausac" placeholder="VD: Đen - Vàng">
+
+          <label>Trọng lượng:</label>
+          <input type="text" name="trongluong" placeholder="VD: 4UG5">
+
+          <label>Mô tả sản phẩm:</label>
+          <textarea name="mota" placeholder="Nhập mô tả chi tiết sản phẩm..."></textarea>
+
+          <div class="form-actions">
+            <button type="submit" class="btn save-btn">Lưu sản phẩm</button>
+            <a href="#" class="cancel-btn">Hủy</a>
+          </div>
+        </form>
+      </section>
+
+      <!-- Form sửa sản phẩm -->
+      <section class="form-section">
+        <h2>Sửa sản phẩm</h2>
+        <form>
+          <label>Loại sản phẩm:</label>
+          <select>
+            <option value="Vợt" selected>Vợt</option>
+            <option value="Giày">Giày</option>
+            <option value="Phụ kiện">Phụ kiện</option>
+          </select>
+
+          <label>Mã sản phẩm:</label>
+          <input type="text" name="masp" value="SP01" readonly>
+
+          <label>Tên sản phẩm:</label>
+          <input type="text" name="tensp" value="Vợt Yonex Astrox">
+
+          <label>Hình sản phẩm:</label>
+          <input type="file" name="hinhanh">
+
+          <label>Màu sắc:</label>
+          <input type="text" name="mausac" value="Đen - Vàng">
+
+          <label>Trọng lượng:</label>
+          <input type="text" name="trongluong" value="4UG5">
+
+          <label>Mô tả sản phẩm:</label>
+          <textarea name="mota">Cây vợt siêu cân bằng, nhẹ và mạnh.</textarea>
+
+          <div class="form-actions">
+            <button type="submit" class="btn save-btn">Cập nhật</button>
+            <a href="#" class="cancel-btn">Hủy</a>
+          </div>
+        </form>
+      </section>
+
     </main>
   </div>
-
-  
-  <div id="modalLoai" class="modal">
-    <div class="modal-content">
-      <h3>Thêm loại sản phẩm</h3>
-      <input type="text" placeholder="Mã loại">
-      <input type="text" placeholder="Tên loại">
-      <div class="modal-actions">
-        <button class="btn save-btn">Lưu</button>
-        <button class="btn cancel-btn" onclick="closeModal('modalLoai')">Hủy</button>
-      </div>
-    </div>
-  </div>
-
-  
-  <div id="modalSanPham" class="modal">
-    <div class="modal-content">
-      <h3>Thêm sản phẩm</h3>
-      <select>
-        <option>Chọn loại</option>
-        <option>Vợt</option>
-        <option>Giày</option>
-      </select>
-      <input type="text" placeholder="Mã sản phẩm">
-      <input type="text" placeholder="Tên sản phẩm">
-      <input type="file">
-      <input type="text" placeholder="Màu sắc (VD: Đen vàng, Trắng đỏ)">
-      <input type="text" placeholder="Trọng lượng (VD: 4UG5, 4UG6)">
-      <textarea placeholder="Mô tả sản phẩm"></textarea>
-      <div class="modal-actions">
-        <button class="btn save-btn">Lưu</button>
-        <button class="btn cancel-btn" onclick="closeModal('modalSanPham')">Hủy</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    function openModal(id) {
-      document.getElementById(id).style.display = "flex";
-    }
-    function closeModal(id) {
-      document.getElementById(id).style.display = "none";
-    }
-  </script>
-
-  <!-- Modal xác nhận hành động -->
-<div id="modalAction" class="modal">
-  <div class="modal-content">
-    <h3 id="modalTitle">Xác nhận hành động</h3>
-    <p id="modalMessage">Bạn có chắc chắn muốn thực hiện thao tác này không?</p>
-    <div class="modal-actions">
-      <button class="btn save-btn" id="confirmBtn">Đồng ý</button>
-      <button class="btn cancel-btn" onclick="closeModal('modalAction')">Hủy</button>
-    </div>
-  </div>
-</div>
-
-<script>
-  // Hiển thị modal xác nhận hành động
-  function showActionModal(actionType) {
-    const modal = document.getElementById("modalAction");
-    const title = document.getElementById("modalTitle");
-    const message = document.getElementById("modalMessage");
-    const confirmBtn = document.getElementById("confirmBtn");
-
-    if (actionType === "edit") {
-      title.textContent = "Sửa thông tin sản phẩm";
-      message.textContent = "Bạn có muốn chỉnh sửa thông tin sản phẩm này không?";
-      confirmBtn.style.backgroundColor = "#ffc107";
-    } else if (actionType === "delete") {
-      title.textContent = "Xóa sản phẩm";
-      message.textContent = "Bạn có chắc chắn muốn xóa sản phẩm này không? Hành động này không thể hoàn tác.";
-      confirmBtn.style.backgroundColor = "#dc3545";
-    } else if (actionType === "hide") {
-      title.textContent = "Ẩn sản phẩm";
-      message.textContent = "Bạn có muốn ẩn sản phẩm này khỏi danh sách hiển thị không?";
-      confirmBtn.style.backgroundColor = "#6c757d";
-    }
-
-    confirmBtn.onclick = function() {
-      alert("Đã thực hiện: " + actionType);
-      closeModal("modalAction");
-    };
-
-    modal.style.display = "flex";
-  }
-</script>
 </body>
 </html>

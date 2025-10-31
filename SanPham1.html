@@ -6,8 +6,6 @@
   <title>CoolNet</title>
   <link rel="icon" type="image/png" href="hinhanh/coolnet.png">
   <link rel="stylesheet" href="product.css">
-  <link rel="stylesheet" href="fontinter.css">
-
 </head>
 <body>
 <header>
@@ -42,11 +40,11 @@
 
                       <li class="listitemuser"> 
                         <a class="groupitemuser"><span class="boxicon">
-                            <img src="hinhanh/Person.png" style="width:24px">
+                            <img src="hinhanh/Person.png" style="width:24px; padding-top: 4px;">
                           </span>
                           <span class="boxtext column">
-                            <span id="info" style="cursor: pointer;">Thông tin</span>
-                            <span id="logout" class="smalltext" style="cursor: pointer;">Đăng xuất</span>
+                            <a class="info"style="cursor: pointer;" href="taikhoan.html">Thông tin</a>
+                            <a class="logout" style="cursor: pointer;" href = "SanPham.html">Đăng xuất</a>
                           </span>
                         </a>
                       </li>
@@ -117,9 +115,9 @@
          <img class="main-image" src="hinhanh/votto.png" alt="Ảnh lớn">
           <div class="small-product">
             <ul>
-              <li><img class="thumb" src="hinhanh/votnho.png" data-big="hinhanh/votto.png" alt="vot nhỏ"></li>
-              <li><img class="thumb" src="hinhanh/headnho.png" data-big="hinhanh/headto.png" alt="head nhỏ"></li>
-              <li><img class="thumb" src="hinhanh/bodynho.png" data-big="hinhanh/bodyto.png" alt="body nhỏ"></li>
+              <li><img style="cursor: pointer;" src="hinhanh/votnho.png" data-big="hinhanh/votto.png" alt="vot nhỏ"></li>
+              <li><img style="cursor: pointer;" src="hinhanh/headnho.png" data-big="hinhanh/headto.png" alt="head nhỏ"></li>
+              <li><img style="cursor: pointer;" src="hinhanh/bodynho.png" data-big="hinhanh/bodyto.png" alt="body nhỏ"></li>
             </ul>
           </div>
         </div>
@@ -142,16 +140,16 @@
           <div class = "half-content">
             <hr>
             <p style="font-size: 13px; margin-top: 26px">Trọng lượng: </p>
-            <div class = "choosingracket1"> 4UG5</div>
+            <div class = "choosingracket1" id="active"> 4UG5</div>
             <div class = "choosingracket2"> 4UG6</div>
             <div class = "countamountofitem">
               <div class = "minus">-</div>
-              <div class = "numbercount"> </div>
+              <div class = "numbercount"> 1 </div>
               <div class = "plus">+</div> 
             </div>
             <div class = "add-Gio-Hang">
               <p style =" font-size: 17px; padding-top:8px; color: white; font-weight: 700; "> Thêm vào giỏ hàng</p>
-              <p style="font-size: 13px; padding-top: 5px; color: white;"> Giao tận nơi hoặc nhận tại cửa hàng</p>
+              <p style="font-size: 13px; padding-top: 5px; color: white; font-weight: 700;"> Giao tận nơi hoặc nhận tại cửa hàng</p>
             </div>
             <a href="Giohang.html">
             <div class = "communicate-with-us-on-zalo">
@@ -232,11 +230,11 @@
       </div>
       <div class="show-more" id="toggleButton">
           <span>
-          ➕ Xem thêm
+          - Thu Gọn -
           </span>
       </div>
     </div>
-<script src="PhanUngSuKien1.js"></script>
+<script src="PhanUngSuKien.js"></script>
 </main>
 <footer>
   <div class="container-footer">

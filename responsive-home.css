@@ -1,0 +1,293 @@
+/* Responsive styles for CoolNet */
+
+/* Tablet: 768px - 1024px */
+@media (max-width: 1024px) {
+  .headertop .container,
+  .headerbot .containerbot,
+  .containerhome,
+  .container-footer .khungchinh,
+  .copyright .container {
+    width: 95%;
+    max-width: 100%;
+  }
+  
+  .containerhome .khungbannerngang {
+    width: 100%;
+  }
+  
+  .khungbannerngang .khungbanner img {
+    width: 65%;
+    height: auto;
+  }
+  
+  .containerhome .optionsale {
+    width: 100%;
+  }
+  
+  .sanphambanchay {
+    width: 100%;
+  }
+  
+  .sanphambanchay .containerhot {
+    width: 95%;
+    margin-left: 2.5%;
+  }
+  
+  .navmenu {
+    width: 70%;
+  }
+  
+  .navmenu a {
+    padding-right: 30px;
+    margin-left: 10px;
+  }
+  
+  .containercontac {
+    width: 450px;
+  }
+  
+  .containercontac .container-login {
+    margin-left: 140px;
+  }
+}
+
+/* Mobile: 320px - 767px */
+@media (max-width: 767px) {
+  /* Header top */
+  .headertop {
+    height: auto;
+    padding: 10px 0;
+  }
+  
+  .headertop .container {
+    flex-direction: column;
+    height: auto;
+    gap: 15px;
+  }
+  
+  .containerlogo {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .containerlogo .logo img {
+    width: 200px;
+  }
+  
+  .containerSearch {
+    width: 90%;
+    margin: 0 auto;
+  }
+  
+  .containerSearch .search {
+    width: 100%;
+    margin-left: 0;
+  }
+  
+  .containerSearch2 {
+    left: calc(100% - 70px);
+  }
+  
+  .containercontac {
+    width: 100%;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .containercontac ul {
+    width: 100%;
+    justify-content: space-around;
+  }
+  
+  .containercontac .container-login {
+    margin-left: 0;
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  /* Header bottom */
+  .headerbot {
+    height: auto;
+    padding: 10px 0;
+  }
+  
+  .headerbot .containerbot {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .containerbot .khungxanhmucluc {
+    width: 100%;
+    height: 50px;
+    justify-content: center;
+    padding: 0;
+  }
+  
+  .containerbot .navmenu {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 10px;
+    height: auto;
+  }
+  
+  .navmenu ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .navmenu a {
+    margin-left: 0;
+    padding-right: 0;
+    justify-content: center;
+  }
+  
+  /* Main content */
+  .containerhome {
+    width: 95%;
+  }
+  
+  .containerhome .khungbannerngang {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .khungbannerngang .khungtrangmenu {
+    width: 100%;
+    height: auto;
+  }
+  
+  .khungbannerngang .khungbanner {
+    width: 100%;
+  }
+  
+  .khungbannerngang .khungbanner img {
+    position: static;
+    width: 100%;
+    height: auto;
+  }
+  
+  .containerhome .optionsale {
+    position: static;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  
+  .optionsale .khunganhsale {
+    margin-bottom: 15px;
+  }
+  
+  .optionsale .khunganhsale img {
+    width: 100%;
+  }
+  
+  .sanphambanchay {
+    margin-top: 30px;
+    height: auto;
+    padding-bottom: 30px;
+  }
+  
+  .sanphambanchay .containerhot {
+    flex-direction: column;
+    height: auto;
+    gap: 20px;
+    margin-top: 80px;
+  }
+  
+  .containerhot .box {
+    width: 90%;
+    margin: 0 auto;
+  }
+  
+  /* Footer */
+  .container-footer {
+    height: auto;
+  }
+  
+  .container-footer .khungchinh {
+    flex-direction: column;
+    height: auto;
+    padding: 20px 0;
+  }
+  
+  .khungchinh .col {
+    margin-bottom: 30px;
+  }
+  
+  .copyright .container {
+    width: 95%;
+  }
+}
+
+/* Small Mobile: 320px - 480px */
+@media (max-width: 480px) {
+  .containerlogo .logo img {
+    width: 180px;
+  }
+  
+  .containerSearch {
+    width: 95%;
+  }
+  
+  .containercontac ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .containercontac .container-login {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .sanphambanchay .textbanchay {
+    font-size: 18px;
+    left: 20px;
+  }
+  
+  .containerhot .container-arcsaber {
+    width: 90%;
+    margin: 0 auto;
+  }
+  
+  .container-arcsaber .anh-arcsaber {
+    margin-left: 25%;
+  }
+}
+
+/* Menu dropdown improvements for mobile */
+@media (max-width: 767px) {
+  .khungtrangmenu-dropdown {
+    width: 100%;
+    left: 0;
+  }
+  
+  .khungtrangmenu-dropdown ul {
+    padding: 10px;
+  }
+}
+
+/* Fix for very small screens */
+@media (max-width: 360px) {
+  .containerSearch .search input {
+    font-size: 14px;
+  }
+  
+  .navmenu a {
+    font-size: 13px;
+  }
+  
+  .sanphambanchay .textbanchay {
+    font-size: 16px;
+  }
+}
