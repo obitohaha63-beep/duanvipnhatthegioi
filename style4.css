@@ -56,7 +56,7 @@ h3{
     width: 64px;
     left: 328px;
     top: 2px;
-    border-radius: 15px;
+    border-radius: 12px;
     cursor: pointer;
   }
   .search-icon{
@@ -280,9 +280,11 @@ h3{
     
   }
 
-  /* CHUẨN BỊ CHO SỔ XUỐNG  MỤC LỤC*/
+.khungtrangmenu a:hover{
+  transform: scale(1.05); 
+}
 
-  /* MENU xổ ra khi click "DANH MỤC SẢN PHẨM" */
+
 .khungtrangmenu-dropdown {
   position: absolute;
   top: 29px; /* nằm ngay dưới thanh DANH MỤC */
