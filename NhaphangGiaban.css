@@ -128,15 +128,7 @@ body {
 }
 
 /* --- Nút --- */
-.btn-sua {
-  background-color: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 6px 12px;
-  cursor: pointer;
-  transition: 0.3s;
-}
+
 
 .btn-sua:hover {
   background-color: #1d4ed8;
@@ -220,6 +212,23 @@ body {
   border-radius: 6px;
 }
 
+.search-box1 {
+  margin-top: 20px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 400px;
+
+  display: flex;
+  flex-wrap: wrap; /* ✅ Cho phép tự xuống dòng khi hẹp */
+  gap: 16px 20px; /* khoảng cách giữa các ô */
+  justify-content: space-between;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
 .search-box {
   margin-top: 20px;
   background: #f9fafb;
@@ -267,15 +276,41 @@ body {
   outline: none;
 }
 
-/* ✅ Responsive cho màn nhỏ */
 @media (max-width: 768px) {
   .search-box {
     flex-direction: column;
   }
 }
 
+@media (max-width: 768px) {
+  .search-box1 {
+    flex-direction: column;
+  }
+}
 
+.completed {
+  display: flex; 
+  align-items: center;  
+  justify-content: center; 
+  width: 130px;
+  height: 40px;
+  background: #e3f2fd;
+  color: #1565c0;  
+  border-radius: 8px;
+  font-weight: 500;
+}
 
+.not-completed{
+  display: flex; 
+  align-items: center;  
+  justify-content: center; 
+  width: 150px;
+  height: 40px;
+  background-color: #e0c10e;
+  border-radius: 15px;
+  color: white;    
+  font-weight: 500;
+}
 
 
 .form-container {
@@ -364,17 +399,43 @@ body {
 }
 
 
-
-/* Nút xóa trong bảng */
 .btn-delete {
-  background-color: #e74c3c; /* đỏ */
+  background-color: var(--nutdo); /* đỏ */
   color: #fff;
   border: none;
   padding: 6px 12px;
   border-radius: 6px;
   font-size: 14px;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-add {
+  background-color: #48c915; /* đỏ */
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-delete1 {
+  background-color: var(--nutcam); /* đỏ */
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-delete1:hover {
+
+  transform: scale(1.05);
+}
+
+.btn-add:hover {
+  transform: scale(1.05);
 }
 
 .btn-delete:hover {
@@ -382,12 +443,6 @@ body {
   transform: scale(1.05);
 }
 
-.btn-delete:active {
-  background-color: #a93226; /* khi bấm giữ */
-  transform: scale(0.95);
-}
-
-/* Căn giữa cột thao tác */
 .data-table td:last-child, 
 .data-table th:last-child {
   text-align: center;
