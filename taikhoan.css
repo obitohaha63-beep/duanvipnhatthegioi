@@ -8,7 +8,7 @@
 .account-box {
   background: #fff;
   padding: 40px;
-  border-radius: 15px;
+  border-radius: 12px;
   box-shadow: 0 0 15px rgba(0,0,0,0.1);
   width: 500px;
 }
@@ -29,7 +29,7 @@
   padding: 8px;
   margin-top: 5px;
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 12px;
 }
 
 .btn-group {
@@ -98,7 +98,7 @@
   flex: 1;
   padding: 8px;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 12px;
 }
 
 .add-address button {
@@ -172,7 +172,7 @@
   justify-content: center;
   align-items: center;
   color: white;
-  border-radius: 15px;
+  border-radius: 12px;
 }
 .box-thongtindonhang{
   width: 295px;
@@ -183,7 +183,7 @@
   justify-content: center;
   align-items: center;
   color: #1331ab;
-  border-radius: 15px;
+  border-radius: 12px;
    border: 1px solid #1331ab;
 }
 
@@ -263,7 +263,7 @@
 .account-form input,
 .account-form select {
   padding: 10px 15px;
-  border-radius: 20px;
+  border-radius: 12px;
   border: 1px solid #ccc;
   outline: none;
 }
