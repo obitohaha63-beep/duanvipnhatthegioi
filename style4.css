@@ -491,7 +491,25 @@ h3{
     height: 100%;          /* cao bằng container */
     background: rgb(255, 255, 255); /* màu tạm để test */
   }
+.xemtatca{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 20px;
+    left:535px;
+    width:130px;
+    height: 50px;  
+    background-color: white;
+    color: #1b1b1b;
+    border-radius: 12px;
+  }
 
+.xemtatca:hover{
+  background-color: #0e5d9e;
+  color: #fff;
+  border: 2px solid rgb(255, 255, 255);
+}
   .gia{
     font-size: 14px;
     color: #E70303;
