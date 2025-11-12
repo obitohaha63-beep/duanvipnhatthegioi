@@ -161,11 +161,13 @@ h3{
   font-size: 14px;
   line-height: 20px;
   font-weight: 400;
+  
 }
 
 .container-login .text-dangnhap {
   position: absolute;
   top:-3px;
+  
 }
 
 
@@ -191,14 +193,14 @@ h3{
   }
   .containercart button {
     background: transparent;     /* không tô màu */
-    border: 2px solid white;     /* viền trắng */
-    color: white;                /* chữ trắng */
+    border: 2px solid white;     
+    color: white;                
     padding: 6px 2px;
-    border-radius: 15px;          /* bo góc nhẹ */
+    border-radius: 15px;         
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 6px;   /* hiệu ứng hover */
+    gap: 6px;   
   }
 
   /* Icon trong nút giỏ hàng */
@@ -479,9 +481,9 @@ h3{
     height: 342px;
     
     display: flex;
-    gap: 18px;            /* khoảng cách giữa các box */
+    gap: 18px;            
 
-    background: var(--xanhchudao);     /* để dễ nhìn */
+    background: var(--xanhchudao);     
     border-radius: 15px;
   }
 
@@ -490,6 +492,7 @@ h3{
     flex: 1;               /* chia đều 4 box */
     height: 100%;          /* cao bằng container */
     background: rgb(255, 255, 255); /* màu tạm để test */
+    border: 2px solid #BABABC;
   }
 .xemtatca{
     position: absolute;

@@ -44,10 +44,9 @@
       position: relative;
       width :395px;
       height: 40px;
-      background-color: #0F5E9F;
+      background-color: var(--xanhchudao);
   }
-
-   .containerSearch2{
+  .containerSearch2{
     z-index: 10;
     background-color: var(--xanhchudao);
     position: absolute;
@@ -80,7 +79,7 @@
     height: 40px;        /* chiều cao khung tìm kiếm */
     padding: 0 40px 0 10px; /* chừa chỗ cho icon */
     font-size: 16px;     /* cỡ chữ */
-    border: 1px solid #0F5E9F;
+    border: 1px solid var(--xanhchudao);
     border-radius: 12px;
     box-sizing: border-box;
     border: none; 
@@ -179,7 +178,12 @@
   }
 
 
-
+input[type="radio"] {
+  accent-color: #0e5d9e; /* Xanh lá, đổi tùy ý */
+}
+input[type="checkbox"] {
+  accent-color: #0e5d9e; /* Xanh lá, đổi tùy ý */
+}
   .jscart{
     background-color: darkred;
     border-bottom-left-radius:50%;
@@ -404,8 +408,17 @@
   flex-direction: column;
 
 }
-.remove{
- text-align: center;
+.btn-xoa{
+  position: absolute;
+  width: 40px;
+  height: 20px;
+  background-color: #bababc;
+  color: #1b1b1b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  right: 640px;
 }
 
 .text-xoa:hover{
