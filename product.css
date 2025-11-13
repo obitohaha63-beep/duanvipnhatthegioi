@@ -253,17 +253,57 @@
   font-weight: 600;
 }
 
-.khungxanhmucluc .icon{
-  position: relative;
-  display: flex;
-  margin-left: 9px;
+  .khungxanhmucluc .icon{
+    position: relative;
+    display: flex;
+    margin-left: 9px;
+  }
+
+  .khungxanhmucluc .textmucluc{
+    position: relative;
+    display: flex;
+    
+  }
+
+.khungtrangmenu a:hover{
+  transform: scale(1.05); 
 }
 
-.khungxanhmucluc .textmucluc{
-  position: relative;
-  display: flex;
-  
+
+.khungtrangmenu-dropdown {
+  position: absolute;
+  top: 29px; /* nằm ngay dưới thanh DANH MỤC */
+  left: -57px;
+  width: 298px;
+  height: 368px;
+  background: #fff;
+  border: 1px solid #BABABC;
+  display: none; /* ẩn mặc định */
+  z-index: 999;
 }
+
+.khungtrangmenu-dropdown ul {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 5px 20px;
+}
+
+.khungtrangmenu-dropdown li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1b1b1b;
+  height: 40px;
+  text-decoration: none;
+}
+
+.khungtrangmenu-dropdown li a:hover {
+  color: var(--xanhchudao);
+}
+
 
 
 .containerbot .navmenu{
