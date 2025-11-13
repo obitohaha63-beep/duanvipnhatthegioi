@@ -57,7 +57,7 @@ body {
 
 /* --- Nội dung chính --- */
 .content {
-  height: 1900px;
+  height: atuo;
   flex: 1;
   flex-wrap: wrap;
   padding: 40px;

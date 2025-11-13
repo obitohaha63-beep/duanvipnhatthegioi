@@ -12,10 +12,9 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.1);
   width: 500px;
 }
+
 .container-back{
-    position: absolute;
-    left:161px;
-    top:110px;
+    top: 110px;
     width: 1200px;
     height: 38px;
     display: flex; 
@@ -155,8 +154,10 @@
 .account-page {
   background: linear-gradient(to bottom, #d9e8f4, #f6f9fc);
   min-height: 80vh;
-  padding: 40px 0;
+  padding: 10px 0;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   margin-top: 100px;
 }
@@ -327,4 +328,10 @@
   position: absolute;
   top: -3px;
   cursor: pointer;
+}
+
+.logo-person{
+  margin-right: 5px;
+  width:28px;
+  height: 28px;
 }

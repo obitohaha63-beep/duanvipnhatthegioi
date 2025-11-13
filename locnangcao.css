@@ -408,16 +408,7 @@
     
   }
 
-  .container-select .nut-timkiemnangcao button{
-    position: relative;
-    background-color: var(--xanhchudao);
-    color: #fff;
-    border-radius: 5px;
-    padding: 5px;
-    margin-left: 100px;
-    font-size: 15px;
-    border: none;
-  }
+  
  h3 {
   color: #1B1B1B;
   text-align: center;
@@ -442,7 +433,7 @@
 .containerhome .container-sanpham{
   position: relative;
   width: 884px;
-  height: 1722px;
+  height: 1320px;
   background-color: #f5f5f5;
   margin-left:316px;
   margin-top: -1330px;
@@ -581,16 +572,15 @@
   background-color: var(--xanhchudao);      /* Màu đậm hơn khi hover */
   transform: scale(1.05);         /* Nút hơi phóng to nhẹ */
 }
-.container-phantrang {
+.container-sanpham .container-phantrang {
   position: relative;
   width: 884px;
   height: 61px;
   background-color: #f5f5f5;
-  margin-top: -20px;
-
   display: flex;              /* biến container thành flex container */
   justify-content: flex-end;  /* đẩy tất cả con sang bên phải */
-  align-items: center;        /* canh giữa theo chiều dọc */
+  align-items: center;        
+/* canh giữa theo chiều dọc */
 }
 
 .container-phantrang .pagination {

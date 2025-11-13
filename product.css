@@ -195,7 +195,14 @@
   position: relative; /* để badge bám vào */
   display: inline-block;
 }
-
+.boxicon .logo-person{
+  position: absolute;
+  top: 6px;
+  left: 219px;
+  margin-right: 5px;
+  width:28px;
+  height: 28px;
+}
 /* Badge số lượng trong giỏ */
 .jscart {
   position: absolute;
