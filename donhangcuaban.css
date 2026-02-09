@@ -433,8 +433,10 @@ sanpham{
     height: 90px;
     background-color: white;
     margin: 20px 0 0 0;
-    border: 1px solid #BABABC;
 
+}
+.vien-boc-account-form{
+  border: 1px solid #BABABC;
 }
 
 .box-mualai .box-thanhtien{

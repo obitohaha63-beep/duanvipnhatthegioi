@@ -426,13 +426,23 @@ sanpham{
    border-bottom: 3px solid #BABABC;
    color: #1B1B1B;
 }
-.box-mualai{
-    width: 720px;
-    height: 90px;
-    background-color: white;
-    margin: 20px 0 0 0;
-    border: 1px solid #BABABC;
+.order-status {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
 
+.order-status.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+/* Viền xám bọc chỗ chờ xác nhận */
+.vien-boc-account-form{
+  border: 1px solid #BABABC;
 }
 
 .box-mualai .box-thanhtien{
