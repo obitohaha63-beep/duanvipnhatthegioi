@@ -5,22 +5,10 @@
   background: #f8f9fa;
   
 }
-.account-box {
-  background: #fff;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
-  width: 500px;
-}
-input[type="radio"] {
-  accent-color: #0e5d9e; /* Xanh lá, đổi tùy ý */
-}
-input[type="checkbox"] {
-  accent-color: #0e5d9e; /* Xanh lá, đổi tùy ý */
-}
-
 .container-back{
-    top: 110px;
+    position: absolute;
+    left:161px;
+    top:110px;
     width: 1200px;
     height: 38px;
     display: flex; 
@@ -40,6 +28,13 @@ input[type="checkbox"] {
     line-height: 18px;
     color: #1B1B1B;
   }
+.account-box {
+  background: #fff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  width: 500px;
+}
 
 .account-box h1 {
   text-align: center;
@@ -57,7 +52,7 @@ input[type="checkbox"] {
   padding: 8px;
   margin-top: 5px;
   border: 1px solid #ddd;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 .btn-group {
@@ -126,7 +121,7 @@ input[type="checkbox"] {
   flex: 1;
   padding: 8px;
   border: 1px solid #ccc;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 .add-address button {
@@ -160,10 +155,8 @@ input[type="checkbox"] {
 .account-page {
   background: linear-gradient(to bottom, #d9e8f4, #f6f9fc);
   min-height: 80vh;
-  padding: 10px 0;
+  padding: 40px 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
   margin-top: 100px;
 }
@@ -196,27 +189,26 @@ input[type="checkbox"] {
 .box-thongtincanhan{
   width: 295px;
   height: 40px;
-  background-color: #1331ab;
-  font-size: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  border-radius: 12px;
-}
-.box-thongtindonhang{
-  width: 295px;
-  height: 40px;
   background-color: white;
   font-size: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #1331ab;
-  border-radius: 12px;
+  border-radius: 15px;
    border: 1px solid #1331ab;
 }
-
+.box-thongtindonhang{
+  width: 295px;
+  height: 40px;
+  background-color: #1331ab;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 15px;
+}
 
 .avatar-circle {
   width: 70px;
@@ -293,7 +285,7 @@ input[type="checkbox"] {
 .account-form input,
 .account-form select {
   padding: 10px 15px;
-  border-radius: 12px;
+  border-radius: 20px;
   border: 1px solid #ccc;
   outline: none;
 }
@@ -335,9 +327,170 @@ input[type="checkbox"] {
   top: -3px;
   cursor: pointer;
 }
+sanpham{
+  font-family:sans-serif;
+  background-color: #fff;
+  height: 250px;
+  border-radius: 4px;
+  border: 1px solid #BABABC;
+}
+.tieude{
+  display: flex;
+  margin: 20px;
+  border-bottom: 1px solid #BABABC;
+}
+.info{
+  margin: 20px;
+  display: flex;
+}
+.u1{
+  margin-left: 150px;
+}
+.u3{
+  margin-left: 190px;
+}
+.u4{
+  margin-left: 120px;
+}
+.product-actions{
+  display: flex;
+  flex-direction: column;
 
-.logo-person{
-  margin-right: 5px;
-  width:28px;
-  height: 28px;
+}
+.remove{
+ text-align: center;
+}
+
+.btn-xoa{
+  width:50px;
+}
+.cart-item h3{
+  margin-left: 20px;
+  color:#1B1B1B;
+}
+.cart-item {
+  margin-left: 10px;
+  display: flex;
+}
+.product-name{
+  margin-left: 20px;
+}
+.product-desc{
+  margin-left: 20px;
+  color: #BABABC;
+}
+.total-price{
+  color:#1B1B1B;
+  margin: 25px 0 0 150px;
+}
+.price{
+  color: red;
+}
+.product-img{
+   border: 1px solid #BABABC;
+  width: 100px;
+  height: 120px;
+}
+.product-count{
+  font-size: 14px;
+  color: #1331ab ;
+  text-decoration: underline;
+  margin-left: 450px;
+}
+.khung-tablist{
+  width: 720px;
+  height: 70px;
+  align-items: center;
+  display: flex;
+  gap: 18px;
+
+}
+
+.khung-tablist .khung-text-hoanthanh{
+  position: relative;
+  width: 200px;
+  height: 40px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+
+   border-bottom: 3px solid #1331ab;
+   color: #1B1B1B;
+}
+.khung-tablist .khung-text-choxacnhan{
+  position: relative;
+  width: 200px;
+  height: 40px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+
+   border-bottom: 3px solid #BABABC;
+   color: #1B1B1B;
+}
+.box-mualai{
+    width: 720px;
+    height: 90px;
+    background-color: white;
+    margin: 20px 0 0 0;
+    border: 1px solid #BABABC;
+
+}
+
+.box-mualai .box-thanhtien{
+    position: relative;
+    margin: 5px 0 0 450px;
+}
+
+.box-text-mualai{
+    width: 90px;
+    height: 40px;
+    background-color: #1331ab;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+}
+.table-donhang {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Inter', sans-serif;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table-donhang th {
+  background-color: var(--main-color, #0e5d9e);
+  color: white;
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.table-donhang td {
+  padding: 12px;
+  border-bottom: 1px solid #eaeaea;
+  color: #333;
+}
+
+.table-donhang tr:hover {
+  background-color: #f9f9f9;
+}
+
+.btn-xem {
+  background-color: #0e5d9e;
+  border: none;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 14px;
+}
+
+.btn-xem:hover {
+  background-color: #0056b3;
 }

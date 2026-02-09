@@ -6,7 +6,7 @@
   <title>CoolNet</title>
   <link rel="stylesheet" href="style4.css">
   <link rel="stylesheet" href="root.css">
-  <link rel="stylesheet" href="choxacnhan.css">
+  <link rel="stylesheet" href="Donhangphanloai.css">
   <link rel="stylesheet" href="fontinter.css">
   <link rel="icon" type="image/png" href="hinhanh/favicon-logo.ico">
 </head>
@@ -16,7 +16,7 @@
         <div class="container">
             <!---- LOGO-->
             <div class="containerlogo">
-              <div class="logo"><a href="html4.html"><img src="hinhanh/unnamed (5) 2.png" 
+              <div class="logo"><a href="haveaccount.html"><img src="hinhanh/unnamed (5) 2.png" 
                 style="width: 245px;"></a>
               </div>
             </div>
@@ -56,9 +56,7 @@
                                 <img src="hinhanh/shopping-cart.png" style="width:24px">
                                 <span class="jscart">0</span>
                               </span>
-                              <a href="Giohang.html">
-                              <span class="boxtext">Giỏ hàng</span>
-                              </a>
+                              <a href="Giohang.html"><span class="boxtext">Giỏ hàng</span></a>
                             </button>
                           </div>
                         </a>
@@ -66,9 +64,9 @@
                 </ul>
                 
 <div class="container-login">
- <a href="taikhoan.html">
-        <img class="logo-person" src="hinhanh/daidien4.png" alt="logo của brand" 
-            style="width:28px; height: 28px"></a>
+   <a href="taikhoan.html">
+       <img class="logo-person" src="hinhanh/daidien4.png" alt="logo của brand" 
+         style="width:28px; height: 28px"></a>
   <a class="text-thongtin" href="taikhoan.html">Thông tin</a>
   <a class="text-dangky" style="opacity: 0.8;" href="html4.html">Đăng xuất</a>
 </div>
@@ -146,7 +144,7 @@
     </div>
 </header>
 <main class="account-page">
-  <div class="container-back">
+    <div class="container-back">
               <a href="haveaccount.html">Trang chủ </a>
               <span>/</span>
               <a href="taikhoan.html">Thông tin tài khoản </a>
@@ -166,7 +164,7 @@
           Thông tin cá nhân
         </div>
         </a>
-        <a href="donhangcuaban.html">
+        <a href="Donhangphanloai.html">
         <div class="box-thongtindonhang">
           Đơn hàng của bạn
         </div>
@@ -177,12 +175,12 @@
     <!-- Cột phải -->
     <section class="account-content">
       <div class="khung-tablist">
-        <a href="Donhangphanloai.html">
+        <a href="#">
         <div class="khung-text-hoanthanh">
           Hoàn thành
         </div>
         </a>
-        <a href="#">
+        <a href="choxacnhan.html">
         <div class="khung-text-choxacnhan">
           Chờ xác nhận
         </div>
@@ -190,53 +188,41 @@
       </div>
       <form class="account-form">
         <div class="sanpham">
+  <table class="table-donhang">
+    <thead>
+      <tr>
+        <th>Mã hóa đơn</th>
+        <th>Ngày hoàn thành</th>
+        <th>Tổng giá tiền</th>
+        <th>Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>HD001</td>
+        <td>12/11/2025</td>
+        <td>1.250.000₫</td>
+        <td><button class="btn-xem"><a href="donhangcuaban.html"
+            style="color: white;">Xem</a></button></td>
+      </tr>
+      <tr>
+        <td>HD002</td>
+        <td>10/11/2025</td>
+        <td>890.000₫</td>
+        <td><button class="btn-xem"><a href="donhangcuaban.html"
+            style="color: white;">Xem</a></button></td>
+      </tr>
+      <tr>
+        <td>HD003</td>
+        <td>05/11/2025</td>
+        <td>2.350.000₫</td>
+        <td><button class="btn-xem"><a href="donhangcuaban.html"
+            style="color: white;">Xem</a></button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-            <div class="tieude">
-            
-            <span class="product-count">Chờ thanh toán </span></h2>
-            </div>
-
-            
-
-              <div class="cart-item">
-              
-              <img src="hinhanh/11tour.png" alt="Vợt cầu lông " class="product-img">
-             
-                <div class="product-info">
-                <p class="product-name">Vợt cầu lông Yonex Arcsaber 11 Pro <br>Chính Hãng</p>
-                <p class="product-desc">Đỏ / 4UG5 </p>
-                <p class="product-name">x1</p>
-                <p class="product-name-thongtin">Thành Phát Anh Hưng
-                    <br>
-                    0796556438
-                    <br>
-                    273 An Dương Vương, Phường Chợ Quán, TPHCM.
-                </p>
-
-                
-               
-                </div>
-                  <div class="product-actions">
-                
-                    <p class="total-price">3.200.000₫</p>
-                    
-                </div>
-                
-                  
-            </div>
-            <div class="box-mualai">
-                <div class="box-thanhtien">
-                    <h3>Thành tiền: <span class="price"> 3.200.000đ</span> </h3>
-                    
-                    <div class="box-text-mualai">
-                        Đang xử lý
-                    </div>
-                    
-                    
-
-                </div>
-            </div>
-            </div>
       </form>
     </section>
   </div>
