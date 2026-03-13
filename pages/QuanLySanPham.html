@@ -15,15 +15,10 @@
       <h2 class="logo">Admin</h2>
       <ul class="menu">
         <li><a href="dashboard.html"> Dashboard</a></li>
-
         <li><a href="QuanLyuser.html"> Quản lý người dùng / Khách hàng</a></li>
-
         <li><a href="QuanLySanPham.html"
-          style="background:#2a2a3b; color:#00bfff;
-           border-left:4px solid #00bfff;"> Quản lý sản phẩm</a></li>
-
+          style="background:#2a2a3b; color:#00bfff; border-left:4px solid #00bfff;"> Quản lý sản phẩm</a></li>
         <li><a href="NhaphangGiaban.html"> Nhập hàng & Giá bán</a></li>
-
         <li><a href="DonhangTonkho.html"> Đơn hàng & Tồn kho</a></li>
       </ul>
     </nav>
@@ -50,8 +45,8 @@
               <td>Vợt cầu lông</td>
               <td>Hiển thị</td>
               <td>
-                <button class="btn delete-btn">Thêm</button>
-                <button class="btn hide-btn">Sửa</button>
+                <a href="ThemSanPham.html"><button class="btn delete-btn">Thêm</button></a>
+                <a href="SuaSanPham.html"><button class="btn hide-btn">Sửa</button></a>
                 <button class="btn delete-btn">Xóa</button>
                 <button class="btn hide-btn">Ẩn</button>
               </td>
@@ -86,7 +81,7 @@
               <td>4UG5</td>
               <td>Cây vợt siêu cân bằng</td>
               <td>
-                
+                <a href="SuaSanPham.html"><button class="btn hide-btn">Sửa</button></a>
                 <button class="btn delete-btn">Xóa</button>
                 <button class="btn hide-btn">Ẩn</button>
               </td>
@@ -94,81 +89,9 @@
           </tbody>
         </table>
       </section>
-
-      <!-- Form thêm sản phẩm -->
-      <section class="form-section">
-        <h2>Thêm sản phẩm mới</h2>
-        <form>
-          <label>Loại sản phẩm:</label>
-          <select>
-            <option value="">-- Chọn loại --</option>
-            <option value="Vợt">Vợt</option>
-            <option value="Giày">Giày</option>
-            <option value="Phụ kiện">Phụ kiện</option>
-          </select>
-
-          <label>Mã sản phẩm:</label>
-          <input type="text" name="masp" placeholder="VD: SP02">
-
-          <label>Tên sản phẩm:</label>
-          <input type="text" name="tensp" placeholder="VD: Giày cầu lông Yonex 88D">
-
-          <label>Hình sản phẩm:</label>
-          <input type="file" name="hinhanh">
-
-          <label>Màu sắc:</label>
-          <input type="text" name="mausac" placeholder="VD: Đen - Vàng">
-
-          <label>Trọng lượng:</label>
-          <input type="text" name="trongluong" placeholder="VD: 4UG5">
-
-          <label>Mô tả sản phẩm:</label>
-          <textarea name="mota" placeholder="Nhập mô tả chi tiết sản phẩm..."></textarea>
-
-          <div class="form-actions">
-            <button type="submit" class="btn save-btn">Lưu sản phẩm</button>
-            <a href="#" class="cancel-btn">Hủy</a>
-          </div>
-        </form>
-      </section>
-
-      <!-- Form sửa sản phẩm -->
-      <section class="form-section">
-        <h2>Sửa sản phẩm</h2>
-        <form>
-          <label>Loại sản phẩm:</label>
-          <select>
-            <option value="Vợt" selected>Vợt</option>
-            <option value="Giày">Giày</option>
-            <option value="Phụ kiện">Phụ kiện</option>
-          </select>
-
-          <label>Mã sản phẩm:</label>
-          <input type="text" name="masp" value="SP01" readonly>
-
-          <label>Tên sản phẩm:</label>
-          <input type="text" name="tensp" value="Vợt Yonex Astrox">
-
-          <label>Hình sản phẩm:</label>
-          <input type="file" name="hinhanh">
-
-          <label>Màu sắc:</label>
-          <input type="text" name="mausac" value="Đen - Vàng">
-
-          <label>Trọng lượng:</label>
-          <input type="text" name="trongluong" value="4UG5">
-
-          <label>Mô tả sản phẩm:</label>
-          <textarea name="mota">Cây vợt siêu cân bằng, nhẹ và mạnh.</textarea>
-
-          <div class="form-actions">
-            <button type="submit" class="btn save-btn">Cập nhật</button>
-            <a href="#" class="cancel-btn">Hủy</a>
-          </div>
-        </form>
-      </section>
-
     </main>
   </div>
+
+
 </body>
 </html>
