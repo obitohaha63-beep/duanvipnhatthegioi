@@ -1,3 +1,4 @@
+
 fetch("../assets/php/get_product.php")
 .then(res => res.json())
 .then(data => {
@@ -11,7 +12,7 @@ html += `
   <div class="container-anh">
 
     <div class="sanpham">
-      <a href="SanPham.html">
+      <a href="SanPham.html?code=${p.product_code}">
         <img class="anh-arcsaber" src="${p.image}">
         <span class="text-arcsaber">${p.name}</span>
         <span class="gia">${Number(p.selling_price).toLocaleString()} đ</span>
@@ -29,7 +30,6 @@ html += `
 })
 
 document.getElementById("productList").innerHTML = html
-
+console.log(data)
 })
 .catch(err => console.log(err))
-console.log(data)

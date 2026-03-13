@@ -1,13 +1,20 @@
-    <?php
-
+<?php
 require "db.php";
 
-    $sql = "SELECT * FROM products WHERE status = 1";
+if(isset($_GET["code"])){
 
-    $stmt = $pdo->query($sql);
+    $code = $_GET["code"];
 
-    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt = $pdo->prepare("SELECT * FROM products WHERE product_code = ?");
+    $stmt->execute([$code]);
 
-    echo json_encode($products);
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    ?>
+}else{
+
+    $stmt = $pdo->query("SELECT * FROM products");
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
+echo json_encode($data);
