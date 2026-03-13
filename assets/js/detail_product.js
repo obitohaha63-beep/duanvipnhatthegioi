@@ -17,7 +17,7 @@ let html = `
           <pre class ="trademark1">Thương hiệu: <a href="?"> Yonex</a>   |   Loại: <a href="?">${p.category}</a></pre>
           <pre class ="trademark1">Mã sản phẩm: <a href="?">${p.product_code}</a></pre>
           <br>
-          <p class="value">${p.selling_price}</p>
+          <p class="value">${p.selling_price} đ</p>
           <br>
           <p style="font-size: 14px;">Màu sắc: </p>
           <p class ="DenVang"></p>
@@ -56,8 +56,23 @@ let html = `
            </div>
         </div>  
       </div>
+      <div class = "sales-commitment">
+        <div class = "sales-commitment-content">
+          <div class = "sales-commitment-frame"> Cam kết bán hàng </div>
+            <ul class = "sales-commitment-list">
+              <li><img src="../assets/img/baohanh.png" alt="baohanh" class = "anhchung"> <span>🎁 Bảo hành chính hãng theo nhà sản xuất</span></li>
+              <li><img src="../assets/img/mienphigiaohang.png" alt="baohanh" class = "anhchung"><span>Miễn phí giao hàng trong 2-3 ngày toàn quốc và 4H trong nội thành TP.HCM (Đơn trên 2 triệu). Trừ ống cầu.</span></li>
+              <li><img src="../assets/img/hotrodoitra.png" alt="baohanh" class = "anhchung"><span>Hỗ trợ đổi trả cho hàng chính hãng (có phiếu bảo hành) miễn phí trong vòng 7 ngày.*</span></li>
+              <li><img src="../assets/img/giaohanglayngay.png" alt="baohanh" class = "anhchung"><span>Hỗ trợ đặt giao hàng lấy ngay tại TP.HCM ( Khách hàng chi trả phí theo phí của Ahamove, Grab)</span></li>
+            </ul>
+        </div>
+      </div>
+      <div class="detail-of-items">
+        ${p.description}
+    </div>
 `
 document.getElementById("detailProducts").innerHTML = html
+
 
 })
 .catch(err => console.log(err))
