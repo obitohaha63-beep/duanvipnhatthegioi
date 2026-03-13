@@ -7,6 +7,7 @@ $name = $_POST["name"];
 $category = $_POST["category"];
 $description = $_POST["description"];
 $color = $_POST["color"];
+$weight = $_POST["weight"];
 $unit = $_POST["unit"];
 $stock = $_POST["stock_quantity"];
 $cost = $_POST["cost_price"];
@@ -19,10 +20,10 @@ $status = $_POST["status"];
 $selling_price = $cost * (1 + $profit/100);
 
 $sql = "INSERT INTO products
-(product_code,name,category,description,color,unit,stock_quantity,cost_price,profit_rate,selling_price,image,status)
+(product_code,name,category,description,color,weight,unit,stock_quantity,cost_price,profit_rate,selling_price,image,status)
 
 VALUES
-(:product_code,:name,:category,:description,:color,:unit,:stock,:cost,:profit,:selling_price,:image,:status)";
+(:product_code,:name,:category,:description,:color,:weight,:unit,:stock,:cost,:profit,:selling_price,:image,:status)";
 
 $stmt = $pdo->prepare($sql);
 
@@ -32,6 +33,7 @@ $stmt->execute([
 ':category'=>$category,
 ':description'=>$description,
 ':color'=>$color,
+':weight'=>$weight,
 ':unit'=>$unit,
 ':stock'=>$stock,
 ':cost'=>$cost,
