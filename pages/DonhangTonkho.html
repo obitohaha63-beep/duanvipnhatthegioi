@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="../assets/css/DonhangTonkho.css">
   <link rel="stylesheet" href="../assets/css/fontinter.css">
   <link rel="stylesheet" href="../assets/css/root.css">
+  <script src="../assets/js/chitietdonhang.js"></script>
 </head>
 <body>
   <div class="container">
@@ -63,7 +64,7 @@
               <td>01/11/2025</td>
               <td>2.500.000₫</td>
               <td><span class="result-box">Mới đặt</span></td>
-              <td><button style="background-color: #4caf50;">Xem</button></td>
+              <td><button onclick="xemchitiet('DH001')" style="background-color: #4caf50;" >Xem</button></td>
             </tr>
             <tr>
               <td>DH002</td>
@@ -71,7 +72,7 @@
               <td>02/11/2025</td>
               <td>1.800.000₫</td>
               <td><span class="result-box">Đã giao</span></td>
-              <td><button style="background-color: #4caf50;">Xem</button></td>
+              <td><button onclick="xemchitiet('DH002')" style="background-color: #4caf50;">Xem</button></td>
             </tr>
             <tr>
               <td>DH003</td>
@@ -79,7 +80,7 @@
               <td>03/11/2025</td>
               <td>950.000₫</td>
               <td><span class="result-box">Đã xử lý</span></td>
-              <td><button style="background-color: #4caf50;">Xem</button></td>
+              <td><button onclick= "xemchitiet('DH003')" style="background-color: #4caf50;">Xem</button></td>
             </tr>
 
             <tr>
@@ -88,57 +89,10 @@
               <td>03/11/2025</td>
               <td>950.000₫</td>
               <td><span class="result-box">Hủy</span></td>
-              <td><button style="background-color: #4caf50;">Xem</button></td>
+              <td><button onclick= "xemchitiet('DH004')" style="background-color: #4caf50;">Xem</button></td>
             </tr>
           </table>
-
-          <!-- ====== CHI TIẾT ĐƠN HÀNG ====== -->
-          <div class="card" style="margin-top:20px;">
-            <h3>Chi tiết đơn hàng: DH001</h3>
-            <div class="form-group">
-              <label>Khách hàng:</label><input type="text" value="Đinh Công Thành" readonly>
-              <label>Ngày đặt:</label><input type="text" value="01/11/2025" readonly>
-            </div>
-            <div class="form-group">
-              <label>Địa chỉ:</label><input type="text" value="12 Nguyễn Trãi, Hà Nội" readonly>
-              <label>Điện thoại:</label><input type="text" value="0796 556 438" readonly>
-            </div>
-
-            <table>
-              <tr>
-                <th>Mã SP</th>
-                <th>Tên sản phẩm</th>
-                <th>Số lượng</th>
-                <th>Đơn giá</th>
-                <th>Thành tiền</th>
-              </tr>
-              <tr>
-                <td>SP001</td>
-                <td>Yonex Arcsaber 11 Pro Chính Hãng</td>
-                <td>1</td>
-                <td>3.200.000₫</td>
-                <td>3.200.000₫</td>
-              </tr>
-              
-              <tr>
-                <th colspan="4">Tổng cộng</th>
-                <th>3.200.000₫</th>
-              </tr>
-            </table>
-
-            <div class="form-group" style="margin-top:15px;">
-              <label>Tình trạng đơn hàng:</label>
-              <select>
-                <option>Mới đặt</option>
-                <option>Đã xử lý</option>
-                <option>Đã giao</option>
-                <option>Hủy</option>
-              </select>
-              <button>Cập nhật</button>
-            </div>
-          </div>
-        </div>
-
+      
         <!-- ==================== QUẢN LÝ TỒN KHO ==================== -->
         <div class="card">
           <h2>Quản lý số lượng tồn kho</h2>
