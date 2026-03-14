@@ -15,7 +15,7 @@ html += `
       <a href="SanPham.html?code=${p.product_code}">
         <img class="anh-arcsaber" src="${p.image}">
         <span class="text-arcsaber">${p.name}</span>
-        <span class="gia">${Number(p.selling_price).toLocaleString()} đ</span>
+        <span class="gia">${Number(p.selling_price).toLocaleString("vi-VN")} đ</span>
         <span class="mausac-arsaber">${p.color}</span>
       </a>
     </div>

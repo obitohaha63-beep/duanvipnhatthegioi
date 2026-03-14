@@ -14,17 +14,30 @@ width:600px;
 margin:auto;
 }
 
+label{
+font-weight:bold;
+display:block;
+margin-top:10px;
+}
+
 input,select,textarea{
 width:100%;
 padding:8px;
-margin:5px 0;
+margin-top:4px;
+box-sizing:border-box;
 }
 
 button{
+margin-top:15px;
 padding:10px;
 background:green;
 color:white;
 border:none;
+cursor:pointer;
+}
+
+button:hover{
+background:#0a8f0a;
 }
 
 </style>
@@ -36,26 +49,46 @@ border:none;
 <h2>Thêm sản phẩm</h2>
 
 <form id="productForm">
-    
-<input name="product_code" placeholder="Mã sản phẩm" required>
 
-<input name="name" placeholder="Tên sản phẩm" required>
+<label>Mã sản phẩm</label>
+<input name="product_code" required>
 
-<input name="category" placeholder="Loại">
-<input name="color" placeholder="color">
-<input name="weight" placeholder="weight">
-<textarea name="description" placeholder="Mô tả"></textarea>
+<label>Tên sản phẩm</label>
+<input name="name" required>
 
-<input name="unit" placeholder="Đơn vị tính">
+<label>Loại sản phẩm</label>
+<select name="category">
+<option value="">--Chọn loại--</option>
+<option value="1">Vợt cầu lông</option>
+<option value="2">Giày cầu lông</option>
+<option value="3">Áo cầu lông</option>
+</select>
 
-<input type="number" name="stock_quantity" placeholder="Số lượng tồn ban đầu">
+<label>Màu sắc</label>
+<input name="color" placeholder="Ví dụ: Đỏ / Xanh">
 
-<input type="number" name="cost_price" placeholder="Giá vốn">
+<label>Trọng lượng (g)</label>
+<input type="number" name="weight" min="0">
 
-<input type="number" name="profit_rate" placeholder="Tỷ lệ lợi nhuận (%)">
+<label>Mô tả sản phẩm</label>
+<textarea name="description" rows="4"></textarea>
 
-<input name="image" placeholder="Link hình ảnh">
+<label>Đơn vị tính</label>
+<input name="unit" placeholder="Ví dụ: Cây / Đôi / Cái">
 
+<label>Số lượng tồn ban đầu</label>
+<input type="number" name="stock_quantity" min="0">
+
+<label>Giá vốn (VNĐ)</label>
+<input type="number" name="cost_price" min="0">
+
+<label>Tỷ lệ lợi nhuận (%)</label>
+<input type="number" name="profit_rate" min="0" max="100">
+
+<label>Link hình ảnh</label>
+<input type="url" name="image">
+
+<label>Trạng thái</label>
 <select name="status">
 <option value="1">Hiển thị</option>
 <option value="0">Ẩn</option>
@@ -79,6 +112,7 @@ body:data
 })
 .then(res=>res.text())
 .then(data=>alert(data))
+.catch(err=>console.log(err))
 
 }
 
