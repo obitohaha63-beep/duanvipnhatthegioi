@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang Quản Trị</title>
+  <link rel="stylesheet" href="../assets/css/NhaphangGiaban.css">
+  <link rel="stylesheet" href="../assets/css/fontinter.css">
+  <link rel="stylesheet" href="../assets/css/root.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Menu bên trái -->
+    <nav class="sidebar">
+      <h2 class="logo">Admin</h2>
+      <ul class="menu">
+
+        <li><a href="dashboard.html"> Dashboard</a></li>
+
+        <li><a href="QuanLyuser.html"> Quản lý người dùng / Khách hàng</a></li>
+
+        <li><a href="QuanLySanPham.html"> Quản lý sản phẩm</a></li>
+        <li><a href="NhaphangGiaban.html"> Nhập hàng</a></li>
+        <li><a href="NhaphangGiaban2.html"style="background:#2a2a3b; color:#00bfff; 
+        border-left:4px solid #00bfff;">Giá bán</a></li>
+        
+        <li><a href="DonhangTonkho.html"> Đơn hàng & Tồn kho</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+        <div class="form-container">
+          <h3>Sửa giá bán theo % lợi nhuận của sản phẩm:...</h3>
+        
+          <form class="form-giaban">
+            <div class="form-row">
+            <label for="so-luong-hien-tai">Số lượng hiện tại</label>
+            <input type="number" id="so-luong-hien-tai" placeholder="50" readonly>
+            </div>
+
+            <div class="form-row">
+            <label for="gia-von-hien-tai">Giá vốn hiện tại</label>
+            <input type="number" id="gia-von-hien-tai" placeholder="500.000" readonly>
+            </div>
+
+            <div class="form-row">
+            <label for="gia-ban-hien-tai">Giá bán hiện tại</label>
+            <input type="number" id="gia-ban-hien-tai" placeholder="750.000" readonly>
+            </div>
+
+            <div class="form-row">
+            <label for="loi-nhuan-hien-tai">% Lợi nhuận hiện tại</label>
+            <input type="number" id="loi-nhuan-hien-tai" placeholder="25%" readonly>
+            </div>
+
+            <div class="form-row">
+            <label for="loinhuan-moi">% Lợi nhuận muốn sửa</label>
+            <input type="number" id="loinhuan-moi" placeholder="Nhập % lợi nhuận mới" required>
+            </div>
+          
+            <div class="form-buttons">
+              <button type="submit" class="btn btn-save">Hoàn Thành</button>
+              <button type="button" class="btn btn-cancel" onclick="location.href='NhapHangGiaBan2.html'">Hủy</button>
+            </div>
+          </form>
+        </div>
+
+    </main>
+  </div>
+</body>
+</html>

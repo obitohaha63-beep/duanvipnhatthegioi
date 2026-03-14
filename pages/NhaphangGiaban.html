@@ -23,7 +23,8 @@
 
         <li><a href="NhaphangGiaban.html"
           style="background:#2a2a3b; color:#00bfff; 
-          border-left:4px solid #00bfff;"> Nhập hàng & Giá bán</a></li>
+          border-left:4px solid #00bfff;"> Nhập hàng</a></li>
+        <li><a href="NhaphangGiaban2.html"> Giá bán</a></li>
 
         <li><a href="DonhangTonkho.html"> Đơn hàng & Tồn kho</a></li>
       </ul>
@@ -31,21 +32,26 @@
 
     <main class="content">
       <div class="sub-container">
-
-        <nav class="sub-sidebar">
-          <h2 style="text-align: center;"> Quản lý kho</h2>
-          <ul>
-            <li class="active"><a href="NhaphangGiaban2.html" style="color: white;">Quản lý nhập hàng</a></li>
-            <li><a href="NhaphangGiaban2.html">Quản lý giá bán</a></li>
-          </ul>
-        </nav>
           <section class="sub-section">
             <h2> Quản lý nhập hàng</h2>
             <p class="desc">Danh sách phiếu nhập</p>
           
-            <div class="search-box1">
-              <label for="search-nhap">Tra cứu phiếu nhập</label>
-              <input type="text" id="search-nhap" placeholder="Nhập tên sản phẩm..." />
+            <div class="top-bar">
+
+              <div class="search-box1">
+                <label>Tra cứu theo khoảng ngày giờ</label>
+
+                <div class="date-range">
+                  <input type="date" id="from-date">
+                  <span>→</span>
+                  <input type="date" id="to-date">
+                </div>
+              </div>
+
+              <a href="FormPhieuNhap.html">
+                <button class="btn-add-product">+ Thêm phiếu nhập</button>
+              </a>
+
             </div>
           
             <table class="data-table" id="table-nhap">
@@ -98,37 +104,6 @@
 
           </section>
       </div>
-                <!-- FORM thêm / sửa sản phẩm -->
-        <div class="form-container">
-            <h3>Thêm Phiếu Nhập<h3>
-
-            <form class="form-giaban">
-              <div class="form-row">
-                <label for="ten">Tên sản phẩm</label>
-                <input type="text" id="ten" placeholder="Nhập Tên Sản Phẩm" required>
-              </div>
-
-              <div class="form-row">
-                <label for="giavon">Giá Nhập</label>
-                <input type="number" id="giavon" placeholder="Nhập Giá Nhập" required>
-              </div>
-
-              <div class="form-row">
-                <label for="loinhuan">Số Lượng</label>
-                <input type="number" id="loinhuan" placeholder="Nhập Số Lượng" required>
-              </div>
-
-              <div class="form-row">
-                <label for="giaban">Ngày Nhập</label>
-                <input type="number" id="giaban" placeholder="Thời Điểm Nhập Hàng" required>
-              </div>
-
-              <div class="form-buttons">
-                <button type="submit" class="btn btn-save">Thêm</button>
-                <button type="reset" class="btn btn-cancel">Hủy</button>
-              </div>
-            </form>
-        </div>
 
     </main>   
   </div>   
