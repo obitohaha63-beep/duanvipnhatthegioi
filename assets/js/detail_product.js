@@ -4,20 +4,21 @@ const code = params.get("code")
 fetch("../assets/php/get_product.php?code=" + code)
 .then(res => res.json())
 .then(data => {
-const p = data[0]
+  console.log(data)
+const p = data
 let html = `
 
 <div class = "bigcontent">
         <div class="product">
-         <img class="main-image" src="${p.image}" alt="Ảnh lớn">
+         <img class="main-image" src="${p.images?.[0] ?? p.image}" alt="Ảnh lớn">
           
         </div>
         <div class = "aboutproduct">
           <p class = "racket-name"> ${p.name} </p>
-          <pre class ="trademark1">Thương hiệu: <a href="?"> Yonex</a>   |   Loại: <a href="?">${p.category}</a></pre>
+          <pre class ="trademark1">Thương hiệu: <a href="?"> ${p.brand_name}</a>   |   Loại: <a href="?">${p.category_name}</a></pre>
           <pre class ="trademark1">Mã sản phẩm: <a href="?">${p.product_code}</a></pre>
           <br>
-          <p class="value">${p.selling_price} đ</p>
+          <p class="value">${Number(p.selling_price).toLocaleString("vi-VN")} đ</p>
           <br>
           <p style="font-size: 14px;">Màu sắc: </p>
           <p class ="DenVang"></p>
