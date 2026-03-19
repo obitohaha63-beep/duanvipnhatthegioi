@@ -39,7 +39,7 @@
             <div class="top-bar">
 
               <div class="search-box1">
-                <label>Tra cứu theo khoảng ngày giờ</label>
+                <label>Tra cứu phiếu nhập theo khoảng thời gian</label>
 
                 <div class="date-range">
                   <input type="date" id="from-date">
@@ -54,58 +54,43 @@
 
             </div>
           
-            <table class="data-table" id="table-nhap">
-              <thead>
-                <tr>
-                  <th>Tên sản phẩm</th>
-                  <th>Giá nhập (VNĐ)</th>
-                  <th>Số lượng</th>
-                  <th>Ngày nhập</th>
-                  <th>Trạng thái</th>
-                  <th>Thao tác</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Vợt cầu lông Yonex Muscle Power 29 Light Chính Hãng</td>
-                  <td>3,560,000</td>
-                  <td>5</td>
-                  <td>2025-10-15</td>
-                  <td><div class = "completed">Hoàn thành</div></td>
-                  <td><button class="btn-add">Xem</button></td>
-                </tr>
-                <tr>
-                  <td>Vợt cầu lông Yonex Astrox Smash Chính Hãng</td>
-                  <td>11,925,000</td>
-                  <td>10</td>
-                  <td>2025-10-16</td>
-                  <td><div class = "completed">Hoàn thành</div></td>
-                  <td><button class="btn-add">Xem</button></td>
-                </tr>
-                <tr>
-                  <td>Vợt cầu lông Yonex Arcsaber 11 Tour Chính Hãng</td>
-                  <td>40,350,000</td>
-                  <td>20</td>
-                  <td>2025-10-17</td>
-                  <td><div class = "completed">Chưa hoàn thành</div></td>
-                  <td><button class="btn-delete1">Sửa</button></td>
-                </tr>
-                <tr>
-                  <td>Vợt Cầu Lông Lining Windstorm 72 Chính Hãng</td>
-                  <td>27,562,500</td>
-                  <td>15</td>
-                  <td>2025-10-17</td>
-                  <td><div class = "completed">Chưa hoàn thành</div></td>
-                  <td><button class="btn-delete1">Sửa</button></td>
-                </tr>
-                
-              </tbody>
-            </table>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Mã phiếu nhập</th>
+                <th>Tổng giá tiền</th>
+                <th>Ngày nhập</th>
+                <th>Số lần nhập</th>
+                <th>Thao tác</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>PN001</td>
+                <td>70,075,000</td>
+                <td>2025-10-15</td>
+                <td>1</td>
+                <td>
+                  <a href="../pages/ChiTietPhieuNhap.html" target="_blank">
+                    <button class="btn-view">Xem</button>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+
+
+
+
+
 
           </section>
       </div>
 
     </main>   
-  </div>   
+  </div>
+  <script src="../assets/js/testchucnangaddpnh.js"></script>   
 </body>
 </html>
