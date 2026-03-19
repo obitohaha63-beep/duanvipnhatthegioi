@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang Quản Trị</title>
+  <link rel="stylesheet" href="../assets/css/NhaphangGiaban.css">
+  <link rel="stylesheet" href="../assets/css/fontinter.css">
+  <link rel="stylesheet" href="../assets/css/root.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Menu bên trái -->
+    <nav class="sidebar">
+      <h2 class="logo">Admin</h2>
+      <ul class="menu">
+        <li><a href="dashboard.html"> Dashboard</a></li>
+        
+        <li><a href="QuanLyuser.html"> Quản lý người dùng / Khách hàng</a></li>
+
+        <li><a href="QuanLySanPham.html"> Quản lý sản phẩm</a></li>
+
+
+        <li><a href="NhaphangGiaban.html"
+          style="background:#2a2a3b; color:#00bfff; 
+          border-left:4px solid #00bfff;"> Nhập hàng</a></li>
+        <li><a href="NhaphangGiaban2.html"> Giá bán</a></li>
+
+        <li><a href="DonhangTonkho.html"> Đơn hàng & Tồn kho</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      <div class="sub-container">
+          <section class="sub-section">
+            <h2> Quản lý nhập hàng</h2>
+            <p class="desc">Danh sách phiếu nhập</p>
+          
+            <div class="receipt-card">
+
+            <!-- THÔNG TIN PHIẾU -->
+            <div class="receipt-box">
+
+                <div class="receipt-row">
+                <div class="receipt-field">
+                    <label>Mã phiếu nhập</label>
+                    <input type="text" value="PN001" readonly>
+                </div>
+                </div>
+
+                <div class="receipt-row">
+                <div class="receipt-field">
+                    <label>Ngày nhập</label>
+                    <input type="date" value="2025-10-15">
+                </div>
+                </div>
+
+                <div class="receipt-row">
+                <div class="receipt-field">
+                    <label>Tổng giá nhập</label>
+                    <input type="text" value="70,075,000">
+                </div>
+
+                <div class="receipt-field">
+                    <label>Số lần nhập</label>
+                    <input type="number" value="1">
+                </div>
+                </div>
+
+                <div class="receipt-buttons">
+                <button class="btn-delete1" id="edit-btn">Sửa phiếu</button>
+                <button class="btn-confirm" id="confirm-btn">Hoàn tất</button>
+                </div>
+
+            </div>
+
+
+            <!-- BẢNG SẢN PHẨM -->
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>Tên sản phẩm</th>
+                    <th>Số lượng nhập</th>
+                    <th>Giá nhập</th>
+                    <th>Thành tiền</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>Vợt cầu lông Yonex Muscle Power 29 Light</td>
+                    <td>5</td>
+                    <td>3,560,000</td>
+                    <td>17,800,000</td>
+                </tr>
+
+                <tr>
+                    <td>Vợt cầu lông Yonex Astrox Smash</td>
+                    <td>10</td>
+                    <td>1,192,500</td>
+                    <td>11,925,000</td>
+                </tr>
+
+                <tr>
+                    <td>Vợt cầu lông Yonex Arcsaber 11 Tour</td>
+                    <td>20</td>
+                    <td>2,017,500</td>
+                    <td>40,350,000</td>
+                </tr>
+                </tbody>
+            </table>
+
+            </div>            
+
+              
+
+
+
+
+
+
+
+          </section>
+      </div>
+
+    </main>   
+  </div>
+  <script src="../assets/js/testchucnangaddpnh.js"></script>   
+</body>
+</html>
