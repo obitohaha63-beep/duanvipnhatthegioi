@@ -25,18 +25,13 @@
 
     <!-- Nội dung -->
     <main class="content">
-      <h1>Thêm Sản Phẩm Mới</h1>
+      <h1>Thêm loại Sản Phẩm Mới</h1>
 
-      <section class="form-section">
-        <h2>Thêm sản phẩm mới</h2>
-        <form>
-          <label>Loại sản phẩm:</label>
-          <select>
-            <option value="">-- Chọn loại --</option>
-            <option value="Vợt">Vợt</option>
-            <option value="Giày">Giày</option>
-            <option value="Phụ kiện">Phụ kiện</option>
-          </select>
+      <section class="form-section" >
+        <h2>Thêm loại sản phẩm mới</h2>
+        <form id="addCate">
+          <label>Tên loại sản phẩm:</label>
+          <input type="text" name="tenloaisp" placeholder="VD: SP02">
 
           <label>Mã sản phẩm:</label>
           <input type="text" name="masp" placeholder="VD: SP02">
@@ -47,15 +42,15 @@
           <label>Hình sản phẩm:</label>
           <input type="file" name="hinhanh">
 
-          <label>Màu sắc:</label>
-          <input type="text" name="mausac" placeholder="VD: Đen - Vàng">
+          <label>Nhập số thuộc tính sản phẩm:</label>
+                <input type="number" id="soThuocTinh" placeholder="VD: 4">
 
-          <label>Trọng lượng:</label>
-          <input type="text" name="trongluong" placeholder="VD: 4UG5">
+                <button type="button" id="btnTaoThuocTinh">Tạo thuộc tính</button>
 
-          <label>Mô tả sản phẩm:</label>
-          <textarea name="mota" placeholder="Nhập mô tả chi tiết sản phẩm..."></textarea>
+                <div id="thuocTinh">
 
+                  
+                </div>
           <div class="form-actions">
             <button type="submit" class="btn save-btn">Lưu sản phẩm</button>
             <a href="QuanLySanPham.html" class="cancel-btn">Hủy</a>
@@ -64,5 +59,6 @@
       </section>
     </main>
   </div>
+  <script src="../assets/js/scrip.js"></script>
 </body>
 </html>
