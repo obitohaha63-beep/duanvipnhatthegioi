@@ -3,13 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CoolNet</title>
+  <title>CoolNet - Checkout</title>
   <link rel="stylesheet" href="../assets/css/Giohang.css">
+  <link rel="stylesheet" href="../assets/css/checkout.css">
   <link rel="stylesheet" href="../assets/css/fontinter.css">
   <link rel="stylesheet" href="../assets/css/root.css">
   <link rel="icon" type="image/png" href="../assets/img/favicon-logo.ico">
 </head>
 <body>
+
+<!-- HEADER (giữ nguyên) -->
 <header>
     <div class="headertop">
         <div class="container">
@@ -139,62 +142,82 @@
       </div>
     </div>
 </header>
+
 <main>
-  <div class="container sanpham">
-    <h2 class="giohang-title">Giỏ hàng của bạn</h2>
+  <div class="checkout-container">
+    <!-- Cột trái: Thông tin giao hàng & Thanh toán -->
+    <div class="checkout-left">
+      <!-- Thông tin đặt hàng -->
+      <div class="section">
+        <h2>Thông tin đặt hàng</h2>
+        <div class="input-group">
+          <h3>Họ và Tên</h3>
+          <input type="text" value="Thành Phát Anh Hưng">
 
-    <div class="cart-item">
-  <div class="cart-img">
-    <img src="../assets/img/88splay.png" alt="Vợt cầu lông">
-  </div>
-  <div class="cart-info">
-    <h3>Vợt cầu lông Yonex 88S play tour</h3>
-    <p class="cart-color">Màu: Xanh</p>
-    <p class="cart-weight">Cân nặng: 85g</p>
-    <p class="cart-price">1,250,000₫</p>
-  </div>
-  <div class="cart-quantity">
-    <input type="number" value="1" min="1">
-  </div>
-  <div class="cart-remove">
-    <button>Xóa</button>
-  </div>
-</div>
+          <h3>Số điện thoại</h3>
+          <input type="text" value="0796556438">
 
-      <!-- Sản phẩm 2 -->
-      <div class="cart-item">
-  <div class="cart-img">
-    <img src="../assets/img/88splay.png" alt="Vợt cầu lông">
-  </div>
-  <div class="cart-info">
-    <h3>Vợt cầu lông Yonex Astrox jayce win99</h3>
-    <p class="cart-color">Màu: Xanh</p>
-    <p class="cart-weight">Cân nặng: 85g</p>
-    <p class="cart-price">1,250,000₫</p>
-  </div>
-  <div class="cart-quantity">
-    <input type="number" value="1" min="1">
-  </div>
-  <div class="cart-remove">
-    <button>Xóa</button>
-  </div>
-</div>
-
-      <!-- Tổng tiền -->
-      <div class="cart-total">
-        <span>Tổng tiền:</span>
-        <span class="total-price">3,500,000₫</span>
+          <h3>Địa chỉ</h3>
+          <label><input type="radio" name="diachitaikhoan" checked> Dùng địa chỉ tài khoản.</label>
+          <p>273 An Dương Vương, Phường Chợ Quán, TPHCM.</p>
+          <label><input type="radio" name="diachitaikhoan"> Nhập địa chỉ mới.</label>
+          <input type="text" placeholder="Tên đường, tòa nhà, số nhà.">
+          <select>
+            <option>Chọn tỉnh/thành</option>
+            <option>TP.Hồ Chí Minh</option>
+          </select>
+          <select>
+            <option>Chọn quận/huyện</option>
+            <option>Quận 10</option>
+            <option>Chọn phường</option>
+            <option>Phường Sài Gòn</option>
+            <option>Phường Tân Định</option>
+            <option>Phường Bến Thành</option>
+            <option>Phường Xuân Hòa</option>
+            <option>Phường Vĩnh Hội</option>
+          </select>
+        </div>
       </div>
 
-      <div class="cart-actions">
-        <button class="btn-continue">Tiếp tục mua hàng</button>
-        <button class="btn-checkout" onclick="window.location.href='checkout.html'">Thanh toán</button>
+      <!-- Phương thức thanh toán -->
+      <div class="section">
+        <h2>Phương thức thanh toán</h2>
+        <label><input type="radio" name="payment" checked> Thanh toán khi nhận hàng</label>
+        <label><input type="radio" name="payment"> Chuyển khoản qua ngân hàng</label>
+        <label><input type="radio" name="payment"> Thanh toán qua thẻ</label>
+
+        <div class="input-group payment-card">
+          <input type="text" placeholder="Tên chủ thẻ">
+          <input type="text" placeholder="Số thẻ">
+          <input type="text" placeholder="Ngày hết hạn (MM/YY)">
+          <input type="text" placeholder="Mã CVV">
+        </div>
       </div>
     </div>
-  </div>
-</main> 
 
-</body>
+    <!-- Cột phải: Thông tin đơn hàng -->
+    <div class="checkout-right">
+      <h2>Thông tin đơn hàng</h2>
+      <div class="section-summary">
+        <p><strong>Sản phẩm: </strong>Vợt cầu lông Yonex 88S play tour <br> Chính Hãng x1 </p>
+        <p><strong>Sản phẩm: </strong>Vợt cầu lông Yonex Astrox jayce win99 <br> Chính Hãng x1 </p>
+        <p><strong>Tổng tiền hàng:</strong> 3,350,000₫</p>
+        <p><strong>Phí vận chuyển:</strong> Miễn phí</p>
+        <p class="total"><strong>Tổng thanh toán: </strong>3,500,000₫</p>
+        <p><input type="checkbox"> Xuất hóa đơn</p>
+        <h4>Ghi chú đơn hàng: </h4>
+        <input type="text" placeholder="Nhập ghi chú">
+        <div class="button-group">
+          <a href="allsanpham1.html"><button class="btn-outline">Tiếp tục mua hàng</button></a>
+          <a href="choxacnhan.html"><button class="btn-primary">Đặt hàng</button></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER (giữ nguyên) -->
 <footer>
   <div class="container-footer">
     <div class="khungchinh">
@@ -287,4 +310,6 @@
     </div>
   </div>
 </footer>
-</html> 
+
+</body>
+</html>

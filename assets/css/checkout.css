@@ -1,0 +1,163 @@
+/* Reset cơ bản */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+  line-height: 1.5;
+}
+
+/* Main checkout */
+.checkout-container {
+  display: flex;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 130px auto 50px; /* margin-top cho header fixed */
+  padding: 20px;
+  flex-wrap: wrap; /* responsive xuống dòng */
+}
+
+/* Cột trái: thông tin giao hàng & thanh toán */
+.checkout-left {
+  flex: 1 1 450px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Cột phải: thông tin đơn hàng */
+.checkout-right {
+  flex: 1 1 300px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Section trong cột trái */
+.checkout-left .section h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #0F5E9F;
+}
+
+.input-group h3 {
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  border-color: #0F5E9F;
+}
+
+/* Radio button & label */
+.checkout-left label {
+  min-width: 0; /* Để flex không ép overflow */
+  flex-wrap: nowrap; /* Không xuống dòng */
+}
+
+/* Phương thức thẻ */
+.payment-card input {
+  margin-top: 5px;
+}
+
+/* Cột phải: summary */
+.checkout-right h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #0F5E9F;
+  margin-bottom: 10px;
+}
+
+.section-summary p {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.section-summary .total {
+  font-size: 16px;
+  font-weight: 600;
+  color: #E53935;
+}
+
+/* Ghi chú */
+.section-summary input[type="text"] {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+/* Nút hành động */
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-outline {
+  border: 2px solid #0F5E9F;
+  background-color: #fff;
+  color: #0F5E9F;
+  padding: 10px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-outline:hover {
+  background-color: #0F5E9F;
+  color: #fff;
+}
+
+.btn-primary {
+  border: none;
+  background-color: #0F5E9F;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #0B4D86;
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+  .checkout-container {
+    flex-direction: column;
+    margin-top: 130px;
+  }
+}
