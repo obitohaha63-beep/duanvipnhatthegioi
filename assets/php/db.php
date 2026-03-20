@@ -1,7 +1,7 @@
 <?php
 
 $host = "localhost";
-$dbname = "product_manager";
+$dbname = "quebshop1";
 $username = "root";
 $password = ""; 
 
