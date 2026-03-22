@@ -25,40 +25,42 @@
 
     <!-- Nội dung -->
     <main class="content">
-      <h1>Thêm loại Sản Phẩm Mới</h1>
+      <h1>Tạo loại sản phẩm</h1>
 
-      <section class="form-section" >
-        <h2>Thêm loại sản phẩm mới</h2>
-        <form id="addCate">
-          <label>Tên loại sản phẩm:</label>
-          <input type="text" name="tenloaisp" placeholder="VD: SP02">
+<form id="addCate">
 
-          <label>Mã sản phẩm:</label>
-          <input type="text" name="masp" placeholder="VD: SP02">
+  <!-- ===== THÔNG TIN ===== -->
+  <div class="form-section">
+    <h2>Thông tin cơ bản</h2>
 
-          <label>Tên sản phẩm:</label>
-          <input type="text" name="tensp" placeholder="VD: Giày cầu lông Yonex 88D">
+    <label>Tên loại sản phẩm</label>
+    <input type="text" name="name" required placeholder="VD: Vợt cầu lông">
 
-          <label>Hình sản phẩm:</label>
-          <input type="file" name="hinhanh">
+    <label>Mô tả</label>
+    <textarea name="description" placeholder="Mô tả ngắn"></textarea>
+  </div>
 
-          <label>Nhập số thuộc tính sản phẩm:</label>
-                <input type="number" id="soThuocTinh" placeholder="VD: 4">
+  <!-- ===== ATTRIBUTES ===== -->
+  <div class="form-section">
+    <h2>Thuộc tính sản phẩm</h2>
 
-                <button type="button" id="btnTaoThuocTinh">Tạo thuộc tính</button>
+    <div id="attributes"></div>
 
-                <div id="thuocTinh">
+    <button type="button" onclick="addAttribute()" class="add-btn">
+      + Thêm thuộc tính
+    </button>
+  </div>
 
-                  
-                </div>
-          <div class="form-actions">
-            <button type="submit" class="btn save-btn">Lưu sản phẩm</button>
-            <a href="QuanLySanPham.html" class="cancel-btn">Hủy</a>
-          </div>
-        </form>
-      </section>
+  <!-- ===== ACTION ===== -->
+  <div class="form-actions">
+    <button type="button" onclick="window.location.href='../pages/QuanLySanPham.html'">Trở về</button>
+    <button type="submit" class="save-btn">Tạo loại</button>
+  </div>
+
+</form>
     </main>
   </div>
   <script src="../assets/js/scrip.js"></script>
 </body>
+
 </html>
