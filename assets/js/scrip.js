@@ -1,25 +1,57 @@
-const inputSoLuong = document.getElementById("soThuocTinh");
-  const addThuocTinh = document.getElementById("thuocTinh");
-  const btn = document.getElementById("btnTaoThuocTinh");
 
-  btn.addEventListener("click", () => {
-    const soLuong = parseInt(inputSoLuong.value) || 0;
+let attrIndex = 0;
 
-    if (soLuong <= 0) {
-      addThuocTinh.innerHTML = "<p>Vui lòng nhập số hợp lệ</p>";
-      return;
-    }
+function addAttribute() {
+  const html = `
+    <div class="attr-item">
+      <input type="text" name="attr_name[]" placeholder="Tên thuộc tính (VD: Màu sắc)" required>
 
-    // Tạo mảng
-    const arr = Array.from({ length: soLuong }, (_, i) => i + 1);
+      <select name="attr_type[]" onchange="toggleOptions(this)">
+        <option value="text">Text</option>
+        <option value="number">Number</option>
+        <option value="select">Select</option>
+      </select>
 
-    // map tạo input
-    const html = arr.map(i => `
-      <div class="thuoc-tinh-item">
-        <label>Thuộc tính ${i}:</label>
-        <input type="text" name="thuocTinh[]" placeholder="Nhập thuộc tính ${i}">
-      </div>
-    `).join("");
+      <input type="text" name="attr_options[]" 
+             placeholder="Nhập options: Đỏ, Xanh, Đen" 
+             class="options-input" style="display:none">
 
-    addThuocTinh.innerHTML = html;
-  });
+      <button type="button" onclick="removeAttr(this)">X</button>
+    </div>
+  `;
+
+  document.getElementById("attributes").insertAdjacentHTML("beforeend", html);
+}
+
+function removeAttr(btn) {
+  btn.parentElement.remove();
+}
+
+function toggleOptions(select) {
+  const optionInput = select.parentElement.querySelector(".options-input");
+
+  if (select.value === "select") {
+    optionInput.style.display = "block";
+  } else {
+    optionInput.style.display = "none";
+    optionInput.value = "";
+  }
+}
+document.getElementById("addCate").addEventListener("submit", function(e){
+    e.preventDefault(); // Ngăn reload
+    const formData = new FormData(this);
+
+    fetch('../assets/php/add_category.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert(data.message);
+        if(data.status === 'success'){
+            this.reset();
+            document.getElementById("attributes").innerHTML = '';
+        }
+    })
+    .catch(err => alert('Lỗi server'));
+});

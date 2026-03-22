@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thêm sản phẩm</title>
+  <link rel="stylesheet" href="../assets/css/fontinter.css">
+  <link rel="stylesheet" href="../assets/css/root.css">
+  <link rel="stylesheet" href="../assets/css/QuanLySanPham.css">
+</head>
+<body>
+  <div class="container">
+    <main class="content">
+      <h1>Thêm sản phẩm mới</h1>
+      <form id="addProductForm">
+        <label>Tên sản phẩm:</label>
+        <input type="text" name="name" required>
+
+        <label>Loại sản phẩm:</label>
+        <select name="category_id" id="categorySelect" required>
+          <!-- JS sẽ load loại sản phẩm từ get_categories.php -->
+        </select>
+
+        <label>Giá:</label>
+        <input type="number" name="price" required>
+
+        <label>Số lượng:</label>
+        <input type="number" name="quantity" value="0">
+
+        <label>Mô tả:</label>
+        <textarea name="description"></textarea>
+
+        <div id="dynamicAttributes">
+          <!-- Thuộc tính động từ category sẽ load ở đây -->
+        </div>
+
+        <button type="submit">Thêm sản phẩm</button>
+        <button type="button" onclick="window.location.href='../pages/QuanLySanPham.html'">Trở về</button>
+      </form>
+    </main>
+  </div>
+
+  <script src="../assets/js/add_product.js"></script>
+</body>
+</html>

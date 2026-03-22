@@ -25,74 +25,54 @@
     </nav>
 
     <!-- Nội dung -->
-    <main class="content">
-      <h1>Quản lý Loại & Danh mục Sản phẩm</h1>
-
-      <!-- Bảng loại sản phẩm -->
-      <section class="table-section">
-        <h2>Loại sản phẩm</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Mã loại</th>
-              <th>Tên loại</th>
-              <th>Trạng thái</th>
-              <th>Thao tác</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>36</td>
-              <td>Vợt cầu lông</td>
-              <td>Hiển thị</td>
-              <td>
-                <a href="ThemSanPham.html"><button class="btn delete-btn">Thêm</button></a>
-                <a href="SuaSanPham.html"><button class="btn hide-btn">Sửa</button></a>
-                <button class="btn delete-btn">Xóa</button>
-                <button class="btn hide-btn">Ẩn</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <!-- Bảng danh mục sản phẩm -->
-      <section class="table-section">
-        <h2>Danh mục sản phẩm</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Loại</th>
-              <th>Mã</th>
-              <th>Tên</th>
-              <th>Hình</th>
-              <th>Màu sắc</th>
-              <th>Trọng lượng</th>
-              <th>Mô tả</th>
-              <th>Thao tác</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Vợt</td>
-              <td>SP01</td>
-              <td>Vợt Yonex Astrox</td>
-              <td><img src="hinhanh/nanoflare1000.png" alt="Sản phẩm"></td>
-              <td>Đen - Vàng</td>
-              <td>4UG5</td>
-              <td>Cây vợt siêu cân bằng</td>
-              <td>
-                <a href="SuaSanPham.html"><button class="btn hide-btn">Sửa</button></a>
-                <button class="btn delete-btn">Xóa</button>
-                <button class="btn hide-btn">Ẩn</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-    </main>
+<main class="content">
+  <h1>Quản lý Loại & Danh mục Sản phẩm</h1>
+  
+  <!-- ===== DANH SÁCH LOẠI SẢN PHẨM ===== -->
+  <div class="table-section">
+    <h2>Danh sách loại sản phẩm</h2>
+    <button type="button" id="addcategoryBtn" onclick="window.location.href='../pages/ThemSanPham.html'">+ Thêm loại</button>
+    <table id="categoryTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Tên loại</th>
+          <th>Mô tả</th>
+          <th>Thời gian tạo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Dữ liệu sẽ load động từ JS -->
+      </tbody>
+    </table>
   </div>
 
+  <!-- ===== DANH SÁCH SẢN PHẨM ===== -->
+  <div class="table-section">
+    <h2>Danh sách sản phẩm</h2>
+    <button type="button" id="addProductBtn" onclick="window.location.href='AddProduct.html'">Thêm sản phẩm</button>
+    <table id="productTable">
+      <thead>
+        <tr>
+      <th>ID</th>
+      <th>Tên sản phẩm</th>
+      <th>Loại</th>
+      <th>Giá</th>
+      <th>Số lượng</th>
+      <th>Thuộc tính</th>
+      <th>Thời gian tạo</th>
+    </tr>
+      </thead>
+      <tbody>
+        <!-- Dữ liệu sẽ load động từ JS -->
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<script src="../assets/js/add_category.js"></script>
+<script src="../assets/js/get_product.js"></script>
+<!-- Thêm vào main content dưới danh sách loại sản phẩm -->
 
 </body>
 </html>

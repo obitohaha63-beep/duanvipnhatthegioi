@@ -1,90 +1,35 @@
 <?php
 require "db.php";
 
-header("Content-Type: application/json; charset=UTF-8");
-
-if(isset($_GET["code"])){
-
-    $code = $_GET["code"];
-
-    $stmt = $pdo->prepare("
-    SELECT 
-        p.*,
-        c.name AS category_name,
-        b.name AS brand_name,
-        pa.weight,
-        pa.balance,
-        pa.play_style,
-        pa.skill_level
-    FROM products p
-    JOIN categories c 
-        ON p.category_id = c.id
-    LEFT JOIN brands b
-        ON p.brand_id = b.id
-    LEFT JOIN product_attributes pa
-        ON p.id = pa.product_id
-    WHERE p.product_code = ?
-");
-
-    $stmt->execute([$code]);
-
-    $product = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if($product){
-
-        // lấy danh sách hình ảnh
-        $imgStmt = $pdo->prepare("
-            SELECT image_url
-            FROM product_images
-            WHERE product_id = ?
-        ");
-
-        $imgStmt->execute([$product["id"]]);
-
-        $product["images"] = $imgStmt->fetchAll(PDO::FETCH_COLUMN);
-
-        echo json_encode($product);
-
-    }else{
-
-        echo json_encode([
-            "error" => "Product not found"
-        ]);
-    }
-
-}else{
-
-     $stmt = $pdo->query("
-        SELECT 
-        p.*,
-        c.name AS category_name,
-        b.name AS brand_name,
-        pa.weight,
-        pa.balance,
-        pa.play_style,
-        pa.skill_level
-        FROM products p
-        JOIN categories c ON p.category_id = c.id
-        LEFT JOIN brands b ON p.brand_id = b.id
-        LEFT JOIN product_attributes pa ON p.id = pa.product_id
+try {
+    $stmt = $pdo->query("
+        SELECT p.*, c.name as category_name 
+        FROM products p 
+        JOIN categories c ON p.category_id = c.id 
+        ORDER BY p.id DESC
     ");
-
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    foreach($products as &$product){
+    $result = [];
 
-        $imgStmt = $pdo->prepare("
-            SELECT image_url
-            FROM product_images
-            WHERE product_id = ?
+    foreach($products as $prod){
+        // Lấy attributes của sản phẩm này
+        $stmt2 = $pdo->prepare("
+            SELECT ca.name as attr_name, pa.value 
+            FROM product_attributes pa
+            JOIN category_attributes ca ON pa.attribute_id = ca.id
+            WHERE pa.product_id = ?
         ");
+        $stmt2->execute([$prod['id']]);
+        $attributes = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
-        $imgStmt->execute([$product["id"]]);
-
-        $product["images"] = $imgStmt->fetchAll(PDO::FETCH_COLUMN);
-
+        $prod['attributes'] = $attributes; // thêm vào mảng sản phẩm
+        $result[] = $prod;
     }
 
-    echo json_encode($products);
+    echo json_encode(['status'=>'success','data'=>$result]);
+
+} catch (Exception $e){
+    echo json_encode(['status'=>'error','message'=>$e->getMessage()]);
 }
 ?>
