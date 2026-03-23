@@ -4,42 +4,135 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thêm sản phẩm</title>
-  <link rel="stylesheet" href="../assets/css/fontinter.css">
+
   <link rel="stylesheet" href="../assets/css/root.css">
   <link rel="stylesheet" href="../assets/css/QuanLySanPham.css">
 </head>
+
 <body>
-  <div class="container">
-    <main class="content">
-      <h1>Thêm sản phẩm mới</h1>
-      <form id="addProductForm">
-        <label>Tên sản phẩm:</label>
-        <input type="text" name="name" required>
+<div class="container">
 
-        <label>Loại sản phẩm:</label>
-        <select name="category_id" id="categorySelect" required>
-          <!-- JS sẽ load loại sản phẩm từ get_categories.php -->
-        </select>
+  <main class="main">
 
-        <label>Giá:</label>
-        <input type="number" name="price" required>
+    <!-- HEADER -->
+    <div class="page-header">
+      <h1>Thêm sản phẩm</h1>
+      <button onclick="history.back()" class="btn-secondary">← Quay lại</button>
+    </div>
 
-        <label>Số lượng:</label>
-        <input type="number" name="quantity" value="0">
+    <form id="addProductForm" class="form-card">
 
-        <label>Mô tả:</label>
-        <textarea name="description"></textarea>
+      <!-- GRID 2 CỘT -->
+      <div class="form-grid">
 
-        <div id="dynamicAttributes">
-          <!-- Thuộc tính động từ category sẽ load ở đây -->
+        <!-- LEFT -->
+        <div class="form-group">
+          <label>Tên sản phẩm</label>
+          <input type="text" name="name" placeholder="VD: Vợt cầu lông Yonex..." required>
+
+          <label>Danh mục</label>
+          <select name="category_id" id="categorySelect" required></select>
+
+          <label>Giá nhập</label>
+          <input type="number" name="cost_price" placeholder="VD: 500000" required>
+
+          <label>% Lợi nhuận</label>
+          <input type="number" name="profit_percent" placeholder="VD: 20">
+
+          <div class="price-preview">
+            Giá bán dự kiến: <span id="previewPrice">0đ</span>
+          </div>
+
+          <label>Số lượng</label>
+          <input type="number" name="quantity" value="0">
+
         </div>
 
-        <button type="submit">Thêm sản phẩm</button>
-        <button type="button" onclick="window.location.href='../pages/QuanLySanPham.html'">Trở về</button>
-      </form>
-    </main>
-  </div>
+        <!-- RIGHT -->
+        <div class="form-group">
 
-  <script src="../assets/js/add_product.js"></script>
+          <label>Ảnh sản phẩm</label>
+          <input type="file" id="imageInput" accept="image/*">
+          <img id="previewImage" class="preview-img" src="" alt="Preview">
+
+          <label>Mô tả</label>
+          <textarea name="description" rows="5"></textarea>
+
+        </div>
+
+      </div>
+
+      <!-- ATTRIBUTES -->
+      <div class="card">
+        <h3>Thuộc tính sản phẩm</h3>
+        <div id="dynamicAttributes"></div>
+      </div>
+      <label>Trạng thái</label>
+<select name="status">
+  <option value="active">Hiển thị</option>
+  <option value="hidden">Ẩn</option>
+</select>
+
+      <!-- ACTION -->
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">+ Thêm sản phẩm</button>
+        <button type="button" onclick="history.back()" class="btn-secondary">Hủy</button>
+      </div>
+
+    </form>
+
+  </main>
+</div>
+
+<script src="../assets/js/add_product.js"></script>
+
+<script>
+/* PREVIEW GIÁ */
+const costInput = document.querySelector('[name="cost_price"]');
+const profitInput = document.querySelector('[name="profit_percent"]');
+const preview = document.getElementById('previewPrice');
+
+function updatePrice() {
+  const cost = parseFloat(costInput.value) || 0;
+  const profit = parseFloat(profitInput.value) || 0;
+  const price = cost * (1 + profit / 100);
+  preview.innerText = price.toLocaleString('vi-VN') + "đ";
+}
+
+costInput.addEventListener('input', updatePrice);
+profitInput.addEventListener('input', updatePrice);
+
+/* PREVIEW ẢNH */
+document.getElementById('imageInput').addEventListener('change', function(e){
+  const file = e.target.files[0];
+  if(file){
+    const url = URL.createObjectURL(file);
+    document.getElementById('previewImage').src = url;
+  }
+});
+
+document.getElementById('addProductForm').addEventListener('submit', function(e){
+  e.preventDefault();
+
+  const formData = new FormData();
+
+  // BASIC
+  formData.append('name', this.name.value);
+  formData.append('category_id', this.category_id.value);
+  formData.append('cost_price', this.cost_price.value);
+  formData.append('profit_percent', this.profit_percent.value);
+  formData.append('description', this.description.value);
+  formData.append('quantity', this.quantity.value);
+
+  // IMAGE
+  const image = document.getElementById('imageInput').files[0];
+  if(image){
+    formData.append('image', image);
+  }
+
+
+});
+</script>
+
 </body>
 </html>

@@ -2,20 +2,16 @@
 header('Content-Type: application/json');
 require 'db.php';
 
+$id = $_GET['id'];
+
 try {
 
-    $stmt = $conn->prepare("
-        SELECT id, name, description, created_at
-        FROM categories
-        ORDER BY id DESC
-    ");
-    $stmt->execute();
-
-    $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt = $conn->prepare("DELETE FROM products WHERE id = ?");
+    $stmt->execute([$id]);
 
     echo json_encode([
         "status" => "success",
-        "data" => $categories
+        "message" => "Đã xóa sản phẩm"
     ]);
 
 } catch (Exception $e) {
@@ -25,4 +21,3 @@ try {
         "message" => $e->getMessage()
     ]);
 }
-?>
