@@ -1,64 +1,59 @@
-
 <?php
+header('Content-Type: application/json');
+require 'db.php';
 
-require "db.php";
+$data = json_decode(file_get_contents("php://input"), true);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Lấy dữ liệu cơ bản
-    $name = $_POST['name'] ?? '';
-    $description = $_POST['description'] ?? '';
-    
-    // Lấy dữ liệu thuộc tính
-    $attr_names = $_POST['attr_name'] ?? [];
-    $attr_types = $_POST['attr_type'] ?? [];
-    $attr_options = $_POST['attr_options'] ?? [];
+$name = $data['name'];
+$description = $data['description'];
+$attributes = $data['attributes'];
 
-    if (empty($name)) {
-        echo json_encode(['status' => 'error', 'message' => 'Tên loại sản phẩm không được để trống']);
-        exit;
-    }
+try {
+    $conn->beginTransaction();
 
-    try {
-        // Bắt đầu transaction
-        $pdo->beginTransaction();
+    // 1. Insert category
+    $stmt = $conn->prepare("INSERT INTO categories (name, description) VALUES (?, ?)");
+    $stmt->execute([$name, $description]);
 
-        // Thêm category
-        $stmt = $pdo->prepare("INSERT INTO categories (name, description) VALUES (?, ?)");
-        $stmt->execute([$name, $description]);
-        $category_id = $pdo->lastInsertId();
+    $category_id = $conn->lastInsertId();
 
-        // Thêm các attribute
-        for ($i = 0; $i < count($attr_names); $i++) {
-            $attr_name = trim($attr_names[$i]);
-            $attr_type = $attr_types[$i];
-            $options_str = $attr_options[$i] ?? '';
+    // 2. Insert attributes
+    foreach ($attributes as $attr) {
 
-            if ($attr_name === '') continue;
+        $stmt = $conn->prepare("
+            INSERT INTO attributes (category_id, name, type)
+            VALUES (?, ?, ?)
+        ");
+        $stmt->execute([$category_id, $attr['name'], $attr['type']]);
 
-            // Thêm vào category_attributes
-            $stmt = $pdo->prepare("INSERT INTO category_attributes (category_id, name, type) VALUES (?, ?, ?)");
-            $stmt->execute([$category_id, $attr_name, $attr_type]);
-            $attribute_id = $pdo->lastInsertId();
+        $attribute_id = $conn->lastInsertId();
 
-            // Nếu là select, thêm các option
-            if ($attr_type === 'select' && $options_str !== '') {
-                $options = array_map('trim', explode(',', $options_str));
-                foreach ($options as $opt) {
-                    if ($opt === '') continue;
-                    $stmt = $pdo->prepare("INSERT INTO attribute_options (attribute_id, value) VALUES (?, ?)");
-                    $stmt->execute([$attribute_id, $opt]);
-                }
+        // 3. Insert options nếu là select
+        if ($attr['type'] === 'select' && !empty($attr['options'])) {
+
+            foreach ($attr['options'] as $option) {
+                $stmt = $conn->prepare("
+                    INSERT INTO attribute_options (attribute_id, value)
+                    VALUES (?, ?)
+                ");
+                $stmt->execute([$attribute_id, $option]);
             }
         }
-
-        $pdo->commit();
-        echo json_encode(['status' => 'success', 'message' => 'Tạo loại sản phẩm thành công']);
-    } catch (Exception $e) {
-        $pdo->rollBack();
-        echo json_encode(['status' => 'error', 'message' => 'Lỗi: ' . $e->getMessage()]);
     }
 
-} else {
-    echo json_encode(['status' => 'error', 'message' => 'Phương thức không hợp lệ']);
+    $conn->commit();
+
+    echo json_encode([
+        "status" => "success",
+        "message" => "Tạo loại sản phẩm thành công"
+    ]);
+
+} catch (Exception $e) {
+
+    $conn->rollBack();
+
+    echo json_encode([
+        "status" => "error",
+        "message" => $e->getMessage()
+    ]);
 }
-?>
