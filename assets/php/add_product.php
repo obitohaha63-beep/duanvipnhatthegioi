@@ -13,8 +13,14 @@ try {
     $description = $_POST['description'];
     $quantity = $_POST['quantity'];
     $attributes = json_decode($_POST['attributes'], true);
+    $brand_id = $_POST['brand_id'];
 
     // ===== INSERT PRODUCT =====
+    $stmt = $conn->prepare("
+    INSERT INTO products (category_id, name, description, cost_price, profit_percent, brand_id)
+    VALUES (?, ?, ?, ?, ?, ?)
+");
+$stmt->execute([$category_id, $name, $description, $cost_price, $profit_percent, $brand_id]);
     $stmt = $conn->prepare("
         INSERT INTO products (category_id, name, description, cost_price, profit_percent)
         VALUES (?, ?, ?, ?, ?)

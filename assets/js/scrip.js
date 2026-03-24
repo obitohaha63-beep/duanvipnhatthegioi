@@ -57,21 +57,25 @@ document.getElementById('addCate').addEventListener('submit', function(e) {
     const attrName = attr.querySelector('.attr-name').value;
     const attrType = attr.querySelector('.attr-type').value;
 
-    let options = [];
+let options = [];
 
-    if (attrType === 'select') {
-      attr.querySelectorAll('.option-value').forEach(opt => {
-        if(opt.value.trim() !== ''){
-          options.push(opt.value);
-        }
-      });
+if (attrType === 'select') {
+  // Lấy từng option như cũ
+  attr.querySelectorAll('.option-value').forEach(opt => {
+    if(opt.value.trim() !== ''){
+      options.push(opt.value);
     }
+  });
+} else if (attrType === 'text') {
+  // Tách các giá trị cách nhau bằng dấu phẩy
+  options = attrName.split(',').map(v => v.trim()).filter(v => v !== '');
+}
 
-    attributes.push({
-      name: attrName,
-      type: attrType,
-      options: options
-    });
+attributes.push({
+  name: attrName,
+  type: attrType,
+  options: options
+});
   });
 
   fetch('../assets/php/add_category.php', {
