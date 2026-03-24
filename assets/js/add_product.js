@@ -19,6 +19,22 @@ function loadCategories() {
     loadAttributes(this.value);
   });
 }
+document.addEventListener("DOMContentLoaded", () => {
+  loadCategories();
+  loadBrands();  // <-- gọi load brands
+});
+
+function loadBrands() {
+  fetch('../assets/php/get_brands.php')
+    .then(res => res.json())
+    .then(data => {
+      const select = document.getElementById('brandSelect');
+      select.innerHTML = ''; // reset trước khi load
+      data.data.forEach(b => {
+        select.innerHTML += `<option value="${b.id}">${b.name}</option>`;
+      });
+    });
+}
 
 function loadAttributes(categoryId) {
   fetch('../assets/php/get_attributes.php?category_id=' + categoryId)
@@ -73,11 +89,12 @@ document.getElementById('addProductForm').addEventListener('submit', function(e)
   // BASIC
   formData.append('name', this.name.value);
   formData.append('category_id', this.category_id.value);
+  formData.append('brand_id', this.brand_id.value); // <-- thêm đây
   formData.append('cost_price', this.cost_price.value);
   formData.append('profit_percent', this.profit_percent.value);
   formData.append('description', this.description.value);
   formData.append('quantity', this.quantity.value);
-  formData.append('status', this.status.value);
+formData.append('brand_id', document.getElementById('brandSelect').value);
 
   // IMAGE
   const image = document.getElementById('imageInput').files[0];
@@ -87,14 +104,12 @@ document.getElementById('addProductForm').addEventListener('submit', function(e)
 
   // ATTRIBUTES
   const attrs = [];
-
   document.querySelectorAll('.attr-input').forEach(input => {
     attrs.push({
       attribute_id: input.dataset.attrId,
       value: input.value
     });
   });
-
   formData.append('attributes', JSON.stringify(attrs));
 
   fetch('../assets/php/add_product.php', {
