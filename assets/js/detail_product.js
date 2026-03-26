@@ -35,17 +35,15 @@ let html = `
             <div class = "choosingracket1" id="active"> 4UG5</div>
             <div class = "choosingracket2"> 4UG6</div>
             <div class = "countamountofitem">
-              <div class = "minus">-</div>
-              <div class = "numbercount"> 1 </div>
-              <div class = "plus">+</div> 
+              <div class = "minus" onclick="decreaseQuantity()">-</div>
+              <div class = "numbercount" id="quantity"> 1 </div>
+              <div class = "plus" onclick="increaseQuantity()">+</div> 
             </div>
-            <a href="login.html">
-            <div class = "add-Gio-Hang">
+            <div class = "add-Gio-Hang" onclick="addToCart(${p.id})">
               
               <p style =" font-size: 17px; padding-top:8px; color: white; font-weight: 700; "> Thêm vào giỏ hàng</p>
               
               <p style="font-size: 13px; padding-top: 5px; color: white;"> Giao tận nơi hoặc nhận tại cửa hàng</p>
-              </a>
             </div>
             <a href="login.html">
             <div class = "communicate-with-us-on-zalo">
@@ -78,7 +76,56 @@ document.getElementById("detailProducts").innerHTML = html
 })
 .catch(err => console.log(err))
 
-.catch(err => console.log(err))
-console.log(data)
+// Hàm tăng số lượng
+function increaseQuantity() {
+  const qtyElement = document.getElementById("quantity");
+  qtyElement.textContent = parseInt(qtyElement.textContent) + 1;
+}
 
-location.reload();
+// Hàm giảm số lượng
+function decreaseQuantity() {
+  const qtyElement = document.getElementById("quantity");
+  const current = parseInt(qtyElement.textContent);
+  if (current > 1) {
+    qtyElement.textContent = current - 1;
+  }
+}
+
+// Hàm thêm vào giỏ hàng
+function addToCart(productId) {
+  const quantity = parseInt(document.getElementById("quantity").textContent);
+  
+  fetch("../assets/php/cart.php?action=add", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      product_id: productId,
+      quantity: quantity
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      alert("Thêm vào giỏ hàng thành công!");
+      updateCartDisplay();
+    } else {
+      alert("Lỗi: " + data.message);
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Lỗi khi thêm vào giỏ hàng");
+  });
+}
+
+// Cập nhật hiển thị giỏ hàng
+function updateCartDisplay() {
+  fetch("../assets/php/cart.php?action=get")
+    .then(res => res.json())
+    .then(data => {
+      document.querySelector(".jscart").textContent = data.cart.length;
+    })
+    .catch(err => console.log(err));
+}
