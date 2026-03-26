@@ -1,143 +1,175 @@
+/* --- RESET CHUNG --- */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* --- BODY VÀ FONTS --- */
 body {
-  background-color: #f4f6f9;
+    font-family: 'Inter', sans-serif; /* Sử dụng font Inter */
+    background-color: #f4f4f4;
+    color: #333;
 }
 
+/* --- CONTAINER CHUNG --- */
 .container {
-  display: flex;
-  height: 100vh;
+    display: flex;
+    min-height: 100vh;
 }
 
-/* --- Sidebar (menu bên trái) --- */
+/* --- MENU BÊN TRÁI --- */
 .sidebar {
-  width: 250px;
-  background-color: #1e1e2d;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  padding: 20px 0;
+    width: 250px;
+    background-color: #2a2a3b;
+    color: #fff;
+    padding: 20px;
 }
 
-.logo {
-  text-align: center;
-  font-size: 1.5em;
-  margin-bottom: 30px;
+.sidebar h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center;
 }
 
-.menu {
-  list-style: none;
+.sidebar .menu {
+    list-style: none;
+    padding-left: 0;
 }
 
-.menu li {
-  margin: 10px 0;
+.sidebar .menu li {
+    margin: 15px 0;
 }
 
-.menu a {
-  display: block;
-  color: #c7c7d1;
-  text-decoration: none;
-  padding: 12px 20px;
-  transition: all 0.3s;
-  font-size: 16px;
+.sidebar .menu li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 4px;
 }
 
-.menu a:hover {
-  background-color: #2a2a3b;
-  color: #fff;
-  border-left: 4px solid #00bfff;
+.sidebar .menu li a:hover {
+    background-color: #00bfff;
 }
 
-/* --- Nội dung bên phải --- */
+/* --- CONTENT BÊN PHẢI --- */
 .content {
-  flex: 1;
-  padding: 40px;
+    flex: 1;
+    padding: 20px;
 }
 
-.content h1 {
-  font-size: 2em;
-  margin-bottom: 15px;
-  color: #333;
+h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
 }
 
-.content p {
-  font-size: 1.1em;
-  color: #555;
-  
-}
-
-.khung-table{
-    position: relative;
-    justify-content: center;
-
-}
-
-
-
-.user-list {
-    width: 100%;
-    overflow-x: auto;
+/* --- BẢNG NGƯỜI DÙNG --- */
+.khung-table {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
+    font-size: 16px;
 }
 
 table th, table td {
-    border: 1px solid #ddd;
     padding: 12px;
     text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
-th {
-    background-color: #f7f7f7;
-    color: #333;
+table th {
+    background-color: #00bfff;
+    color: #fff;
 }
 
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* --- BUTTONS --- */
 button {
-    padding: 6px 12px;
-    margin-right: 10px;
+    padding: 8px 15px;
+    font-size: 14px;
     cursor: pointer;
     border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    
+    border-radius: 4px;
+    margin: 5px 0;
 }
 
-button.reset-password {
-    background-color: #ff8c00;
-    color: white;
-}
-
-button.reset-password:hover {
-    transform: scale(1.05); 
-}
-
-button.lock-unlock {
+/* Button reset mật khẩu */
+.reset-password {
     background-color: #4caf50;
     color: white;
-    
 }
-button.unlock {
-    
+
+.reset-password:hover {
+    background-color: #45a049;
+}
+
+/* Button khóa tài khoản */
+.lock-unlock {
+    background-color: #ff5722;
     color: white;
-    background-color: #f44336;
 }
 
-button.unlock:hover{
-  transform: scale(1.05);
+.lock-unlock:hover {
+    background-color: #e64a19;
 }
 
-button.lock-unlock:hover {
-    transform: scale(1.05);
+/* Button mở tài khoản */
+/* Button mở tài khoản */
+.unlock {
+    background-color: #4caf50;  /* Màu xanh lá cây tươi sáng */
+    color: white;
 }
 
+.unlock:hover {
+    background-color: #45a049;  /* Màu xanh lá cây đậm hơn khi hover */
+}
 
+/* Button mở tài khoản (disabled) */
+.unlock:disabled {
+    background-color: #c8e6c9;  /* Màu xanh lá nhạt khi không có quyền thao tác */
+    cursor: not-allowed;
+}
+
+/* --- BUTTONS ẨN/HIỂN THỊ --- */
+button.lock-unlock, button.unlock {
+    display: inline-block;
+}
+
+button.lock-unlock:disabled, button.unlock:disabled {
+    background-color: #bbb;
+    cursor: not-allowed;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+        padding: 10px;
+    }
+
+    .content {
+        padding: 10px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+}
 
