@@ -76,3 +76,5 @@ fetch('../assets/php/get_categories.php')
     });
   });
 });
+
+console.log("Product ID:", productId);

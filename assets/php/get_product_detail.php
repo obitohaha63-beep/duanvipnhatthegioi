@@ -1,6 +1,8 @@
+
 <?php
+
 header("Content-Type: application/json");
-require_once "db.php";
+require "db.php";
 
 $id = intval($_GET['id'] ?? 0);
 if($id <= 0){
