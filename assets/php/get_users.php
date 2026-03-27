@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "quebshop2";
+$dbname = "quebshop1";
 
 // Tạo kết nối
 $conn = new mysqli($servername, $username, $password, $dbname);

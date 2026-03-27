@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     loadUsers();
 });
 
-// Hàm load danh sách user
+// Load danh sách user
 function loadUsers() {
     fetch('../assets/php/get_users.php')
         .then(response => response.json())
@@ -14,10 +14,10 @@ function loadUsers() {
                 renderRow(user, userTable);
             });
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => console.error('Load users error:', error));
 }
 
-// Hàm render từng dòng
+// Render từng dòng user
 function renderRow(user, userTable) {
     const row = document.createElement('tr');
 
@@ -29,7 +29,7 @@ function renderRow(user, userTable) {
             ${user.status === 'active' ? 'Đang hoạt động' : 'Đã bị khóa'}
         </td>
         <td id="action-${user.id}">
-            <button class="reset-password">Reset Mật Khẩu</button>
+            <button onclick="resetPassword(${user.id})">Reset Mật Khẩu</button>
             ${
                 user.status === 'active'
                 ? `<button onclick="changeStatus(${user.id}, 'locked')">Khóa Tài Khoản</button>`
@@ -41,7 +41,7 @@ function renderRow(user, userTable) {
     userTable.appendChild(row);
 }
 
-// Hàm đổi trạng thái
+// Đổi trạng thái user
 function changeStatus(userId, newStatus) {
     fetch('../assets/php/update_user_status.php', {
         method: 'POST',
@@ -51,16 +51,13 @@ function changeStatus(userId, newStatus) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-
-            // Cập nhật text trạng thái
             const statusElement = document.getElementById(`status-${userId}`);
             statusElement.textContent =
                 newStatus === 'active' ? 'Đang hoạt động' : 'Đã bị khóa';
 
-            // 🔥 QUAN TRỌNG: render lại nút
             const actionCell = document.getElementById(`action-${userId}`);
             actionCell.innerHTML = `
-                <button class="reset-password">Reset Mật Khẩu</button>
+                <button onclick="resetPassword(${userId})">Reset Mật Khẩu</button>
                 ${
                     newStatus === 'active'
                     ? `<button onclick="changeStatus(${userId}, 'locked')">Khóa Tài Khoản</button>`
@@ -69,5 +66,43 @@ function changeStatus(userId, newStatus) {
             `;
         }
     })
-    .catch(error => console.error('Error:', error));
+    .catch(error => console.error('Change status error:', error));
+}
+
+// Reset password
+function resetPassword(userId) {
+    if (!confirm("Bạn có chắc muốn reset mật khẩu user này?")) return;
+
+    fetch("../assets/php/reset_password.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            userId: userId
+        })
+    })
+    .then(response => response.text())
+    .then(text => {
+        console.log("Server response:", text);
+
+        try {
+            const data = JSON.parse(text);
+
+            if (data.success) {
+                alert(data.message);
+                loadUsers();
+            } else {
+                alert(data.message);
+            }
+
+        } catch (e) {
+            console.error("JSON lỗi:", e);
+            alert("Server trả về dữ liệu lỗi");
+        }
+    })
+    .catch(error => {
+        console.error("Fetch error:", error);
+        alert("Lỗi kết nối server");
+    });
 }
