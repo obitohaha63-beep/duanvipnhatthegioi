@@ -1,33 +1,35 @@
 <?php
-// Kết nối với cơ sở dữ liệu
+header('Content-Type: application/json; charset=utf-8');
+
+// Kết nối database
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "quebshop1";
 
-// Tạo kết nối
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Kiểm tra kết nối
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die(json_encode([
+        "success" => false,
+        "message" => "Kết nối thất bại"
+    ]));
 }
 
-// Truy vấn lấy danh sách người dùng
-$sql = "SELECT id, name, email, status FROM users";
+// Lấy users + role
+$sql = "SELECT id, name, email, status, role FROM users";
 $result = $conn->query($sql);
 
 $users = [];
 
 if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
+    while ($row = $result->fetch_assoc()) {
         $users[] = $row;
     }
 }
 
-// Đóng kết nối
 $conn->close();
 
-// Trả dữ liệu dưới dạng JSON
 echo json_encode($users);
 ?>

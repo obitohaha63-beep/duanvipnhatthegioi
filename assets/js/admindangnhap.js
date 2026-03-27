@@ -3,29 +3,52 @@ document.addEventListener('DOMContentLoaded', function () {
   const username = document.getElementById('username');
   const password = document.getElementById('password');
   const msg = document.getElementById('msg');
-  const toggle = document.getElementById('togglePwd');
 
-
-  // Khi submit form
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+
     msg.textContent = '';
+    msg.style.color = '#b00020';
 
-    const u = username.value.trim();
-    const p = password.value;
+    const email = username.value.trim();
+    const pass = password.value.trim();
 
-    if (!u || !p) {
-      msg.textContent = 'Vui lòng điền đầy đủ tài khoản và mật khẩu.';
+    if (!email || !pass) {
+      msg.textContent = 'Vui lòng nhập đầy đủ email và mật khẩu.';
       return;
     }
 
-    // kiểm tra giả lập
-    if (u === 'admin' && p === '123456') {
-      // chuyển trang ngay
-      window.location.href = 'admin.html'; 
-    } else {
-      msg.style.color = '#b00020';
-      msg.textContent = 'Tên đăng nhập hoặc mật khẩu không đúng.';
-    }
+    fetch('../assets/php/loginadmin.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        password: pass
+      })
+    })
+    .then(response => response.text())
+    .then(text => {
+      console.log("Server response:", text);
+
+      try {
+        const data = JSON.parse(text);
+
+        if (data.success) {
+          window.location.href = '../pages/admin.html';
+        } else {
+          msg.textContent = data.message || 'Tài khoản hoặc mật khẩu không đúng.';
+        }
+
+      } catch (e) {
+        msg.textContent = 'Server trả về dữ liệu lỗi.';
+        console.error('JSON parse error:', e);
+      }
+    })
+    .catch(error => {
+      console.error(error);
+      msg.textContent = 'Lỗi kết nối server.';
+    });
   });
 });

@@ -15,7 +15,7 @@
       <h2 class="logo">Admin</h2>
       <ul class="menu">
         <li><a href="dashboard.html"> Dashboard</a></li>
-        <li><a href="QuanLyuser.html" style="background:#2a2a3b; color:#00bfff; border-left:4px solid #00bfff;"> Quản lý người dùng / Khách hàng</a></li>
+        <li><a href="QuanLyuser.html" style="background:#2a2a3b; color:#00bfff; border-left:4px solid #00bfff;"> Quản lý người dùng / Quản trị viên</a></li>
         <li><a href="QuanLySanPham.html"> Quản lý sản phẩm</a></li>
         <li><a href="NhaphangGiaban.html"> Nhập hàng</a></li>
         <li><a href="NhaphangGiaban2.html"> Giá bán</a></li>
@@ -26,24 +26,46 @@
     <!-- Nội dung bên phải -->
     <main class="content">
       <h1>Quản lý người dùng</h1>
-       <div class="khung-table">
+
+      <div class="khung-table">
         <div class="user-list">
-            <table>
-                <thead>
-                    <tr>
-                        <th>STT</th>
-                        <th>Tên</th>
-                        <th>Email</th>
-                        <th>Trạng Thái</th>
-                        <th>Thao Tác</th>
-                    </tr>
-                </thead>
-                <tbody id="user-table">
-                    <!-- Dữ liệu người dùng sẽ được hiển thị từ JavaScript -->
-                </tbody>
-            </table>
+          <h2>Danh sách người dùng</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>STT</th>
+                <th>Tên</th>
+                <th>Email</th>
+                <th>Trạng Thái</th>
+                <th>Thao Tác</th>
+              </tr>
+            </thead>
+            <tbody id="user-table">
+            </tbody>
+          </table>
         </div>
-       </div>
+      </div>
+
+      <br>
+
+      <div class="khung-table">
+        <div class="user-list">
+          <h2>Danh sách quản trị viên</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>STT</th>
+                <th>Tên</th>
+                <th>Email</th>
+                <th>Trạng Thái</th>
+                <th>Thao Tác</th>
+              </tr>
+            </thead>
+            <tbody id="admin-table">
+            </tbody>
+          </table>
+        </div>
+      </div>
     </main>
   </div>
 

@@ -2,23 +2,30 @@ document.addEventListener('DOMContentLoaded', function () {
     loadUsers();
 });
 
-// Load danh sách user
+// Load danh sách user + admin theo role
 function loadUsers() {
     fetch('../assets/php/get_users.php')
         .then(response => response.json())
         .then(data => {
             const userTable = document.getElementById('user-table');
+            const adminTable = document.getElementById('admin-table');
+
             userTable.innerHTML = '';
+            adminTable.innerHTML = '';
 
             data.forEach(user => {
-                renderRow(user, userTable);
+                if (user.role === 'admin') {
+                    renderRow(user, adminTable);
+                } else {
+                    renderRow(user, userTable);
+                }
             });
         })
         .catch(error => console.error('Load users error:', error));
 }
 
-// Render từng dòng user
-function renderRow(user, userTable) {
+// Render từng dòng
+function renderRow(user, table) {
     const row = document.createElement('tr');
 
     row.innerHTML = `
@@ -38,10 +45,10 @@ function renderRow(user, userTable) {
         </td>
     `;
 
-    userTable.appendChild(row);
+    table.appendChild(row);
 }
 
-// Đổi trạng thái user
+// Đổi trạng thái
 function changeStatus(userId, newStatus) {
     fetch('../assets/php/update_user_status.php', {
         method: 'POST',
@@ -51,19 +58,9 @@ function changeStatus(userId, newStatus) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            const statusElement = document.getElementById(`status-${userId}`);
-            statusElement.textContent =
-                newStatus === 'active' ? 'Đang hoạt động' : 'Đã bị khóa';
-
-            const actionCell = document.getElementById(`action-${userId}`);
-            actionCell.innerHTML = `
-                <button onclick="resetPassword(${userId})">Reset Mật Khẩu</button>
-                ${
-                    newStatus === 'active'
-                    ? `<button onclick="changeStatus(${userId}, 'locked')">Khóa Tài Khoản</button>`
-                    : `<button onclick="changeStatus(${userId}, 'active')">Mở Tài Khoản</button>`
-                }
-            `;
+            loadUsers();
+        } else {
+            alert(data.message);
         }
     })
     .catch(error => console.error('Change status error:', error));

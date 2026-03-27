@@ -138,3 +138,21 @@ body{
   object-fit: cover;
   z-index: -2;
 }
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.forgot-link {
+  font-size: 14px;
+  color: #3865eb;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+  color: #43daee;
+}
