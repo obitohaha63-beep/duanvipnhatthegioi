@@ -89,7 +89,34 @@
 
 <script src="../assets/js/add_product.js"></script>
 
+<script>
+/* PREVIEW GIÁ */
+const costInput = document.querySelector('[name="cost_price"]');
+const profitInput = document.querySelector('[name="profit_percent"]');
+const preview = document.getElementById('previewPrice');
 
+function updatePrice() {
+  const cost = parseFloat(costInput.value) || 0;
+  const profit = parseFloat(profitInput.value) || 0;
+  const price = cost * (1 + profit / 100);
+  preview.innerText = price.toLocaleString('vi-VN') + "đ";
+}
+
+costInput.addEventListener('input', updatePrice);
+profitInput.addEventListener('input', updatePrice);
+
+/* PREVIEW ẢNH */
+document.getElementById('imageInput').addEventListener('change', function(e){
+  const file = e.target.files[0];
+  if(file){
+    const url = URL.createObjectURL(file);
+    document.getElementById('previewImage').src = url;
+  }
+});
+
+
+
+</script>
 
 </body>
 </html>
