@@ -1,23 +1,18 @@
 <?php
-header('Content-Type: application/json');
-require 'db.php';
+header("Content-Type: application/json");
+require_once "db.php";
 
-$id = $_GET['id'];
+$id = $_POST['id'] ?? 0;
 
-try {
-
-    $stmt = $conn->prepare("DELETE FROM products WHERE id = ?");
+try{
+    $stmt = $conn->prepare("DELETE FROM products WHERE id=?");
     $stmt->execute([$id]);
 
-    echo json_encode([
-        "status" => "success",
-        "message" => "Đã xóa sản phẩm"
-    ]);
-
-} catch (Exception $e) {
-
-    echo json_encode([
-        "status" => "error",
-        "message" => $e->getMessage()
-    ]);
+    if($stmt->rowCount() > 0){
+        echo json_encode(['success'=>true, 'message'=>'Xóa sản phẩm thành công']);
+    } else {
+        echo json_encode(['success'=>false, 'message'=>'Sản phẩm không tồn tại']);
+    }
+}catch(PDOException $e){
+    echo json_encode(['success'=>false, 'message'=>'Lỗi DB: '.$e->getMessage()]);
 }

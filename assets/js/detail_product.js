@@ -1,12 +1,18 @@
 const params = new URLSearchParams(window.location.search)
 const code = params.get("code")
 
-fetch("../assets/php/get_product.php?code=" + code)
-.then(res => res.json())
+fetch("../assets/php/get_product_detail.php?code=" + code)
 .then(data => {
   console.log(data)
-const p = data
-let html = `
+
+  if (data.error) {
+    document.getElementById("detailProducts").innerHTML = data.error
+    return
+  }
+
+  const p = data
+
+  let html = `
 
 <div class = "bigcontent">
         <div class="product">
@@ -72,13 +78,6 @@ let html = `
         ${p.description}
     </div>
 `
-document.getElementById("detailProducts").innerHTML = html
-
-
+  document.getElementById("detailProducts").innerHTML = html
 })
 .catch(err => console.log(err))
-
-.catch(err => console.log(err))
-console.log(data)
-
-location.reload();

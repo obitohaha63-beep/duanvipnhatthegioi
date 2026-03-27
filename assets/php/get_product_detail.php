@@ -1,87 +1,29 @@
 <?php
-header('Content-Type: application/json');
-require 'db.php';
+header("Content-Type: application/json");
+require_once "db.php";
 
-if (!isset($_GET['id'])) {
-    echo json_encode([
-        "status" => "error",
-        "message" => "Missing product id"
-    ]);
+$id = intval($_GET['id'] ?? 0);
+if($id <= 0){
+    echo json_encode(['success'=>false,'message'=>'ID sản phẩm không hợp lệ']);
     exit;
 }
 
-$product_id = $_GET['id'];
-
 try {
-
-    // 1. Product
-    $stmt = $conn->prepare("SELECT * FROM products WHERE id = ?");
-    $stmt->execute([$product_id]);
+    $stmt = $conn->prepare("
+        SELECT p.id, p.category_id, p.name, p.image_url, p.brand, p.color, p.size, 
+               p.cost_price, p.profit_rate, p.quantity, p.status, p.description
+        FROM products p
+        WHERE p.id = ?
+    ");
+    $stmt->execute([$id]);
     $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if (!$product) {
-        echo json_encode([
-            "status" => "error",
-            "message" => "Product not found"
-        ]);
-        exit;
+    if($product){
+        echo json_encode(['success'=>true, 'product'=>$product]);
+    } else {
+        echo json_encode(['success'=>false,'message'=>'Sản phẩm không tồn tại']);
     }
-
-    // 2. Images
-    $stmt = $conn->prepare("SELECT id, image_url FROM product_images WHERE product_id = ?");
-    $stmt->execute([$product_id]);
-    $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    // 3. Variants
-    $stmt = $conn->prepare("SELECT * FROM product_variants WHERE product_id = ?");
-    $stmt->execute([$product_id]);
-    $variants = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    // 4. Attributes per variant
-    foreach ($variants as &$variant) {
-        $stmt = $conn->prepare("
-            SELECT 
-                a.id AS attribute_id,
-                a.name,
-                a.type,
-                va.option_id,
-                va.value_text,
-                ao.value AS option_value
-            FROM variant_attributes va
-            JOIN attributes a ON va.attribute_id = a.id
-            LEFT JOIN attribute_options ao ON va.option_id = ao.id
-            WHERE va.variant_id = ?
-        ");
-        $stmt->execute([$variant['id']]);
-        $variant['attributes'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    // 5. All attributes of this category (for dynamic form)
-    $stmt = $conn->prepare("SELECT * FROM attributes WHERE category_id = ?");
-    $stmt->execute([$product['category_id']]);
-    $attributes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    foreach ($attributes as &$attr) {
-        if ($attr['type'] === 'select') {
-            $stmt = $conn->prepare("SELECT id, value FROM attribute_options WHERE attribute_id = ?");
-            $stmt->execute([$attr['id']]);
-            $attr['options'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        }
-    }
-
-    echo json_encode([
-        "status" => "success",
-        "data" => [
-            "product" => $product,
-            "images" => $images,
-            "variants" => $variants,
-            "attributes" => $attributes
-        ]
-    ]);
-
-} catch (Exception $e) {
-    echo json_encode([
-        "status" => "error",
-        "message" => $e->getMessage()
-    ]);
+} catch(PDOException $e){
+    echo json_encode(['success'=>false,'message'=>'Lỗi DB: '.$e->getMessage()]);
 }
+?>

@@ -1,28 +1,19 @@
 <?php
-header('Content-Type: application/json');
-require 'db.php';
+header("Content-Type: application/json");
+require_once "db.php";
 
 try {
-
-    $stmt = $conn->prepare("
-        SELECT id, name, description, created_at
-        FROM categories
-        ORDER BY id DESC
-    ");
+    $stmt = $conn->prepare("SELECT * FROM categories ORDER BY id ASC");
     $stmt->execute();
-
     $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     echo json_encode([
-        "status" => "success",
-        "data" => $categories
+        'success' => true,
+        'data' => $categories
     ]);
-
-} catch (Exception $e) {
-
+} catch (PDOException $e) {
     echo json_encode([
-        "status" => "error",
-        "message" => $e->getMessage()
+        'success' => false,
+        'message' => 'Lỗi DB: ' . $e->getMessage()
     ]);
 }
-?>
