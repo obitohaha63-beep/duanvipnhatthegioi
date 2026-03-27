@@ -1,46 +1,72 @@
 <?php
-require "db.php";
+header('Content-Type: application/json');
+require 'db.php';
 
-header("Content-Type: application/json; charset=UTF-8");
+try {
+    // 1. Lấy keyword
+    $keyword = $_GET['keyword'] ?? '';
 
-if(isset($_GET["keyword"])){
+    // Trim + tránh input rác
+    $keyword = trim($keyword);
 
-$keyword = "%" . $_GET["keyword"] . "%";
+    if ($keyword === '') {
+        echo json_encode([
+            "status" => "success",
+            "data" => []
+        ]);
+        exit;
+    }
 
-$stmt = $pdo->prepare("
-SELECT 
-p.*,
-c.name AS category_name,
-b.name AS brand_name
-FROM products p
-JOIN categories c ON p.category_id = c.id
-LEFT JOIN brands b ON p.brand_id = b.id
+    // 2. Query sản phẩm (tìm theo tên + category)
+    $stmt = $conn->prepare("
+        SELECT 
+            p.id,
+            p.name,
+            p.cost_price,
+            p.profit_percent,
+            c.name AS category_name,
+            pi.image_url
+        FROM products p
+        LEFT JOIN categories c ON p.category_id = c.id
+        LEFT JOIN product_images pi ON pi.product_id = p.id
+        WHERE p.name LIKE :keyword
+           OR c.name LIKE :keyword
+        GROUP BY p.id
+        ORDER BY p.id DESC
+    ");
 
-WHERE 
-p.name LIKE ?
-OR c.name LIKE ?
-OR b.name LIKE ?
-");
+    $stmt->execute([
+        ':keyword' => '%' . $keyword . '%'
+    ]);
 
-$stmt->execute([$keyword,$keyword,$keyword]);
+    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // 3. Format dữ liệu trả về (đồng bộ với JS của em)
+    $final = [];
 
-foreach($products as &$product){
+    foreach ($products as $p) {
 
-$imgStmt = $pdo->prepare("
-SELECT image_url
-FROM product_images
-WHERE product_id = ?
-");
+        // Tính giá bán
+        $selling_price = $p['cost_price'] + ($p['cost_price'] * $p['profit_percent'] / 100);
 
-$imgStmt->execute([$product["id"]]);
+        $final[] = [
+            "product_code" => $p['id'],
+            "name" => $p['name'],
+            "image" => $p['image_url'] ?? '../assets/img/default.png',
+            "selling_price" => $selling_price,
+            "color" => $p['category_name'] ?? 'N/A'
+        ];
+    }
 
-$product["images"] = $imgStmt->fetchAll(PDO::FETCH_COLUMN);
+    echo json_encode([
+        "status" => "success",
+        "data" => $final
+    ]);
 
+} catch (Exception $e) {
+
+    echo json_encode([
+        "status" => "error",
+        "message" => $e->getMessage()
+    ]);
 }
-
-echo json_encode($products);
-
-}
-?>

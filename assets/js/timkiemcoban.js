@@ -4,17 +4,16 @@ const keyword = urlParams.get("keyword")
 fetch("../assets/php/search_product.php?keyword=" + keyword)
 
 .then(res => res.json())
+.then(res => {
 
-.then(data => {
-
-/* hiển thị tiêu đề tìm kiếm */
+const products = res.data   // 🔥 BẮT BUỘC
 
 document.getElementById("timkiemcoban").innerHTML =
-`Kết quả tìm kiếm "<b>${keyword}</b>" (${data.length} sản phẩm)`
+`Kết quả tìm kiếm "<b>${keyword}</b>" (${products.length} sản phẩm)`
 
 let html = ""
 
-data.forEach(p => {
+products.forEach(p => {
 
 html += `
 <div class="box">
@@ -36,7 +35,6 @@ html += `
   </div>
 </div>
 `
-
 })
 
 document.getElementById("productList").innerHTML = html
