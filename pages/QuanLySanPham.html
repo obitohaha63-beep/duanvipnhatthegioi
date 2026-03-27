@@ -13,18 +13,21 @@
 <div class="container">
 
   <!-- SIDEBAR -->
-  <aside class="sidebar">
+  <nav class="sidebar">
     <h2 class="logo">Admin</h2>
-    <ul>
-      <li><a href="#">Dashboard</a></li>
-      <li><a href="#">Users</a></li>
-      <li class="active"><a href="#">Products</a></li>
-      <li><a href="#">Orders</a></li>
-    </ul>
-  </aside>
 
-  <!-- MAIN -->
-  <main class="main">
+    <ul class="menu">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="QuanLyuser.html">Quản lý người dùng / Quản trị viên</a></li>
+      <li><a href="QuanLySanPham.html" style="background:#2a2a3b; color:#00bfff; border-left:4px solid #00bfff;">Quản lý sản phẩm</a></li>
+      <li><a href="NhaphangGiaban.html">Nhập hàng</a></li>
+      <li><a href="NhaphangGiaban2.html">Giá bán</a></li>
+      <li><a href="DonhangTonkho.html">Đơn hàng & Tồn kho</a></li>
+    </ul>
+  </nav>
+
+  <!-- CONTENT -->
+  <main class="content">
 
     <!-- HEADER -->
     <div class="page-header">
@@ -33,7 +36,7 @@
 
     <!-- CATEGORY -->
     <section class="card">
-      <div class="card-header" style="display:flex; justify-content:space-between; align-items:center;">
+      <div class="card-header">
         <h2>Danh mục</h2>
         <button onclick="location.href='ThemSanPham.html'" class="btn-primary">
           + Thêm loại
@@ -50,15 +53,13 @@
             <th>Hành động</th>
           </tr>
         </thead>
-        <tbody id="categoryTable">
-          <!-- JS render -->
-        </tbody>
+        <tbody id="categoryTable"></tbody>
       </table>
     </section>
 
     <!-- PRODUCT -->
     <section class="card">
-      <div class="card-header" style="display:flex; justify-content:space-between; align-items:center;">
+      <div class="card-header">
         <h2>Danh sách sản phẩm</h2>
         <button onclick="location.href='AddProduct.html'" class="btn-primary">
           + Thêm sản phẩm
@@ -80,14 +81,13 @@
           </tr>
         </thead>
 
-        <tbody id="productTable">
-          <!-- JS render -->
-        </tbody>
+        <tbody id="productTable"></tbody>
       </table>
     </section>
 
   </main>
 </div>
+
 <script src="../assets/js/category.js"></script>
 <script src="../assets/js/product.js"></script>
 </body>

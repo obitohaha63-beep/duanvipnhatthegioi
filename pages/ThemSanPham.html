@@ -13,19 +13,21 @@
 <div class="container">
 
   <!-- SIDEBAR -->
-  <aside class="sidebar">
+  <nav class="sidebar">
     <h2 class="logo">Admin</h2>
-    <ul>
-      <li><a href="dashboard.html">Dashboard</a></li>
-      <li><a href="QuanLyuser.html">Users</a></li>
-      <li class="active"><a href="QuanLySanPham.html">Products</a></li>
-      <li><a href="NhaphangGiaban.html">Import & Pricing</a></li>
-      <li><a href="DonhangTonkho.html">Orders & Stock</a></li>
-    </ul>
-  </aside>
 
-  <!-- MAIN -->
-  <main class="main">
+    <ul class="menu">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="QuanLyuser.html">Quản lý người dùng / Quản trị viên</a></li>
+      <li><a href="QuanLySanPham.html" style="background:#2a2a3b; color:#00bfff; border-left:4px solid #00bfff;">Quản lý sản phẩm</a></li>
+      <li><a href="NhaphangGiaban.html">Nhập hàng</a></li>
+      <li><a href="NhaphangGiaban2.html">Giá bán</a></li>
+      <li><a href="DonhangTonkho.html">Đơn hàng & Tồn kho</a></li>
+    </ul>
+  </nav>
+
+  <!-- CONTENT -->
+  <main class="content">
 
     <!-- HEADER -->
     <div class="page-header">
@@ -35,7 +37,7 @@
 
     <form id="addCate" class="form-card">
 
-      <!-- ===== BASIC INFO ===== -->
+      <!-- BASIC INFO -->
       <section class="card">
         <h2>Thông tin cơ bản</h2>
 
@@ -50,7 +52,7 @@
         </div>
       </section>
 
-      <!-- ===== ATTRIBUTES ===== -->
+      <!-- ATTRIBUTES -->
       <section class="card">
         <div class="card-header-flex">
           <h2>Thuộc tính sản phẩm</h2>
@@ -64,11 +66,12 @@
         </div>
       </section>
 
-      <!-- ===== ACTION ===== -->
+      <!-- ACTION -->
       <div class="form-actions">
         <button type="button" onclick="history.back()" class="btn-secondary">
           Hủy
         </button>
+
         <button type="submit" class="btn-primary">
           + Tạo loại sản phẩm
         </button>
