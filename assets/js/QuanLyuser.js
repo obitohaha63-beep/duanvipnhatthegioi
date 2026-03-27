@@ -2,23 +2,30 @@ document.addEventListener('DOMContentLoaded', function () {
     loadUsers();
 });
 
-// Hàm load danh sách user
+// Load danh sách user + admin theo role
 function loadUsers() {
     fetch('../assets/php/get_users.php')
         .then(response => response.json())
         .then(data => {
             const userTable = document.getElementById('user-table');
+            const adminTable = document.getElementById('admin-table');
+
             userTable.innerHTML = '';
+            adminTable.innerHTML = '';
 
             data.forEach(user => {
-                renderRow(user, userTable);
+                if (user.role === 'admin') {
+                    renderRow(user, adminTable);
+                } else {
+                    renderRow(user, userTable);
+                }
             });
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => console.error('Load users error:', error));
 }
 
-// Hàm render từng dòng
-function renderRow(user, userTable) {
+// Render từng dòng
+function renderRow(user, table) {
     const row = document.createElement('tr');
 
     row.innerHTML = `
@@ -29,7 +36,7 @@ function renderRow(user, userTable) {
             ${user.status === 'active' ? 'Đang hoạt động' : 'Đã bị khóa'}
         </td>
         <td id="action-${user.id}">
-            <button class="reset-password">Reset Mật Khẩu</button>
+            <button onclick="resetPassword(${user.id})">Reset Mật Khẩu</button>
             ${
                 user.status === 'active'
                 ? `<button onclick="changeStatus(${user.id}, 'locked')">Khóa Tài Khoản</button>`
@@ -38,10 +45,10 @@ function renderRow(user, userTable) {
         </td>
     `;
 
-    userTable.appendChild(row);
+    table.appendChild(row);
 }
 
-// Hàm đổi trạng thái
+// Đổi trạng thái
 function changeStatus(userId, newStatus) {
     fetch('../assets/php/update_user_status.php', {
         method: 'POST',
@@ -51,23 +58,48 @@ function changeStatus(userId, newStatus) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-
-            // Cập nhật text trạng thái
-            const statusElement = document.getElementById(`status-${userId}`);
-            statusElement.textContent =
-                newStatus === 'active' ? 'Đang hoạt động' : 'Đã bị khóa';
-
-            // 🔥 QUAN TRỌNG: render lại nút
-            const actionCell = document.getElementById(`action-${userId}`);
-            actionCell.innerHTML = `
-                <button class="reset-password">Reset Mật Khẩu</button>
-                ${
-                    newStatus === 'active'
-                    ? `<button onclick="changeStatus(${userId}, 'locked')">Khóa Tài Khoản</button>`
-                    : `<button onclick="changeStatus(${userId}, 'active')">Mở Tài Khoản</button>`
-                }
-            `;
+            loadUsers();
+        } else {
+            alert(data.message);
         }
     })
-    .catch(error => console.error('Error:', error));
+    .catch(error => console.error('Change status error:', error));
+}
+
+// Reset password
+function resetPassword(userId) {
+    if (!confirm("Bạn có chắc muốn reset mật khẩu user này?")) return;
+
+    fetch("../assets/php/reset_password.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            userId: userId
+        })
+    })
+    .then(response => response.text())
+    .then(text => {
+        console.log("Server response:", text);
+
+        try {
+            const data = JSON.parse(text);
+
+            if (data.success) {
+                alert(data.message);
+                loadUsers();
+            } else {
+                alert(data.message);
+            }
+
+        } catch (e) {
+            console.error("JSON lỗi:", e);
+            alert("Server trả về dữ liệu lỗi");
+        }
+    })
+    .catch(error => {
+        console.error("Fetch error:", error);
+        alert("Lỗi kết nối server");
+    });
 }

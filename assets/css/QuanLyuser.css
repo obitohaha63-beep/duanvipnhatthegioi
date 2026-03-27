@@ -20,38 +20,41 @@ body {
 
 /* --- MENU BÊN TRÁI --- */
 .sidebar {
-    width: 250px;
-    background-color: #2a2a3b;
-    color: #fff;
-    padding: 20px;
+  width: 250px;
+  background-color: #1e1e2d;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
 }
 
-.sidebar h2 {
-    font-size: 24px;
-    margin-bottom: 30px;
-    text-align: center;
+.logo {
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 30px;
 }
 
-.sidebar .menu {
-    list-style: none;
-    padding-left: 0;
+.menu {
+  list-style: none;
 }
 
-.sidebar .menu li {
-    margin: 15px 0;
+.menu li {
+  margin: 10px 0;
 }
 
-.sidebar .menu li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 16px;
-    display: block;
-    padding: 10px 15px;
-    border-radius: 4px;
+.menu a {
+  display: block;
+  color: #c7c7d1;
+  text-decoration: none;
+  padding: 12px 20px;
+  transition: all 0.3s;
+  font-size: 16px;
 }
 
-.sidebar .menu li a:hover {
-    background-color: #00bfff;
+.menu a:hover {
+  background-color: #2a2a3b;
+  color: #fff;
+  border-left: 4px solid #00bfff;
 }
 
 /* --- CONTENT BÊN PHẢI --- */

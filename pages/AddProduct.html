@@ -12,7 +12,22 @@
 <body>
 <div class="container">
 
-  <main class="main">
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <h2 class="logo">Admin Panel</h2>
+
+    <ul class="menu">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="QuanLyuser.html">Quản lý người dùng / Quản trị viên</a></li>
+      <li><a href="QuanLySanPham.html" style="background:#2a2a3b; color:#00bfff; border-left:4px solid #00bfff;">Quản lý sản phẩm</a></li>
+      <li><a href="NhaphangGiaban.html">Nhập hàng</a></li>
+      <li><a href="NhaphangGiaban2.html">Giá bán</a></li>
+      <li><a href="DonhangTonkho.html">Đơn hàng & Tồn kho</a></li>
+    </ul>
+  </nav>
+
+  <!-- CONTENT -->
+  <main class="content">
 
     <!-- HEADER -->
     <div class="page-header">
@@ -22,19 +37,19 @@
 
     <form id="addProductForm" class="form-card">
 
-      <!-- GRID 2 CỘT -->
+      <!-- GRID -->
       <div class="form-grid">
 
         <!-- LEFT -->
         <div class="form-group">
           <label>Danh mục</label>
           <select name="category_id" id="categorySelect" required></select>
+
           <label>Thương hiệu</label>
           <select name="brand_id" id="brandSelect" required></select>
+
           <label>Tên sản phẩm</label>
           <input type="text" name="name" placeholder="VD: Vợt cầu lông Yonex..." required>
-
-          
 
           <label>Giá nhập</label>
           <input type="number" name="cost_price" placeholder="VD: 500000" required>
@@ -48,19 +63,23 @@
 
           <label>Số lượng</label>
           <input type="number" name="quantity" value="0">
-
         </div>
 
         <!-- RIGHT -->
         <div class="form-group">
-
           <label>Ảnh sản phẩm</label>
           <input type="file" id="imageInput" accept="image/*">
+
           <img id="previewImage" class="preview-img" src="" alt="Preview">
 
           <label>Mô tả</label>
           <textarea name="description" rows="5"></textarea>
 
+          <label>Trạng thái</label>
+          <select name="status">
+            <option value="active">Hiển thị</option>
+            <option value="hidden">Ẩn</option>
+          </select>
         </div>
 
       </div>
@@ -70,11 +89,6 @@
         <h3>Thuộc tính sản phẩm</h3>
         <div id="dynamicAttributes"></div>
       </div>
-      <label>Trạng thái</label>
-<select name="status">
-  <option value="active">Hiển thị</option>
-  <option value="hidden">Ẩn</option>
-</select>
 
       <!-- ACTION -->
       <div class="form-actions">
@@ -90,7 +104,6 @@
 <script src="../assets/js/add_product.js"></script>
 
 <script>
-/* PREVIEW GIÁ */
 const costInput = document.querySelector('[name="cost_price"]');
 const profitInput = document.querySelector('[name="profit_percent"]');
 const preview = document.getElementById('previewPrice');
@@ -105,7 +118,6 @@ function updatePrice() {
 costInput.addEventListener('input', updatePrice);
 profitInput.addEventListener('input', updatePrice);
 
-/* PREVIEW ẢNH */
 document.getElementById('imageInput').addEventListener('change', function(e){
   const file = e.target.files[0];
   if(file){
