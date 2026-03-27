@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <td>${p.id}</td>
             <td><img src="../${p.image_url || 'assets/img/placeholder.png'}" style="max-width:50px;"></td>
             <td>${p.name}</td>
-            <td>${p.category_name}</td>
+            <td>${p.category}</td>
             <td>${p.brand}</td>
             <td>${p.color}</td>
             <td>${p.size}</td>
@@ -34,26 +34,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// Sửa sản phẩm
-function editProduct(id){
-  window.location.href = `../pages/EditProduct.html?id=${p.id}`;
-}
-
-// Xóa sản phẩm
-function deleteProduct(id, btn){
-  if(!confirm("Bạn có chắc muốn xóa sản phẩm này?")) return;
-
-  fetch("../assets/php/delete_product.php", {
-    method: "POST",
-    headers: {'Content-Type':'application/x-www-form-urlencoded'},
-    body: `id=${id}`
-  })
-  .then(res => res.json())
-  .then(data => {
-    alert(data.message);
-    if(data.success){
-      // Xóa row khỏi bảng
-      btn.closest('tr').remove();
-    }
-  });
-}
