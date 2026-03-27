@@ -1,101 +1,65 @@
 <?php
-header('Content-Type: application/json');
-require 'db.php';
+header("Content-Type: application/json");
+require_once "db.php";
 
-try {
-    $conn->beginTransaction();
+function uploadImage($file){
+    $targetDir = "../uploads/";
+    if(!is_dir($targetDir)) mkdir($targetDir, 0777, true);
 
-    // ===== DATA =====
-    $name = $_POST['name'];
-    $category_id = $_POST['category_id'];
-    $cost_price = $_POST['cost_price'];
-    $profit_percent = $_POST['profit_percent'];
-    $description = $_POST['description'];
-    $quantity = $_POST['quantity'];
-    $attributes = json_decode($_POST['attributes'], true);
-    $brand_id = $_POST['brand_id'];
+    $filename = time() . "_" . basename($file["name"]);
+    $targetFile = $targetDir . $filename;
 
-    // ===== INSERT PRODUCT =====
-    $stmt = $conn->prepare("
-    INSERT INTO products (category_id, name, description, cost_price, profit_percent, brand_id)
-    VALUES (?, ?, ?, ?, ?, ?)
-");
-$stmt->execute([$category_id, $name, $description, $cost_price, $profit_percent, $brand_id]);
-    $stmt = $conn->prepare("
-        INSERT INTO products (category_id, name, description, cost_price, profit_percent)
-        VALUES (?, ?, ?, ?, ?)
-    ");
-    $stmt->execute([$category_id, $name, $description, $cost_price, $profit_percent]);
-    $product_id = $conn->lastInsertId();
+    if(move_uploaded_file($file["tmp_name"], $targetFile)){
+        return "uploads/" . $filename;
+    }
+    return null;
+}
 
-    // ===== INSERT VARIANT =====
-    $sku = 'SKU-' . time();
-    $stmt = $conn->prepare("
-        INSERT INTO product_variants (product_id, sku, quantity)
-        VALUES (?, ?, ?)
-    ");
-    $stmt->execute([$product_id, $sku, $quantity]);
-    $variant_id = $conn->lastInsertId();
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    $name = trim($_POST['name'] ?? '');
+    $category_id = intval($_POST['category_id'] ?? 0);
+    $brand = trim($_POST['brand'] ?? '');
+    $color = trim($_POST['color'] ?? '');
+    $size = trim($_POST['size'] ?? '');
+    $cost_price = floatval($_POST['cost_price'] ?? 0);
+    $profit_rate = floatval($_POST['profit_rate'] ?? 20);
+    $quantity = intval($_POST['quantity'] ?? 0);
+    $status = $_POST['status'] ?? 'visible';
+    $description = trim($_POST['description'] ?? '');
 
-    // ===== INSERT ATTRIBUTES =====
-    foreach ($attributes as $attr) {
-        $attribute_id = $attr['attribute_id'];
-        $value = $attr['value'];
-
-        // Lấy type của attribute
-        $stmt = $conn->prepare("SELECT type FROM attributes WHERE id = ?");
-        $stmt->execute([$attribute_id]);
-        $type = $stmt->fetchColumn();
-
-        if ($type === 'select') {
-            if (empty($value)) {
-                throw new Exception("Attribute select không được để trống");
-            }
-
-            // Kiểm tra option đã tồn tại chưa
-            $stmt = $conn->prepare("
-                SELECT id FROM attribute_options 
-                WHERE attribute_id = ? AND value = ?
-            ");
-            $stmt->execute([$attribute_id, $value]);
-            $option_id = $stmt->fetchColumn();
-
-            if (!$option_id) {
-                $stmt = $conn->prepare("
-                    INSERT INTO attribute_options (attribute_id, value)
-                    VALUES (?, ?)
-                ");
-                $stmt->execute([$attribute_id, $value]);
-                $option_id = $conn->lastInsertId();
-            }
-
-            $value_text = null;
-
-        } else {
-            // TEXT → lưu text
-            $option_id = null;
-            $value_text = $value;
-        }
-
-        // Insert vào variant_attributes
-        $stmt = $conn->prepare("
-            INSERT INTO variant_attributes (variant_id, attribute_id, option_id, value_text)
-            VALUES (?, ?, ?, ?)
-        ");
-        $stmt->execute([$variant_id, $attribute_id, $option_id, $value_text]);
+    $image_url = null;
+    if(isset($_FILES['image']) && $_FILES['image']['error'] === 0){
+        $image_url = uploadImage($_FILES['image']);
     }
 
-    $conn->commit();
+    if($name === '' || $category_id === 0 || $brand === ''){
+        echo json_encode(['success'=>false, 'message'=>'Tên, danh mục và thương hiệu không được để trống']);
+        exit;
+    }
 
-    echo json_encode([
-        "status" => "success",
-        "message" => "Thêm sản phẩm thành công"
-    ]);
+    try{
+        $stmt = $conn->prepare("INSERT INTO products (name, category_id, brand, color, size, image_url, quantity, cost_price, profit_rate, status, description) 
+        VALUES (:name, :category_id, :brand, :color, :size, :image_url, :quantity, :cost_price, :profit_rate, :status, :description)");
 
-} catch (Exception $e) {
-    $conn->rollBack();
-    echo json_encode([
-        "status" => "error",
-        "message" => $e->getMessage()
-    ]);
+        $stmt->execute([
+            ':name'=>$name,
+            ':category_id'=>$category_id,
+            ':brand'=>$brand,
+            ':color'=>$color,
+            ':size'=>$size,
+            ':image_url'=>$image_url,
+            ':quantity'=>$quantity,
+            ':cost_price'=>$cost_price,
+            ':profit_rate'=>$profit_rate,
+            ':status'=>$status,
+            ':description'=>$description
+        ]);
+
+        echo json_encode(['success'=>true, 'message'=>'Thêm sản phẩm thành công']);
+    } catch(PDOException $e){
+        echo json_encode(['success'=>false, 'message'=>'Lỗi DB: '.$e->getMessage()]);
+    }
+
+} else {
+    echo json_encode(['success'=>false, 'message'=>'Phương thức không hợp lệ']);
 }

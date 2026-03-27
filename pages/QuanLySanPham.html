@@ -48,9 +48,7 @@
           <tr>
             <th>ID</th>
             <th>Tên</th>
-            <th>Mô tả</th>
-            <th>Ngày tạo</th>
-            <th>Hành động</th>
+
           </tr>
         </thead>
         <tbody id="categoryTable">
@@ -60,37 +58,40 @@
     </section>
 
     <!-- PRODUCT -->
-    <section class="card">
-      <div class="card-header">
-        <h2>Danh sách sản phẩm</h2>
-        <button onclick="location.href='AddProduct.html'" class="btn-primary">
-          + Thêm sản phẩm
-        </button>
-      </div>
+<section class="card">
+  <div class="card-header">
+    <h2>Danh sách sản phẩm</h2>
+    <button onclick="location.href='AddProduct.html'" class="btn-primary">+ Thêm sản phẩm</button>
+  </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Ảnh</th>
-            <th>Tên sản phẩm</th>
-            <th>Danh mục</th>
-            <th>Giá nhập</th>
-            <th>% Lợi nhuận</th>
-            <th>Giá bán</th>
-            <th>Trạng thái</th>
-            <th>Hành động</th>
-          </tr>
-        </thead>
-
-        <tbody id="productTable"></tbody>
-      </table>
-    </section>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Ảnh</th>
+        <th>Tên sản phẩm</th>
+        <th>Danh mục</th>
+        <th>Thương hiệu</th>
+        <th>Màu sắc</th>
+        <th>Kích thước</th>
+        <th>Giá nhập</th>
+        <th>% Lợi nhuận</th>
+        <th>Số lượng</th>
+        <th>Trạng thái</th>
+        <th>Mô tả</th>
+        <th>Ngày tạo</th>
+      </tr>
+    </thead>
+    <tbody id="productTable">
+      <!-- JS render -->
+    </tbody>
+  </table>
+</section>
 
   </main>
 </div>
 
-<script src="../assets/js/category.js"></script>
-<script src="../assets/js/product.js"></script>
+<script src="../assets/js/category_list.js"></script>
+<script src="../assets/js/product_list.js"></script>
 </body>
 </html>
