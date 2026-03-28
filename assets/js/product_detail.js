@@ -47,9 +47,8 @@ Mã sản phẩm: <a href="#">${p.product_code}</a>
   <p>${p.color}</p>
 
   <div class="choosingcolor">
-    <img src="${p.image}" style="width:60px;border-radius:10px;">
-    <p>${p.color}</p>
-  </div>
+  ${p.color.split(",").map(c => `<div class="color-item" data-color="${c.trim()}">${c.trim()}</div>`).join("")}
+</div>
 
   <div class="half-content">
     <hr>
@@ -92,21 +91,22 @@ document.querySelector(".bigcontent").innerHTML = html
 })
 
 let selectedSize = null;
+let selectedColor = null;
 
 document.addEventListener("click", function(e){
+  // Chọn size
   if(e.target.classList.contains("size-item")){
-    
-    // ❌ bỏ chọn tất cả
-    document.querySelectorAll(".size-item").forEach(el => {
-      el.classList.remove("active")
-    })
+    document.querySelectorAll(".size-item").forEach(el => el.classList.remove("active"));
+    e.target.classList.add("active");
+    selectedSize = e.target.innerText;
+    console.log("Size đã chọn:", selectedSize);
+  }
 
-    // ✅ chọn cái đang click
-    e.target.classList.add("active")
-
-    // ✅ lưu size
-    selectedSize = e.target.innerText
-
-    console.log("Size đã chọn:", selectedSize)
+  // Chọn color
+  if(e.target.classList.contains("color-item")){
+    document.querySelectorAll(".color-item").forEach(el => el.classList.remove("active"));
+    e.target.classList.add("active");
+    selectedColor = e.target.dataset.color;
+    console.log("Màu đã chọn:", selectedColor);
   }
 })
