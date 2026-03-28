@@ -1,36 +1,39 @@
 <?php
-// Nhận dữ liệu từ client
-$data = json_decode(file_get_contents("php://input"), true);
-$userId = $data['userId'];
-$newStatus = $data['newStatus'];
+header('Content-Type: application/json; charset=utf-8');
 
-// Kết nối với cơ sở dữ liệu
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "quebshop1";
+include __DIR__ . '/db.php';
 
-// Tạo kết nối
-$conn = new mysqli($servername, $username, $password, $dbname);
+try {
+    $data = json_decode(file_get_contents("php://input"), true);
 
-// Kiểm tra kết nối
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    if (!$data || !isset($data['userId']) || !isset($data['newStatus'])) {
+        echo json_encode([
+            "success" => false,
+            "message" => "Thiếu dữ liệu"
+        ]);
+        exit;
+    }
+
+    $userId = intval($data['userId']);
+    $newStatus = $data['newStatus'];
+
+    $sql = "UPDATE users SET status = :status WHERE id = :id";
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bindValue(':status', $newStatus, PDO::PARAM_STR);
+    $stmt->bindValue(':id', $userId, PDO::PARAM_INT);
+
+    $stmt->execute();
+
+    echo json_encode([
+        "success" => true,
+        "message" => "Cập nhật trạng thái thành công"
+    ]);
+
+} catch (PDOException $e) {
+    echo json_encode([
+        "success" => false,
+        "message" => "Lỗi SQL: " . $e->getMessage()
+    ]);
 }
-
-// Cập nhật trạng thái tài khoản
-$sql = "UPDATE users SET status = ? WHERE id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("si", $newStatus, $userId);
-
-if ($stmt->execute()) {
-    // Trả kết quả về client
-    echo json_encode(['success' => true]);
-} else {
-    echo json_encode(['success' => false, 'message' => 'Cập nhật thất bại']);
-}
-
-// Đóng kết nối
-$stmt->close();
-$conn->close();
 ?>

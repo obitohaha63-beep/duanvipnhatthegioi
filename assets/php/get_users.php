@@ -1,35 +1,21 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 
-// Kết nối database
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "quebshop1";
+include __DIR__ . '/db.php';
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+try {
+    $sql = "SELECT id, name, email, status, role FROM users";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
 
-// Kiểm tra kết nối
-if ($conn->connect_error) {
-    die(json_encode([
+    $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    echo json_encode($users);
+
+} catch (PDOException $e) {
+    echo json_encode([
         "success" => false,
-        "message" => "Kết nối thất bại"
-    ]));
+        "message" => "Lỗi SQL: " . $e->getMessage()
+    ]);
 }
-
-// Lấy users + role
-$sql = "SELECT id, name, email, status, role FROM users";
-$result = $conn->query($sql);
-
-$users = [];
-
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $users[] = $row;
-    }
-}
-
-$conn->close();
-
-echo json_encode($users);
 ?>
