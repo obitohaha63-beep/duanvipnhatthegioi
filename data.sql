@@ -28,15 +28,15 @@ INSERT INTO `products` (`id`, `name`, `description`, `category_id`, `color`, `br
 (18, 'Yonex Arcsaber 11 Play', 'Phiên bản phổ thông của Arc 11 Pro, cực kỳ dễ chơi', 2, 'Grayish Pearl', 'Yonex', '4U', 'arcsaber_11_play.jpg', 60, 1650000.00, 20.00, 'visible'),
 
 -- NHÓM 3: GIÀY CẦU LÔNG YONEX (ID 19 - 27)
-(19, 'Yonex Subaxia GT Men 2026', 'Dòng giày cao cấp mới nhất 2026, tối ưu sự ổn định', 3, 'Dark Gray', 'Yonex', '39-45', 'subaxia_gt_men.jpg', 15, 3450000.00, 20.00, 'visible'),
-(20, 'Yonex Power Cushion 65Z4 VA', 'Phiên bản đặc biệt Viktor Axelsen 2026', 3, 'Grayish Beige', 'Yonex', '39-45', '65z4_va_collection.jpg', 20, 3180000.00, 20.00, 'visible'),
-(21, 'Yonex Power Cushion Aerus Z3', 'Đôi giày nhẹ nhất thế giới năm 2026', 3, 'Flash Green', 'Yonex', '37-44', 'aerus_z3_green.jpg', 10, 3300000.00, 20.00, 'visible'),
-(22, 'Yonex Eclipsion Z3 Men 2026', 'Chuyên gia bảo vệ cổ chân với độ bám sân cực cao', 3, 'Navy Blue', 'Yonex', '39-45', 'eclipsion_z3_navy.jpg', 15, 3150000.00, 20.00, 'visible'),
-(23, 'Yonex Power Cushion 88 Dial 3', 'Hệ thống thắt dây BOA kép thế hệ 3', 3, 'Black/Ice Blue', 'Yonex', '39-44', '88_dial_3_black.jpg', 8, 3600000.00, 20.00, 'visible'),
-(24, 'Yonex Comfort Z3 Wide Mid', 'Thiết kế cổ cao bảo vệ toàn diện cổ chân', 3, 'Off White/Red', 'Yonex', '40-45', 'comfort_z3_mid.jpg', 7, 3200000.00, 20.00, 'visible'),
-(25, 'Yonex Cascade Accel 2026', 'Dòng giày tầm trung hỗ trợ lực bật nhảy tốt', 3, 'White/Sky Blue', 'Yonex', '37-44', 'cascade_accel_2026.jpg', 25, 1850000.00, 20.00, 'visible'),
-(26, 'Yonex Strider Flow 2026', 'Mẫu giày tập luyện chuyên nghiệp, bền bỉ', 3, 'Black/Blue', 'Yonex', '38-45', 'strider_flow_black.jpg', 30, 1250000.00, 20.00, 'visible'),
-(27, 'Yonex Power Cushion Infinity 2', 'Hệ thống điều chỉnh độ ôm 3D đỉnh cao', 3, 'Metallic Gold', 'Yonex', '40-44', 'infinity_2_gold.jpg', 5, 4500000.00, 20.00, 'visible');
+(19, 'Yonex Subaxia GT Men 2026', 'Dòng giày cao cấp mới nhất 2026, tối ưu sự ổn định', 1, 'Dark Gray', 'Yonex', '39-45', 'subaxia_gt_men.jpg', 15, 3450000.00, 20.00, 'visible'),
+(20, 'Yonex Power Cushion 65Z4 VA', 'Phiên bản đặc biệt Viktor Axelsen 2026', 1, 'Grayish Beige', 'Yonex', '39-45', '65z4_va_collection.jpg', 20, 3180000.00, 20.00, 'visible'),
+(21, 'Yonex Power Cushion Aerus Z3', 'Đôi giày nhẹ nhất thế giới năm 2026', 1, 'Flash Green', 'Yonex', '37-44', 'aerus_z3_green.jpg', 10, 3300000.00, 20.00, 'visible'),
+(22, 'Yonex Eclipsion Z3 Men 2026', 'Chuyên gia bảo vệ cổ chân với độ bám sân cực cao', 1, 'Navy Blue', 'Yonex', '39-45', 'eclipsion_z3_navy.jpg', 15, 3150000.00, 20.00, 'visible'),
+(23, 'Yonex Power Cushion 88 Dial 3', 'Hệ thống thắt dây BOA kép thế hệ 3', 1, 'Black/Ice Blue', 'Yonex', '39-44', '88_dial_3_black.jpg', 8, 3600000.00, 20.00, 'visible'),
+(24, 'Yonex Comfort Z3 Wide Mid', 'Thiết kế cổ cao bảo vệ toàn diện cổ chân', 1, 'Off White/Red', 'Yonex', '40-45', 'comfort_z3_mid.jpg', 7, 3200000.00, 20.00, 'visible'),
+(25, 'Yonex Cascade Accel 2026', 'Dòng giày tầm trung hỗ trợ lực bật nhảy tốt', 1, 'White/Sky Blue', 'Yonex', '37-44', 'cascade_accel_2026.jpg', 25, 1850000.00, 20.00, 'visible'),
+(26, 'Yonex Strider Flow 2026', 'Mẫu giày tập luyện chuyên nghiệp, bền bỉ', 1, 'Black/Blue', 'Yonex', '38-45', 'strider_flow_black.jpg', 30, 1250000.00, 20.00, 'visible'),
+(27, 'Yonex Power Cushion Infinity 2', 'Hệ thống điều chỉnh độ ôm 3D đỉnh cao', 1, 'Metallic Gold', 'Yonex', '40-44', 'infinity_2_gold.jpg', 5, 4500000.00, 20.00, 'visible');
 
 INSERT INTO `users` VALUES
 (1, 'Admin Chính', 'admin@gmail.com', '$2y$10$...', NULL, 'admin', 'active', '2026-03-28 09:38:04', 1, '12 Nguyễn Trãi, Quận 5, TP.HCM'),
