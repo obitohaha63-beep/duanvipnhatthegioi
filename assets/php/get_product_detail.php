@@ -1,31 +1,43 @@
-
 <?php
-
 header("Content-Type: application/json");
 require "db.php";
 
-$id = intval($_GET['id'] ?? 0);
-if($id <= 0){
-    echo json_encode(['success'=>false,'message'=>'ID sản phẩm không hợp lệ']);
+$id = $_GET['code'] ?? 0;
+
+if (!$id) {
+    echo json_encode(["error" => "Thiếu ID"]);
     exit;
 }
 
-try {
-    $stmt = $conn->prepare("
-        SELECT p.id, p.category_id, p.name, p.image_url, p.brand, p.color, p.size, 
-               p.cost_price, p.profit_rate, p.quantity, p.status, p.description
+// 🔥 query chi tiết
+$sql = "SELECT p.*, 
+        c.name AS category_name,
+        (p.cost_price * (1 + p.profit_rate/100)) AS selling_price
         FROM products p
-        WHERE p.id = ?
-    ");
-    $stmt->execute([$id]);
-    $product = $stmt->fetch(PDO::FETCH_ASSOC);
+        JOIN categories c ON p.category_id = c.id
+        WHERE p.id = :id AND p.status = 'visible'";
 
-    if($product){
-        echo json_encode(['success'=>true, 'product'=>$product]);
-    } else {
-        echo json_encode(['success'=>false,'message'=>'Sản phẩm không tồn tại']);
-    }
-} catch(PDOException $e){
-    echo json_encode(['success'=>false,'message'=>'Lỗi DB: '.$e->getMessage()]);
+$stmt = $conn->prepare($sql);
+$stmt->execute([':id' => $id]);
+
+$product = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$product) {
+    echo json_encode(["error" => "Không tìm thấy sản phẩm"]);
+    exit;
 }
-?>
+
+// 🔥 format trả về
+$data = [
+    "id" => $product["id"],
+    "name" => $product["name"],
+    "description" => $product["description"],
+    "image" => "../assets/images/" . $product["image_url"],
+    "color" => $product["color"],
+    "brand_name" => $product["brand"],
+    "category_name" => $product["category_name"],
+    "selling_price" => $product["selling_price"],
+    "product_code" => $product["id"]
+];
+
+echo json_encode($data);
