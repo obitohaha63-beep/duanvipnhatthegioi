@@ -361,322 +361,254 @@ header{
 }
 
 
+/* ================= MAIN LAYOUT ================= */
 .mid-content {
-  width: 1200px;
-  height: auto;
-  margin: 0 auto;
-  background-color: #f5f5f5;
-  border-radius: 5px;
-  transition: height 0.6s ease;
-}
-.important-content{
-  display: flex;
-  flex-wrap: wrap;
-}
-.bigcontent{
-  background-color: #ffffff;
-  width: 910px;
-  height: 700px;
-  border-radius: 5px;
-}
-
-.linkedline{
-  width: 1200px;
-  margin: 0 auto;
-  height: 40px;
-  
-  background-color: #f5f5f5;
-}
-.linkedline-content{
-  position: relative;
-  top: 10px;
-  font-weight: 400;
-  line-height: 18px;
-  font-size: 13px;
-}
-.product{
-    position: absolute;
-    height: 502px;
-    width: 492px;
-    background-color: #ffffff;
-    margin-top: 10px;
-    margin-left: 15px;
-    border: 0.2px solid black;
-}
-.small-product{
-  margin-top: 21px;
-  width: 491px;
-  height: 140px;
-  background-color: #ffffff;
-}
-.small-product ul{
-  display: flex;
-  gap: 15px;
-}
-.main-image{
-  width: 490px;
-  height: 500px;
-}
-.aboutproduct{
-  position: relative;
-  left: 520px;
-  top: 12px;
-  height: 502px;
-  width: 336px;
-}
-.racket-name{
-  font-size: 25px;
-  font-weight: 700;
-}
-.trademark1{
-  font-size: 14px;
-  margin-top: 10px;
-}
-.aboutproduct a
-{
-  color: #0F5E9F;
-  font-weight: 700;
-  font-size: 17px;
-}
-.value{
-  font-size: 25px;
-  color: red;
-  font-weight: 700;
-}
-.DenVang{
-  position: relative;
-  font-size: 17px;
-  font-weight: 700;
-}
-.choosingcolor{
-  position: absolute;
-  top: 240px;
-  left: 0px;
-  height: 44px;
-  width: 126px;
-  border-radius: 15px;
-  border: 0.5px solid red;
-}
-.choosingcolor a{
-  color: black;
-  text-decoration: none;
-}
-.choosingcolor2{
-  position: absolute;
-  top: 0px;
-  left: 57px;
-  height: 15px;
-  width: 15px;
-  background-color: white;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-top: 15px solid red;
-}
-.text-racketcolor{
-  position: absolute;
-  left: 43px;
-  top: 12px;
-  font-size: 14px;
-  font-weight: 100;
-}
-.half-content{
-  position: absolute;
-  height: 316px;
-  width: 380px;
-  top: 310px;
-  left: 0px;
-}
-
-.choosingracket1, .choosingracket2 {
-  position: absolute;
-  top: 64px;
-  width: 50px;
-  height: 44px;
-  border-radius: 15px;
-  border: 0.5px solid grey;
-  text-align: center;
-  padding-top: 12px;
-  font-size: 14px;
-  background-color: white;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-.choosingracket1 { left: 0px; }
-.choosingracket2 { left: 63px; }
-
-#active {
-  border: 2px solid red !important;
-  color: red;
-}
-
-.countamountofitem {
-  position: absolute;
-  top: 135px;
-  left: 0px;
-  height: 55px;
-  width: 122px;
-  border-radius: 5px;
-  border: 0.5px solid black;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  max-width: 1200px;
+  margin: 120px auto 0;
   padding: 0 10px;
 }
 
-.minus, .plus {
-  font-size: 24px;
-  cursor: pointer;
-  user-select: none;
-  width: 25px;
-  text-align: center;
-  transition: color 0.2s ease, transform 0.1s ease;
+.linkedline {
+  font-size: 13px;
+  margin-bottom: 10px;
+  color: #555;
 }
 
-.minus:hover, .plus:hover {
-  color: red;
-  transform: scale(1.2);
+/* ====== GRID CHÍNH ====== */
+.important-content {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 15px;
 }
 
-.numbercount {
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  width: 30px;
+/* ================= PRODUCT BOX ================= */
+.bigcontent {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
 }
-.add-Gio-Hang{
-  position: absolute;
+
+/* layout trái phải */
+.bigcontent {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 25px;
+}
+
+/* ====== IMAGE ====== */
+.product {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+
+.main-image {
   width: 100%;
-  height: 68px;
-  top: 215px;
-  left: 0;
-  background-color: #E90707;
-  text-align: center;
-  border-radius: 15px;  
-  cursor: pointer;
-}
-.communicate-with-us-on-zalo{
-  position: absolute;
-  width: 100%;
-  height: 68px;
-  top: 295px;
-  left: 0;
-  background-color: #008FE5;
-  text-align: center;
-  border-radius: 15px;
+  height: 420px;
+  object-fit: cover;
+  transition: 0.3s;
 }
 
-.sales-commitment{
-  padding-top: 15px;
-  margin-left: 15px;
-  background-color: #ffffff;
-  height: 700px;
-  width: 275px;
+.main-image:hover {
+  transform: scale(1.05);
 }
 
-.sales-commitment ul{
+/* ====== INFO ====== */
+.aboutproduct {
   display: flex;
   flex-direction: column;
-  font-size: 14px;
-}
-
-.sales-commitment ul li{
   gap: 10px;
 }
 
-.sales-commitment-content{
-  border-radius: 6px;
-  margin: 0 auto;
-  height: 335px;
-  width: 255px;
-  border: 0.5px solid rgb(110, 105, 105);
-}
-.sales-commitment-frame{
-  border-radius: 5px;
-  background-color: #06c520;
-  height: 33px;
-  width: 100%;
-  font-size: 17px;
+.racket-name {
+  font-size: 22px;
   font-weight: 700;
-  color: white;
-  text-align: center;
-  padding-top: 5px;
+  line-height: 1.4;
 }
-.sales-commitment-list{
-  padding: 5px;
-  list-style: none;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+
+.trademark1 {
   font-size: 14px;
-  line-height: 1.5;
-  color: #222;
-}
-.sales-commitment-list li{
-  display: flex;
-  align-items: flex-start;
-  gap: 0px;
-}
-.sales-commitment-list li img{
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0; 
-  margin-top: 3px;   
+  color: #555;
 }
 
+.aboutproduct a {
+  color: #0F5E9F;
+  font-weight: 600;
+}
+
+.value {
+  font-size: 26px;
+  color: #e60023;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+/* ====== COLOR ====== */
+.choosingcolor {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #ddd;
+  padding: 6px 10px;
+  border-radius: 8px;
+  width: fit-content;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.choosingcolor:hover {
+  border-color: red;
+}
+
+.choosingcolor img {
+  width: 50px;
+  border-radius: 6px;
+}
+
+/* ====== SIZE ====== */
+.choosingracket1 {
+  padding: 8px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  width: fit-content;
+  transition: 0.2s;
+}
+
+.choosingracket1:hover {
+  border-color: red;
+  color: red;
+}
+
+/* ====== QUANTITY ====== */
+.countamountofitem {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  width: fit-content;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.minus, .plus {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 18px;
+  background: #f5f5f5;
+}
+
+.minus:hover, .plus:hover {
+  background: #ddd;
+}
+
+.numbercount {
+  padding: 0 15px;
+  font-weight: 600;
+}
+
+/* ====== BUTTON ====== */
+.add-Gio-Hang,
+.communicate-with-us-on-zalo {
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.add-Gio-Hang {
+  background: #e60023;
+  color: white;
+}
+
+.add-Gio-Hang:hover {
+  background: #c4001d;
+}
+
+.communicate-with-us-on-zalo {
+  background: #008FE5;
+  color: white;
+}
+
+.communicate-with-us-on-zalo:hover {
+  background: #0077c2;
+}
+
+/* ================= DESCRIPTION ================= */
 .detail-of-items {
-  position: relative;
+  margin-top: 15px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+/* ================= RIGHT SIDEBAR ================= */
+.sales-commitment {
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  height: fit-content;
+}
+
+.sales-commitment-frame {
+  background: #06c520;
+  color: white;
+  font-weight: 700;
+  text-align: center;
+  padding: 8px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.sales-commitment-list {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  padding: 15px;
-  background-color: #ffffff;
-  margin-top: 17px;
-  overflow: hidden;
-  transition: height 0.6s ease;
-  position: relative;
-  border-radius: 5px;
-  width: 910px;
+  gap: 10px;
+  font-size: 14px;
 }
 
-/* Chiều cao ban đầu khi bị thu gọn */
-.detail-of-items.collapsed {
-  height: 200px;
+.sales-commitment-list li {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
 }
 
-/* Khi mở rộng */
-.detail-of-items.expanded {
-  height: auto;
+.sales-commitment-list img {
+  width: 20px;
 }
 
-/* Nút “Xem thêm” */
-.show-more {
-  background-color: #f3f3f3;
-  text-align: center;
-  width: 910px;
-  padding: 10px 0;
-  font-weight: 600;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+  .important-content {
+    grid-template-columns: 1fr;
+  }
+
+  .bigcontent {
+    grid-template-columns: 1fr;
+  }
+
+  .main-image {
+    height: 300px;
+  }
 }
 
-.show-more:hover {
-  background-color: #e6e6e6;
-}
+@media (max-width: 600px) {
+  .racket-name {
+    font-size: 18px;
+  }
 
-.bold1{
-  font-size: 24px;
-  font-weight: 700;
-}
-.bold2{
-  font-size: 20px;
-  font-weight: 700;
-}
-.sizetext{
-  font-size: 17px;
+  .value {
+    font-size: 22px;
+  }
+
+  .main-image {
+    height: 250px;
+  }
 }
 
 
