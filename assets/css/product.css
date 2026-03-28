@@ -444,25 +444,31 @@ header{
 }
 
 /* ====== COLOR ====== */
+/* Color */
+/* Color */
 .choosingcolor {
   display: flex;
-  align-items: center;
   gap: 10px;
-  border: 1px solid #ddd;
-  padding: 6px 10px;
-  border-radius: 8px;
-  width: fit-content;
+  margin-top: 10px;
+}
+
+.color-item {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
   cursor: pointer;
-  transition: 0.2s;
+  font-size: 14px;
+  transition: all 0.2s;
+  background: #fff;
 }
 
-.choosingcolor:hover {
-  border-color: red;
+.color-item:hover {
+  border-color: #333;
 }
 
-.choosingcolor img {
-  width: 50px;
-  border-radius: 6px;
+.color-item.active {
+  border: 2px solid #e53935;
+  box-shadow: 0 0 0 2px rgba(229,57,53,0.2);
 }
 
 /* ====== SIZE ====== */
