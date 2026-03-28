@@ -467,12 +467,28 @@ header{
 
 /* ====== SIZE ====== */
 .choosingracket1 {
-  padding: 8px 14px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.size-item {
+  padding: 8px 16px;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
-  width: fit-content;
-  transition: 0.2s;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.size-item:hover {
+  border-color: #333;
+}
+
+/* ✅ trạng thái được chọn */
+.size-item.active {
+  border: 2px solid #e53935; /* đỏ nổi bật */
+  box-shadow: 0 0 0 2px rgba(229,57,53,0.2);
 }
 
 .choosingracket1:hover {
