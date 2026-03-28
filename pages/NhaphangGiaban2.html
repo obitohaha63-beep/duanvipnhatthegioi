@@ -9,131 +9,92 @@
   <link rel="stylesheet" href="../assets/css/root.css">
 </head>
 <body>
-  <div class="container">
-    <!-- Menu bên trái -->
-    <nav class="sidebar">
-      <h2 class="logo">Admin</h2>
-      <ul class="menu">
 
-        <li><a href="dashboard.html"> Dashboard</a></li>
+<div class="container">
 
-        <li><a href="QuanLyuser.html"> Quản lý người dùng / Quản trị viên</a></li>
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <h2 class="logo">Admin</h2>
+    <ul class="menu">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="QuanLyuser.html">Quản lý người dùng / Quản trị viên</a></li>
+      <li><a href="QuanLySanPham.html">Quản lý sản phẩm</a></li>
+      <li><a href="NhaphangGiaban.html">Nhập hàng</a></li>
+      <li>
+        <a href="NhaphangGiaban2.html"
+           style="background:#2a2a3b; color:#00bfff; border-left:4px solid #00bfff;">
+           Giá bán
+        </a>
+      </li>
+      <li><a href="QuanLyDonHang.html">Quản lý đơn đặt hàng</a></li>
+      <li><a href="QuanLyTonKho.html">Quản lý tồn kho</a></li>
+    </ul>
+  </nav>
 
-        <li><a href="QuanLySanPham.html"> Quản lý sản phẩm</a></li>
-        <li><a href="NhaphangGiaban.html"> Nhập hàng</a></li>
-        <li><a href="NhaphangGiaban2.html"style="background:#2a2a3b; color:#00bfff; 
-        border-left:4px solid #00bfff;">Giá bán</a></li>
-        
-        <li><a href="DonhangTonkho.html"> Đơn hàng & Tồn kho</a></li>
-      </ul>
-    </nav>
+  <!-- Main -->
+  <main class="content">
+    <div class="sub-container">
 
-    <main class="content">
-      <div class="sub-container">
-            <section class="sub-section">
-              <h2>Quản lý giá bán</h2>
-              <p class="desc">Thông tin giá vốn, lợi nhuận và giá bán</p>
+      <section class="sub-section">
+        <h2>Quản lý giá bán</h2>
+        <p class="desc">Thông tin giá vốn, lợi nhuận và giá bán</p>
 
-              <div class="search-box">
-                <div class="search-field">
-                  <label for="gia-von">Tra cứu giá vốn</label>
-                  <input type="text" id="gia-von" placeholder="Nhập giá vốn muốn tìm..." />
-                </div>
-              
-                <div class="search-field">
-                  <label for="loi-nhuan">Tra cứu % lợi nhuận</label>
-                  <input type="text" id="loi-nhuan" placeholder="Nhập % lợi nhuận muốn tìm..." />
-                </div>
-              
-                <div class="search-field">
-                  <label for="gia-ban">Tra cứu giá bán</label>
-                  <input type="text" id="gia-ban" placeholder="Nhập giá bán muốn tìm..." />
-                </div>
-              
-                <div class="search-field">
-                  <label for="loai-sp">Loại</label>
-                  <select id="loai-sp">
-                    <option value="">Tất cả</option>
-                    <option value="vot">Vợt</option>
-                    <option value="giay">Giày</option>
-                    <option value="phukien">Phụ kiện</option>
-                  </select>
-                </div>
-              </div>
+        <!-- Search -->
+        <div class="search-box">
 
-
-
-                <table class="data-table" id="table-giaban">
-                  <thead>
-                    <tr>
-                      <th>Tên sản phẩm</th>
-                      <th>Giá vốn (VNĐ)</th>
-                      <th>Lợi nhuận (%)</th>
-                      <th>Giá bán (VNĐ)</th>
-                      <th>Thao tác</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Vợt cầu lông Yonex Muscle Power 29 Light Chính Hãng</td>
-                      <td>712,000</td>
-                      <td>20%</td>
-                      <td>854,400</td>
-                      <td><button class="btn-delete">Xóa</button> 
-                        <button class="btn-add">Xem</button> 
-                        <button class="btn-add" onclick="location.href='FormSuaGia.html'">Sửa</button>
-                      </td>
-                    </tr>
-                   
-                    
-                    <tr>
-                      <td>Giày cầu lông Taro TR024-2</td>
-                      <td>300,000</td>
-                      <td>25%</td>
-                      <td>375.000</td>
-                      <td><button class="btn-delete">Xóa</button> 
-                        <button class="btn-add">Xem</button> 
-                        <button class="btn-add" onclick="location.href='FormSuaGia.html'">Sửa</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Vợt cầu lông Lining Turbo Charging 75 Chính Hãng</td>
-                      <td>1,512,000</td>
-                      <td>20%</td>
-                      <td>1,890,000</td>
-                      <td><button class="btn-delete">Xóa</button> 
-                        <button class="btn-add">Xem</button> 
-                        <button class="btn-add" onclick="location.href='FormSuaGia.html'">Sửa</button>
-                      </td>
-                    </tr>
-                    
-                    <tr>
-                      <td>Giày cầu lông Victor A550 LS chính hãng</td>
-                      <td>1,200,000</td>
-                      <td>25%</td>
-                      <td>1.500.000</td>
-                      <td><button class="btn-delete">Xóa</button> 
-                        <button class="btn-add">Xem</button> 
-                        <button class="btn-add" onclick="location.href='FormSuaGia.html'">Sửa</button>
-                      </td>
-                    </tr>
-                   
-                    <tr>
-                      <td>Ống Cầu Lông Lining AYQR014</td>
-                      <td>350,000</td>
-                      <td>30%</td>
-                      <td>500,000</td>
-                      <td><button class="btn-delete">Xóa</button> 
-                        <button class="btn-add">Xem</button> 
-                        <button class="btn-add" onclick="location.href='FormSuaGia.html'">Sửa</button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-
-            </section>
+          <div class="search-field">
+            <label for="gia-von">Tra cứu giá vốn</label>
+            <input type="text" id="gia-von" placeholder="Nhập giá vốn muốn tìm...">
           </div>
-    </main>
-  </div>
+
+          <div class="search-field">
+            <label for="loi-nhuan">Tra cứu % lợi nhuận</label>
+            <input type="text" id="loi-nhuan" placeholder="Nhập % lợi nhuận muốn tìm...">
+          </div>
+
+          <div class="search-field">
+            <label for="gia-ban">Tra cứu giá bán</label>
+            <input type="text" id="gia-ban" placeholder="Nhập giá bán muốn tìm...">
+          </div>
+
+          <div class="search-field">
+            <label for="loai-sp">Loại</label>
+            <select id="loai-sp">
+              <option value="">Tất cả</option>
+              <option value="Vợt">Vợt</option>
+              <option value="Giày">Giày</option>
+              <option value="Phụ kiện">Phụ kiện</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- Table -->
+        <table class="data-table" id="table-giaban">
+          <thead>
+            <tr>
+              <th>Tên sản phẩm</th>
+              <th>Giá vốn (VNĐ)</th>
+              <th>Lợi nhuận (%)</th>
+              <th>Giá bán (VNĐ)</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+
+          <!-- JS render vào đây -->
+          <tbody id="giaban-body">
+          </tbody>
+
+        </table>
+
+      </section>
+
+    </div>
+  </main>
+
+</div>
+
+<script src="../assets/js/giaban.js"></script>
+
 </body>
 </html>
