@@ -7,14 +7,14 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 INSERT INTO `products` (`id`, `name`, `description`, `category_id`, `color`, `brand`, `size`, `image_url`, `quantity`, `cost_price`, `profit_rate`, `status`) VALUES
 -- NHÓM 1: VỢT CẦU LÔNG LINING (ID 1 - 9)
 (1, 'Vợt cầu lông Lining Axforce 100', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'Black golden, Vàng golden', 'Lining', '3U,4U', 'astrox99pro.jpg', 15, 3500000.00, 25.00, 'visible'),
-(2, 'Vợt cầu lông Lining Aeronaut 9000C', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'Black, Red', 'Li-Ning', '3U,4U', 'aeronaut_9000c.jpg', 10, 3000000.00, 30.00, 'visible'),
-(3, 'Vợt cầu lông Lining Aeronaut 7000C', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'Black, Orange', 'Li-Ning', '3U,4U', 'aeronaut_7000c.jpg', 12, 2800000.00, 30.00, 'visible'),
-(4, 'Vợt cầu lông Lining Turbo Charging 75', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'Red, Black', 'Li-Ning', '3U,4U', 'turbo_charging_75.jpg', 15, 2700000.00, 30.00, 'visible'),
-(5, 'Vợt cầu lông Lining 3D Calibar 900', 'Vợt cầu lông cao cấp dòng Calibar', 1, 'Black, Grey', 'Li-Ning', '3U,4U', '3d_calibar_900.jpg', 15, 3200000.00, 30.00, 'visible'),
-(6, 'Vợt cầu lông Lining Windstorm 78', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'White, Blue', 'Li-Ning', '3U,4U', 'windstorm_78.jpg', 11, 1800000.00, 30.00, 'visible'),
-(7, 'Vợt cầu lông Lining N7-II', 'Vợt cầu lông cao cấp N7 phiên bản 2', 1, 'White, Red', 'Li-Ning', '3U,4U', 'n7_ii.jpg', 9, 3100000.00, 30.00, 'visible'),
-(8, 'Vợt cầu lông Lining G-Force Superlite 80', 'Dòng vợt siêu nhẹ G-Force', 1, 'Black, Yellow', 'Li-Ning', '3U,4U', 'gforce_superlite_80.jpg', 12, 1200000.00, 30.00, 'visible'),
-(9, 'Vợt cầu lông Lining Super Series 26', 'Dòng vợt phổ thông Super Series', 1, 'Black, Silver', 'Li-Ning', '3U,4U', 'super_series_26.jpg', 10, 950000.00, 30.00, 'visible'),
+(2, 'Vợt cầu lông Lining Aeronaut 9000C', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'Black, Red', 'Lining', '3U,4U', 'aeronaut_9000c.jpg', 10, 3000000.00, 30.00, 'visible'),
+(3, 'Vợt cầu lông Lining Aeronaut 7000C', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'Black, Orange', 'Lining', '3U,4U', 'aeronaut_7000c.jpg', 12, 2800000.00, 30.00, 'visible'),
+(4, 'Vợt cầu lông Lining Turbo Charging 75', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'Red, Black', 'Lining', '3U,4U', 'turbo_charging_75.jpg', 15, 2700000.00, 30.00, 'visible'),
+(5, 'Vợt cầu lông Lining 3D Calibar 900', 'Vợt cầu lông cao cấp dòng Calibar', 1, 'Black, Grey', 'Lining', '3U,4U', '3d_calibar_900.jpg', 15, 3200000.00, 30.00, 'visible'),
+(6, 'Vợt cầu lông Lining Windstorm 78', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'White, Blue', 'Lining', '3U,4U', 'windstorm_78.jpg', 11, 1800000.00, 30.00, 'visible'),
+(7, 'Vợt cầu lông Lining N7-II', 'Vợt cầu lông cao cấp N7 phiên bản 2', 1, 'White, Red', 'Lining', '3U,4U', 'n7_ii.jpg', 9, 3100000.00, 30.00, 'visible'),
+(8, 'Vợt cầu lông Lining G-Force Superlite 80', 'Dòng vợt siêu nhẹ G-Force', 1, 'Black, Yellow', 'Lining', '3U,4U', 'gforce_superlite_80.jpg', 12, 1200000.00, 30.00, 'visible'),
+(9, 'Vợt cầu lông Lining Super Series 26', 'Dòng vợt phổ thông Super Series', 1, 'Black, Silver', 'Lining', '3U,4U', 'super_series_26.jpg', 10, 950000.00, 30.00, 'visible'),
 
 -- NHÓM 2: VỢT CẦU LÔNG YONEX (ID 10 - 18)
 (10, 'Yonex Astrox 100VA ZZ', 'Siêu phẩm kết hợp cùng Viktor Axelsen, công nghệ Rotational Generator System tối tân', 2, 'Lightning Yellow', 'Yonex', '3U,4U', 'astrox_100va_zz.jpg', 10, 4200000.00, 20.00, 'visible'),

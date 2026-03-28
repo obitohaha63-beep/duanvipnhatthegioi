@@ -9,6 +9,9 @@ $offset = ($page - 1) * $limit;
 
 $keyword = trim($keyword);
 
+// 🔥 tách từ khóa thành mảng
+$keywords = array_filter(explode(' ', $keyword));
+
 // 🔥 query chính
 $sql = "SELECT p.*, c.name AS category_name,
         (p.cost_price * (1 + p.profit_rate/100)) AS selling_price
@@ -16,30 +19,28 @@ $sql = "SELECT p.*, c.name AS category_name,
         JOIN categories c ON p.category_id = c.id
         WHERE p.status = 'visible'";
 
-$params = [];
-
-if ($keyword !== '') {
-    $sql .= " AND (
-        p.name LIKE :kw OR
-        c.name LIKE :kw OR
-        p.brand LIKE :kw
-    )";
-    $params[':kw'] = "%$keyword%";
-}
-
-// 🔥 đếm tổng
 $countSql = "SELECT COUNT(*) FROM products p
              JOIN categories c ON p.category_id = c.id
              WHERE p.status = 'visible'";
 
-if ($keyword !== '') {
-    $countSql .= " AND (
-        p.name LIKE :kw OR
-        c.name LIKE :kw OR
-        p.brand LIKE :kw
-    )";
+$params = [];
+
+if (!empty($keywords)) {
+    // 🔥 dùng AND giữa các từ khóa
+    foreach ($keywords as $i => $kw) {
+        $sql .= " AND (p.name LIKE :kw$i OR p.brand LIKE :kw$i OR c.name LIKE :kw$i)";
+        $countSql .= " AND (p.name LIKE :kw$i OR p.brand LIKE :kw$i OR c.name LIKE :kw$i)";
+        $params[":kw$i"] = "%$kw%";
+    }
 }
 
+// 🔥 sắp xếp theo brand ưu tiên nếu có từ khóa cuối
+$sql .= " ORDER BY 
+            CASE WHEN p.brand LIKE :brand THEN 1 ELSE 2 END,
+            p.name ASC";
+$params[':brand'] = !empty($keywords) ? $keywords[count($keywords)-1] . "%" : "";
+
+// 🔥 đếm tổng
 $stmt = $conn->prepare($countSql);
 $stmt->execute($params);
 $totalItems = $stmt->fetchColumn();
@@ -49,8 +50,8 @@ $sql .= " LIMIT :offset, :limit";
 $stmt = $conn->prepare($sql);
 
 // bind params
-if ($keyword !== '') {
-    $stmt->bindValue(':kw', "%$keyword%");
+foreach ($params as $key => $val) {
+    $stmt->bindValue($key, $val);
 }
 $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
@@ -58,7 +59,6 @@ $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
 $stmt->execute();
 
 $data = [];
-
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $data[] = [
         "id" => $row["id"],
@@ -79,3 +79,4 @@ echo json_encode([
         "current_page" => $page
     ]
 ]);
+?>
