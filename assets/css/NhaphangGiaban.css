@@ -553,3 +553,36 @@ body {
   font-size: 14px;
   cursor: pointer;
 }
+
+.product-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 1000;
+    display: none;
+    font-size: 14px;
+}
+
+.product-list .product-item {
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.product-list .product-item:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.product-list .no-product {
+    padding: 6px 10px;
+    color: #999;
+    cursor: default;
+}
