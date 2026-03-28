@@ -55,7 +55,9 @@ Mã sản phẩm: <a href="#">${p.product_code}</a>
     <hr>
 
     <p style="font-size:13px;margin-top:20px">Trọng lượng:</p>
-    <div class="choosingracket1">4UG5</div>
+    <div class="choosingracket1">
+  ${p.size.split(",").map(s => `<div class="size-item">${s.trim()}</div>`).join("")}
+</div>
 
     <div class="countamountofitem">
       <div class="minus">-</div>
@@ -87,4 +89,24 @@ document.querySelector(".bigcontent").innerHTML = html
 })
 .catch(err => {
     console.error(err)
+})
+
+let selectedSize = null;
+
+document.addEventListener("click", function(e){
+  if(e.target.classList.contains("size-item")){
+    
+    // ❌ bỏ chọn tất cả
+    document.querySelectorAll(".size-item").forEach(el => {
+      el.classList.remove("active")
+    })
+
+    // ✅ chọn cái đang click
+    e.target.classList.add("active")
+
+    // ✅ lưu size
+    selectedSize = e.target.innerText
+
+    console.log("Size đã chọn:", selectedSize)
+  }
 })

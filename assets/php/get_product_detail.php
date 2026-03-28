@@ -37,7 +37,8 @@ $data = [
     "brand_name" => $product["brand"],
     "category_name" => $product["category_name"],
     "selling_price" => $product["selling_price"],
-    "product_code" => $product["id"]
+    "product_code" => $product["id"],
+     "size" => $product["size"]
 ];
 
 echo json_encode($data);
