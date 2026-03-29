@@ -3,11 +3,9 @@ header('Content-Type: application/json; charset=utf-8');
 include 'db.php';
 
 $category = $_GET['category'] ?? '';
-$warning = $_GET['warning'] ?? '';
 $date = $_GET['date'] ?? '';
 
 try {
-
     $sql = "
         SELECT 
             p.id,
@@ -45,31 +43,18 @@ try {
     $stmt->execute();
 
     $data = [];
-
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-
-        if ($warning !== '' && $row['quantity'] > $warning) {
-            continue;
-        }
-
-        $limit = ($warning !== '') ? $warning : 5;
-
-        $row['status'] = ($row['quantity'] <= $limit)
-            ? 'Sắp hết hàng'
-            : 'Còn hàng';
-
         $data[] = $row;
     }
 
     echo json_encode([
-        "success" => true,
-        "data" => $data
+        'success' => true,
+        'data' => $data
     ]);
 
 } catch (Exception $e) {
     echo json_encode([
-        "success" => false,
-        "message" => $e->getMessage()
+        'success' => false,
+        'message' => $e->getMessage()
     ]);
 }
-?>

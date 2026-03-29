@@ -1,11 +1,11 @@
 <?php
-header("Content-Type: application/json; charset=utf-8");
-include __DIR__ . "/db.php";
+header('Content-Type: application/json; charset=utf-8');
+include 'db.php';
 
 $data = json_decode(file_get_contents("php://input"), true);
 
-$id = $data["id"] ?? null;
-$newStatus = $data["status"] ?? null;
+$id = $data['id'] ?? null;
+$newStatus = $data['status'] ?? null;
 
 if (!$id || !$newStatus) {
     echo json_encode([
@@ -19,39 +19,23 @@ try {
     $conn->beginTransaction();
 
     // Lấy trạng thái cũ
-    $stmtOld = $conn->prepare("
-        SELECT status
-        FROM orders
-        WHERE id = ?
-    ");
-    $stmtOld->execute([$id]);
-    $oldOrder = $stmtOld->fetch(PDO::FETCH_ASSOC);
+    $stmt = $conn->prepare("SELECT status FROM orders WHERE id = ?");
+    $stmt->execute([$id]);
+    $order = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if (!$oldOrder) {
+    if (!$order) {
         throw new Exception("Không tìm thấy đơn hàng");
     }
 
-    $oldStatus = $oldOrder["status"];
+    $oldStatus = $order['status'];
 
-    // Update trạng thái đơn
-    $stmt = $conn->prepare("
-        UPDATE orders
-        SET status = ?
-        WHERE id = ?
-    ");
-    $stmt->execute([$newStatus, $id]);
-
-    /*
-    ==========================
-    TRỪ KHO CHỈ 1 LẦN
-    pending -> confirmed / delivered
-    ==========================
-    */
+    // Chỉ trừ kho khi pending -> confirmed hoặc delivered
     if (
-        $oldStatus === "pending" &&
-        ($newStatus === "confirmed" || $newStatus === "delivered")
+        $oldStatus === 'pending' &&
+        ($newStatus === 'confirmed' || $newStatus === 'delivered')
     ) {
 
+        // Lấy danh sách sản phẩm
         $stmtItems = $conn->prepare("
             SELECT product_id, quantity
             FROM order_items
@@ -62,37 +46,43 @@ try {
 
         foreach ($items as $item) {
 
-            // Kiểm tra tồn kho
+            // kiểm tra tồn kho hiện tại
             $stmtCheck = $conn->prepare("
                 SELECT quantity
                 FROM products
                 WHERE id = ?
             ");
-            $stmtCheck->execute([$item["product_id"]]);
+            $stmtCheck->execute([$item['product_id']]);
             $product = $stmtCheck->fetch(PDO::FETCH_ASSOC);
 
             if (!$product) {
-                throw new Exception("Không tìm thấy sản phẩm ID {$item['product_id']}");
+                throw new Exception("Không tìm thấy sản phẩm");
             }
 
-            if ($product["quantity"] < $item["quantity"]) {
+            if ($product['quantity'] < $item['quantity']) {
                 throw new Exception("Sản phẩm ID {$item['product_id']} không đủ tồn kho");
             }
 
-            // Trừ kho + cập nhật ngày gần nhất
+            // trừ kho
             $stmtUpdateStock = $conn->prepare("
                 UPDATE products
-                SET quantity = quantity - ?,
-                    last_update = NOW()
+                SET quantity = quantity - ?
                 WHERE id = ?
             ");
-
             $stmtUpdateStock->execute([
-                $item["quantity"],
-                $item["product_id"]
+                $item['quantity'],
+                $item['product_id']
             ]);
         }
     }
+
+    // update trạng thái đơn
+    $stmtUpdate = $conn->prepare("
+        UPDATE orders
+        SET status = ?
+        WHERE id = ?
+    ");
+    $stmtUpdate->execute([$newStatus, $id]);
 
     $conn->commit();
 

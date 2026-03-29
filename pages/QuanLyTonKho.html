@@ -45,9 +45,6 @@
           <label>Thời điểm:</label>
           <input type="date" id="dateFilter">
 
-          <label>Ngưỡng cảnh báo:</label>
-          <input type="number" id="warningLimit" min="1" value="5">
-
           <button id="btnSearchStock">Tra cứu</button>
         </div>
 
@@ -73,8 +70,8 @@
       <hr>
 
       <!-- THỐNG KÊ NHẬP XUẤT -->
-      <section class="report-section">
-        <h2>Báo cáo nhập – xuất – tồn</h2>
+      <section class="report-section" style="margin-top:30px;">
+        <h2>Báo cáo nhập – xuất</h2>
 
         <div class="form-group">
           <label>Tên sản phẩm:</label>
@@ -96,13 +93,38 @@
               <th>Tên sản phẩm</th>
               <th>Số lượng nhập</th>
               <th>Số lượng xuất</th>
-              <th>Số lượng tồn</th>
             </tr>
           </thead>
           <tbody id="reportTable">
             <tr>
               <td colspan="5">Chưa có dữ liệu</td>
             </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="stock-section" style="margin-top:30px;">
+        <h2>Sản phẩm cảnh báo tồn kho</h2>
+
+        <div class="form-group">
+          <label>Ngưỡng cảnh báo:</label>
+          <input type="number" id="warningLimit" min="1" value="5">
+          <button id="btnSearchWarningStock">Tra cứu</button>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Mã SP</th>
+              <th>Tên sản phẩm</th>
+              <th>Loại</th>
+              <th>Tồn kho</th>
+              <th>Ngày nhập gần nhất</th>
+              <th>Trạng thái</th>
+            </tr>
+          </thead>
+          <tbody id="warningStockTable">
+            <tr><td colspan="6">Chưa có dữ liệu</td></tr>
           </tbody>
         </table>
       </section>

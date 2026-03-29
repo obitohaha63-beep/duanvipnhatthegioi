@@ -13,24 +13,19 @@ try {
             p.id,
             p.name,
 
-            COALESCE((
-                SELECT SUM(poi.quantity)
-                FROM purchase_order_items poi
-                JOIN purchase_orders po ON poi.purchase_order_id = po.id
-                WHERE poi.product_id = p.id
-                AND po.order_date BETWEEN :fromDate AND :toDate
-            ),0) AS imported,
+            COALESCE((SELECT SUM(poi.quantity)
+                      FROM purchase_order_items poi
+                      JOIN purchase_orders po ON poi.purchase_order_id = po.id
+                      WHERE poi.product_id = p.id
+                        AND po.order_date BETWEEN :fromDate AND :toDate),0) AS imported,
 
-            COALESCE((
-                SELECT SUM(oi.quantity)
-                FROM order_items oi
-                JOIN orders o ON oi.order_id = o.id
-                WHERE oi.product_id = p.id
-                AND o.order_date BETWEEN :fromDate AND :toDate
-            ),0) AS exported,
+            COALESCE((SELECT SUM(oi.quantity)
+                      FROM order_items oi
+                      JOIN orders o ON oi.order_id = o.id
+                      WHERE oi.product_id = p.id
+                        AND o.order_date BETWEEN :fromDate AND :toDate),0) AS exported,
 
             p.quantity AS stock
-
         FROM products p
         WHERE p.name LIKE :keyword
     ";
