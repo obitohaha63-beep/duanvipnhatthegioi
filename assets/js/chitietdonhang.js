@@ -37,7 +37,7 @@ async function loadOrderDetail(orderId) {
 
     document.getElementById("customerName").value = order.customer_name;
     document.getElementById("orderDate").value = formatDate(order.order_date);
-    document.getElementById("address").value = order.delivery_address;
+document.getElementById("address").value = order.full_address;
     document.getElementById("phone").value = order.phone;
 
     document.getElementById("statusSelect").value = order.status;
