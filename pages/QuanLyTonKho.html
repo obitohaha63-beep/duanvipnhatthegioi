@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="../assets/css/DonhangTonkho.css">
 </head>
 <body>
+
 <div class="container">
 
   <!-- Sidebar -->
@@ -18,90 +19,91 @@
       <li><a href="NhaphangGiaban.html">Quản lý nhập hàng</a></li>
       <li><a href="NhaphangGiaban2.html">Quản lý giá bán</a></li>
       <li><a href="QuanLyDonHang.html">Quản lý đơn đặt hàng</a></li>
-      <li><a href="QuanLyTonKho.html"
-        style="background:#2a2a3b; color:#00bfff; border-left:4px solid #00bfff;">
-        Quản lý tồn kho
-      </a></li>
+      <li>
+        <a href="QuanLyTonKho.html"
+           style="background:#2a2a3b;color:#00bfff;border-left:4px solid #00bfff;">
+          Quản lý tồn kho
+        </a>
+      </li>
     </ul>
   </nav>
 
-  <!-- Nội dung -->
+  <!-- Content -->
   <main class="content">
     <div class="card">
-      <h2>Quản lý tồn kho</h2>
 
-      <div class="form-group">
-        <label>Loại sản phẩm:</label>
-        <select>
-          <option>Tất cả</option>
-          <option>Vợt cầu lông</option>
-          <option>Giày cầu lông</option>
-          <option>Ống cầu lông</option>
-        </select>
+      <!-- TRA CỨU TỒN KHO -->
+      <section class="stock-section">
+        <h2>Tra cứu tồn kho sản phẩm</h2>
 
-        <label>Thời điểm:</label>
-        <input type="date">
+        <div class="form-group">
+          <label>Loại sản phẩm:</label>
+          <select id="categoryFilter">
+            <option value="">Tất cả loại sản phẩm</option>
+          </select>
 
-        <button>Tra cứu</button>
-      </div>
+          <label>Thời điểm:</label>
+          <input type="date" id="dateFilter">
 
-      <table>
-        <tr>
-          <th>Mã SP</th>
-          <th>Tên sản phẩm</th>
-          <th>Loại</th>
-          <th>Tồn kho</th>
-          <th>Ngày nhập</th>
-          <th>Trạng thái</th>
-        </tr>
+          <label>Ngưỡng cảnh báo:</label>
+          <input type="number" id="warningLimit" min="1" value="5">
 
-        <tr>
-          <td>SP001</td>
-          <td>Yonex Arcsaber 11 Pro Chính Hãng</td>
-          <td>Vợt cầu lông</td>
-          <td>5</td>
-          <td>19-11-2025</td>
-          <td><span class="alert">Sắp hết hàng!</span></td>
-        </tr>
-
-        <tr>
-          <td>SP002</td>
-          <td>Victor A550 LS</td>
-          <td>Giày cầu lông</td>
-          <td>20</td>
-          <td>19-04-2025</td>
-          <td>Đủ hàng</td>
-        </tr>
-      </table>
-
-      <section>
-        <h2>Tra cứu nhập – xuất – tồn</h2>
-
-        <label>Tên sản phẩm:</label>
-        <input type="text">
-
-        <label>Từ ngày:</label>
-        <input type="date">
-
-        <label>Đến ngày:</label>
-        <input type="date">
+          <button id="btnSearchStock">Tra cứu</button>
+        </div>
 
         <table>
-          <tr>
-            <th>Mã sản phẩm</th>
-            <th>Tên sản phẩm</th>
-            <th>Số lượng nhập</th>
-            <th>Số lượng xuất</th>
-            <th>Số lượng tồn</th>
-          </tr>
+          <thead>
+            <tr>
+              <th>Mã SP</th>
+              <th>Tên sản phẩm</th>
+              <th>Loại</th>
+              <th>Tồn kho</th>
+              <th>Ngày nhập gần nhất</th>
+              <th>Trạng thái</th>
+            </tr>
+          </thead>
+          <tbody id="stockTable">
+            <tr>
+              <td colspan="6">Chưa có dữ liệu</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
 
-          <tr>
-            <td>SP001</td>
-            <td>Yonex Arcsaber 11 Pro Chính Hãng</td>
-            <td>20</td>
-            <td>8</td>
-            <td>12</td>
-          </tr>
+      <hr>
+
+      <!-- THỐNG KÊ NHẬP XUẤT -->
+      <section class="report-section">
+        <h2>Báo cáo nhập – xuất – tồn</h2>
+
+        <div class="form-group">
+          <label>Tên sản phẩm:</label>
+          <input type="text" id="keyword" placeholder="Nhập tên sản phẩm">
+
+          <label>Từ ngày:</label>
+          <input type="date" id="fromDate">
+
+          <label>Đến ngày:</label>
+          <input type="date" id="toDate">
+
+          <button id="btnReport">Thống kê</button>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Mã SP</th>
+              <th>Tên sản phẩm</th>
+              <th>Số lượng nhập</th>
+              <th>Số lượng xuất</th>
+              <th>Số lượng tồn</th>
+            </tr>
+          </thead>
+          <tbody id="reportTable">
+            <tr>
+              <td colspan="5">Chưa có dữ liệu</td>
+            </tr>
+          </tbody>
         </table>
       </section>
 
@@ -109,5 +111,8 @@
   </main>
 
 </div>
+
+<script src="../assets/js/QuanLyTonKho.js"></script>
+
 </body>
 </html>

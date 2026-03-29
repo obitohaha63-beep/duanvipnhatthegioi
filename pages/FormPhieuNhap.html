@@ -10,7 +10,6 @@
 </head>
 <body>
   <div class="container">
-    <!-- Menu bên trái -->
     <nav class="sidebar">
       <h2 class="logo">Admin</h2>
       <ul class="menu">
@@ -19,46 +18,38 @@
         <li><a href="QuanLySanPham.html">Quản lý sản phẩm</a></li>
         <li><a href="NhaphangGiaban.html" style="background:#2a2a3b; color:#00bfff; border-left:4px solid #00bfff;">Quản lý nhập hàng</a></li>
         <li><a href="NhaphangGiaban2.html">Quản lý giá bán</a></li>
-        <li><a href="QuanLyDonHang.html">
-          Quản lý đơn đặt hàng
-        </a></li>
+        <li><a href="QuanLyDonHang.html">Quản lý đơn đặt hàng</a></li>
         <li><a href="QuanLyTonKho.html">Quản lý tồn kho</a></li>
       </ul>
     </nav>
 
     <main class="content">
-                <!-- FORM thêm / sửa sản phẩm -->
-        <div class="form-container">
-          <h3>Tạo phiếu nhập hàng</h3>
+      <div class="form-container">
+        <h3>Tạo phiếu nhập hàng</h3>
+        <form id="form-phieunhap">
 
-          <form class="form-giaban">
+          <div class="form-row">
+            <label for="ngay-nhap">Ngày nhập</label>
+            <input type="datetime-local" id="ngay-nhap" required>
+          </div>
 
-            <!-- Dòng 1 -->
-            <div class="form-row">
-              <label for="ngay-nhap">Ngày nhập</label>
-              <input type="datetime-local" id="ngay-nhap" required>
-            </div>
+          <div class="form-row">
+            <label for="so-san-pham">Số sản phẩm muốn thêm</label>
+            <input type="number" id="so-san-pham" min="1" placeholder="Nhập số sản phẩm">
+          </div>
 
-            <!-- Dòng 2 -->
-            <div class="form-row">
-              <label for="so-san-pham">Số sản phẩm muốn thêm</label>
-              <input type="number" id="so-san-pham" min="1" placeholder="Nhập số sản phẩm">
-            </div>
+          <div id="product-list"></div>
 
-            <!-- Nơi sinh bảng -->
-            <div id="product-list"></div>
+          <div class="form-buttons">
+            <button type="button" id="btn-complete" class="btn btn-save">Hoàn thành phiếu nhập</button>
+            <button type="button" class="btn btn-cancel" onclick="location.href='NhapHangGiaBan.html'">Hủy</button>
+          </div>
 
-            <div class="form-buttons">
-              <button id="btn-complete" class="btn btn-save">Hoàn thành phiếu nhập</button>
-              <button type="button" class="btn btn-cancel" onclick="location.href='NhapHangGiaBan.html'">Hủy</button>
-            </div>
+        </form>
+      </div>
+    </main>
+  </div>
 
-          </form>
-        </div>
-
-    </main>   
-  </div>  
-<script src="../assets/js/addphieunhap.js"></script> 
-<script src="../assets/js/complete_phieunhap.js"></script>
+  <script src="../assets/js/addphieunhap.js"></script>
 </body>
 </html>

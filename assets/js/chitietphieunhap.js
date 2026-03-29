@@ -21,9 +21,7 @@ async function loadPurchaseOrder() {
     const items = result.items;
 
     document.getElementById("order-id").value = order.id;
-
-    // sửa format date
-    document.getElementById("order-date").value = order.order_date.split(" ")[0];
+    document.getElementById("order-date").value = order.order_date.replace(" ", "T").slice(0, 16);
 
     const tbody = document.getElementById("product-table-body");
     tbody.innerHTML = "";
@@ -34,10 +32,10 @@ async function loadPurchaseOrder() {
       const qty = Number(item.quantity);
       const price = Number(item.import_price);
       const amount = qty * price;
-
       total += amount;
 
       const row = document.createElement("tr");
+      row.dataset.productId = item.product_id;
 
       row.innerHTML = `
         <td>${item.product_name}</td>
@@ -58,7 +56,7 @@ async function loadPurchaseOrder() {
     }
 
   } catch (error) {
-    console.error("Lỗi load chi tiết phiếu:", error);
+    console.error(error);
   }
 }
 
@@ -68,7 +66,6 @@ function enableEdit() {
   document.querySelectorAll("#product-table-body tr").forEach(row => {
     row.cells[1].contentEditable = true;
     row.cells[2].contentEditable = true;
-
 
     row.addEventListener("input", () => {
       recalculateRow(row);
@@ -80,17 +77,14 @@ function enableEdit() {
 function recalculateRow(row) {
   const qty = Number(row.cells[1].innerText.trim()) || 0;
   const price = Number(row.cells[2].innerText.trim()) || 0;
-
-  const amount = qty * price;
-
-  row.cells[4].innerText = amount.toLocaleString("vi-VN");
+  row.cells[4].innerText = (qty * price).toLocaleString("vi-VN");
 }
 
 function updateTotal() {
   let total = 0;
 
   document.querySelectorAll("#product-table-body tr").forEach(row => {
-    const amount = Number(row.cells[4].innerText.replace(/\./g, "").replace(/,/g, "")) || 0;
+    const amount = Number(row.cells[4].innerText.replace(/\./g, ""));
     total += amount;
   });
 
@@ -99,107 +93,52 @@ function updateTotal() {
 
 async function completePurchaseOrder() {
   const order_date = document.getElementById("order-date").value;
-
   const items = [];
 
   document.querySelectorAll("#product-table-body tr").forEach(row => {
     items.push({
-      product_name: row.cells[0].innerText.trim(),
+      product_id: Number(row.dataset.productId),
       quantity: Number(row.cells[1].innerText.trim()),
       import_price: Number(row.cells[2].innerText.trim())
     });
   });
 
-  try {
-    const res = await fetch("../assets/php/complete_purchase_order.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        id: orderId,
-        order_date,
-        items
-      })
-    });
+  const res = await fetch("../assets/php/complete_purchase_order.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      id: orderId,
+      order_date,
+      items
+    })
+  });
 
-    const result = await res.json();
+  const result = await res.json();
 
-    alert(result.message);
+  alert(result.message);
 
-    if (result.success) {
-      disableButtons();
-      disableEditing();
-    }
-
-  } catch (error) {
-    console.error("Lỗi hoàn tất phiếu:", error);
+  if (result.success) {
+    disableButtons();
+    disableEditing();
+    loadPurchaseOrder();
   }
 }
 
 function disableButtons() {
-  const editBtn = document.getElementById("edit-btn");
-  const confirmBtn = document.getElementById("confirm-btn");
-
-  editBtn.disabled = true;
-  confirmBtn.disabled = true;
-
-  editBtn.style.opacity = "0.5";
-  confirmBtn.style.opacity = "0.5";
-
-  editBtn.style.cursor = "not-allowed";
-  confirmBtn.style.cursor = "not-allowed";
+  ["edit-btn", "confirm-btn"].forEach(id => {
+    const btn = document.getElementById(id);
+    btn.disabled = true;
+    btn.style.opacity = "0.5";
+  });
 }
 
 function disableEditing() {
   document.querySelectorAll("#product-table-body tr").forEach(row => {
     row.cells[1].contentEditable = false;
     row.cells[2].contentEditable = false;
-
-    row.cells[1].style.background = "";
-    row.cells[2].style.background = "";
   });
 
   document.getElementById("order-date").setAttribute("readonly", true);
-}
-
-
-async function completePurchaseOrder() {
-  const order_date = document.getElementById("order-date").value;
-
-  const items = [];
-
-  document.querySelectorAll("#product-table-body tr").forEach(row => {
-    items.push({
-      product_name: row.cells[0].innerText.trim(),
-      quantity: Number(row.cells[1].innerText.trim()),
-      import_price: Number(row.cells[2].innerText.trim())
-    });
-  });
-
-  try {
-    const res = await fetch("../assets/php/complete_purchase_order.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        id: orderId,
-        order_date,
-        items
-      })
-    });
-
-    const result = await res.json();
-
-    alert(result.message);
-
-    if (result.success) {
-      disableButtons();
-      disableEditing();
-    }
-
-  } catch (error) {
-    console.error(error);
-  }
 }

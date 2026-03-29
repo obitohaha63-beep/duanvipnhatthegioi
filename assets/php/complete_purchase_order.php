@@ -1,28 +1,126 @@
 <?php
-header('Content-Type: application/json');
-try {
-    $conn = new PDO("mysql:host=localhost;dbname=quebshop1;charset=utf8mb4", "root", "");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+header('Content-Type: application/json; charset=utf-8');
+include __DIR__ . '/db.php';
 
-    if (!isset($_GET['category_id'])) {
-        echo json_encode([]);
-        exit;
+$data = json_decode(file_get_contents("php://input"), true);
+
+$id = $data['id'] ?? null;
+$order_date = $data['order_date'] ?? null;
+$items = $data['items'] ?? [];
+
+if (!$id || !$order_date || empty($items)) {
+    echo json_encode([
+        "success" => false,
+        "message" => "Dữ liệu không hợp lệ"
+    ]);
+    exit;
+}
+
+try {
+    $conn->beginTransaction();
+
+    // kiểm tra status
+    $check = $conn->prepare("
+        SELECT status
+        FROM purchase_orders
+        WHERE id = ?
+    ");
+    $check->execute([$id]);
+
+    $status = $check->fetchColumn();
+
+    if ($status === 'completed') {
+        throw new Exception("Phiếu nhập đã hoàn tất trước đó");
     }
 
-    $category_id = $_GET['category_id'];
+    foreach ($items as $item) {
 
+        $productId = $item['product_id'];
+        $qty = $item['quantity'];
+        $price = $item['import_price'];
+
+        // chỉ đếm completed cũ, loại current phiếu
+        $countStmt = $conn->prepare("
+            SELECT COUNT(*)
+            FROM purchase_order_items poi
+            JOIN purchase_orders po ON poi.purchase_order_id = po.id
+            WHERE poi.product_id = ?
+            AND po.status = 'completed'
+            AND po.id <> ?
+        ");
+
+        $countStmt->execute([$productId, $id]);
+
+        $importTimes = $countStmt->fetchColumn() + 1;
+
+        // update item
+        $stmtItem = $conn->prepare("
+            UPDATE purchase_order_items
+            SET quantity = ?, import_price = ?, number_import_times = ?
+            WHERE purchase_order_id = ? AND product_id = ?
+        ");
+
+        $stmtItem->execute([
+            $qty,
+            $price,
+            $importTimes,
+            $id,
+            $productId
+        ]);
+
+        // update tồn kho
+        $stmtOld = $conn->prepare("
+            SELECT quantity, cost_price
+            FROM products
+            WHERE id = ?
+        ");
+        $stmtOld->execute([$productId]);
+
+        $old = $stmtOld->fetch(PDO::FETCH_ASSOC);
+
+        $oldQty = (float)$old['quantity'];
+        $oldCost = (float)$old['cost_price'];
+
+        $newCost = ($oldQty + $qty) > 0
+            ? (($oldQty * $oldCost) + ($qty * $price)) / ($oldQty + $qty)
+            : $price;
+
+        $stmtProduct = $conn->prepare("
+            UPDATE products
+            SET quantity = quantity + ?, cost_price = ?
+            WHERE id = ?
+        ");
+
+        $stmtProduct->execute([
+            $qty,
+            $newCost,
+            $productId
+        ]);
+    }
+
+    // update status sau cùng
     $stmt = $conn->prepare("
-        SELECT id, name 
-        FROM products 
-        WHERE category_id = :category_id
-        AND status = 'visible'
+        UPDATE purchase_orders
+        SET order_date = ?, status = 'completed'
+        WHERE id = ?
     ");
-    $stmt->execute(['category_id' => $category_id]);
-    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    echo json_encode($products);
+    $stmt->execute([$order_date, $id]);
 
-} catch (PDOException $e) {
-    echo json_encode(["error" => $e->getMessage()]);
+    $conn->commit();
+
+    echo json_encode([
+        "success" => true,
+        "message" => "Hoàn tất phiếu nhập thành công"
+    ]);
+
+} catch (Exception $e) {
+
+    $conn->rollBack();
+
+    echo json_encode([
+        "success" => false,
+        "message" => $e->getMessage()
+    ]);
 }
 ?>
