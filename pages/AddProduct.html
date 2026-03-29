@@ -35,7 +35,7 @@
       <button onclick="history.back()" class="btn-secondary">← Quay lại</button>
     </div>
 
-    <form id="addProductForm" class="form-card">
+    <form id="addProductForm" enctype="multipart/form-data">
 
       <div class="form-group">
         <label>Danh mục</label>
@@ -63,7 +63,7 @@
         <input type="number" name="quantity" value="0">
 
         <label>Ảnh sản phẩm</label>
-        <input type="file" id="imageInput" accept="image/*">
+        <input type="file" id="imageInput" name="image">
         <img id="previewImage" class="preview-img" src="" alt="Preview">
 
         <label>Mô tả</label>

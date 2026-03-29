@@ -2,7 +2,7 @@
 header("Content-Type: application/json");
 require "db.php";
 
-$id = $_GET['code'] ?? 0;
+$id = $_GET['id'] ?? 0;
 
 if (!$id) {
     echo json_encode(["error" => "Thiếu ID"]);
@@ -32,13 +32,18 @@ $data = [
     "id" => $product["id"],
     "name" => $product["name"],
     "description" => $product["description"],
-    "image" => "../assets/images/" . $product["image_url"],
+    "image_url" => $product["image_url"],
     "color" => $product["color"],
-    "brand_name" => $product["brand"],
-    "category_name" => $product["category_name"],
-    "selling_price" => $product["selling_price"],
-    "product_code" => $product["id"],
-     "size" => $product["size"]
+    "brand" => $product["brand"],
+    "category_id" => $product["category_id"],
+    "cost_price" => $product["cost_price"],
+    "profit_rate" => $product["profit_rate"],
+    "quantity" => $product["quantity"],
+    "status" => $product["status"],
+    "size" => $product["size"]
 ];
 
-echo json_encode($data);
+echo json_encode([
+    "success" => true,
+    "product" => $data
+]);
