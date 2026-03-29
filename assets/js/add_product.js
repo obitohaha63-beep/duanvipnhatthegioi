@@ -2,8 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const form = document.getElementById("addProductForm");
     const categorySelect = document.getElementById("categorySelect");
+    const previewImage = document.getElementById("previewImage");
+    const imageInput = document.getElementById("imageInput");
 
-    // Load danh mục từ DB
+    // Load danh mục
     fetch("../assets/php/get_categories.php")
         .then(res => res.json())
         .then(data => {
@@ -11,27 +13,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 data.data.forEach(cat => {
                     const option = document.createElement("option");
                     option.value = cat.id;
-                    option.text = cat.name;
+                    option.textContent = cat.name;
                     categorySelect.appendChild(option);
                 });
             }
         });
 
     // Preview ảnh
-    document.getElementById('imageInput').addEventListener('change', function(e){
+    imageInput.addEventListener("change", function(e){
         const file = e.target.files[0];
         if(file){
-            const url = URL.createObjectURL(file);
-            document.getElementById('previewImage').src = url;
+            previewImage.src = URL.createObjectURL(file);
         }
     });
 
+    // Submit form
     form.addEventListener("submit", (e)=>{
         e.preventDefault();
+
         const formData = new FormData(form);
-        const fileInput = document.getElementById("imageInput");
-        if(fileInput.files.length > 0){
-            formData.append('image', fileInput.files[0]);
+
+        // 🔥 DEBUG
+        for (let pair of formData.entries()) {
+            console.log(pair[0], pair[1]);
         }
 
         fetch("../assets/php/add_product.php", {
@@ -40,17 +44,19 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(res => res.json())
         .then(data => {
+            console.log("Response:", data);
+
             if(data.success){
                 alert(data.message);
                 form.reset();
-                document.getElementById('previewImage').src = '';
+                previewImage.src = "";
             } else {
                 alert("Lỗi: " + data.message);
             }
         })
         .catch(err=>{
             console.error(err);
-            alert("Đã có lỗi xảy ra khi kết nối server.");
+            alert("Lỗi kết nối server");
         });
     });
 });

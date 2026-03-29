@@ -1,62 +1,61 @@
 <?php
 header("Content-Type: application/json");
-require "db.php"; 
+require "db.php";
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    echo json_encode(['success' => false, 'message' => 'Phải dùng POST']);
-    exit;
-}
+$id = $_POST['productId'] ?? 0;
 
-// Lấy dữ liệu
-$id = $_POST['id'] ?? '';
-$category_id = $_POST['category_id'] ?? '';
-$brand = $_POST['brand'] ?? '';
-$name = $_POST['name'] ?? '';
-$color = $_POST['color'] ?? '';
-$size = $_POST['size'] ?? '';
-$cost_price = $_POST['cost_price'] ?? 0;
-$profit_rate = $_POST['profit_rate'] ?? 0;
-$quantity = $_POST['quantity'] ?? 0;
-$description = $_POST['description'] ?? '';
-$status = $_POST['status'] ?? 'visible';
+$data = [
+    ':name' => $_POST['name'] ?? '',
+    ':brand' => $_POST['brand'] ?? '',
+    ':category_id' => $_POST['category_id'] ?? 0,
+    ':color' => $_POST['color'] ?? '',
+    ':size' => $_POST['size'] ?? '',
+    ':cost' => $_POST['cost_price'] ?? 0,
+    ':profit' => $_POST['profit_rate'] ?? 0,
+    ':quantity' => $_POST['quantity'] ?? 0,
+    ':description' => $_POST['description'] ?? '',
+    ':status' => $_POST['status'] ?? 'visible',
+    ':id' => $id
+];
 
-if (!$id) {
-    echo json_encode(['success' => false, 'message' => 'Thiếu ID sản phẩm']);
-    exit;
-}
-
-// Xử lý ảnh upload
 $image_url = null;
-if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-    $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-    $targetDir = "../assets/img/";
-    $fileName = 'product_' . time() . '.' . $ext;
-    $targetFile = $targetDir . $fileName;
 
-    if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-        $image_url = 'assets/img/' . $fileName;
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Không lưu được ảnh']);
-        exit;
+// upload ảnh
+if(isset($_FILES['image']) && $_FILES['image']['error'] == 0){
+    $fileName = time() . "_" . basename($_FILES["image"]["name"]);
+    $target = "../uploads/" . $fileName;
+
+    if(move_uploaded_file($_FILES["image"]["tmp_name"], $target)){
+        $image_url = "assets/uploads/" . $fileName;
     }
 }
 
 try {
-    $sql = "UPDATE products SET category_id=?, brand=?, name=?, color=?, size=?, cost_price=?, profit_rate=?, quantity=?, description=?, status=?";
-    $params = [$category_id, $brand, $name, $color, $size, $cost_price, $profit_rate, $quantity, $description, $status];
+    if($image_url){
+        $sql = "UPDATE products SET 
+            name=:name, brand=:brand, category_id=:category_id, color=:color, size=:size,
+            cost_price=:cost, profit_rate=:profit, quantity=:quantity,
+            description=:description, status=:status, image_url=:image
+            WHERE id=:id";
 
-    if ($image_url) {
-        $sql .= ", image_url=?";
-        $params[] = $image_url;
+        $data[':image'] = $image_url;
+
+    } else {
+        $sql = "UPDATE products SET 
+            name=:name, brand=:brand, category_id=:category_id, color=:color, size=:size,
+            cost_price=:cost, profit_rate=:profit, quantity=:quantity,
+            description=:description, status=:status
+            WHERE id=:id";
     }
 
-    $sql .= " WHERE id=?";
-    $params[] = $id;
-
     $stmt = $conn->prepare($sql);
-    $stmt->execute($params);
+    $stmt->execute($data);
 
-    echo json_encode(['success' => true, 'message' => 'Cập nhật sản phẩm thành công']);
-} catch (Exception $e) {
-    echo json_encode(['success' => false, 'message' => 'Lỗi cập nhật sản phẩm']);
+    echo json_encode(["success"=>true,"message"=>"Cập nhật thành công"]);
+
+} catch(PDOException $e){
+    echo json_encode([
+        "success"=>false,
+        "message"=>"Lỗi: ".$e->getMessage()
+    ]);
 }

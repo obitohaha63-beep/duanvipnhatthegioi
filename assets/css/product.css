@@ -396,18 +396,13 @@ header{
 }
 
 /* ====== IMAGE ====== */
-.product {
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid #eee;
+.product img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* giữ nguyên tỉ lệ */
 }
 
-.main-image {
-  width: 100%;
-  height: 420px;
-  object-fit: cover;
-  transition: 0.3s;
-}
+
 
 .main-image:hover {
   transform: scale(1.05);
