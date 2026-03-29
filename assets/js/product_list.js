@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
           tr.innerHTML = `
             <td>${p.id}</td>
 <td>
-    <img src="../${p.image_url || 'assets/img/placeholder.png'}?t=${Date.now()}" style="max-width:50px;">
+    <img src="../${p.image_url}?t=${Date.now()}" style="max-width:50px;">
   </td>
             <td>${p.name}</td>
             <td>${p.category}</td>

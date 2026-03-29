@@ -24,7 +24,7 @@ html += `
 <div class="box">
   <div class="container-anh">
     <div class="sanpham">
-      <a href="SanPham.html?code=${p.product_code}">
+      <a href="SanPham.html?id=${p.id}">
         <img class="anh-arcsaber" src="${p.image}">
         <span class="text-arcsaber">${p.name}</span>
         <span class="gia">${Number(p.selling_price).toLocaleString("vi-VN")} đ</span>

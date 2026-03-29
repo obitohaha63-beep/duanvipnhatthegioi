@@ -1,12 +1,12 @@
 const urlParams = new URLSearchParams(window.location.search)
-const code = urlParams.get("code")
+const id = urlParams.get("id")
 
-if (!code) {
+if (!id) {
     alert("Không có sản phẩm")
 }
 
-// 🔥 gọi API
-fetch(`../assets/php/get_product_detail.php?code=${code}`)
+// 🔥 gọi API đúng param id
+fetch(`../assets/php/get_product_detail.php?id=${id}`)
 .then(async res => {
     const text = await res.text()
     try {
@@ -16,29 +16,31 @@ fetch(`../assets/php/get_product_detail.php?code=${code}`)
         throw new Error("API lỗi")
     }
 })
-.then(p => {
+.then(res => {
 
-if (p.error) {
+if (!res.success) {
     document.querySelector(".bigcontent").innerHTML = "<h2>Không tìm thấy sản phẩm</h2>"
     return
 }
 
+const p = res.product
+
 // 🔥 render HTML
 const html = `
 <div class="product">
-  <img class="main-image" src="${p.image}" alt="Ảnh lớn">
+ <img src="../${p.image_url || 'assets/img/placeholder.png'}?t=${Date.now()}" alt="Ảnh lớn">
 </div>
 
 <div class="aboutproduct">
   <p class="racket-name">${p.name}</p>
 
   <pre class="trademark1">
-Thương hiệu: <a href="#">${p.brand_name}</a> | 
+Thương hiệu: <a href="#">${p.brand}</a> | 
 Loại: <a href="#">${p.category_name}</a>
   </pre>
 
   <pre class="trademark1">
-Mã sản phẩm: <a href="#">${p.product_code}</a>
+ID sản phẩm: <a href="#">${p.id}</a>
   </pre>
 
   <p class="value">${Number(p.selling_price).toLocaleString("vi-VN")} đ</p>
@@ -94,19 +96,15 @@ let selectedSize = null;
 let selectedColor = null;
 
 document.addEventListener("click", function(e){
-  // Chọn size
   if(e.target.classList.contains("size-item")){
     document.querySelectorAll(".size-item").forEach(el => el.classList.remove("active"));
     e.target.classList.add("active");
     selectedSize = e.target.innerText;
-    console.log("Size đã chọn:", selectedSize);
   }
 
-  // Chọn color
   if(e.target.classList.contains("color-item")){
     document.querySelectorAll(".color-item").forEach(el => el.classList.remove("active"));
     e.target.classList.add("active");
     selectedColor = e.target.dataset.color;
-    console.log("Màu đã chọn:", selectedColor);
   }
 })
