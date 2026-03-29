@@ -35,6 +35,7 @@ try {
     // Lấy chi tiết sản phẩm
     $stmt = $conn->prepare("
         SELECT 
+            p.id AS product_id,    
             p.name AS product_name,
             poi.quantity,
             poi.import_price,

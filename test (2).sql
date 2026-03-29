@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 28, 2026 lúc 05:27 PM
+-- Thời gian đã tạo: Th3 29, 2026 lúc 07:03 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -111,7 +111,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `description`, `category_id`, `color`, `brand`, `size`, `image_url`, `quantity`, `cost_price`, `profit_rate`, `status`, `created_at`, `number_import_times`) VALUES
-(1, 'Vợt cầu lông Lining Axforce 100', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'Black golden, Vàng golden', 'Lining', '3U,4U', 'astrox99pro.jpg', 8, 3500000.00, 25.00, 'visible', '2026-03-28 19:51:01', 1),
+(1, 'Vợt cầu lông Lining Axforce 100', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'Black golden, Vàng golden', 'Lining', '3U,4U', 'astrox99pro.jpg', 13, 3307692.31, 25.00, 'visible', '2026-03-28 19:51:01', 2),
 (2, 'Vợt cầu lông Lining Aeronaut 9000C', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'Black, Red', 'Li-Ning', '3U,4U', 'aeronaut_9000c.jpg', 6, 3000000.00, 30.00, 'visible', '2026-03-28 19:51:01', 1),
 (3, 'Vợt cầu lông Lining Aeronaut 7000C', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'Black, Orange', 'Li-Ning', '3U,4U', 'aeronaut_7000c.jpg', 5, 2800000.00, 20.00, 'visible', '2026-03-28 19:51:01', 1),
 (4, 'Vợt cầu lông Lining Turbo Charging 75', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'Red, Black', 'Li-Ning', '3U,4U', 'turbo_charging_75.jpg', 4, 2700000.00, 30.00, 'visible', '2026-03-28 19:51:01', 1),
@@ -137,7 +137,7 @@ INSERT INTO `products` (`id`, `name`, `description`, `category_id`, `color`, `br
 (24, 'Yonex Comfort Z3 Wide Mid', 'Thiết kế cổ cao bảo vệ toàn diện cổ chân', 2, 'Off White/Red', 'Yonex', '40-45', 'comfort_z3_mid.jpg', 0, 0.00, 20.00, 'visible', '2026-03-28 19:51:01', 0),
 (25, 'Yonex Cascade Accel 2026', 'Dòng giày tầm trung hỗ trợ lực bật nhảy tốt', 2, 'White/Sky Blue', 'Yonex', '37-44', 'cascade_accel_2026.jpg', 0, 0.00, 20.00, 'visible', '2026-03-28 19:51:01', 0),
 (26, 'Yonex Strider Flow 2026', 'Mẫu giày tập luyện chuyên nghiệp, bền bỉ', 2, 'Black/Blue', 'Yonex', '38-45', 'strider_flow_black.jpg', 0, 0.00, 20.00, 'visible', '2026-03-28 19:51:01', 0),
-(27, 'Yonex Power Cushion Infinity 2', 'Hệ thống điều chỉnh độ ôm 3D đỉnh cao', 2, 'Metallic Gold', 'Yonex', '40-44', 'infinity_2_gold.jpg', 0, 0.00, 20.00, 'visible', '2026-03-28 19:51:01', 0);
+(27, 'Yonex Power Cushion Infinity 2', 'Hệ thống điều chỉnh độ ôm 3D đỉnh cao', 2, 'Metallic Gold', 'Yonex', '40-44', 'infinity_2_gold.jpg', 10, 3000000.00, 20.00, 'visible', '2026-03-28 19:51:01', 1);
 
 -- --------------------------------------------------------
 
@@ -157,7 +157,9 @@ CREATE TABLE `purchase_orders` (
 --
 
 INSERT INTO `purchase_orders` (`id`, `order_date`, `supplier_name`, `status`) VALUES
-(2, '2026-03-27 14:30:00', 'Li-Ning Official', 'completed');
+(2, '2026-03-27 14:30:00', 'Li-Ning Official', 'completed'),
+(15, '2026-03-14 04:55:00', NULL, 'completed'),
+(16, '2026-03-10 04:59:00', NULL, 'completed');
 
 -- --------------------------------------------------------
 
@@ -184,7 +186,9 @@ INSERT INTO `purchase_order_items` (`id`, `purchase_order_id`, `product_id`, `qu
 (10, 2, 4, 4, 2700000.00),
 (11, 2, 5, 3, 3200000.00),
 (12, 2, 6, 7, 1800000.00),
-(13, 2, 7, 2, 3100000.00);
+(13, 2, 7, 2, 3100000.00),
+(27, 15, 1, 5, 3000000.00),
+(28, 16, 27, 10, 3000000.00);
 
 -- --------------------------------------------------------
 
@@ -315,13 +319,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT cho bảng `purchase_orders`
 --
 ALTER TABLE `purchase_orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT cho bảng `purchase_order_items`
 --
 ALTER TABLE `purchase_order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
