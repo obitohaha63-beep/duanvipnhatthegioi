@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Quản lý đơn đặt hàng</title>
   <link rel="stylesheet" href="../assets/css/DonhangTonkho.css">
-  <script src="../assets/js/chitietdonhang.js"></script>
 </head>
 <body>
 <div class="container">
@@ -18,10 +17,12 @@
       <li><a href="QuanLySanPham.html">Quản lý sản phẩm</a></li>
       <li><a href="NhaphangGiaban.html">Quản lý nhập hàng</a></li>
       <li><a href="NhaphangGiaban2.html">Quản lý giá bán</a></li>
-      <li><a href="QuanLyDonHang.html"
-        style="background:#2a2a3b; color:#00bfff; border-left:4px solid #00bfff;">
-        Quản lý đơn đặt hàng
-      </a></li>
+      <li>
+        <a href="QuanLyDonHang.html"
+           style="background:#2a2a3b; color:#00bfff; border-left:4px solid #00bfff;">
+          Quản lý đơn đặt hàng
+        </a>
+      </li>
       <li><a href="QuanLyTonKho.html">Quản lý tồn kho</a></li>
     </ul>
   </nav>
@@ -33,54 +34,43 @@
 
       <div class="form-group">
         <label>Từ ngày:</label>
-        <input type="date">
+        <input type="date" id="fromDate">
 
         <label>Đến ngày:</label>
-        <input type="date">
+        <input type="date" id="toDate">
 
         <label>Tình trạng:</label>
-        <select>
-          <option>Tất cả</option>
-          <option>Mới đặt</option>
-          <option>Đã xử lý</option>
-          <option>Đã giao</option>
-          <option>Hủy</option>
+        <select id="statusFilter">
+          <option value="">Tất cả</option>
+          <option value="pending">Chưa xử lý</option>
+          <option value="confirmed">Xác nhận</option>
+          <option value="delivered">Đã giao thành công</option>
+          <option value="cancelled">Hủy đơn hàng</option>
         </select>
 
-        <button>Tra cứu</button>
+        <button id="searchBtn">Tra cứu</button>
       </div>
 
       <table>
-        <tr>
-          <th>Mã đơn</th>
-          <th>Khách hàng</th>
-          <th>Ngày đặt</th>
-          <th>Tổng tiền</th>
-          <th>Tình trạng</th>
-          <th>Chi tiết</th>
-        </tr>
-
-        <tr>
-          <td>DH001</td>
-          <td>Đinh Công Thành</td>
-          <td>01/11/2025</td>
-          <td>2.500.000₫</td>
-          <td><span class="result-box">Mới đặt</span></td>
-          <td><button onclick="xemchitiet('DH001')">Xem</button></td>
-        </tr>
-
-        <tr>
-          <td>DH002</td>
-          <td>Trần Huỳnh Phát</td>
-          <td>02/11/2025</td>
-          <td>1.800.000₫</td>
-          <td><span class="result-box">Đã giao</span></td>
-          <td><button onclick="xemchitiet('DH002')">Xem</button></td>
-        </tr>
+        <thead>
+          <tr>
+            <th>Mã đơn</th>
+            <th>Khách hàng</th>
+            <th>Ngày đặt</th>
+            <th>Tổng tiền</th>
+            <th>Tình trạng</th>
+            <th>Chi tiết</th>
+          </tr>
+        </thead>
+        <tbody id="orderTableBody">
+        </tbody>
       </table>
+
     </div>
   </main>
 
 </div>
+
+<script src="../assets/js/QuanLyDonHang.js"></script>
 </body>
 </html>

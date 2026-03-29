@@ -3,9 +3,10 @@ header('Content-Type: application/json; charset=utf-8');
 $response = ['success' => false, 'message' => ''];
 
 try {
-    include __DIR__ . '/db.php'; // giữ kết nối hiện tại
+    include __DIR__ . '/db.php';
 
     $input = json_decode(file_get_contents("php://input"), true);
+
     $ngayNhap = $input['ngay_nhap'] ?? '';
     $products = $input['products'] ?? [];
 
@@ -13,13 +14,22 @@ try {
         throw new Exception("Dữ liệu phiếu nhập không hợp lệ!");
     }
 
-    // 1. Thêm phiếu nhập hàng
-    $stmt = $conn->prepare("INSERT INTO purchase_orders (order_date) VALUES (?)");
+    // tạo phiếu nhập
+    $stmt = $conn->prepare("
+        INSERT INTO purchase_orders (order_date)
+        VALUES (?)
+    ");
     $stmt->execute([$ngayNhap]);
+
     $purchaseOrderId = $conn->lastInsertId();
 
-    // 2. Thêm chi tiết phiếu nhập hàng
-    $stmtItem = $conn->prepare("INSERT INTO purchase_order_items (purchase_order_id, product_id, quantity, import_price) VALUES (?, ?, ?, ?)");
+    // thêm chi tiết sản phẩm: number_import_times = 0
+    $stmtItem = $conn->prepare("
+        INSERT INTO purchase_order_items 
+        (purchase_order_id, product_id, quantity, import_price, number_import_times)
+        VALUES (?, ?, ?, ?, 0)
+    ");
+
     foreach ($products as $p) {
         $stmtItem->execute([
             $purchaseOrderId,

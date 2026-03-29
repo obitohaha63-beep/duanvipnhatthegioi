@@ -14,7 +14,6 @@ if (!$id) {
 
 try {
 
-    // Lấy phiếu nhập
     $stmt = $conn->prepare("
         SELECT id, order_date, status
         FROM purchase_orders
@@ -32,14 +31,13 @@ try {
         exit;
     }
 
-    // Lấy chi tiết sản phẩm
     $stmt = $conn->prepare("
         SELECT 
-            p.id AS product_id,    
+            p.id AS product_id,
             p.name AS product_name,
             poi.quantity,
             poi.import_price,
-            p.number_import_times
+            poi.number_import_times
         FROM purchase_order_items poi
         JOIN products p ON poi.product_id = p.id
         WHERE poi.purchase_order_id = ?
