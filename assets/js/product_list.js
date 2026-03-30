@@ -27,13 +27,38 @@ document.addEventListener("DOMContentLoaded", () => {
             <td>${p.description || ''}</td>
             <td>${p.created_at}</td>
             <td>
-            <a href="../pages/EditProduct.html?id=${p.id}" class="btn-primary">Sửa</a>
-          </td>
+  <div class="action-buttons">
+    <a href="../pages/EditProduct.html?id=${p.id}" class="btn-primary">Sửa</a>
+    <button class="btn-danger btn-delete" data-id="${p.id}" data-status="${p.status}">
+      Xóa
+    </button>
+  </div>
+</td>
+          
           `;
 
           table.appendChild(tr);
+          tr.querySelector('.btn-delete').addEventListener('click', () => {
+  const id = p.id;
+  const status = p.status;
+
+  if (!confirm("Bạn có chắc muốn xóa sản phẩm này?")) return;
+
+  fetch(`../assets/php/delete_product.php?id=${id}`)
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        alert(data.message);
+        location.reload();
+      } else {
+        alert(data.message);
+      }
+    });
+});
         });
       }
     });
 });
+
+
 

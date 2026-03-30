@@ -136,6 +136,51 @@ td img {
   color: red;
 }
 
+/* ====== ACTION BUTTONS ====== */
+.action-buttons {
+  display: flex;
+  gap: 8px;              /* khoảng cách giữa nút */
+  align-items: center;
+}
+
+/* đảm bảo nút không bị xuống dòng */
+.action-buttons a,
+.action-buttons button {
+  white-space: nowrap;
+}
+
+/* style nút sửa */
+.btn-primary {
+  background-color: #0F5E9F;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+/* style nút xóa */
+.btn-danger {
+  background-color: #e53935;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+/* hover cho đẹp */
+.btn-primary:hover {
+  background-color: #0c4a7c;
+}
+
+.btn-danger:hover {
+  background-color: #c62828;
+}
+
+
 /* ACTION */
 .action-btn {
   padding: 5px 10px;
