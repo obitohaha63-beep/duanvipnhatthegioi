@@ -564,6 +564,7 @@ header{
   line-height: 1.6;
 }
 
+
 /* ================= RIGHT SIDEBAR ================= */
 .sales-commitment {
   background: #fff;
@@ -599,34 +600,7 @@ header{
   width: 20px;
 }
 
-/* ================= RESPONSIVE ================= */
-@media (max-width: 1024px) {
-  .important-content {
-    grid-template-columns: 1fr;
-  }
 
-  .bigcontent {
-    grid-template-columns: 1fr;
-  }
-
-  .main-image {
-    height: 300px;
-  }
-}
-
-@media (max-width: 600px) {
-  .racket-name {
-    font-size: 18px;
-  }
-
-  .value {
-    font-size: 22px;
-  }
-
-  .main-image {
-    height: 250px;
-  }
-}
 
 
 
