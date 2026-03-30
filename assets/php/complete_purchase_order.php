@@ -39,21 +39,19 @@ try {
         $qty = $item['quantity'];
         $price = $item['import_price'];
 
-        // chỉ đếm completed cũ, loại current phiếu
+        // Lấy số lần nhập hiện tại (chỉ tính completed cũ)
         $countStmt = $conn->prepare("
             SELECT COUNT(*)
             FROM purchase_order_items poi
             JOIN purchase_orders po ON poi.purchase_order_id = po.id
             WHERE poi.product_id = ?
             AND po.status = 'completed'
-            AND po.id <> ?
         ");
-
-        $countStmt->execute([$productId, $id]);
+        $countStmt->execute([$productId]);
 
         $importTimes = $countStmt->fetchColumn() + 1;
 
-        // update item
+        // Cập nhật item
         $stmtItem = $conn->prepare("
             UPDATE purchase_order_items
             SET quantity = ?, import_price = ?, number_import_times = ?
@@ -68,7 +66,7 @@ try {
             $productId
         ]);
 
-        // update tồn kho
+        // cập nhật tồn kho và giá vốn
         $stmtOld = $conn->prepare("
             SELECT quantity, cost_price
             FROM products
