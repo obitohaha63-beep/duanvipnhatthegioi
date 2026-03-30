@@ -13,37 +13,33 @@
 <div class="container">
 
   <!-- SIDEBAR -->
-  <nav class="sidebar">
+ 
+    <nav class="sidebar">
     <h2 class="logo">Admin</h2>
 
     <ul class="menu">
-      <li><a href="dashboard.html">Dashboard</a></li>
-      <li><a href="QuanLyuser.html">Quản lý người dùng / Quản trị viên</a></li>
-      <li><a href="QuanLySanPham.html" style="background:#2a2a3b; color:#00bfff; border-left:4px solid #00bfff;">Quản lý sản phẩm</a></li>
-      <li><a href="NhaphangGiaban.html">Quản lý nhập hàng</a></li>
-      <li><a href="NhaphangGiaban2.html">Quản lý giá bán</a></li>
-      <li><a href="QuanLyDonHang.html"
-        >
-        Quản lý đơn đặt hàng
-      </a></li>
-      <li><a href="QuanLyTonKho.html">Quản lý tồn kho</a></li>
-    </ul>
+      <li><a href="../pages/dashboard.html">Dashboard</a></li>
+      <li><a href="../pages/QuanLyuser.html">Quản lý người dùng</a></li>
+      <li><a href="../pages/DanhMuc.html">Danh mục</a></li>
+      <li><a href="../pages/QuanLySanPham.html">Sản phẩm</a></li>
+      <li><a href="../pages/NhaphangGiaban.html">Quản lý nhập hàng</a></li> 
+      <li><a href="../pages/NhaphangGiaban2.html">Quản lý giá bán</a></li> 
+      <li><a href="../pages/QuanLyDonHang.html" > Quản lý đơn đặt hàng </a></li> 
+      <li><a href="../pages/QuanLyTonKho.html">Quản lý tồn kho</a></li> </ul>
   </nav>
 
   <!-- CONTENT -->
   <main class="content">
 
-    <!-- HEADER -->
     <div class="page-header">
       <h1>Quản lý sản phẩm</h1>
     </div>
 
-    <!-- CATEGORY -->
     <section class="card">
       <div class="card-header">
-        <h2>Danh mục</h2>
-        <button onclick="location.href='ThemSanPham.html'" class="btn-primary">
-          + Thêm loại
+        <h2>Danh sách sản phẩm</h2>
+        <button onclick="location.href='AddProduct.html'" class="btn-primary">
+          + Thêm sản phẩm
         </button>
       </div>
 
@@ -51,52 +47,30 @@
         <thead>
           <tr>
             <th>ID</th>
-            <th>Tên</th>
-
+            <th>Ảnh</th>
+            <th>Tên sản phẩm</th>
+            <th>Danh mục</th>
+            <th>Thương hiệu</th>
+            <th>Màu sắc</th>
+            <th>Kích thước</th>
+            <th>Giá nhập</th>
+            <th>% Lợi nhuận</th>
+            <th>Số lượng</th>
+            <th>Trạng thái</th>
+            <th>Mô tả</th>
+            <th>Ngày tạo</th>
+            <th>Thao tác</th>
           </tr>
         </thead>
-        <tbody id="categoryTable">
+        <tbody id="productTable">
           <!-- JS render -->
         </tbody>
       </table>
     </section>
 
-    <!-- PRODUCT -->
-<section class="card">
-  <div class="card-header">
-    <h2>Danh sách sản phẩm</h2>
-    <button onclick="location.href='AddProduct.html'" class="btn-primary">+ Thêm sản phẩm</button>
-  </div>
-
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Ảnh</th>
-        <th>Tên sản phẩm</th>
-        <th>Danh mục</th>
-        <th>Thương hiệu</th>
-        <th>Màu sắc</th>
-        <th>Kích thước</th>
-        <th>Giá nhập</th>
-        <th>% Lợi nhuận</th>
-        <th>Số lượng</th>
-        <th>Trạng thái</th>
-        <th>Mô tả</th>
-        <th>Ngày tạo</th>
-        <th>Thao tác</th>
-      </tr>
-    </thead>
-    <tbody id="productTable">
-      <!-- JS render -->
-    </tbody>
-  </table>
-</section>
-
   </main>
 </div>
 
-<script src="../assets/js/category_list.js"></script>
 <script src="../assets/js/product_list.js"></script>
 </body>
 </html>

@@ -16,12 +16,15 @@ try {
 
     $stmt = $conn->prepare("
         SELECT 
-            orders.*,
-            users.name AS customer_name,
-            users.phone
-        FROM orders
-        JOIN users ON orders.user_id = users.id
-        WHERE orders.id = ?
+    o.*,
+    u.name AS customer_name,
+    u.phone,
+    CONCAT(ua.detail_address, ', ', ua.ward, ', ', ua.district, ', ', ua.city) AS full_address
+FROM orders o
+JOIN users u ON o.user_id = u.id
+LEFT JOIN user_address ua 
+    ON ua.user_id = u.id AND ua.is_default = 1
+WHERE o.id = ?
     ");
 
     $stmt->execute([$id]);

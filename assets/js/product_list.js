@@ -7,11 +7,14 @@ document.addEventListener("DOMContentLoaded", () => {
       if(data.success){
         table.innerHTML = '';
         data.data.forEach(p => {
+          console.log(p.image_url);
           const tr = document.createElement('tr');
 
           tr.innerHTML = `
             <td>${p.id}</td>
-            <td><img src="../${p.image_url || 'assets/img/placeholder.png'}" style="max-width:50px;"></td>
+<td>
+    <img src="../${p.image_url}?t=${Date.now()}" style="max-width:50px;">
+  </td>
             <td>${p.name}</td>
             <td>${p.category}</td>
             <td>${p.brand}</td>

@@ -16,15 +16,17 @@
 
   <!-- SIDEBAR -->
   <nav class="sidebar">
-    <h2 class="logo">Admin Panel</h2>
+    <h2 class="logo">Admin</h2>
+
     <ul class="menu">
       <li><a href="dashboard.html">Dashboard</a></li>
-      <li><a href="QuanLyuser.html">Quản lý người dùng / Quản trị viên</a></li>
-      <li><a href="QuanLySanPham.html" style="background:#2a2a3b; color:#00bfff; border-left:4px solid #00bfff;">Quản lý sản phẩm</a></li>
-      <li><a href="NhaphangGiaban.html">Nhập hàng</a></li>
-      <li><a href="NhaphangGiaban2.html">Giá bán</a></li>
-      <li><a href="DonhangTonkho.html">Đơn hàng & Tồn kho</a></li>
-    </ul>
+      <li><a href="QuanLyuser.html">Quản lý người dùng</a></li>
+      <li><a href="DanhMuc.html">Danh mục</a></li>
+      <li><a href="QuanLySanPham.html">Sản phẩm</a></li>
+      <li><a href="NhaphangGiaban.html">Quản lý nhập hàng</a></li> 
+      <li><a href="NhaphangGiaban2.html">Quản lý giá bán</a></li> 
+      <li><a href="QuanLyDonHang.html" > Quản lý đơn đặt hàng </a></li> 
+      <li><a href="QuanLyTonKho.html">Quản lý tồn kho</a></li> </ul>
   </nav>
 
   <!-- CONTENT -->
@@ -35,7 +37,7 @@
       <button onclick="history.back()" class="btn-secondary">← Quay lại</button>
     </div>
 
-    <form id="addProductForm" class="form-card">
+    <form id="addProductForm" enctype="multipart/form-data">
 
       <div class="form-group">
         <label>Danh mục</label>
@@ -63,7 +65,7 @@
         <input type="number" name="quantity" value="0">
 
         <label>Ảnh sản phẩm</label>
-        <input type="file" id="imageInput" accept="image/*">
+        <input type="file" id="imageInput" name="image">
         <img id="previewImage" class="preview-img" src="" alt="Preview">
 
         <label>Mô tả</label>

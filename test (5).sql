@@ -252,21 +252,42 @@ CREATE TABLE `users` (
   `status` enum('active','locked') DEFAULT 'active',
   `created_at` datetime DEFAULT current_timestamp(),
   `is_reset` tinyint(1) DEFAULT 0,
-  `default_address` text DEFAULT NULL
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `phone`, `role`, `status`, `created_at`, `is_reset`, `default_address`) VALUES
-(1, 'Admin Chính', 'admin@gmail.com', '$2y$10$...', NULL, 'admin', 'active', '2026-03-28 09:38:04', 1, '12 Nguyễn Trãi, Quận 5, TP.HCM'),
-(7, 'Admin Phụ', 'admin2@gmail.com', '$2y$10$...', '0987654321', 'admin', 'active', '2026-03-28 09:50:08', 0, '12 Nguyễn Huệ, Quận 1, TP.HCM'),
-(8, 'Admin Phụ', 'admin3@gmail.com', '$2y$10$...', '0912345678', 'admin', 'active', '2026-03-28 09:50:08', 0, '45 Lê Lợi, Hoàn Kiếm, Hà Nội'),
-(9, 'Nguyễn Văn A', 'user1@gmail.com', '$2y$10$...', '0978123456', 'customer', 'active', '2026-03-28 09:50:08', 0, NULL),
-(10, 'Trần Thị B', 'user2@gmail.com', '$2y$10$...', '0934567890', 'customer', 'locked', '2026-03-28 09:50:08', 0, NULL),
-(11, 'Lê Minh C', 'user3@gmail.com', '$2y$10$...', '0965432109', 'customer', 'active', '2026-03-28 09:50:08', 0, NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `phone`, `role`, `status`, `created_at`, `is_reset`) VALUES
+(1, 'Admin Chính', 'admin@gmail.com', '$2y$10$...', NULL, 'admin', 'active', '2026-03-28 09:38:04', 1),
+(7, 'Admin Phụ', 'admin2@gmail.com', '$2y$10$...', '0987654321', 'admin', 'active', '2026-03-28 09:50:08'),
+(8, 'Admin Phụ', 'admin3@gmail.com', '$2y$10$...', '0912345678', 'admin', 'active', '2026-03-28 09:50:08', 0),
+(9, 'Nguyễn Văn A', 'user1@gmail.com', '$2y$10$...', '0978123456', 'customer', 'active', '2026-03-28 09:50:08', 0),
+(10, 'Trần Thị B', 'user2@gmail.com', '$2y$10$...', '0934567890', 'customer', 'locked', '2026-03-28 09:50:08', 0),
+(11, 'Lê Minh C', 'user3@gmail.com', '$2y$10$...', '0965432109', 'customer', 'active', '2026-03-28 09:50:08', 0);
 
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `user_address`
+--
+
+CREATE TABLE `user_address` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `city` varchar(100) NOT NULL,
+  `district` varchar(100) NOT NULL,
+  `ward` varchar(100) NOT NULL,
+  `detail_address` text DEFAULT NULL,
+  `is_default` tinyint(1) DEFAULT 0,
+  `created_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO user_address (user_id, city, district, ward, detail_address, is_default)
+VALUES (11, 'TP.HCM', 'Quận dây', 'Phường phố đã lên đèn', '36 AB đỏ', 0),
+(10, 'TP.HCM', 'Quận Bình Thạnh', 'Phường Gia Định', '36 AB đỏ', 0),
+ (9, 'TP.HCM', 'Quận 1', 'Phường Bến Nghé', '12 Nguyễn Huệ', 1);
 --
 -- Chỉ mục cho các bảng đã đổ
 --
@@ -328,6 +349,13 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Chỉ mục cho bảng `user_address`
+--
+ALTER TABLE `user_address`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
 
@@ -380,6 +408,12 @@ ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT cho bảng `user_address`
+--
+ALTER TABLE `user_address`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- Các ràng buộc cho các bảng đã đổ
 --
 
@@ -409,6 +443,13 @@ ALTER TABLE `order_items`
 ALTER TABLE `purchase_order_items`
   ADD CONSTRAINT `purchase_order_items_ibfk_1` FOREIGN KEY (`purchase_order_id`) REFERENCES `purchase_orders` (`id`),
   ADD CONSTRAINT `purchase_order_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
+
+--
+-- Các ràng buộc cho bảng `user_address`
+--
+ALTER TABLE `user_address`
+  ADD CONSTRAINT `user_address_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
