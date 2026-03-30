@@ -27,12 +27,13 @@ async function loadCategories() {
     }
 }
 
-// ------------------- Tra cứu tồn kho -------------------
+// ------------------- Tra cứu tồn kho theo mốc ngày -------------------
 async function loadStock() {
     const category = document.getElementById("categoryFilter").value;
     const date = document.getElementById("dateFilter").value;
 
     try {
+        // get_stock.php sẽ trừ số lượng chỉ từ các đơn hàng đã xác nhận, bỏ qua pending/hủy
         const res = await fetch(`../assets/php/get_stock.php?category=${category}&date=${date}`);
         const result = await res.json();
 
@@ -40,21 +41,17 @@ async function loadStock() {
         tbody.innerHTML = "";
 
         if (!result.success || result.data.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="6">Chưa có dữ liệu</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="4">Chưa có dữ liệu</td></tr>`;
             return;
         }
 
-        result.data.forEach(p => {
-            p.status = (p.quantity <= 5) ? 'Sắp hết hàng' : 'Còn hàng';
-
+        result.data.forEach((p, index) => {
             tbody.innerHTML += `
             <tr>
-                <td>${p.id}</td>
+                <td>${index + 1}</td>
                 <td>${p.name}</td>
                 <td>${p.category}</td>
                 <td>${p.quantity}</td>
-                <td>${p.last_update ? p.last_update.split(' ')[0] : ''}</td>
-                <td>${p.status}</td>
             </tr>`;
         });
 
@@ -63,7 +60,7 @@ async function loadStock() {
     }
 }
 
-// ------------------- Báo cáo nhập – xuất – tồn -------------------
+// ------------------- Báo cáo nhập – xuất theo mốc ngày -------------------
 async function loadReport() {
     const keyword = document.getElementById("keyword").value;
     const from = document.getElementById("fromDate").value;
@@ -77,14 +74,14 @@ async function loadReport() {
         tbody.innerHTML = "";
 
         if (!result.success || result.data.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="5">Chưa có dữ liệu</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="4">Chưa có dữ liệu</td></tr>`;
             return;
         }
 
-        result.data.forEach(p => {
+        result.data.forEach((p, index) => {
             tbody.innerHTML += `
             <tr>
-                <td>${p.id}</td>
+                <td>${index + 1}</td>
                 <td>${p.name}</td>
                 <td>${p.imported}</td>
                 <td>${p.exported}</td>
@@ -108,28 +105,24 @@ async function loadWarningStock() {
         tbody.innerHTML = "";
 
         if (!result.success || result.data.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="6">Chưa có dữ liệu</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="4">Chưa có dữ liệu</td></tr>`;
             return;
         }
 
         const filtered = result.data.filter(p => p.quantity <= warning);
 
         if (filtered.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="6">Không có sản phẩm cảnh báo</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="4">Không có sản phẩm cảnh báo</td></tr>`;
             return;
         }
 
-        filtered.forEach(p => {
-            p.status = (p.quantity <= warning) ? 'Sắp hết hàng' : 'Còn hàng';
-
+        filtered.forEach((p, index) => {
             tbody.innerHTML += `
             <tr>
-                <td>${p.id}</td>
+                <td>${index + 1}</td>
                 <td>${p.name}</td>
                 <td>${p.category}</td>
                 <td>${p.quantity}</td>
-                <td>${p.last_update ? p.last_update.split(' ')[0] : ''}</td>
-                <td>${p.status}</td>
             </tr>`;
         });
 
