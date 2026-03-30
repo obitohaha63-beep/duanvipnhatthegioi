@@ -4,7 +4,17 @@ let currentPage = parseInt(urlParams.get("page")) || 1
 
 function loadProducts(page = 1) {
 
-fetch(`../assets/php/search_product.php?keyword=${encodeURIComponent(keyword)}&page=${page}`)
+  const filters = getFilters()
+
+  const params = new URLSearchParams({
+    keyword: keyword || "",
+    page: page,
+    price: filters.price.join(","),   // "1-2tr,2-3tr"
+    weight: filters.weight.join(","), // "3u,4u"
+    sort: filters.sort
+  })
+
+  fetch(`../assets/php/search_product.php?${params.toString()}`)
 
 .then(res => res.json())
 .then(res => {
@@ -77,5 +87,37 @@ loadProducts(page)
 window.history.pushState({}, "", `?keyword=${encodeURIComponent(keyword)}&page=${page}`)
 }
 
+
+function getFilters() {
+  // price
+  const priceChecked = [...document.querySelectorAll(".price:checked")]
+    .map(cb => cb.value)
+
+  // weight (size)
+  const weightChecked = [...document.querySelectorAll(".weight:checked")]
+    .map(cb => cb.value)
+
+  // sort
+  const sort = document.getElementById("idsapxep").value
+
+  return {
+    price: priceChecked,
+    weight: weightChecked,
+    sort: sort
+  }
+}
+
+// khi tick checkbox
+document.querySelectorAll(".price, .weight").forEach(cb => {
+  cb.addEventListener("change", () => {
+    loadProducts(1) // reset về page 1
+  })
+})
+
+// khi đổi sort
+document.getElementById("idsapxep").addEventListener("change", () => {
+  loadProducts(1)
+})
 // load lần đầu
 loadProducts(currentPage)
+

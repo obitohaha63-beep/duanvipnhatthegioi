@@ -5,6 +5,9 @@ require "db.php";
 $keyword = $_GET['keyword'] ?? '';
 $page = intval($_GET['page'] ?? 1);
 $limit = 6;
+$price = $_GET['price'] ?? '';
+$weight = $_GET['weight'] ?? '';
+$sort = $_GET['sort'] ?? '';
 $offset = ($page - 1) * $limit;
 
 $keyword = trim($keyword);
@@ -35,9 +38,15 @@ if (!empty($keywords)) {
 }
 
 // 🔥 sắp xếp theo brand ưu tiên nếu có từ khóa cuối
-$sql .= " ORDER BY 
-            CASE WHEN p.brand LIKE :brand THEN 1 ELSE 2 END,
-            p.name ASC";
+if ($sort == "tangdan") {
+    $sql .= " ORDER BY selling_price ASC";
+} elseif ($sort == "giamdan") {
+    $sql .= " ORDER BY selling_price DESC";
+} elseif ($sort == "moinhat") {
+    $sql .= " ORDER BY p.created_at DESC";
+} else {
+    $sql .= " ORDER BY p.id DESC";
+}
 $params[':brand'] = !empty($keywords) ? $keywords[count($keywords)-1] . "%" : "";
 
 // 🔥 đếm tổng
@@ -79,4 +88,49 @@ echo json_encode([
         "current_page" => $page
     ]
 ]);
+
+if (!empty($price)) {
+    $priceArr = explode(',', $price);
+
+    $priceConditions = [];
+
+    foreach ($priceArr as $index => $p) {
+
+        if ($p == "500k-1tr") {
+            $priceConditions[] = "(p.cost_price * (1 + p.profit_rate/100)) BETWEEN 500000 AND 1000000";
+        }
+
+        if ($p == "1-2tr") {
+            $priceConditions[] = "(p.cost_price * (1 + p.profit_rate/100)) BETWEEN 1000000 AND 2000000";
+        }
+
+        if ($p == "2-3tr") {
+            $priceConditions[] = "(p.cost_price * (1 + p.profit_rate/100)) BETWEEN 2000000 AND 3000000";
+        }
+
+        if ($p == ">3tr") {
+            $priceConditions[] = "(p.cost_price * (1 + p.profit_rate/100)) > 3000000";
+        }
+    }
+
+    if (!empty($priceConditions)) {
+        $sql .= " AND (" . implode(" OR ", $priceConditions) . ")";
+        $countSql .= " AND (" . implode(" OR ", $priceConditions) . ")";
+    }
+}
+
+if (!empty($weight)) {
+    $weightArr = explode(',', $weight);
+
+    $placeholders = [];
+
+    foreach ($weightArr as $i => $w) {
+        $key = ":w$i";
+        $placeholders[] = $key;
+        $params[$key] = $w;
+    }
+
+    $sql .= " AND p.size IN (" . implode(",", $placeholders) . ")";
+    $countSql .= " AND p.size IN (" . implode(",", $placeholders) . ")";
+}
 ?>
