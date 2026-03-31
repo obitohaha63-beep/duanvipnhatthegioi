@@ -1,3 +1,4 @@
+const mode = document.body.dataset.mode
 const urlParams = new URLSearchParams(window.location.search)
 const keyword = urlParams.get("keyword")
 let currentPage = parseInt(urlParams.get("page")) || 1
@@ -25,8 +26,13 @@ const pagination = res.pagination
 // 🔥 tiêu đề
 document.getElementById("timkiemcoban").innerHTML =
 `Kết quả tìm kiếm "<b>${keyword}</b>" (${pagination.total_items} sản phẩm)`
+let productDetailPage = "SanPham.html"
 
+if (mode === "user") {
+  productDetailPage = "SanPham1.html"
+}
 // 🔥 render sản phẩm
+
 let html = ""
 
 products.forEach(p => {
@@ -34,7 +40,7 @@ html += `
 <div class="box">
   <div class="container-anh">
     <div class="sanpham">
-      <a href="SanPham.html?id=${p.id}">
+      <a href="${productDetailPage}?id=${p.id}">
         <img class="anh-arcsaber" src="${p.image}">
         <span class="text-arcsaber">${p.name}</span>
         <span class="gia">${Number(p.selling_price).toLocaleString("vi-VN")} đ</span>

@@ -1,3 +1,4 @@
+const mode = document.body.dataset.mode
 const urlParams = new URLSearchParams(window.location.search)
 const id = urlParams.get("id")
 
@@ -24,7 +25,31 @@ if (!res.success) {
 }
 
 const p = res.product
+let actionHTML = ""
 
+if (mode === "guest") {
+  actionHTML = `
+    <a href="login.html">
+      <div class="add-Gio-Hang">
+        <p>Đăng nhập <br> Để sử dụng chức năng giỏ hàng</p>
+      </div>
+    </a>
+  `
+} else if (mode === "user") {
+  actionHTML = `
+    <a href="login.html">
+      <div class="add-Gio-Hang">
+        <p>Thêm vào giỏ hàng</p>
+      </div>
+    </a>
+
+    <a href="login.html">
+      <div class="communicate-with-us-on-zalo">
+        <p>Mua hàng</p>
+      </div>
+    </a>
+  `
+}
 // 🔥 render HTML
 const html = `
 <div class="product">
@@ -66,17 +91,9 @@ ID sản phẩm: <a href="#">${p.id}</a>
       <div class="plus">+</div>
     </div>
 
-    <a href="login.html">
-      <div class="add-Gio-Hang">
-        <p>Thêm vào giỏ hàng</p>
-      </div>
-    </a>
+    ${actionHTML} 
 
-    <a href="login.html">
-      <div class="communicate-with-us-on-zalo">
-        <p>Mua hàng</p>
-      </div>
-    </a>
+    
   </div>
 </div>
 
