@@ -1,3 +1,7 @@
+<?php 
+include '../assets/php/check_admin.php';
+requireRole('admin');
+?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>

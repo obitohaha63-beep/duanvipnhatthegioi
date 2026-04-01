@@ -1,39 +1,42 @@
 <?php
 session_start();
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
 
 include 'db.php';
 
 $data = json_decode(file_get_contents("php://input"), true);
 
 if (!$data || !isset($data['email']) || !isset($data['password'])) {
-    echo json_encode(["success" => false]);
+    echo json_encode([
+        "success" => false,
+        "message" => "Thiếu dữ liệu"
+    ]);
     exit;
 }
 
 $email = trim($data['email']);
 $password = trim($data['password']);
 
-$sql = "SELECT id, name, email, password, role, status
-        FROM users
-        WHERE email = ?
-        LIMIT 1";
+try {
+    $sql = "SELECT id, name, email, password, role, status
+            FROM users
+            WHERE email = ?
+            LIMIT 1";
 
-$stmt = $conn->prepare($sql);
-$stmt->execute([$email]);
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$email]);
 
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if ($user) {
-
-    if ($user['role'] !== 'admin') {
+    if (!$user) {
         echo json_encode([
             "success" => false,
-            "message" => "Không có quyền admin"
+            "message" => "Email không tồn tại"
         ]);
         exit;
     }
 
+    // Check trạng thái
     if ($user['status'] === 'locked') {
         echo json_encode([
             "success" => false,
@@ -42,26 +45,31 @@ if ($user) {
         exit;
     }
 
-    if (password_verify($password, $user['password'])) {
-
-        $_SESSION['admin_id'] = $user['id'];
-        $_SESSION['admin_name'] = $user['name'];
-
-        echo json_encode([
-            "success" => true
-        ]);
-
-    } else {
+    // Check password
+    if (!password_verify($password, $user['password'])) {
         echo json_encode([
             "success" => false,
             "message" => "Sai mật khẩu"
         ]);
+        exit;
     }
 
-} else {
+    // Lưu session (dùng chung)
+    $_SESSION['user'] = [
+        "id" => $user['id'],
+        "name" => $user['name'],
+        "role" => $user['role']
+    ];
+
+    echo json_encode([
+        "success" => true,
+        "user" => $_SESSION['user']
+    ]);
+
+} catch (PDOException $e) {
     echo json_encode([
         "success" => false,
-        "message" => "Email không tồn tại"
+        "message" => "Lỗi server"
     ]);
 }
 ?>

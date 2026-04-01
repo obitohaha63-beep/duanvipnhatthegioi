@@ -1,10 +1,11 @@
+  <?php include '../assets/php/check_admin.php'; ?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trang Quản Trị</title>
-  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
   <link rel="stylesheet" href="../assets/css/fontinter.css">
   <link rel="stylesheet" href="../assets/css/root.css">
 </head>
@@ -24,11 +25,43 @@
       <li><a href="QuanLyDonHang.html" > Quản lý đơn đặt hàng </a></li> 
       <li><a href="QuanLyTonKho.html">Quản lý tồn kho</a></li> </ul>
   </nav>
-
     <!-- Nội dung bên phải -->
     <main class="content">
-      <h1>Chào mừng đến với Trang Quản Trị</h1>
-      <p>Chọn một mục ở menu bên trái để bắt đầu.</p>
+      <h1>Dashboard</h1>
+      <div class="khung">
+        <div class="box">
+            <b>
+            <p>Người dùng</p>
+              <div class="box-trong">
+                <p>1</p>
+                </b>
+              </div>
+        </div>
+        <div class="box">
+            <b>
+            <p>Sản phẩm</p>
+              <div class="box-trong">
+                <p>9</p>
+                </b>
+              </div>
+        </div>
+        <div class="box">
+            <b>
+            <p>Tồn kho tổng</p>
+              <div class="box-trong">
+                <p>19</p>
+                </b>
+              </div>
+        </div>
+        <div class="box">
+            <b>
+            <p>Tổng doanh thu</p>
+              <div class="box-trong">
+                <p>16.120K</p>
+                </b>
+              </div>
+        </div>
+      </div>
     </main>
   </div>
 </body>

@@ -1,3 +1,4 @@
+<?php include '../assets/php/check_admin.php'; ?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -24,6 +25,7 @@
       <li><a href="../pages/NhaphangGiaban2.html">Quản lý giá bán</a></li> 
       <li><a href="../pages/QuanLyDonHang.html" > Quản lý đơn đặt hàng </a></li> 
       <li><a href="../pages/QuanLyTonKho.html">Quản lý tồn kho</a></li> </ul>
+      <li><a href="../assets/php/logout.php">Đăng xuất</a></li> 
   </nav>
 
     <!-- Nội dung bên phải -->

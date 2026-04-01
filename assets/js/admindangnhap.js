@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const data = JSON.parse(text);
 
         if (data.success) {
-          window.location.href = '../pages/admin.html';
+          window.location.href = '../pages/admin.php';
         } else {
           msg.textContent = data.message || 'Tài khoản hoặc mật khẩu không đúng.';
         }

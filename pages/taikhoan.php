@@ -1,3 +1,19 @@
+<?php
+include '../assets/php/check_user.php';
+include '../assets/php/db.php';
+
+$user_id = $_SESSION['user']['id'];
+
+// Lấy user
+$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->execute([$user_id]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Lấy địa chỉ
+$stmt2 = $conn->prepare("SELECT * FROM user_address WHERE user_id = ? AND is_default = 1 LIMIT 1");
+$stmt2->execute([$user_id]);
+$address = $stmt2->fetch(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -69,7 +85,7 @@
               <img class="logo-person" src="../assets/img/daidien4.png" alt="logo của brand" 
                       style="width:28px; height: 28px"></a>
             <a class="text-thongtin" href="taikhoan.html">Thông tin</a>
-            <a class="text-dangky" style="opacity: 0.8;" href="html4.html">Đăng xuất</a>
+            <a class="text-dangky" style="opacity: 0.8;" href="../assets/php/logout.php">Đăng xuất</a>
           </div>
 
 
@@ -162,46 +178,35 @@
     <!-- Cột phải -->
     <section class="account-content">
       <h1>Thông tin tài khoản</h1>
-      <form class="account-form">
-        <label>Họ và tên</label>
-        <input type="text" id="fullname" value="Thành Phát Anh Hưng">
+      <form class="account-form" method="POST" action="../assets/php/update_user.php">
 
-        <label>Giới tính</label>
-        <div class="gender-group">
-          <label><input type="radio" name="gender" checked> Nam</label>
-          <label><input type="radio" name="gender" value="Nữ"> Nữ</label>
-        </div>
+  <label>Họ và tên</label>
+  <input type="text" name="name" value="<?= htmlspecialchars($user['name']) ?>">
 
-        <label>Địa chỉ</label>
-        <input type="text" id="address" value="273 An Dương Vương, Phường Chợ Quán, TPHCM.">
+  <label>Email</label>
+  <input type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" readonly>
 
-        <label>Quốc gia</label>
-        <select id="country">
-          <option>Vietnam</option>
-          <option>USA</option>
-          <option>Japan</option>
-          <option>Korea</option>
-        </select>
+  <label>Số điện thoại</label>
+  <input type="tel" name="phone" value="<?= htmlspecialchars($user['phone']) ?>">
 
-        <label>Tỉnh thành</label>
-        <select id="province">
-          <option>Hồ Chí Minh</option>
-          <option>Hà Nội</option>
-          <option>Đà Nẵng</option>
-          <option>36</option>
-        </select>
+  <label>Địa chỉ</label>
+  <input type="text" name="detail_address"
+         value="<?= htmlspecialchars($address['detail_address'] ?? '') ?>">
 
-        <label>Email</label>
-        <input type="email" id="email" placeholder="Nhập email" value="abc@gmail.com">
+  <label>Thành phố</label>
+  <input type="text" name="city"
+         value="<?= htmlspecialchars($address['city'] ?? '') ?>">
 
-        <label>Số điện thoại</label>
-        <input type="tel" id="phone" >
+  <label>Quận</label>
+  <input type="text" name="district"
+         value="<?= htmlspecialchars($address['district'] ?? '') ?>">
 
-        <label>Ngày sinh</label>
-        <input type="date" id="dob">
+  <label>Phường</label>
+  <input type="text" name="ward"
+         value="<?= htmlspecialchars($address['ward'] ?? '') ?>">
 
-        <button type="submit" class="update-btn">CẬP NHẬT</button>
-      </form>
+  <button type="submit" class="update-btn">CẬP NHẬT</button>
+</form>
     </section>
   </div>
 
