@@ -37,18 +37,14 @@ if (mode === "guest") {
   `
 } else if (mode === "user") {
   actionHTML = `
-    <a href="login.html">
-      <div class="add-Gio-Hang">
-        <p>Thêm vào giỏ hàng</p>
-      </div>
-    </a>
+  <div class="add-Gio-Hang" id="addToCartBtn">
+    <p>Thêm vào giỏ hàng</p>
+  </div>
 
-    <a href="login.html">
-      <div class="communicate-with-us-on-zalo">
-        <p>Mua hàng</p>
-      </div>
-    </a>
-  `
+  <div class="communicate-with-us-on-zalo">
+    <p>Mua hàng</p>
+  </div>
+`
 }
 // 🔥 render HTML
 const html = `
@@ -125,3 +121,67 @@ document.addEventListener("click", function(e){
     selectedColor = e.target.dataset.color;
   }
 })
+
+document.addEventListener("click", function(e){
+
+  // chọn size
+  if(e.target.classList.contains("size-item")){
+    document.querySelectorAll(".size-item").forEach(el => el.classList.remove("active"));
+    e.target.classList.add("active");
+    selectedSize = e.target.innerText;
+  }
+
+  // chọn màu
+  if(e.target.classList.contains("color-item")){
+    document.querySelectorAll(".color-item").forEach(el => el.classList.remove("active"));
+    e.target.classList.add("active");
+    selectedColor = e.target.dataset.color;
+  }
+
+  // 🔥 thêm giỏ hàng
+  if(e.target.closest("#addToCartBtn")){
+    if(!selectedSize || !selectedColor){
+      alert("Vui lòng chọn size và màu");
+      return;
+    }
+
+    const quantity = parseInt(document.querySelector(".numbercount").innerText);
+
+    fetch("../assets/php/add_to_cart.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        product_id: id,
+        quantity: quantity,
+        color: selectedColor,
+        size: selectedSize
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data.success){
+        alert("Đã thêm vào giỏ hàng");
+        loadCartCount();
+      } else {
+        alert(data.message);
+      }
+    })
+    .catch(err => console.error(err));
+  }
+
+});
+
+function loadCartCount() {
+  fetch("../assets/php/get_cart_count.php")
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        document.querySelector(".jscart").innerText = data.count;
+      }
+    });
+}
+
+// gọi khi load
+loadCartCount();

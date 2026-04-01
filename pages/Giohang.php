@@ -16,7 +16,7 @@
         <div class="container">
             <!---- LOGO-->
             <div class="containerlogo">
-              <div class="logo"><a href="haveaccount.html"><img src="../assets/img/unnamed (5) 2.png" 
+              <div class="logo"><a href="haveaccount.php"><img src="../assets/img/unnamed (5) 2.png" 
                 style="width: 245px;"></a>
               </div>
             </div>
@@ -63,11 +63,11 @@
                       </li>
                 </ul>
                 <div class="container-login">
-                          <a href="taikhoan.html">
+                          <a href="taikhoan.php">
                             <img class="logo-person" src="../assets/img/daidien4.png" alt="logo của brand" 
                           style="width:28px; height: 28px"></a>
 
-                          <a class="text-dangnhap" href="taikhoan.html">Thông tin</a>
+                          <a class="text-dangnhap" href="taikhoan.php">Thông tin</a>
                           <a class="text-dangky" style="opacity: 0.8;" 
                           href="../assets/php/logout.php">Đăng xuất</a>
                           
@@ -143,59 +143,33 @@
 </header>
 <main>
   <div class="container sanpham">
+
     <h2 class="giohang-title">Giỏ hàng của bạn</h2>
 
-    <div class="cart-item">
-  <div class="cart-img">
-    <img src="../assets/img/88splay.png" alt="Vợt cầu lông">
-  </div>
-  <div class="cart-info">
-    <h3>Vợt cầu lông Yonex 88S play tour</h3>
-    <p class="cart-color">Màu: Xanh</p>
-    <p class="cart-weight">Cân nặng: 85g</p>
-    <p class="cart-price">1,250,000₫</p>
-  </div>
-  <div class="cart-quantity">
-    <input type="number" value="1" min="1">
-  </div>
-  <div class="cart-remove">
-    <button>Xóa</button>
-  </div>
-</div>
+    <!-- 🔥 JS sẽ render vào đây -->
+    <div id="cart-list"></div>
 
-      <!-- Sản phẩm 2 -->
-      <div class="cart-item">
-  <div class="cart-img">
-    <img src="../assets/img/88splay.png" alt="Vợt cầu lông">
-  </div>
-  <div class="cart-info">
-    <h3>Vợt cầu lông Yonex Astrox jayce win99</h3>
-    <p class="cart-color">Màu: Xanh</p>
-    <p class="cart-weight">Cân nặng: 85g</p>
-    <p class="cart-price">1,250,000₫</p>
-  </div>
-  <div class="cart-quantity">
-    <input type="number" value="1" min="1">
-  </div>
-  <div class="cart-remove">
-    <button>Xóa</button>
-  </div>
-</div>
-
-      <!-- Tổng tiền -->
-      <div class="cart-total">
-        <span>Tổng tiền:</span>
-        <span class="total-price">3,500,000₫</span>
-      </div>
-
-      <div class="cart-actions">
-        <button class="btn-continue">Tiếp tục mua hàng</button>
-        <button class="btn-checkout" onclick="window.location.href='checkout.html'">Thanh toán</button>
-      </div>
+    <!-- Tổng tiền -->
+    <div class="cart-total">
+      <span>Tổng tiền:</span>
+      <span class="total-price">0₫</span>
     </div>
+
+    <!-- Action -->
+    <div class="cart-actions">
+      <button onclick="window.location.href='haveaccount.php'">
+        Tiếp tục mua hàng
+      </button>
+
+      <button onclick="window.location.href='checkout.html'">
+        Thanh toán
+      </button>
+    </div>
+
   </div>
 </main> 
-
+<script src="../assets/js/cart.js"></script>
+<script src="../assets/js/product_detail.js"></script>
 </body>
 <footer>
   <div class="container-footer">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2026 at 05:41 PM
+-- Generation Time: Apr 01, 2026 at 06:46 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,6 +35,14 @@ CREATE TABLE `cart` (
   `color` varchar(50) DEFAULT NULL,
   `size` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`, `color`, `size`) VALUES
+(2, 11, 17, 1, 'Midnight Blue', '4U'),
+(4, 11, 24, 1, 'Red', '4U');
 
 -- --------------------------------------------------------
 
@@ -155,7 +163,7 @@ INSERT INTO `products` (`id`, `name`, `description`, `category_id`, `color`, `br
 (21, 'Yonex Power Cushion Aerus Z3', 'Đôi giày nhẹ nhất thế giới năm 2026', 2, 'Flash Green', 'Yonex', '37-44', 'aerus_z3_green.jpg', 0, 0.00, 20.00, 'visible', '2026-03-28 19:51:01'),
 (22, 'Yonex Eclipsion Z3 Men 2026', 'Chuyên gia bảo vệ cổ chân với độ bám sân cực cao', 2, 'Navy Blue', 'Yonex', '39-45', 'eclipsion_z3_navy.jpg', 5, 1000000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
 (23, 'Yonex Power Cushion 88 Dial 3', 'Hệ thống thắt dây BOA kép thế hệ 3', 2, 'Black/Ice Blue', 'Yonex', '39-44', '88_dial_3_black.jpg', 0, 0.00, 20.00, 'visible', '2026-03-28 19:51:01'),
-(24, 'Yonex Comfort Z3 Wide Mid', 'Thiết kế cổ cao bảo vệ toàn diện cổ chân', 1, 'Off White/Red', 'Yonex', '40-45', 'assets/uploads/1774848020_download.jpg', 0, 0.00, 20.00, 'visible', '2026-03-28 19:51:01'),
+(24, 'Yonex Comfort Z3 Wide Mid', 'Thiết kế cổ cao bảo vệ toàn diện cổ chân', 1, 'Off White,Red', 'Yonex', '3U,4U', 'assets/uploads/1774848020_download.jpg', 0, 0.00, 20.00, 'visible', '2026-03-28 19:51:01'),
 (25, 'Yonex Cascade Accel 2026', 'Dòng giày tầm trung hỗ trợ lực bật nhảy tốt', 2, 'White/Sky Blue', 'Yonex', '37-44', 'cascade_accel_2026.jpg', 0, 0.00, 20.00, 'visible', '2026-03-28 19:51:01'),
 (26, 'Yonex Strider Flow 2026', 'Mẫu giày tập luyện chuyên nghiệp, bền bỉ', 2, 'Black/Blue', 'Yonex', '38-45', 'strider_flow_black.jpg', 0, 0.00, 20.00, 'visible', '2026-03-28 19:51:01'),
 (27, 'Yonex Power Cushion Infinity 2', 'Hệ thống điều chỉnh độ ôm 3D đỉnh cao', 2, 'Metallic Gold', 'Yonex', '40-44', 'infinity_2_gold.jpg', 0, 0.00, 20.00, 'visible', '2026-03-28 19:51:01');
@@ -358,7 +366,7 @@ ALTER TABLE `user_address`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `categories`
