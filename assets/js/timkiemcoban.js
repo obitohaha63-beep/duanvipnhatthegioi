@@ -29,7 +29,7 @@ document.getElementById("timkiemcoban").innerHTML =
 let productDetailPage = "SanPham.html"
 
 if (mode === "user") {
-  productDetailPage = "SanPham1.html"
+  productDetailPage = "SanPham1.php"
 }
 // 🔥 render sản phẩm
 

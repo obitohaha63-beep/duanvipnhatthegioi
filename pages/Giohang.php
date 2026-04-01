@@ -1,30 +1,31 @@
+<?php include '../assets/php/check_user.php'; ?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CoolNet</title>
-  <link rel="icon" type="image/png" href="../assets/img/favicon-logo.ico">
-  <link rel="stylesheet" href="../assets/css/product.css">
+  <link rel="stylesheet" href="../assets/css/Giohang.css">
+  <link rel="stylesheet" href="../assets/css/fontinter.css">
   <link rel="stylesheet" href="../assets/css/root.css">
-
+  <link rel="icon" type="image/png" href="../assets/img/favicon-logo.ico">
 </head>
-<body data-mode="user">
+<body>
 <header>
     <div class="headertop">
         <div class="container">
             <!---- LOGO-->
             <div class="containerlogo">
-              <div class="logo"><a href="html4.html"><img src="../assets/img/unnamed (5) 2.png" 
+              <div class="logo"><a href="haveaccount.html"><img src="../assets/img/unnamed (5) 2.png" 
                 style="width: 245px;"></a>
               </div>
             </div>
            
             <!---- search-->
             <div class="containerSearch"><div class="search">
-              <form action="timkiemyonex.html" target="_blank">
+              <form action="timkiemyonex1.html" target="_blank">
                 <input type="text" placeholder="Tìm kiếm...">
-                <a href="timkiemyonex.html" target="_blank"><div class = "containerSearch2">
+                <a href="timkiemyonex1.html" target="_blank"><div class = "containerSearch2">
                    <img src="../assets/img/0e3ea1f4af7bdc0353252fa8af7de9366406fd82 (1).png" class="search-icon"> </div>
               </div>
               </a>
@@ -45,24 +46,15 @@
                         </a>
                       </li>
 
-                      <li class="listitemuser"> 
-                        <a class="groupitemuser"><span class="boxicon">
-                            <img class="logo-person" src="../assets/img/daidien4.png" alt="logo của brand" >
-                          </span>
-                          <span class="boxtext column">
-                            <a class="info"style="cursor: pointer;" href="taikhoan.html">Thông tin</a>
-                            <a class="logout" style="opacity: 0.8;" href = "SanPham.html">Đăng xuất</a>
-                          </span>
-                        </a>
-                      </li>
+                      
 
                       <li class="listitemcart"> 
-                        <a class="groupitemcart" href="login.html">
+                        <a class="groupitemcart" href="">
                           <div class="containercart">
                             <button>
                               <span class="boxicon">
                                 <img src="../assets/img/shopping-cart.png" style="width:24px">
-                                <span class="jscart">0</span>
+                                <span class="jscart">1</span>
                               </span>
                               <span class="boxtext">Giỏ hàng</span>
                             </button>
@@ -70,6 +62,17 @@
                         </a>
                       </li>
                 </ul>
+                <div class="container-login">
+                          <a href="taikhoan.html">
+                            <img class="logo-person" src="../assets/img/daidien4.png" alt="logo của brand" 
+                          style="width:28px; height: 28px"></a>
+
+                          <a class="text-dangnhap" href="taikhoan.html">Thông tin</a>
+                          <a class="text-dangky" style="opacity: 0.8;" 
+                          href="../assets/php/logout.php">Đăng xuất</a>
+                          
+                          
+                </div>
             </div>
 
 
@@ -78,6 +81,10 @@
     <div class="headerbot">
       <div class="containerbot">
         <div class="khungxanhmucluc">
+
+            <div class="js-menu">
+              
+            </div>
             <div class="icon">
               <img src="../assets/img/Medium Icons.png" type="width:24px" >
             </div>
@@ -86,38 +93,40 @@
               <span>DANH MỤC SẢN PHẨM</span>
               <div class="khungtrangmenu khungtrangmenu-dropdown">
                   <ul>
-                    <li><a href="allsanpham.html"><img src="../assets/img/badminton.png"
-                       style="width: 24px;"><span>Vợt cầu lông</span></a></li>
+                    <li><a href="allsanpham1.html">
+                      <img src="../assets/img/badminton.png" style="width: 24px;"><span>Vợt cầu lông</span></a></li>
 
-                    <li><a href="allsanpham.html"><img src="../assets/img/sneakers.png"
-                       style="width: 24px;"><span>Giày cầu lông</span></a></li>
+                    <li><a href="allsanpham1.html">
+                      <img src="../assets/img/sneakers.png" style="width: 24px;"><span>Giày cầu lông</span></a></li>
 
-                    <li><a href="allsanpham.html"><img src="../assets/img/piccolo.png"
-                       style="width: 24px;"><span>Ống cầu lông</span></a></li>
+                    <li><a href="allsanpham1.html">
+                      <img src="../assets/img/piccolo.png" style="width: 24px;"><span>Ống cầu lông</span></a></li>
 
-                    <li><a href="allsanpham.html"><img src="../assets/img/t-shirt.png"
-                       style="width: 24px;"><span>Áo cầu lông</span></a></li>
-                       
-                    <li><a href="allsanpham.html"><img src="../assets/img/jeans.png" 
-                      style="width: 24px;"><span>Quần cầu lông</span></a></li>
+                    <li><a href="allsanpham1.html">
+                      <img src="../assets/img/t-shirt.png" style="width: 24px;"><span>Áo cầu lông</span></a></li>
+
+                    <li><a href="allsanpham1.html">
+                      <img src="../assets/img/jeans.png" style="width: 24px;"><span>Quần cầu lông</span></a></li>
                   </ul>
               </div>
 
               
             </div>
             
+            
+            
             <div class="navmenu">
               
               <ul>
-                <li class><a href="allsanpham.html"><span class="icon">
+                <li class><a href="allsanpham1.html" ><span class="icon">
                   <img src="../assets/img/Get a Discount.png" style="width:24px"></span>
                 Sản phẩm khuyến mãi</a></li>
 
-                <li class><a href="allsanpham.html"><span class="icon">
+                <li class><a href="allsanpham1.html" ><span class="icon">
                 <img src="../assets/img/Megaphone.png" style="width:24px"></span>
                 Sản phẩm nổi bật</a></li>
 
-                <li class><a href="allsanpham.html"><span class="icon">
+                <li class><a href="allsanpham1.html" ><span class="icon">
                 <img src="../assets/img/unpacking.png" style="width:24px"></span>
                 Tất cả sản phẩm</a></li>
                 
@@ -132,34 +141,62 @@
       </div>
     </div>
 </header>
-<main class = "mid-content">
-    <div class = "linkedline">
-      <p class="linkedline-content">
-      <a href="../pages/haveaccount.html" 
-        style="color: #1b1b1b;">Trang chủ</a> / <a href="allsanpham.html" style="color: #1b1b1b;">
-        Vợt cầu lông</a>  / Vợt cầu lông Yonex Nanoflare 1000 Chính Hãng</p>
-    </p>
-    </div>
-    <div class = "important-content" id="detailProducts">
-      <div class = "bigcontent">
-        
+<main>
+  <div class="container sanpham">
+    <h2 class="giohang-title">Giỏ hàng của bạn</h2>
+
+    <div class="cart-item">
+  <div class="cart-img">
+    <img src="../assets/img/88splay.png" alt="Vợt cầu lông">
+  </div>
+  <div class="cart-info">
+    <h3>Vợt cầu lông Yonex 88S play tour</h3>
+    <p class="cart-color">Màu: Xanh</p>
+    <p class="cart-weight">Cân nặng: 85g</p>
+    <p class="cart-price">1,250,000₫</p>
+  </div>
+  <div class="cart-quantity">
+    <input type="number" value="1" min="1">
+  </div>
+  <div class="cart-remove">
+    <button>Xóa</button>
+  </div>
+</div>
+
+      <!-- Sản phẩm 2 -->
+      <div class="cart-item">
+  <div class="cart-img">
+    <img src="../assets/img/88splay.png" alt="Vợt cầu lông">
+  </div>
+  <div class="cart-info">
+    <h3>Vợt cầu lông Yonex Astrox jayce win99</h3>
+    <p class="cart-color">Màu: Xanh</p>
+    <p class="cart-weight">Cân nặng: 85g</p>
+    <p class="cart-price">1,250,000₫</p>
+  </div>
+  <div class="cart-quantity">
+    <input type="number" value="1" min="1">
+  </div>
+  <div class="cart-remove">
+    <button>Xóa</button>
+  </div>
+</div>
+
+      <!-- Tổng tiền -->
+      <div class="cart-total">
+        <span>Tổng tiền:</span>
+        <span class="total-price">3,500,000₫</span>
       </div>
-        
-      <div class = "sales-commitment">
-        <div class = "sales-commitment-content">
-          <div class = "sales-commitment-frame"> Cam kết bán hàng </div>
-            <ul class = "sales-commitment-list">
-              <li><img src="../assets/img/baohanh.png" alt="baohanh" class = "anhchung"> <span>🎁 Bảo hành chính hãng theo nhà sản xuất</span></li>
-              <li><img src="../assets/img/mienphigiaohang.png" alt="baohanh" class = "anhchung"><span>Miễn phí giao hàng trong 2-3 ngày toàn quốc và 4H trong nội thành TP.HCM (Đơn trên 2 triệu). Trừ ống cầu.</span></li>
-              <li><img src="../assets/img/hotrodoitra.png" alt="baohanh" class = "anhchung"><span>Hỗ trợ đổi trả cho hàng chính hãng (có phiếu bảo hành) miễn phí trong vòng 7 ngày.*</span></li>
-              <li><img src="../assets/img/giaohanglayngay.png" alt="baohanh" class = "anhchung"><span>Hỗ trợ đặt giao hàng lấy ngay tại TP.HCM ( Khách hàng chi trả phí theo phí của Ahamove, Grab)</span></li>
-            </ul>
-        </div>
+
+      <div class="cart-actions">
+        <button class="btn-continue">Tiếp tục mua hàng</button>
+        <button class="btn-checkout" onclick="window.location.href='checkout.html'">Thanh toán</button>
       </div>
-      <div class="detail-of-items" id="describe-Product">
-        
     </div>
-</main>
+  </div>
+</main> 
+
+</body>
 <footer>
   <div class="container-footer">
     <div class="khungchinh">
@@ -195,19 +232,19 @@
             </div>
           <div class="thongtin-col2">
             <ul>
-              <li><a href="">Chính sách giao hàng và đổi trả</a></li>
+              <li><a href="">• Chính sách giao hàng và đổi trả</a></li>
 
-              <li><a href="">Chính sách bảo mật thông tin</a></li>
+              <li><a href="">• Chính sách bảo mật thông tin</a></li>
 
-              <li><a href="">Liên hệ CSKH Online</a></li>
+              <li><a href="">• Liên hệ CSKH Online</a></li>
 
-              <li><a href="">Chính sách thanh toán</a></li>
+              <li><a href="">• Chính sách thanh toán</a></li>
 
-              <li><a href="">Điều khoản dịch vụ</a></li>
+              <li><a href="">• Điều khoản dịch vụ</a></li>
 
-              <li><a href="">Chính sách bảo hành</a></li>
+              <li><a href="">• Chính sách bảo hành</a></li>
 
-              <li><a href="">Kiểm tra đơn hàng</a></li>
+              <li><a href="">• Kiểm tra đơn hàng</a></li>
             </ul>
           </div>
         </div>     
@@ -217,11 +254,11 @@
           </div> 
           <div class="thongtin-col3">
             <ul>
-              <li><a href="allsanpham.html">Sản phẩm khuyến mãi</a></li>
+              <li><a href="allsanpham1.html">• Sản phẩm khuyến mãi</a></li>
 
-              <li><a href="allsanpham.html">Sản phẩm nổi bật</a></li>
+              <li><a href="allsanpham1.html">• Sản phẩm nổi bật</a></li>
 
-              <li><a href="allsanpham.html">Tất cả sản phẩm</a></li>
+              <li><a href="allsanpham1.html">• Tất cả sản phẩm</a></li>
             </ul>
           </div>
           
@@ -248,10 +285,8 @@
   </div>
   <div class="copyright">
     <div class="container">
-      <span class="copyright-text"> <a href="">© Copyright 2025 By COOLNET - HỆ THỐNG CẦU LÔNG UY TÍN.</a></span>
+      <span class="copyright-text">© Copyright 2025 By COOLNET - HỆ THỐNG CẦU LÔNG UY TÍN.</span>
     </div>
   </div>
 </footer>
-<script src="../assets/js/product_detail.js"></script>
-</body>
-</html>
+</html> 
