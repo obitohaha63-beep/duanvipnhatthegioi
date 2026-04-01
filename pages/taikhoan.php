@@ -66,7 +66,7 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
                       
 
                       <li class="listitemcart"> 
-                        <a class="groupitemcart" href="Giohang.html">
+                        <a class="groupitemcart" href="Giohang.php">
                           <div class="containercart">
                             <button>
                               <span class="boxicon">

@@ -1,4 +1,19 @@
-<?php include '../assets/php/check_user.php'; ?>
+<?php
+include '../assets/php/check_user.php';
+include '../assets/php/db.php';
+
+$user_id = $_SESSION['user']['id'];
+
+// Lấy user
+$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->execute([$user_id]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Lấy địa chỉ
+$stmt2 = $conn->prepare("SELECT * FROM user_address WHERE user_id = ? AND is_default = 1 LIMIT 1");
+$stmt2->execute([$user_id]);
+$address = $stmt2->fetch(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -51,7 +66,7 @@
                             <img class="logo-person" src="../assets/img/daidien4.png" alt="logo của brand" >
                           </span>
                           <span class="boxtext column">
-                            <a class="info"style="cursor: pointer;" href="taikhoan.html">Thông tin</a>
+                            <a class="info"style="cursor: pointer;" href="taikhoan.php">Thông tin</a>
                             <a class="logout" style="opacity: 0.8;" 
                             href="../assets/php/logout.php">Đăng xuất</a>
                           </span>
@@ -59,7 +74,7 @@
                       </li>
 
                       <li class="listitemcart"> 
-                        <a class="groupitemcart" href="login.html">
+                        <a class="groupitemcart" href="Giohang.php">
                           <div class="containercart">
                             <button>
                               <span class="boxicon">
