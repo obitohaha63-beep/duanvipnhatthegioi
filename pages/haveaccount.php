@@ -64,9 +64,9 @@ if (!isset($_SESSION['user'])) {
                       
 
                       <li class="listitemcart"> 
-                        <a class="groupitemcart" href="login.html">
+                        <a class="groupitemcart" href="../pages/Giohang.php">
                           <div class="containercart">
-                            <a href="../pages/login.html">
+                            <a href="../pages/Giohang.php">
                             <button>
                               <span class="boxicon">
                                 <img src="../assets/img/shopping-cart.png" style="width:24px">

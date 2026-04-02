@@ -1,3 +1,19 @@
+<?php
+include '../assets/php/check_user.php';
+include '../assets/php/db.php';
+
+$user_id = $_SESSION['user']['id'];
+
+// Lấy user
+$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->execute([$user_id]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Lấy địa chỉ
+$stmt2 = $conn->prepare("SELECT * FROM user_address WHERE user_id = ? AND is_default = 1 LIMIT 1");
+$stmt2->execute([$user_id]);
+$address = $stmt2->fetch(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -65,11 +81,11 @@
                       </li>
                 </ul>
                 <div class="container-login">
-                          <a href="taikhoan.html">
+                          <a href="../pages/taikhoan.php">
                             <img class="logo-person" src="../assets/img/daidien4.png" alt="logo của brand" 
                           style="width:28px; height: 28px"></a>
 
-                          <a class="text-dangnhap" href="taikhoan.html">Thông tin</a>
+                          <a class="text-dangnhap" href="../pages/taikhoan.php">Thông tin</a>
                           <a class="text-dangky" style="opacity: 0.8;" href="../assets/php/logout.php">Đăng xuất</a>
                           
                           
@@ -145,71 +161,73 @@
 
 <main>
   <div class="checkout-container">
-    <!-- Cột trái: Thông tin giao hàng & Thanh toán -->
-    <div class="checkout-left">
-      <!-- Thông tin đặt hàng -->
-      <div class="section">
-        <h2>Thông tin đặt hàng</h2>
-        <div class="input-group">
-          <h3>Họ và Tên</h3>
-          <input type="text" value="Thành Phát Anh Hưng">
+  <!-- Cột trái -->
+  <div class="checkout-left">
 
-          <h3>Số điện thoại</h3>
-          <input type="text" value="0796556438">
+    <!-- Thông tin đặt hàng -->
+    <div class="section">
+      <h2>Thông tin đặt hàng</h2>
 
-          <h3>Địa chỉ</h3>
-          <label><input type="radio" name="diachitaikhoan" checked> Dùng địa chỉ tài khoản.</label>
-          <p>273 An Dương Vương, Phường Chợ Quán, TPHCM.</p>
-          <label><input type="radio" name="diachitaikhoan"> Nhập địa chỉ mới.</label>
-          <input type="text" placeholder="Tên đường, tòa nhà, số nhà.">
-          <select>
-            <option>Chọn tỉnh/thành</option>
-            <option>TP.Hồ Chí Minh</option>
-          </select>
-          <select>
-            <option>Chọn quận/huyện</option>
-            <option>Quận 10</option>
-            <option>Chọn phường</option>
-            <option>Phường Sài Gòn</option>
-            <option>Phường Tân Định</option>
-            <option>Phường Bến Thành</option>
-            <option>Phường Xuân Hòa</option>
-            <option>Phường Vĩnh Hội</option>
-          </select>
-        </div>
-      </div>
+      <div class="input-group">
+        <h3>Họ và Tên</h3>
+        <input type="text" id="fullname">
 
-      <!-- Phương thức thanh toán -->
-      <div class="section">
-        <h2>Phương thức thanh toán</h2>
-        <label><input type="radio" name="payment" checked> Thanh toán khi nhận hàng</label>
-        <label><input type="radio" name="payment"> Chuyển khoản qua ngân hàng</label>
-        <label><input type="radio" name="payment"> Thanh toán qua thẻ</label>
+        <h3>Số điện thoại</h3>
+        <input type="text" id="phone">
 
-        <div class="input-group payment-card">
-          <input type="text" placeholder="Tên chủ thẻ">
-          <input type="text" placeholder="Số thẻ">
-          <input type="text" placeholder="Ngày hết hạn (MM/YY)">
-          <input type="text" placeholder="Mã CVV">
-        </div>
+        <h3>Địa chỉ</h3>
+
+        <label>
+          <input type="radio" name="address_type" value="default" checked>
+          Dùng địa chỉ tài khoản
+        </label>
+        <p id="default-address"></p>
+
+        <label>
+          <input type="radio" name="address_type" value="new">
+          Nhập địa chỉ mới
+        </label>
+
+        <input type="text" id="new-address" placeholder="Tên đường, số nhà..." disabled>
       </div>
     </div>
+
+    <!-- Thanh toán -->
+    <div class="section">
+      <h2>Phương thức thanh toán</h2>
+
+      <label>
+        <input type="radio" name="payment" value="cash" checked>
+        Thanh toán khi nhận hàng
+      </label>
+
+      <label>
+        <input type="radio" name="payment" value="bank_transfer">
+        Chuyển khoản ngân hàng
+      </label>
+
+      <label>
+        <input type="radio" name="payment" value="online">
+        Thanh toán online
+      </label>
+    </div>
+
+  </div>
 
     <!-- Cột phải: Thông tin đơn hàng -->
     <div class="checkout-right">
       <h2>Thông tin đơn hàng</h2>
-      <div class="section-summary">
-        <p><strong>Sản phẩm: </strong>Vợt cầu lông Yonex 88S play tour <br> Chính Hãng x1 </p>
-        <p><strong>Sản phẩm: </strong>Vợt cầu lông Yonex Astrox jayce win99 <br> Chính Hãng x1 </p>
-        <p><strong>Tổng tiền hàng:</strong> 3,350,000₫</p>
-        <p><strong>Phí vận chuyển:</strong> Miễn phí</p>
-        <p class="total"><strong>Tổng thanh toán: </strong>3,500,000₫</p>
+      <div id="checkout-items"></div>
+
+<p><strong>Tổng tiền hàng:</strong> <span id="subtotal"></span></p>
+<p><strong>Phí vận chuyển:</strong> Miễn phí</p>
+<p class="total"><strong>Tổng thanh toán: </strong><span id="total"></span></p>
         <p><input type="checkbox"> Xuất hóa đơn</p>
         <h4>Ghi chú đơn hàng: </h4>
         <input type="text" placeholder="Nhập ghi chú">
         <div class="button-group">
           <a href="allsanpham1.html"><button class="btn-outline">Tiếp tục mua hàng</button></a>
-          <a href="choxacnhan.html"><button class="btn-primary">Đặt hàng</button></a>
+          <button class="btn-primary" onclick="placeOrder()">Đặt hàng</button>
         </div>
       </div>
     </div>
@@ -310,6 +328,6 @@
     </div>
   </div>
 </footer>
-
+<script src="../assets/js/checkout.js"></script>
 </body>
 </html>
