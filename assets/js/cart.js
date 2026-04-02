@@ -17,7 +17,7 @@ function loadCart() {
         cartList.innerHTML += `
           <div class="cart-item">
             <div class="cart-img">
-              <img src="../assets/img/${item.image_url}">
+              <img src="../${item.image_url}">
             </div>
 
             <div class="cart-info">

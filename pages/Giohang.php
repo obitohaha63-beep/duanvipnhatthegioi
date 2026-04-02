@@ -161,7 +161,7 @@
         Tiếp tục mua hàng
       </button>
 
-      <button onclick="window.location.href='checkout.html'">
+      <button onclick="window.location.href='checkout.php'">
         Thanh toán
       </button>
     </div>
@@ -169,7 +169,7 @@
   </div>
 </main> 
 <script src="../assets/js/cart.js"></script>
-<script src="../assets/js/product_detail.js"></script>
+
 </body>
 <footer>
   <div class="container-footer">
