@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       if (result.success) {
         alert("Cập nhật thành công!");
-        window.location.href = "NhaphangGiaban2.html";
+        window.location.href = "NhaphangGiaban2.php";
       } else {
         alert(result.message || "Cập nhật thất bại");
       }

@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (data.success) {
         alert("Thêm danh mục thành công!");
         form.reset(); // reset form
-        window.location.href = "DanhMuc.html"; // chuyển về trang danh mục
+        window.location.href = "DanhMuc.php"; // chuyển về trang danh mục
       } else {
         alert("Lỗi: " + data.message);
       }

@@ -167,5 +167,5 @@ function formatDate(dateString) {
 }
 
 function goBack() {
-  window.location.href = "QuanLyDonHang.html";
+  window.location.href = "QuanLyDonHang.php";
 }

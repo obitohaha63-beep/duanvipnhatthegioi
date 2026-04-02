@@ -72,7 +72,7 @@ fetch('../assets/php/get_categories.php')
     .then(res => res.json())
     .then(resp => {
       alert(resp.message);
-      if(resp.success) window.location.href = 'QuanLySanPham.html';
+      if(resp.success) window.location.href = 'QuanLySanPham.php';
     });
   });
 });
