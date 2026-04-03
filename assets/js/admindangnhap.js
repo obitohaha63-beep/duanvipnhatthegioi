@@ -23,27 +23,19 @@ document.addEventListener('DOMContentLoaded', function () {
       headers: {
         'Content-Type': 'application/json'
       },
+      credentials: "include", // 🔥 QUAN TRỌNG
       body: JSON.stringify({
         email: email,
-        password: pass
+        password: pass,
+        type: "admin" // 🔥 PHÂN BIỆT ADMIN
       })
     })
-    .then(response => response.text())
-    .then(text => {
-      console.log("Server response:", text);
-
-      try {
-        const data = JSON.parse(text);
-
-        if (data.success) {
-          window.location.href = '../pages/admin.php';
-        } else {
-          msg.textContent = data.message || 'Tài khoản hoặc mật khẩu không đúng.';
-        }
-
-      } catch (e) {
-        msg.textContent = 'Server trả về dữ liệu lỗi.';
-        console.error('JSON parse error:', e);
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        window.location.href = '../pages/admin.php';
+      } else {
+        msg.textContent = data.message || 'Tài khoản hoặc mật khẩu không đúng.';
       }
     })
     .catch(error => {

@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Load danh sách user + admin theo role
 function loadUsers() {
-    fetch('../assets/php/get_users.php')
+    fetch('../assets/php/get_users_admin.php')
         .then(response => response.json())
         .then(data => {
             const userTable = document.getElementById('user-table');
