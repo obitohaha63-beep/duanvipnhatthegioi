@@ -145,31 +145,70 @@
       <h2>TẠO TÀI KHOẢN MỚI</h2>
       <p>Điền thông tin của bạn để tạo tài khoản CoolNet.</p><br>
 
-      <form action="login.html" method="GET">
+      <form id="registerForm">
         <div class="form-row">
           <label for="fullname"><strong>HỌ VÀ TÊN<span style="color: red">*</span></strong></label>
-          <input type="text" id="fullname" placeholder="Nhập họ tên của bạn" required>
+          <input type="text" name="name" id="fullname" placeholder="Nhập họ tên của bạn" required>
         </div>
 
         <div class="form-row">
-          <label for="email-register"><strong>EMAIL<span style="color: red">*</span></strong></label>
-          <input type="email" id="email-register" name="email" placeholder="Nhập địa chỉ email" required>
+          <label><strong>EMAIL<span style="color: red">*</span></strong></label>
+          <input 
+  type="email" 
+  id="email-register" 
+  name="email" 
+  placeholder="Nhập địa chỉ email" 
+  autocomplete="username"
+  placeholder="Nhập địa chỉ email"
+  required>
         </div>
 
         <div class="form-row">
-          <label for="password-register"><strong>MẬT KHẨU<span style="color: red">*</span></strong></label>
-          <input type="password" id="password-register" name="password" placeholder="Tạo mật khẩu" required>
+          <label><strong>MẬT KHẨU<span style="color: red">*</span></strong></label>
+          <input type="password" 
+       id="password-register" 
+       name="password" 
+       autocomplete="new-password"
+       placeholder="Nhập mật khẩu"
+       required>
         </div>
 
         <div class="form-row">
-          <label for="confirm-password"><strong>XÁC NHẬN MẬT KHẨU<span style="color: red">*</span></strong></label>
-          <input type="password" id="confirm-password" placeholder="Nhập lại mật khẩu" required>
+          <label><strong>XÁC NHẬN MẬT KHẨU<span style="color: red">*</span></strong></label>
+          <input type="password" 
+       id="confirm-password"
+       name="confirm_password"
+       autocomplete="new-password"
+       placeholder="Xác nhận mật khẩu"
+       required>
         </div>
+        <!-- ĐỊA CHỈ -->
+         <label><strong>ĐỊA CHỈ<span style="color: red">*</span></strong></label>
+         <div class="form-row">
+          <label><strong>Thành phố<span></strong></label>
+  <input type="text" id="city" placeholder="VD:TP.HCM" required>
+  </div>
+  <div class="form-row">
+          <label><strong>Quận<span></strong></label>
+    <input type="text" id="district" placeholder="VD:Q2" required>
+  </div>
+  <div class="form-row">
+          <label><strong>Phường<span></strong></label>
+    <input type="text" id="ward" placeholder="VD:Bến Nghé" required>
+  </div>
+  <div class="form-row">
+          <label><strong>Số nhà/tên đường<span></strong></label>
+      <input type="text" id="detail_address" placeholder="12 Nguyễn Huệ" required>
+  </div>
+  <div class="form-row">
+          <label><strong>SĐT<span></strong></label>
+      <input type="tel" name="phone" 
+      id="phone" placeholder="Nhập số điện thoại" autocomplete="tel" required>
+  </div>
 
-        <div class="show-password">
-          <input type="checkbox" id="showPassRegister">
-          <label for="showPassRegister">Hiện mật khẩu</label>
-        </div>
+  
+
+        
         
         <button type="submit" class="btn-register-form">ĐĂNG KÝ</button>
         
@@ -188,8 +227,9 @@
   </div>
 </section>
 
-  <script src="scrip.js"></script>
+
 </main>
+  <script src="../assets/js/register.js"></script>
 </body>
 <footer>
   <div class="container-footer">
