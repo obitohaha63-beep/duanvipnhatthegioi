@@ -28,12 +28,22 @@ async function loadCheckout() {
 }
 
 async function placeOrder() {
-  const address = document.querySelector("input[placeholder='Tên đường, tòa nhà, số nhà.']").value;
+  let address = "";
 
-  const payment = document.querySelector("input[name='payment']:checked")
-    .nextSibling.textContent.includes("ngân hàng")
-    ? "bank_transfer"
-    : "cash";
+  const addressType = document.querySelector('input[name="address_type"]:checked').value;
+
+  if (addressType === "default") {
+    address = document.getElementById("default-address").innerText;
+  } else {
+    const city = document.getElementById("city").value;
+    const district = document.getElementById("district").value;
+    const ward = document.getElementById("ward").value;
+    const detail = document.getElementById("detail_address").value;
+
+    address = `${detail}, ${ward}, ${district}, ${city}`;
+  }
+
+  const payment = document.querySelector("input[name='payment_method']:checked").value;
 
   const res = await fetch("../assets/php/place_order.php", {
     method: "POST",
@@ -49,8 +59,10 @@ async function placeOrder() {
   const data = await res.json();
 
   if (data.success) {
-    alert("Đặt hàng thành công!");
-    window.location.href = "choxacnhan.html";
+    // lưu order_id để dùng ở trang success
+    localStorage.setItem("last_order_id", data.order_id);
+
+    window.location.href = "dathangthanhcong.php";
   } else {
     alert(data.message);
   }
@@ -81,3 +93,40 @@ async function loadUser() {
 
 loadUser();
 loadCheckout();
+
+// ===== ADDRESS TOGGLE =====
+const addressRadios = document.querySelectorAll('input[name="address_type"]');
+const newAddressForm = document.getElementById("new-address-form");
+
+addressRadios.forEach(radio => {
+  radio.addEventListener("change", () => {
+    if (radio.value === "new" && radio.checked) {
+      newAddressForm.style.display = "block";
+    } else if (radio.value === "default" && radio.checked) {
+      newAddressForm.style.display = "none";
+    }
+  });
+});
+
+
+// ===== PAYMENT TOGGLE =====
+const paymentRadios = document.querySelectorAll('input[name="payment_method"]');
+const bankInfo = document.getElementById("bank-info");
+const onlineInfo = document.getElementById("online-info");
+
+paymentRadios.forEach(radio => {
+  radio.addEventListener("change", () => {
+
+    // reset
+    bankInfo.style.display = "none";
+    onlineInfo.style.display = "none";
+
+    if (radio.value === "bank_transfer" && radio.checked) {
+      bankInfo.style.display = "block";
+    }
+
+    if (radio.value === "online" && radio.checked) {
+      onlineInfo.style.display = "block";
+    }
+  });
+});

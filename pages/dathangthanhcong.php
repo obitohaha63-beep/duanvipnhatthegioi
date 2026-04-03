@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -134,57 +135,60 @@
 <main class="order-success-page">
   <div class="order-success-card">
 
-    <!-- Icon + trạng thái -->
     <div class="success-icon">✔</div>
     <h1 class="success-title">Đặt hàng thành công</h1>
-    <p class="success-sub">
-      Cảm ơn bạn đã mua sắm tại <strong>COOLNET</strong>   
-      Đơn hàng của bạn đang chờ xác nhận.
-    </p>
 
-    <!-- Thông tin đơn -->
-    <div class="order-info">
-      <div class="info-row">
-        <span>Mã đơn hàng:</span>
-        <strong>#DCT124C1</strong>
-      </div>
+    <p>Mã đơn hàng: <strong id="order-id"></strong></p>
 
-      <div class="info-row">
-        <span>Người nhận:</span>
-        <strong>Thành Phát Anh Hưng</strong>
-      </div>
+    <!-- USER INFO -->
+    <div class="user-info">
+      <h2>Thông tin khách hàng</h2>
 
-      <div class="info-row">
-        <span>Địa chỉ giao hàng:</span>
-        <strong>273 An Dương Vương, Phường Bến Nghé, TP.HCM</strong>
-      </div>
+      <label>Họ và tên:</label>
+      <input type="text" id="customer-name" readonly>
 
-      <div class="info-row">
-        <span>Phương thức thanh toán:</span>
-        <strong>Thanh toán khi giao hàng (COD)</strong>
-      </div>
+      <label>Số điện thoại:</label>
+      <input type="text" id="phone" readonly>
 
-      <div class="info-row status">
-        <span>Trạng thái:</span>
-        <span class="badge pending"> Chờ xác nhận</span>
-      </div>
+      <label>Địa chỉ:</label>
+      <textarea id="address" readonly></textarea>
+
+      <label>Thanh toán:</label>
+      <input type="text" id="payment" readonly>
     </div>
 
-    <!-- Hành động -->
-    <div class="success-actions">
-      <a href="haveaccount.html" class="btn-outline">Tiếp tục mua sắm</a>
-      <a href="donhangcuaban.html" class="btn-primary">Chi tiết đơn hàng</a>
+    <!-- ITEMS -->
+    <div class="order-items">
+      <h2>Chi tiết sản phẩm</h2>
+
+      <table border="1" width="100%">
+        <thead>
+          <tr>
+            <th>Sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+            <th>Tạm tính</th>
+          </tr>
+        </thead>
+
+        <tbody id="order-items"></tbody>
+
+        <tfoot>
+          <tr>
+            <th colspan="3">Tổng tiền</th>
+            <th id="total"></th>
+          </tr>
+        </tfoot>
+      </table>
     </div>
 
-    <!-- Ghi chú UX -->
-    <p class="success-note">
-      Đơn hàng sẽ được xác nhận trong vòng <strong>30 phút</strong>.  
-      Nếu cần hỗ trợ, vui lòng liên hệ hotline <strong>0796 556 438</strong>.
-    </p>
+    <div class="back-home">
+      <a href="haveaccount.php">← Quay về trang chủ</a>
+    </div>
 
   </div>
 </main>
-<script src="scrip.js"></script>
+<script src="../assets/js/order_success.js"></script>
 </body>
 <footer>
   <div class="container-footer">
