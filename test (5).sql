@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2026 at 06:46 PM
+-- Generation Time: Apr 03, 2026 at 09:47 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,7 +42,12 @@ CREATE TABLE `cart` (
 
 INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`, `color`, `size`) VALUES
 (2, 11, 17, 1, 'Midnight Blue', '4U'),
-(4, 11, 24, 1, 'Red', '4U');
+(4, 11, 24, 1, 'Red', '4U'),
+(5, 11, 24, 3, 'Off White', '3U'),
+(6, 14, 24, 1, 'Off White', '4U'),
+(7, 14, 17, 3, 'Midnight Blue', '4U'),
+(8, 14, 3, 1, 'Black', '3U'),
+(9, 14, 4, 3, 'Red', '4U');
 
 -- --------------------------------------------------------
 
@@ -263,7 +268,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `phone`, `role`, `status
 (8, 'Admin Phụ', 'admin3@gmail.com', '$2y$10$0Fcg5mEnFLlkfjwfFI3nBuSD8MrWta.4i5x48bWQg08h3ZFmCWb2u', '0912345678', 'admin', 'active', '2026-03-28 09:50:08', 1, '45 Lê Lợi, Hoàn Kiếm, Hà Nội'),
 (9, 'Nguyễn Văn A', 'user1@gmail.com', '$2y$10$nz0r1oHd7.7Dcljd59wareLDCmHo2qIoG4MQ9PMGohHP2p1.1WHHW', '0978123456', 'customer', 'active', '2026-03-28 09:50:08', 1, NULL),
 (10, 'Trần Thị B', 'user2@gmail.com', '$2y$10$TEqEfxOmOWn6vbrFkxngK./qX7BQ5KpbXmCsBxaO2WCA4ZGh3.vvO', '0934567890', 'customer', 'active', '2026-03-28 09:50:08', 1, NULL),
-(11, 'Lê Minh C', 'user3@gmail.com', '$2y$10$/x/xYvnLZOFCA5rGGN2GK.HRI9W8rxy6UJIqpo5FUDBVQ/STVMPAu', '0965432109', 'customer', 'active', '2026-03-28 09:50:08', 1, NULL);
+(11, 'Lê Minh C', 'user3@gmail.com', '$2y$10$/x/xYvnLZOFCA5rGGN2GK.HRI9W8rxy6UJIqpo5FUDBVQ/STVMPAu', '0965432109', 'customer', 'active', '2026-03-28 09:50:08', 1, NULL),
+(14, 'Đinh Công Thành', 'obitohaha63@gmail.com', '$2y$10$zh1VEJmqoBHJZzA3sozcNekmEjYlOojk0pjTeSAIVdXJvVqXYEf3O', '0796556438', 'customer', 'active', '2026-04-03 13:57:45', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -289,7 +295,8 @@ CREATE TABLE `user_address` (
 INSERT INTO `user_address` (`id`, `user_id`, `city`, `district`, `ward`, `detail_address`, `is_default`, `created_at`) VALUES
 (1, 9, 'TP.HCM', 'Quận 1', 'Phường Bến Nghé', '12 Nguyễn Huệ', 1, '2026-03-29 23:20:06'),
 (2, 10, 'TP.HCM', 'Quận Bình Thạnh', 'Phường Gia Định', '36 AB đỏ', 0, '2026-03-29 23:29:23'),
-(3, 11, 'TP.HCM', 'Quận dây', 'Phường phố đã lên đèn', '36 AB đỏ', 1, '2026-03-29 23:39:21');
+(3, 11, 'TP.HCM', 'Quận dây', 'Phường phố đã lên đèn', '36 AB đỏ', 1, '2026-03-29 23:39:21'),
+(5, 14, 'TP.HCM', 'Q2', 'Phú Mỹ', '66 Thảo Điền', 1, '2026-04-03 13:57:45');
 
 --
 -- Indexes for dumped tables
@@ -366,7 +373,7 @@ ALTER TABLE `user_address`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -408,13 +415,13 @@ ALTER TABLE `purchase_order_items`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `user_address`
 --
 ALTER TABLE `user_address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

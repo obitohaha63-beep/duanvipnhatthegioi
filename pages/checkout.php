@@ -34,7 +34,7 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
         <div class="container">
             <!---- LOGO-->
             <div class="containerlogo">
-              <div class="logo"><a href="haveaccount.html"><img src="../assets/img/unnamed (5) 2.png" 
+              <div class="logo"><a href="haveaccount.php"><img src="../assets/img/unnamed (5) 2.png" 
                 style="width: 245px;"></a>
               </div>
             </div>
@@ -164,55 +164,87 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
   <!-- Cột trái -->
   <div class="checkout-left">
 
-    <!-- Thông tin đặt hàng -->
-    <div class="section">
-      <h2>Thông tin đặt hàng</h2>
+  <!-- Thông tin đặt hàng -->
+  <div class="section">
+    <h2>Thông tin đặt hàng</h2>
 
-      <div class="input-group">
-        <h3>Họ và Tên</h3>
-        <input type="text" id="fullname">
+    <div class="input-group">
 
-        <h3>Số điện thoại</h3>
-        <input type="text" id="phone">
+      <!-- Họ tên -->
+      <h3>Họ và Tên</h3>
+      <input type="text" id="fullname">
 
-        <h3>Địa chỉ</h3>
+      <!-- SĐT -->
+      <h3>Số điện thoại</h3>
+      <input type="text" id="phone">
 
-        <label>
-          <input type="radio" name="address_type" value="default" checked>
-          Dùng địa chỉ tài khoản
-        </label>
-        <p id="default-address"></p>
+      <!-- Địa chỉ -->
+      <h3>Địa chỉ</h3>
 
-        <label>
-          <input type="radio" name="address_type" value="new">
-          Nhập địa chỉ mới
-        </label>
+      <!-- Dùng địa chỉ mặc định -->
+      <label>
+        <input type="radio" name="address_type" value="default" checked>
+        Dùng địa chỉ tài khoản
+      </label>
+      <p id="default-address"></p>
 
-        <input type="text" id="new-address" placeholder="Tên đường, số nhà..." disabled>
+      <!-- Nhập địa chỉ mới -->
+      <label>
+        <input type="radio" name="address_type" value="new">
+        Nhập địa chỉ mới
+      </label>
+
+      <!-- FORM địa chỉ mới -->
+      <div id="new-address-form" style="display:none;">
+        <input type="text" id="detail_address" placeholder="Số nhà, tên đường">
+        <input type="text" id="ward" placeholder="Phường/Xã">
+        <input type="text" id="district" placeholder="Quận/Huyện">
+        <input type="text" id="city" placeholder="Tỉnh/Thành phố">
       </div>
+
+    </div>
+  </div>
+
+  <!-- Phương thức thanh toán -->
+  <div class="section">
+    <h2>Phương thức thanh toán</h2>
+
+    <!-- Tiền mặt -->
+    <label>
+      <input type="radio" name="payment_method" value="cash" checked>
+      Thanh toán khi nhận hàng (COD)
+    </label>
+
+    <!-- Chuyển khoản -->
+    <label>
+      <input type="radio" name="payment_method" value="bank_transfer">
+      Chuyển khoản ngân hàng
+    </label>
+
+    <!-- Thông tin chuyển khoản -->
+    <div id="bank-info" style="display:none;">
+      <p><strong>Ngân hàng:</strong> Vietcombank</p>
+      <p><strong>Số tài khoản:</strong> 123456789</p>
+      <p><strong>Chủ tài khoản:</strong> NGUYEN VAN A</p>
+
+      <h4>Thông tin người chuyển</h4>
+      <input type="text" id="bank_name" placeholder="Tên người chuyển">
+      <input type="text" id="bank_transaction_code" placeholder="Mã giao dịch">
     </div>
 
-    <!-- Thanh toán -->
-    <div class="section">
-      <h2>Phương thức thanh toán</h2>
+    <!-- Online -->
+    <label>
+      <input type="radio" name="payment_method" value="online">
+      Thanh toán trực tuyến
+    </label>
 
-      <label>
-        <input type="radio" name="payment" value="cash" checked>
-        Thanh toán khi nhận hàng
-      </label>
-
-      <label>
-        <input type="radio" name="payment" value="bank_transfer">
-        Chuyển khoản ngân hàng
-      </label>
-
-      <label>
-        <input type="radio" name="payment" value="online">
-        Thanh toán online
-      </label>
+    <div id="online-info" style="display:none;">
+      <p>Chức năng đang phát triển...</p>
     </div>
 
   </div>
+
+</div>
 
     <!-- Cột phải: Thông tin đơn hàng -->
     <div class="checkout-right">
