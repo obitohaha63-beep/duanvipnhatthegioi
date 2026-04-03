@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2026 at 09:47 AM
+-- Generation Time: Apr 03, 2026 at 12:21 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,11 +43,7 @@ CREATE TABLE `cart` (
 INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`, `color`, `size`) VALUES
 (2, 11, 17, 1, 'Midnight Blue', '4U'),
 (4, 11, 24, 1, 'Red', '4U'),
-(5, 11, 24, 3, 'Off White', '3U'),
-(6, 14, 24, 1, 'Off White', '4U'),
-(7, 14, 17, 3, 'Midnight Blue', '4U'),
-(8, 14, 3, 1, 'Black', '3U'),
-(9, 14, 4, 3, 'Red', '4U');
+(5, 11, 24, 3, 'Off White', '3U');
 
 -- --------------------------------------------------------
 
@@ -91,7 +87,8 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`id`, `user_id`, `order_date`, `delivery_address`, `payment_method`, `status`, `total_amount`) VALUES
 (1, 9, '2026-03-28 10:15:00', '25 Nguyễn Trãi, Quận 1, TP.HCM', 'cash', 'confirmed', 8584615.38),
 (2, 11, '2026-03-28 14:20:00', '88 Lê Lợi, Quận 3, TP.HCM', 'bank_transfer', 'cancelled', 3600000.00),
-(3, 9, '2026-03-29 09:30:00', '25 Nguyễn Trãi, Quận 1, TP.HCM', 'online', 'confirmed', 4320000.00);
+(3, 9, '2026-03-29 09:30:00', '25 Nguyễn Trãi, Quận 1, TP.HCM', 'online', 'confirmed', 4320000.00),
+(5, 14, '2026-04-03 15:11:35', '66 Thảo Điền, Phú Mỹ, Q2, TP.HCM', 'cash', 'pending', 0.00);
 
 -- --------------------------------------------------------
 
@@ -116,7 +113,14 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `selling_
 (2, 1, 6, 1, 2340000.00),
 (3, 2, 27, 1, 3600000.00),
 (4, 3, 2, 1, 3900000.00),
-(5, 3, 6, 1, 2340000.00);
+(5, 3, 6, 1, 2340000.00),
+(7, 5, 24, 1, 0.00),
+(8, 5, 17, 3, 0.00),
+(9, 5, 3, 1, 0.00),
+(10, 5, 4, 3, 0.00),
+(11, 6, 24, 2, 0.00),
+(12, 7, 24, 1, 0.00),
+(13, 8, 24, 1, 0.00);
 
 -- --------------------------------------------------------
 
@@ -373,7 +377,7 @@ ALTER TABLE `user_address`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -385,13 +389,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `products`
