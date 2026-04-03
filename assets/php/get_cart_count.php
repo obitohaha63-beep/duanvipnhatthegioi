@@ -5,7 +5,7 @@ require "db.php";
 
 if (!isset($_SESSION['user'])) {
     echo json_encode([
-        "success" => false,
+        "success" => true,
         "count" => 0
     ]);
     exit;
@@ -13,13 +13,14 @@ if (!isset($_SESSION['user'])) {
 
 $user_id = $_SESSION['user']['id'];
 
-$sql = "SELECT SUM(quantity) as total FROM cart WHERE user_id = ?";
+// 🔥 đổi từ SUM -> COUNT
+$sql = "SELECT COUNT(*) as count FROM cart WHERE user_id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->execute([$user_id]);
 
-$result = $stmt->fetch(PDO::FETCH_ASSOC);
+$row = $stmt->fetch();
 
 echo json_encode([
     "success" => true,
-    "count" => (int)($result['total'] ?? 0)
+    "count" => (int)$row['count']
 ]);

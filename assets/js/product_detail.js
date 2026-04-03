@@ -182,6 +182,27 @@ function loadCartCount() {
       }
     });
 }
+// 🔥 xử lý tăng giảm số lượng
+document.addEventListener("click", function(e) {
+  const numberEl = document.querySelector(".numbercount");
 
+  if (!numberEl) return;
+
+  let current = parseInt(numberEl.innerText);
+
+  // tăng
+  if (e.target.classList.contains("plus")) {
+    current++;
+    numberEl.innerText = current;
+  }
+
+  // giảm
+  if (e.target.classList.contains("minus")) {
+    if (current > 1) {
+      current--;
+      numberEl.innerText = current;
+    }
+  }
+});
 // gọi khi load
 loadCartCount();
