@@ -159,7 +159,7 @@
         <h2 id="account-email">Email</h2>
       </div>
       <nav class="account-menu">
-        <a href="taikhoan.html">
+        <a href="taikhoan.php">
         <div class="box-thongtincanhan">
           Thông tin cá nhân
         </div>
@@ -189,47 +189,27 @@
       <form class="account-form">
         <div class="sanpham">
   <table class="table-donhang">
-    <thead>
-      <tr>
-        <th>Mã hóa đơn</th>
-        <th>Ngày hoàn thành</th>
-        <th>Tổng giá tiền</th>
-        <th>Thao tác</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>HD001</td>
-        <td>12/11/2025</td>
-        <td>1.250.000₫</td>
-        <td><button class="btn-xem"><a href="donhangcuaban.html"
-            style="color: white;">Xem</a></button></td>
-      </tr>
-      <tr>
-        <td>HD002</td>
-        <td>10/11/2025</td>
-        <td>890.000₫</td>
-        <td><button class="btn-xem"><a href="donhangcuaban.html"
-            style="color: white;">Xem</a></button></td>
-      </tr>
-      <tr>
-        <td>HD003</td>
-        <td>05/11/2025</td>
-        <td>2.350.000₫</td>
-        <td><button class="btn-xem"><a href="donhangcuaban.html"
-            style="color: white;">Xem</a></button></td>
-      </tr>
-    </tbody>
-  </table>
+  <thead>
+    <tr>
+      <th>Mã hóa đơn</th>
+      <th>Ngày hoàn thành</th>
+      <th>Tổng giá tiền</th>
+      <th>Thao tác</th>
+    </tr>
+  </thead>
+  <tbody id="orderTableBody">
+    <!-- Dữ liệu sẽ được render ở đây -->
+  </tbody>
+</table>
 </div>
 
       </form>
     </section>
   </div>
-    <script src="scrip.js"></script>
+  
 </main>
 
-
+  <script src="../assets/js/get_orders.js"></script>
 </body>
 <footer>
   <div class="container-footer">
