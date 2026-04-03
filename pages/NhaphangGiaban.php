@@ -17,7 +17,8 @@
     
     <nav class="sidebar">
     <h2 class="logo">Admin</h2>
-<ul class="menu">
+
+    <ul class="menu">
       <li><a href="../pages/dashboard.php">Dashboard</a></li>
       <li><a href="../pages/QuanLyuser.php">Quản lý người dùng</a></li>
       <li><a href="../pages/DanhMuc.php">Danh mục</a></li>
@@ -27,7 +28,6 @@
       <li><a href="../pages/QuanLyDonHang.php" > Quản lý đơn đặt hàng </a></li> 
       <li><a href="../pages/QuanLyTonKho.html">Quản lý tồn kho</a></li> </ul>
       <li><a href="../assets/php/logout.php">Đăng xuất</a></li> 
-    </ul>
   </nav>
     <main class="content">
       <div class="sub-container">
