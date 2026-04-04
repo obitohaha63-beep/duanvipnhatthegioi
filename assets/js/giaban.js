@@ -35,9 +35,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td>${p.name}</td>
-        <td>${Number(p.cost_price).toLocaleString()}</td>
+        <td>${Number(p.cost_price)
+          .toLocaleString('vi-VN', {minimumFractionDigits: 0, maximumFractionDigits: 0})}</td>
         <td>${p.profit_rate}%</td>
-        <td>${Number(p.selling_price).toLocaleString()}</td>
+        <td>${Number(p.selling_price)
+          .toLocaleString('vi-VN', {minimumFractionDigits: 0, maximumFractionDigits: 0})}</td>
         <td><button class="btn-add" onclick="location.href='FormSuaGia.html?id=${p.id}'">Sửa</button></td>
       `;
       tableBody.appendChild(tr);

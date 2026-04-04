@@ -20,7 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
             <td>${p.brand}</td>
             <td>${p.color}</td>
             <td>${p.size}</td>
-            <td>${p.cost_price.toLocaleString('vi-VN')}đ</td>
+            <td>${Number(p.cost_price)
+              .toLocaleString('vi-VN', {minimumFractionDigits: 0, maximumFractionDigits: 0})}đ</td>
             <td>${p.profit_rate}%</td>
             <td>${p.quantity}</td>
             <td>${p.status}</td>

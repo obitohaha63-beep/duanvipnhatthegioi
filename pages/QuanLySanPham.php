@@ -26,7 +26,7 @@
       <li><a href="../pages/NhaphangGiaban.php">Quản lý nhập hàng</a></li> 
       <li><a href="../pages/NhaphangGiaban2.php">Quản lý giá bán</a></li> 
       <li><a href="../pages/QuanLyDonHang.php" > Quản lý đơn đặt hàng </a></li> 
-      <li><a href="../pages/QuanLyTonKho.html">Quản lý tồn kho</a></li> </ul>
+      <li><a href="../pages/QuanLyTonKho.php">Quản lý tồn kho</a></li> </ul>
       <li><a href="../assets/php/logout.php">Đăng xuất</a></li> 
   </nav>
 

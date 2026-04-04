@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById('totalStock').innerText = data.stock;
 
       document.getElementById('totalRevenue').innerText =
-        Number(data.revenue).toLocaleString('vi-VN') + ' đ';
+        Number(data.revenue).toLocaleString('vi-VN', {minimumFractionDigits: 0, maximumFractionDigits: 0}) + ' đ';
     })
     .catch(err => console.error(err));
 });

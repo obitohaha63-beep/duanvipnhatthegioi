@@ -48,7 +48,8 @@ async function loadOrders() {
         <td>DH${String(order.id).padStart(3, "0")}</td>
         <td>${order.customer_name}</td>
         <td>${formatDate(order.order_date)}</td>
-        <td>${Number(order.total_amount).toLocaleString()}₫</td>
+        <td>${Number(order.total_amount)
+          .toLocaleString('vi-VN', {minimumFractionDigits: 0, maximumFractionDigits: 0})}₫</td>
         <td><span class="result-box">${statusText}</span></td>
         <td>
           <button onclick="xemchitiet(${order.id})">Xem</button>
