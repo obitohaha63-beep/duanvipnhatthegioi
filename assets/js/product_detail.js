@@ -25,6 +25,14 @@ if (!res.success) {
 }
 
 const p = res.product
+// 🔥 render breadcrumb
+const breadcrumbHTML = `
+  <a href="../pages/haveaccount.html" style="color: #1b1b1b;">Trang chủ</a> /
+  <a href="../pages/timkiemyonex1.php?keyword=Vợt+cầu+lông+Yonex" style="color: #1b1b1b;">${p.category_name}</a> /
+  ${p.name}
+`;
+
+document.querySelector(".linkedline-content").innerHTML = breadcrumbHTML;
 let actionHTML = ""
 
 if (mode === "guest") {

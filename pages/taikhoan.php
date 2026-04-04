@@ -212,7 +212,7 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
 
 </main>
 
-<script src="scrip.js"></script>
+<script src="../assets/js/load_cart.js"></script>
 </body>
 <footer>
   <div class="container-footer">

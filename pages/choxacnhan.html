@@ -6,17 +6,43 @@
   <title>CoolNet</title>
   <link rel="stylesheet" href="../assets/css/style4.css">
   <link rel="stylesheet" href="../assets/css/root.css">
-  <link rel="stylesheet" href="../assets/css/choxacnhan.css">
+  <link rel="stylesheet" href="../assets/css/Donhangphanloai.css">
   <link rel="stylesheet" href="../assets/css/fontinter.css">
   <link rel="icon" type="image/png" href="../assets/img/favicon-logo.ico">
 </head>
+
+<style>
+  .khung-tablist .khung-text-choxacnhan{
+  position: relative;
+  width: 200px;
+  height: 40px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+
+   border-bottom: 3px solid #1331ab;
+   color: #1B1B1B;
+}
+
+.khung-tablist .khung-text-hoanthanh{
+  position: relative;
+  width: 200px;
+  height: 40px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+
+   border-bottom: 3px solid #BABABC;
+   color: #1B1B1B;
+}
+</style>
 <body>
 <header>
     <div class="headertop">
         <div class="container">
             <!---- LOGO-->
             <div class="containerlogo">
-              <div class="logo"><a href="html4.html"><img src="../assets/img/unnamed (5) 2.png" 
+              <div class="logo"><a href="../pages/haveaccount.php"><img src="../assets/img/unnamed (5) 2.png" 
                 style="width: 245px;"></a>
               </div>
             </div>
@@ -69,7 +95,7 @@
  <a href="taikhoan.html">
         <img class="logo-person" src="../assets/img/daidien4.png" alt="logo của brand" 
             style="width:28px; height: 28px"></a>
-  <a class="text-thongtin" href="taikhoan.html">Thông tin</a>
+  <a class="text-thongtin" href="../pages/taikhoan.php">Thông tin</a>
   <a class="text-dangky" style="opacity: 0.8;" href="html4.html">Đăng xuất</a>
 </div>
 
@@ -184,68 +210,37 @@
         </a>
         <a href="#">
         <div class="khung-text-choxacnhan">
-          Chờ xác nhận
+          Đã xác nhận
         </div>
         </a>
       </div>
       <div class="vien-boc-account-form">
       <form class="account-form">
         <div class="sanpham">
+  <table class="table-donhang">
+  <thead>
+    <tr>
+      <th>Mã hóa đơn</th>
+      <th>Ngày hoàn thành</th>
+      <th>Tổng giá tiền</th>
+      <th>Thao tác</th>
+    </tr>
+  </thead>
+  <tbody id="orderTableBody">
+    <!-- Dữ liệu sẽ được render ở đây -->
+  </tbody>
+</table>
+</div>
 
-            <div class="tieude">
-            
-            <span class="product-count">Chờ thanh toán </span></h2>
-            </div>
-
-            
-
-              <div class="cart-item">
-              
-              <img src="../assets/img/11tour.png" alt="Vợt cầu lông " class="product-img">
-             
-                <div class="product-info">
-                <p class="product-name">Vợt cầu lông Yonex Arcsaber 11 Pro <br>Chính Hãng</p>
-                <p class="product-desc">Đỏ / 4UG5 </p>
-                <p class="product-name">x1</p>
-                <p class="product-name-thongtin">Thành Phát Anh Hưng
-                    <br>
-                    0796556438
-                    <br>
-                    273 An Dương Vương, Phường Chợ Quán, TPHCM.
-                </p>
-
-                  
-               
-                </div>
-                  <div class="product-actions">
-                
-                    <p class="total-price">3.200.000₫</p>
-                    
-                </div>
-                
-                  
-            </div>
-            <div class="box-mualai">
-                <div class="box-thanhtien">
-                    <h3>Thành tiền: <span class="price"> 3.200.000đ</span> </h3>
-                    
-                    <div class="order-status pending">
-                      Chờ xác nhận
-                    </div>
-                    
-                    
-
-                </div>
-            </div>
-            </div>
       </form>
       </div>
     </section>
   </div>
-    <script src="scrip.js"></script>
+
 </main>
 
-
+  <script src="../assets/js/confirmed.js"></script>
+  <script src="../assets/js/load_cart.js"></script>
 </body>
 <footer>
   <div class="container-footer">

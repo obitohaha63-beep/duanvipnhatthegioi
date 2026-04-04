@@ -406,17 +406,7 @@ sanpham{
 
 }
 
-.khung-tablist .khung-text-hoanthanh{
-  position: relative;
-  width: 200px;
-  height: 40px;
-  justify-content: center;
-  display: flex;
-  align-items: center;
 
-   border-bottom: 3px solid #1331ab;
-   color: #1B1B1B;
-}
 .khung-tablist .khung-text-choxacnhan{
   position: relative;
   width: 200px;

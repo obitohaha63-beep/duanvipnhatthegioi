@@ -14,7 +14,6 @@ try {
         SELECT id, name 
         FROM products 
         WHERE category_id = :category_id
-        AND status = 'visible'
     ");
     $stmt->execute(['category_id' => $category_id]);
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);

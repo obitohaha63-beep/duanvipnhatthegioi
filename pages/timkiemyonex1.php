@@ -50,7 +50,7 @@
                       
 
                       <li class="listitemcart"> 
-                        <a class="groupitemcart" href="login.html">
+                        <a class="groupitemcart" href="Giohang.php">
                           <div class="containercart">
                             <button>
                               <span class="boxicon">
@@ -64,11 +64,11 @@
                       </li>
                 </ul>
                 <div class="container-login">
-                          <a href="taikhoan.html">
+                          <a href="taikhoan.php">
                             <img class="logo-person" src="../assets/img/daidien4.png" alt="logo của brand" 
                           style="width:28px; height: 28px"></a>
 
-                          <a class="text-dangnhap" href="login.html">Thông tin</a>
+                          <a class="text-dangnhap" href="taikhoan.php">Thông tin</a>
                           <a class="text-dangky" style="opacity: 0.8;" 
                           href="../assets/php/logout.php">Đăng xuất</a>
                           
@@ -238,6 +238,7 @@
 
 
 <script src="../assets/js/timkiemcoban.js"></script>
+<script src="../assets/js/load_cart.js"></script>
 </body>
 <footer>
   <div class="container-footer">

@@ -270,6 +270,7 @@ if (!isset($_SESSION['user'])) {
   
 </main>
 <script src="../assets/js/timkiemcoban.js"></script>
+<script src="../assets/js/load_cart.js"></script>
 </body>
 <footer>
   <div class="container-footer">

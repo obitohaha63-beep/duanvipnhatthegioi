@@ -15,7 +15,7 @@ $sql = "SELECT p.*,
         (p.cost_price * (1 + p.profit_rate/100)) AS selling_price
         FROM products p
         JOIN categories c ON p.category_id = c.id
-        WHERE p.id = :id AND p.status = 'visible'";
+        WHERE p.id = :id";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute([':id' => $id]);

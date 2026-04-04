@@ -40,7 +40,7 @@
     <section class="card">
       <div class="card-header">
         <h2>Danh sách sản phẩm</h2>
-        <button onclick="location.href='AddProduct.html'" class="btn-primary">
+        <button onclick="location.href='../pages/AddProduct.php'" class="btn-primary">
           + Thêm sản phẩm
         </button>
       </div>
