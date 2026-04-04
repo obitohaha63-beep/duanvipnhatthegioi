@@ -1,6 +1,6 @@
 <?php
 header("Content-Type: application/json");
-require_once "db.php";
+require "db.php";
 
 function uploadImage($file){
     $uploadDir = __DIR__ . "/../uploads/";

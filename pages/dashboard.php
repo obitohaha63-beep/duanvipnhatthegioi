@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="../assets/css/fontinter.css">
   <link rel="stylesheet" href="../assets/css/root.css">
 </head>
+
 <body>
   <div class="container">
     <!-- Menu bên trái -->
@@ -23,7 +24,7 @@
       <li><a href="../pages/NhaphangGiaban.php">Quản lý nhập hàng</a></li> 
       <li><a href="../pages/NhaphangGiaban2.php">Quản lý giá bán</a></li> 
       <li><a href="../pages/QuanLyDonHang.php" > Quản lý đơn đặt hàng </a></li> 
-      <li><a href="../pages/QuanLyTonKho.html">Quản lý tồn kho</a></li> </ul>
+      <li><a href="../pages/QuanLyTonKho.php">Quản lý tồn kho</a></li> </ul>
       <li><a href="../assets/php/logout.php">Đăng xuất</a></li> 
   </nav>
     <!-- Nội dung bên phải -->
@@ -34,7 +35,7 @@
             <b>
             <p>Người dùng</p>
               <div class="box-trong">
-                <p>1</p>
+                <p id="totalUsers">0</p>
                 </b>
               </div>
         </div>
@@ -42,7 +43,7 @@
             <b>
             <p>Sản phẩm</p>
               <div class="box-trong">
-                <p>9</p>
+                <p id="totalProducts">0</p>
                 </b>
               </div>
         </div>
@@ -50,7 +51,7 @@
             <b>
             <p>Tồn kho tổng</p>
               <div class="box-trong">
-                <p>19</p>
+                <p id="totalStock">0</p>
                 </b>
               </div>
         </div>
@@ -58,12 +59,28 @@
             <b>
             <p>Tổng doanh thu</p>
               <div class="box-trong">
-                <p>16.120K</p>
+                <p id="totalRevenue">0</p>
                 </b>
               </div>
         </div>
       </div>
     </main>
   </div>
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  fetch('../assets/php/dashboard_api.php')
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('totalUsers').innerText = data.users;
+      document.getElementById('totalProducts').innerText = data.products;
+      document.getElementById('totalStock').innerText = data.stock;
+
+      document.getElementById('totalRevenue').innerText =
+        Number(data.revenue).toLocaleString('vi-VN') + ' đ';
+    })
+    .catch(err => console.error(err));
+});
+</script>
 </body>
+
 </html>

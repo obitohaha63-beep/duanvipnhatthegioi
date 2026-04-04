@@ -150,13 +150,9 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
     </div>
 </header>
 <main class = "mid-content">
-    <div class = "linkedline">
-      <p class="linkedline-content">
-      <a href="../pages/haveaccount.html" 
-        style="color: #1b1b1b;">Trang chủ</a> / <a href="allsanpham.html" style="color: #1b1b1b;">
-        Vợt cầu lông</a>  / Vợt cầu lông Yonex Nanoflare 1000 Chính Hãng</p>
-    </p>
-    </div>
+    <div class="linkedline"> 
+  <p class="linkedline-content"></p>
+</div>
     <div class = "important-content" id="detailProducts">
       <div class = "bigcontent">
         
@@ -270,5 +266,6 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
   </div>
 </footer>
 <script src="../assets/js/product_detail.js"></script>
+<script src="../assets/js/load_cart.js"></script>
 </body>
 </html>

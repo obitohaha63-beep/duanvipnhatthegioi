@@ -1,3 +1,4 @@
+<?php include '../assets/php/check_admin.php'; ?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
