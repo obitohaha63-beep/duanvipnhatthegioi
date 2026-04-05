@@ -19,7 +19,16 @@ $data = [
 ];
 
 $image_url = null;
+$remove_image = $_POST['remove_image'] ?? 0;
+if ($remove_image == 1) {
+    // Xóa ảnh trong DB //
+    $image_url = NULL;
 
+    // (Tùy chọn) Xóa file thật
+    if (!empty($old_image) && file_exists("../" . $old_image)) {
+        unlink("../" . $old_image);
+    }
+}
 // upload ảnh
 if(isset($_FILES['image']) && $_FILES['image']['error'] == 0){
     $fileName = time() . "_" . basename($_FILES["image"]["name"]);

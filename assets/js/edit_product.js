@@ -12,27 +12,34 @@ document.addEventListener('DOMContentLoaded', () => {
   const quantityInput = document.getElementById('quantityInput');
   const descriptionInput = document.getElementById('descriptionInput');
   const statusSelect = document.getElementById('statusSelect');
+
   const previewImage = document.getElementById('previewImage');
+  const imageInput = document.getElementById('imageInput');
+  const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+  const removeImageBtn = document.getElementById('removeImageBtn');
+
   const productIdInput = document.getElementById('productId');
 
-  // Load danh mục
-fetch('../assets/php/get_categories.php')
-  .then(res => res.json())
-  .then(res => {
-    if(res.success){
-      const categories = res.data; // phải lấy từ res.data
-      categorySelect.innerHTML = categories.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
-    } else {
-      alert('Không tải được danh mục!');
-    }
-  });
+  let removeImage = false;
 
-  // Load dữ liệu sản phẩm
+  // Load category
+  fetch('../assets/php/get_categories.php')
+    .then(res => res.json())
+    .then(res => {
+      if(res.success){
+        categorySelect.innerHTML = res.data.map(c =>
+          `<option value="${c.id}">${c.name}</option>`
+        ).join('');
+      }
+    });
+
+  // Load product
   fetch('../assets/php/get_product_detail.php?id=' + productId)
     .then(res => res.json())
     .then(data => {
       if(data.success){
         const p = data.product;
+
         productIdInput.value = p.id;
         brandInput.value = p.brand;
         nameInput.value = p.name;
@@ -44,26 +51,50 @@ fetch('../assets/php/get_categories.php')
         descriptionInput.value = p.description;
         statusSelect.value = p.status;
         categorySelect.value = p.category_id;
-        previewImage.src = p.image_url ? '../' + p.image_url : '';
-      } else {
-        alert('Sản phẩm không tồn tại!');
+
+        // 🔥 FIX HIỂN THỊ ẢNH
+        if (p.image_url) {
+          previewImage.src = '../' + p.image_url;
+          imagePreviewContainer.style.display = 'inline-block';
+          imageInput.style.display = 'none';
+        } else {
+          imagePreviewContainer.style.display = 'none';
+          imageInput.style.display = 'block';
+        }
       }
     });
 
-  // Preview hình mới
-  document.getElementById('imageInput').addEventListener('change', e => {
+  // XÓA ẢNH
+  removeImageBtn.addEventListener('click', () => {
+    previewImage.src = '';
+    imagePreviewContainer.style.display = 'none';
+    imageInput.style.display = 'block';
+    imageInput.value = '';
+    removeImage = true;
+  });
+
+  // CHỌN ẢNH MỚI
+  imageInput.addEventListener('change', e => {
     const file = e.target.files[0];
     if(file){
       const reader = new FileReader();
-      reader.onload = () => previewImage.src = reader.result;
+      reader.onload = () => {
+        previewImage.src = reader.result;
+        imagePreviewContainer.style.display = 'inline-block';
+        imageInput.style.display = 'none';
+      };
       reader.readAsDataURL(file);
+
+      removeImage = false;
     }
   });
 
-  // Submit cập nhật
+  // SUBMIT
   document.getElementById('editProductForm').addEventListener('submit', e => {
     e.preventDefault();
     const formData = new FormData(e.target);
+
+    formData.append('remove_image', removeImage ? 1 : 0);
 
     fetch('../assets/php/update_product.php', {
       method: 'POST',
@@ -76,5 +107,3 @@ fetch('../assets/php/get_categories.php')
     });
   });
 });
-
-console.log("Product ID:", productId);
