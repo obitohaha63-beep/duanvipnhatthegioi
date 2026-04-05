@@ -30,18 +30,18 @@ async function loadCheckout() {
 async function placeOrder() {
   let address = "";
 
-  const addressType = document.querySelector('input[name="address_type"]:checked').value;
+  const isNewAddress = document.querySelector('input[name="address_type"][value="new"]').checked;
 
-  if (addressType === "default") {
-    address = document.getElementById("default-address").innerText;
-  } else {
-    const city = document.getElementById("city").value;
-    const district = document.getElementById("district").value;
-    const ward = document.getElementById("ward").value;
-    const detail = document.getElementById("detail_address").value;
+if (!isNewAddress) {
+  address = document.getElementById("default-address").innerText;
+} else {
+  const city = document.getElementById("city").value.trim();
+  const district = document.getElementById("district").value.trim();
+  const ward = document.getElementById("ward").value.trim();
+  const detail = document.getElementById("detail_address").value.trim();
 
-    address = `${detail}, ${ward}, ${district}, ${city}`;
-  }
+  address = `${detail}, ${ward}, ${district}, ${city}`;
+}
 
   const payment = document.querySelector("input[name='payment_method']:checked").value;
 
@@ -68,7 +68,6 @@ async function placeOrder() {
   }
 }
 
-loadCheckout();
 // load thông tin user
 async function loadUser() {
   const res = await fetch("../assets/php/get_users.php");
