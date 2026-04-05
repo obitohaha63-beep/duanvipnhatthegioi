@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2026 at 11:53 AM
+-- Generation Time: Apr 05, 2026 at 09:23 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -154,10 +154,10 @@ INSERT INTO `products` (`id`, `name`, `description`, `category_id`, `color`, `br
 (1, 'Vợt cầu lông Lining Axforce 100', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'Black golden, Vàng golden', 'Lining', '3U,4U', 'assets/uploads/axforce-100-bla.jpg', 15, 666666.67, 25.00, 'visible', '2026-03-28 19:51:01'),
 (2, 'Vợt cầu lông Lining Aeronaut 9000C', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'Black, Red', 'Lining', '3U,4U', 'assets/uploads/image_1775289991847.jpg', 5, 500000.00, 30.00, 'visible', '2026-03-28 19:51:01'),
 (3, 'Vợt cầu lông Lining Aeronaut 7000C', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'Black, Orange', 'Lining', '3U,4U', 'assets/uploads/aeronaut_7000b.jpg', 0, 0.00, 20.00, 'hidden', '2026-03-28 19:51:01'),
-(4, 'Vợt cầu lông Lining Turbo Charging 75', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'Red, Black', 'Lining', '3U,4U', 'assets/uploads/image_1775290083372.jpg', 0, 0.00, 30.00, 'visible', '2026-03-28 19:51:01'),
+(4, 'Vợt cầu lông Lining Turbo Charging 75', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'Red, Black', 'Lining', '3U,4U', 'assets/uploads/image_1775290083372.jpg', 0, 0.00, 30.00, 'hidden', '2026-03-28 19:51:01'),
 (5, 'Vợt cầu lông Lining 3D Calibar 900', 'Vợt cầu lông cao cấp dòng Calibar', 1, 'Black, Grey', 'Lining', '3U,4U', 'assets/uploads/image_1775290136981.jpg', 5, 2000000.00, 30.00, 'visible', '2026-03-28 19:51:01'),
 (6, 'Vợt cầu lông Lining Windstorm 78', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'White, Blue', 'Lining', '3U,4U', 'assets/uploads/image_1775290182474.jpg', 10, 1000000.00, 30.00, 'visible', '2026-03-28 19:51:01'),
-(7, 'Vợt cầu lông Lining N7-II', 'Vợt cầu lông cao cấp N7 phiên bản 2', 1, 'White, Red', 'Lining', '3U,4U', 'assets/uploads/image_1775290245841.jpg', 0, 0.00, 30.00, 'visible', '2026-03-28 19:51:01'),
+(7, 'Vợt cầu lông Lining N7-II', 'Vợt cầu lông cao cấp N7 phiên bản 2', 1, 'White, Red', 'Lining', '3U,4U', 'assets/uploads/image_1775290245841.jpg', 0, 0.00, 30.00, 'hidden', '2026-03-28 19:51:01'),
 (8, 'Vợt cầu lông Lining G-Force Superlite 80', 'Dòng vợt siêu nhẹ G-Force', 1, 'Black, Yellow', 'Lining', '3U,4U', 'assets/uploads/vot-cau-long-lining-axforce-80.jpg', 12, 2100000.00, 30.00, 'visible', '2026-03-28 19:51:01'),
 (9, 'Vợt cầu lông Lining Super Series 26', 'Dòng vợt phổ thông Super Series', 1, 'Black, Silver', 'Lining', '3U,4U', 'assets/uploads/axforce-cannon-3.jpg', 10, 1900000.00, 30.00, 'visible', '2026-03-28 19:51:01'),
 (10, 'Vợt cầu lông Yonex Astrox 100VA ZZ', 'Siêu phẩm kết hợp cùng Viktor Axelsen, công nghệ Rotational Generator System tối tân', 1, 'Lightning Yellow', 'Yonex', '3U,4U', 'assets/uploads/image_1775290365403.jpg', 6, 4200000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
@@ -167,17 +167,17 @@ INSERT INTO `products` (`id`, `name`, `description`, `category_id`, `color`, `br
 (14, 'Vợt cầu lông Yonex Arcsaber 11 Pro', 'Vợt công thủ toàn diện huyền thoại, khả năng điều cầu chính xác', 1, 'Grayish Pearl', 'Yonex', '3U,4U', 'assets/uploads/image_1775290463796.jpg', 14, 2671428.57, 20.00, 'visible', '2026-03-28 19:51:01'),
 (15, 'Vợt cầu lông Yonex Nanoflare 800 Pro', 'Thiết kế khung Sonic Flare System cho những pha phản tạt chớp nhoáng', 1, 'Deep Green', 'Yonex', '3U,4U', 'assets/uploads/image_1775290498133.jpg', 31, 1958064.52, 20.00, 'visible', '2026-03-28 19:51:01'),
 (16, 'Vợt cầu lông Yonex Astrox 77 Pro', 'Vợt thiên công linh hoạt, phù hợp cho cả đơn và đôi', 1, 'High Orange', 'Yonex', '3U,4U', 'assets/uploads/image_1775290523126.jpg', 10, 3400000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
-(17, 'Vợt cầu lông Yonex Nanoflare 700 Pro 2025', 'Phiên bản cải tiến giúp giảm rung chấn tối đa', 1, 'Midnight Blue', 'Yonex', '4U,5U', 'assets/uploads/image_1775290555122.jpg', 0, 0.00, 20.00, 'visible', '2026-03-28 19:51:01'),
-(18, 'Vợt cầu lông Yonex Arcsaber 11 Play', 'Phiên bản phổ thông của Arc 11 Pro, cực kỳ dễ chơi', 1, 'Grayish Pearl', 'Yonex', '4U', 'assets/uploads/image_1775290578337.jpg', 0, 0.00, 20.00, 'visible', '2026-03-28 19:51:01'),
+(17, 'Vợt cầu lông Yonex Nanoflare 700 Pro 2025', 'Phiên bản cải tiến giúp giảm rung chấn tối đa', 1, 'Midnight Blue', 'Yonex', '4U,5U', 'assets/uploads/image_1775290555122.jpg', 0, 0.00, 20.00, 'hidden', '2026-03-28 19:51:01'),
+(18, 'Vợt cầu lông Yonex Arcsaber 11 Play', 'Phiên bản phổ thông của Arc 11 Pro, cực kỳ dễ chơi', 1, 'Grayish Pearl', 'Yonex', '4U', 'assets/uploads/image_1775290578337.jpg', 0, 0.00, 20.00, 'hidden', '2026-03-28 19:51:01'),
 (19, 'Giày cầu lông Yonex Subaxia GT Men 2026', 'Dòng giày cao cấp mới nhất 2026, tối ưu sự ổn định', 2, 'Dark Gray', 'Yonex', '38,39,40,41,42', 'assets/uploads/image_1775290609764.jpg', 0, 0.00, 20.00, 'visible', '2026-03-28 19:51:01'),
 (20, 'Giày cầu lông Yonex Power Cushion 65Z4 VA', 'Phiên bản đặc biệt Viktor Axelsen 2026', 2, 'Grayish Beige', 'Yonex', '39,40,41,42,43,44,45', 'assets/uploads/image_1775290638382.jpg', 0, 0.00, 20.00, 'visible', '2026-03-28 19:51:01'),
-(21, 'Giày cầu lông Yonex Power Cushion Aerus Z3', 'Đôi giày nhẹ nhất thế giới năm 2026', 2, 'Flash Green', 'Yonex', '42,43,44,45', 'assets/uploads/image_1775290663494.jpg', 0, 0.00, 20.00, 'visible', '2026-03-28 19:51:01'),
+(21, 'Giày cầu lông Yonex Power Cushion Aerus Z3', 'Đôi giày nhẹ nhất thế giới năm 2026', 1, 'Flash Green', 'Yonex', '42,43,44,45', 'assets/uploads/image_1775290663494.jpg', 0, 0.00, 20.00, 'hidden', '2026-03-28 19:51:01'),
 (22, 'Giày cầu lông Yonex Eclipsion Z3 Men 2026', 'Chuyên gia bảo vệ cổ chân với độ bám sân cực cao', 2, 'Navy Blue', 'Yonex', '39,40,41,42,43', 'assets/uploads/image_1775290686630.jpg', 5, 1000000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
 (23, 'Giày cầu lông Yonex Power Cushion 88 Dial 3', 'Hệ thống thắt dây BOA kép thế hệ 3', 2, 'Black,Ice Blue', 'Yonex', '39,40,41,42', 'assets/uploads/image_1775290728032.jpg', 0, 0.00, 20.00, 'visible', '2026-03-28 19:51:01'),
-(24, 'Giày cầu lông Yonex Comfort Z3 Wide Mid', 'Thiết kế cổ cao bảo vệ toàn diện cổ chân', 1, 'Off White,Red', 'Yonex', '3U,4U', 'assets/uploads/image_1775294961935.jpg', 0, 0.00, 20.00, 'visible', '2026-03-28 19:51:01'),
+(24, 'Giày cầu lông Yonex Comfort Z3 Wide Mid', 'Thiết kế cổ cao bảo vệ toàn diện cổ chân', 2, 'Off White,Red', 'Yonex', '3U,4U', 'assets/uploads/image_1775294961935.jpg', 0, 0.00, 20.00, 'hidden', '2026-03-28 19:51:01'),
 (25, 'Giày cầu lông Yonex Cascade Accel 2026', 'Dòng giày tầm trung hỗ trợ lực bật nhảy tốt', 2, 'White,Sky Blue', 'Yonex', '37,38,39,40,41,42,44', 'assets/uploads/image_1775290752650.jpg', 0, 0.00, 20.00, 'visible', '2026-03-28 19:51:01'),
 (26, 'Giày cầu lông Yonex Strider Flow 2026', 'Mẫu giày tập luyện chuyên nghiệp, bền bỉ', 2, 'Black,Blue', 'Yonex', '38,39,40,41,42', 'assets/uploads/image_1775294624544.jpg', 0, 0.00, 20.00, 'visible', '2026-03-28 19:51:01'),
-(27, 'Giày cầu lông Yonex Power Cushion Infinity 2', 'Hệ thống điều chỉnh độ ôm 3D đỉnh cao', 2, 'Metallic Gold', 'Yonex', '40,41,42,43,44', 'assets/uploads/image_1775294168805.jpg', 0, 0.00, 20.00, 'visible', '2026-03-28 19:51:01'),
+(27, 'Giày cầu lông Yonex Power Cushion Infinity 2', 'Hệ thống điều chỉnh độ ôm 3D đỉnh cao', 2, 'Metallic Gold', 'Yonex', '40,41,42,43,44', 'assets/uploads/image_1775294168805.jpg', 0, 0.00, 20.00, 'hidden', '2026-03-28 19:51:01'),
 (28, 'Vợt cầu lông iPhone 13', 'test flow', 1, 'Xanh', 'Yonex', '36', NULL, 18, 25555555.56, 20.00, 'visible', '2026-04-04 12:58:58');
 
 -- --------------------------------------------------------
@@ -384,7 +384,7 @@ ALTER TABLE `user_address`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -396,13 +396,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `products`
