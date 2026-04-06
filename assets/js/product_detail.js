@@ -1,139 +1,222 @@
-const mode = document.body.dataset.mode;
-const urlParams = new URLSearchParams(window.location.search);
-const id = urlParams.get("id");
+/**
+ * File: product_detail.js
+ * Mục đích: Xử lý trang chi tiết sản phẩm
+ * 
+ * Chức năng chính:
+ *   1. Lấy ID sản phẩm từ URL
+ *   2. Tải dữ liệu sản phẩm từ server
+ *   3. Hiển thị thông tin chi tiết (ảnh, giá, mô tả)
+ *   4. Quản lý tăng/giảm số lượng
+ *   5. Xử lý thêm vào giỏ hàng
+ *   6. Kiểm tra trạng thái login (guest vs user)
+ */
 
-if (!id) {
-  alert("Không có mã sản phẩm!");
+/**
+ * ========== BƯỚC 1: LẤY ID SẢN PHẨM TỪ URL ==========
+ * 
+ * URL dạng: product.html?id=123
+ * URLSearchParams = công cụ để lấy parameters từ URL
+ */
+
+// Kiểm tra loại người dùng (guest hoặc user)
+const userMode = document.body.dataset.mode;
+
+// Lấy URL hiện tại
+const urlSearchParams = new URLSearchParams(window.location.search);
+const productId = urlSearchParams.get("id");  // Lấy tham số "id"
+
+// Kiểm tra ID sản phẩm có tồn tại không
+if (!productId) {
+    alert("❌ Lỗi: Không tìm thấy mã sản phẩm!");
 }
 
-// 1. Tải thông tin sản phẩm
-fetch(`../assets/php/get_product_detail.php?id=${id}`)
-  .then(res => res.json())
-  .then(res => {
-    if (!res.success) {
-      document.querySelector(".bigcontent").innerHTML = "<h2>Không tìm thấy sản phẩm</h2>";
-      return;
-    }
+/**
+ * ========== BƯỚC 2: TẢI THÔNG TIN SẢN PHẨM TỪ SERVER ==========
+ */
+fetch(`../assets/php/get_product_detail.php?id=${productId}`)
+    .then(response => response.json())
+    .then(apiData => {
+        // Kiểm tra API trả về thành công
+        if (!apiData.success) {
+            document.querySelector(".bigcontent").innerHTML = 
+                "<h2>❌ Không tìm thấy sản phẩm</h2>";
+            return;
+        }
 
-    const p = res.product;
+        const product = apiData.product;
 
-    // Hiển thị thanh điều hướng (Breadcrumb)
-    const breadcrumbHTML = `
-      <a href="../pages/haveaccount.html" style="color: #1b1b1b;">Trang chủ</a> /
-      <a href="../pages/timkiemyonex1.php" style="color: #1b1b1b;">${p.category_name}</a> /
-      ${p.name}
-    `;
-    document.querySelector(".linkedline-content").innerHTML = breadcrumbHTML;
+        // ========== BƯỚC 3: HIỂN THỊ BREADCRUMB (ĐƯỜNG DẪN) ==========
+        // Breadcrumb giúp người dùng biết vị trí trong trang web
+        const breadcrumbHTML = `
+            <a href="../pages/haveaccount.html" style="color: #1b1b1b;">Trang chủ</a> /
+            <a href="../pages/timkiemyonex1.php" style="color: #1b1b1b;">
+                ${product.category_name}
+            </a> /
+            ${product.name}
+        `;
+        document.querySelector(".linkedline-content").innerHTML = breadcrumbHTML;
 
-    // Kiểm tra trạng thái đăng nhập để hiển thị nút
-    let actionHTML = "";
-    if (mode === "guest") {
-      actionHTML = `
-        <a href="login.html">
-          <div class="add-Gio-Hang">
-            <p>Đăng nhập <br> Để sử dụng chức năng giỏ hàng</p>
-          </div>
-        </a>
-      `;
-    } else if (mode === "user") {
-      actionHTML = `
-        <div class="add-Gio-Hang" id="addToCartBtn">
-          <p>Thêm vào giỏ hàng</p>
-        </div>
-        <div class="communicate-with-us-on-zalo">
-          <p>Mua hàng</p>
-        </div>
-      `;
-    }
+        // ========== BƯỚC 4: CHUẨN BỊ NÚT HÀNH ĐỘNG CÓ ĐIỀU KIỆN ==========
+        // Nếu là guest → hiển thị nút đăng nhập
+        // Nếu là user → hiển thị nút thêm vào giỏ
+        let actionButtonHTML = "";
 
-    // Tạo HTML cho phần chi tiết sản phẩm (Đã loại bỏ khối màu sắc, trọng lượng)
-    const html = `
-      <div class="product">
-        <img src="../${p.image_url || 'assets/img/placeholder.png'}?t=${Date.now()}" alt="Ảnh sản phẩm">
-      </div>
+        if (userMode === "guest") {
+            // Cho khách → link tới trang login
+            actionButtonHTML = `
+                <a href="login.html">
+                    <div class="add-Gio-Hang">
+                        <p>Đăng nhập <br> Để sử dụng chức năng giỏ hàng</p>
+                    </div>
+                </a>
+            `;
+        } else if (userMode === "user") {
+            // Cho người dùng đã login → hiển thị nút hành động
+            actionButtonHTML = `
+                <div class="add-Gio-Hang" id="addToCartBtn">
+                    <p>Thêm vào giỏ hàng</p>
+                </div>
+                <div class="communicate-with-us-on-zalo">
+                    <p>Mua hàng</p>
+                </div>
+            `;
+        }
 
-      <div class="aboutproduct">
-        <p class="racket-name">${p.name}</p>
-        <pre class="trademark1">Thương hiệu: <a href="#">${p.brand}</a> | Loại: <a href="#">${p.category_name}</a></pre>
-        <pre class="trademark1">ID sản phẩm: <a href="#">${p.id}</a></pre>
-        
-        <p class="value">${Number(p.selling_price)
-          .toLocaleString('vi-VN', {minimumFractionDigits: 0, maximumFractionDigits: 0})} đ</p>
+        // ========== BƯỚC 5: TẠO HTML CHI TIẾT SẢN PHẨM ==========
+        const productHTML = `
+            <!-- PHầN ẢNH SẢN PHẨM -->
+            <div class="product">
+                <img src="../${product.image_url || 'assets/img/placeholder.png'}?t=${Date.now()}" 
+                     alt="${product.name}">
+            </div>
 
-        <div class="half-content">
-          <hr>
-          <div class="countamountofitem" style="margin-top: 20px;">
-            <div class="minus">-</div>
-            <div class="numbercount">1</div>
-            <div class="plus">+</div>
-          </div>
-          
-          ${actionHTML} 
-        </div>
-      </div>
+            <!-- PHầN THÔNG TIN VÀ GIÁ -->
+            <div class="aboutproduct">
+                <!-- Tên sản phẩm -->
+                <p class="racket-name">${product.name}</p>
+                
+                <!-- Thương hiệu và loại -->
+                <pre class="trademark1">
+Thương hiệu: <a href="#">${product.brand}</a> | 
+Loại: <a href="#">${product.category_name}</a>
+                </pre>
+                
+                <!-- ID sản phẩm -->
+                <pre class="trademark1">ID sản phẩm: <a href="#">${product.id}</a></pre>
+                
+                <!-- GIÁ BÁN -->
+                <p class="value">${Number(product.selling_price)
+                    .toLocaleString('vi-VN', {minimumFractionDigits: 0, maximumFractionDigits: 0})} đ
+                </p>
 
-      <div class="detail-of-items">
-        ${p.description ?? "Chưa có mô tả cho sản phẩm này."}
-      </div>
-    `;
+                <!-- PHẦN TĂNG/GIẢM SỐ LƯỢNG VÀ NÚTCTION -->
+                <div class="half-content">
+                    <hr>
+                    
+                    <!-- Tăng/giảm số lượng -->
+                    <div class="countamountofitem" style="margin-top: 20px;">
+                        <button class="minus">−</button>
+                        <span class="numbercount">1</span>
+                        <button class="plus">+</button>
+                    </div>
+                    
+                    <!-- Nút hành động (login hoặc add to cart) -->
+                    ${actionButtonHTML}
+                </div>
+            </div>
 
-    document.querySelector(".bigcontent").innerHTML = html;
-  })
-  .catch(err => console.error("Lỗi:", err));
+            <!-- PHầN MÔ TẢ SẢN PHẨM -->
+            <div class="detail-of-items">
+                ${product.description || "⚠️ Chưa có mô tả cho sản phẩm này."}
+            </div>
+        `;
 
-// 2. Gộp quản lý tất cả các sự kiện Click trên trang
-document.addEventListener("click", function(e) {
-  
-  // Tăng/giảm số lượng
-  const numberEl = document.querySelector(".numbercount");
-  if (numberEl) {
-    let current = parseInt(numberEl.innerText);
-    
-    if (e.target.classList.contains("plus")) {
-      numberEl.innerText = current + 1;
-    }
-    
-    if (e.target.classList.contains("minus") && current > 1) {
-      numberEl.innerText = current - 1;
-    }
-  }
-
-  // Thêm vào giỏ hàng
-  if (e.target.closest("#addToCartBtn")) {
-    const quantity = parseInt(document.querySelector(".numbercount").innerText);
-
-    fetch("../assets/php/add_to_cart.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      // Đã bỏ color và size ra khỏi payload gửi đi
-      body: JSON.stringify({
-        product_id: id,
-        quantity: quantity 
-      })
+        document.querySelector(".bigcontent").innerHTML = productHTML;
     })
-    .then(res => res.json())
-    .then(data => {
-      if (data.success) {
-        alert("Đã thêm vào giỏ hàng!");
-        loadCartCount(); // Cập nhật lại số trên giỏ hàng
-      } else {
-        alert(data.message);
-      }
-    })
-    .catch(err => console.error(err));
-  }
+    .catch(error => {
+        console.error("Lỗi tải sản phẩm:", error);
+        document.querySelector(".bigcontent").innerHTML = 
+            "<h2>❌ Lỗi tải sản phẩm. Vui lòng tải lại trang.</h2>";
+    });
+
+/**
+ * ========== BƯỚC 6: QUẢN LÝ CÁC SỰ KIỆN CLICK ==========
+ * 
+ * Dùng event delegation = gắn event vào parent, sau đó kiểm tra target
+ * Cách này hiệu quả hơn vì HTML được tạo động
+ */
+document.addEventListener("click", function(event) {
+    // ========== TĂNG/GIẢM SỐ LƯỢNG ==========
+    const quantityValueElement = document.querySelector(".numbercount");
+    
+    if (quantityValueElement) {
+        let currentQuantity = parseInt(quantityValueElement.innerText);
+
+        // Nút "+" → Tăng số lượng
+        if (event.target.classList.contains("plus")) {
+            quantityValueElement.innerText = currentQuantity + 1;
+        }
+
+        // Nút "-" → Giảm số lượng (không cho <= 0)
+        if (event.target.classList.contains("minus") && currentQuantity > 1) {
+            quantityValueElement.innerText = currentQuantity - 1;
+        }
+    }
+
+    // ========== THÊM VÀO GIỎ HÀNG ==========
+    if (event.target.closest("#addToCartBtn")) {
+        // Lấy số lượng người dùng chọn
+        const selectedQuantity = parseInt(
+            document.querySelector(".numbercount").innerText
+        );
+
+        // Gửi request lên server
+        fetch("../assets/php/add_to_cart.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                product_id: productId,
+                quantity: selectedQuantity
+            })
+        })
+        .then(response => response.json())
+        .then(responseData => {
+            if (responseData.success) {
+                alert("✅ Đã thêm vào giỏ hàng!");
+                updateCartBadgeCount(); // Cập nhật số lượng badge
+            } else {
+                alert("❌ Lỗi: " + responseData.message);
+            }
+        })
+        .catch(error => {
+            console.error("Lỗi:", error);
+            alert("❌ Lỗi kết nối server. Vui lòng thử lại.");
+        });
+    }
 });
 
-// 3. Hàm tải số lượng trên icon giỏ hàng
-function loadCartCount() {
-  fetch("../assets/php/get_cart_count.php")
-    .then(res => res.json())
-    .then(data => {
-      if (data.success) {
-        document.querySelector(".jscart").innerText = data.count;
-      }
-    });
+/**
+ * ========== BƯỚC 7: CẬP NHẬT BADGE GIỎ HÀNG ==========
+ * 
+ * Badge = số lượng hiển thị ở icon giỏ hàng (góc màn hình)
+ */
+function updateCartBadgeCount() {
+    fetch("../assets/php/get_cart_count.php")
+        .then(response => response.json())
+        .then(responseData => {
+            if (responseData.success) {
+                // Tìm phần tử badge và cập nhật
+                document.querySelector(".jscart").innerText = responseData.count;
+            }
+        })
+        .catch(error => {
+            console.error("Lỗi cập nhật badge:", error);
+        });
 }
 
-// Khởi chạy
-loadCartCount();
+/**
+ * ========== CHẠY KHI TRANG TẢI XONG ==========
+ */
+updateCartBadgeCount();

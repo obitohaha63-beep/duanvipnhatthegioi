@@ -1,62 +1,103 @@
+
+
 document.addEventListener("DOMContentLoaded", () => {
 
-    const form = document.getElementById("addProductForm");
-    const categorySelect = document.getElementById("categorySelect");
-    const previewImage = document.getElementById("previewImage");
-    const imageInput = document.getElementById("imageInput");
+    const addProductForm = document.getElementById("addProductForm");
+    const categoryDropdown = document.getElementById("categorySelect");
+    const previewImageElement = document.getElementById("previewImage");
+    const imageInputElement = document.getElementById("imageInput");
 
-    // Load danh mục
     fetch("../assets/php/get_categories.php")
-        .then(res => res.json())
-        .then(data => {
-            if(data.success){
-                data.data.forEach(cat => {
-                    const option = document.createElement("option");
-                    option.value = cat.id;
-                    option.textContent = cat.name;
-                    categorySelect.appendChild(option);
+        .then(response => response.json())
+        .then(responseData => {
+            if (responseData.success) {
+                // Duyệt qua từng danh mục
+                responseData.data.forEach(category => {
+                    // Tạo phần tử <option> mới
+                    const optionElement = document.createElement("option");
+                    optionElement.value = category.id;          // Giá trị (ID)
+                    optionElement.textContent = category.name;  // Hiển thị (Tên)
+                    
+                    // Thêm vào dropdown
+                    categoryDropdown.appendChild(optionElement);
                 });
+            } else {
+                console.error("Lỗi tải danh mục:", responseData.message);
             }
+        })
+        .catch(error => {
+            console.error("Lỗi kết nối:", error);
+            alert("❌ Không thể tải danh mục. Vui lòng tải lại trang.");
         });
 
-    // Preview ảnh
-    imageInput.addEventListener("change", function(e){
-        const file = e.target.files[0];
-        if(file){
-            previewImage.src = URL.createObjectURL(file);
+    /**
+     * BƯỚC 3: PREVIEW ẢNH TRƯỚC KHI UPLOAD
+     * 
+     * Ý tưởng:
+     *   - Người dùng chọn file ảnh
+     *   - Tạo URL tạm và hiển thị lên màn hình
+     *   - Người dùng thấy ảnh sẽ được upload như thế nào
+     */
+    imageInputElement.addEventListener("change", function(event) {
+        // Lấy file đã chọn
+        const selectedFile = event.target.files[0];  // files[0] = file đầu tiên
+
+        // Kiểm tra xem có chọn file không
+        if (selectedFile) {
+            // createObjectURL() = tạo URL tạm cho file
+            // URL này chỉ tồn tại trong bộ nhớ máy tính
+            const previewImageURL = URL.createObjectURL(selectedFile);
+            
+            // Đặt ảnh preview
+            previewImageElement.src = previewImageURL;
         }
     });
 
-    // Submit form
-    form.addEventListener("submit", (e)=>{
-        e.preventDefault();
+    addProductForm.addEventListener("submit", (event) => {
+        // Ngăn chặn hành động mặc định của form (reload trang)
+        event.preventDefault();
 
-        const formData = new FormData(form);
+        // ========== BƯỚC 4.1: CHUẨN BỊ DỮ LIỆU ==========
+        // FormData = đối tượng dùng để gửi file + dữ liệu
+        // (Không thể dùng JSON để gửi file)
+        const formDataToSend = new FormData(addProductForm);
 
-        // 🔥 DEBUG
-        for (let pair of formData.entries()) {
-            console.log(pair[0], pair[1]);
+        // ========== BƯỚC 4.2: KIỂM TRA DỮ LIỆU (TỪY CHỌN) ==========
+        // In ra console để debug (xem dữ liệu được lấy đúng không)
+        console.log("=== DỮ LIỆU FORM ===");
+        for (let [key, value] of formDataToSend.entries()) {
+            console.log(`${key}: ${value}`);
         }
 
+        // ========== BƯỚC 4.3: GỬI DỮ LIỆU LÊN SERVER ==========
         fetch("../assets/php/add_product.php", {
             method: "POST",
-            body: formData
+            body: formDataToSend  // Không cần headers khi gửi FormData
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log("Response:", data);
+        .then(response => response.json())
+        .then(responseData => {
+            // In ra console để debug
+            console.log("Phản hồi từ server:", responseData);
 
-            if(data.success){
-                alert(data.message);
-                form.reset();
-                previewImage.src = "";
+            // ========== BƯỚC 4.4: XỬ LÝ KẾT QUẢ ==========
+            if (responseData.success) {
+                // Thành công
+                alert(" " + responseData.message);
+                
+                // Xóa dữ liệu form
+                addProductForm.reset();
+                
+                // Xóa ảnh preview
+                previewImageElement.src = "";
             } else {
-                alert("Lỗi: " + data.message);
+                // Thất bại
+                alert(" Lỗi: " + responseData.message);
             }
         })
-        .catch(err=>{
-            console.error(err);
-            alert("Lỗi kết nối server");
+        .catch(error => {
+            // Xử lý lỗi kết nối
+            console.error("Chi tiết lỗi:", error);
+            alert(" Lỗi kết nối server. Vui lòng thử lại!");
         });
     });
 });
