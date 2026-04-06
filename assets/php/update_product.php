@@ -4,12 +4,11 @@ require "db.php";
 
 $id = $_POST['productId'] ?? 0;
 
+// Gắn sẵn các dữ liệu cần cập nhật vào mảng (bỏ color và size)
 $data = [
     ':name' => $_POST['name'] ?? '',
     ':brand' => $_POST['brand'] ?? '',
     ':category_id' => $_POST['category_id'] ?? 0,
-    ':color' => $_POST['color'] ?? '',
-    ':size' => $_POST['size'] ?? '',
     ':cost' => $_POST['cost_price'] ?? 0,
     ':profit' => $_POST['profit_rate'] ?? 0,
     ':quantity' => $_POST['quantity'] ?? 0,
@@ -20,16 +19,8 @@ $data = [
 
 $image_url = null;
 $remove_image = $_POST['remove_image'] ?? 0;
-if ($remove_image == 1) {
-    // Xóa ảnh trong DB //
-    $image_url = NULL;
 
-    // (Tùy chọn) Xóa file thật
-    if (!empty($old_image) && file_exists("../" . $old_image)) {
-        unlink("../" . $old_image);
-    }
-}
-// upload ảnh
+// Xử lý upload ảnh mới nếu có
 if(isset($_FILES['image']) && $_FILES['image']['error'] == 0){
     $fileName = time() . "_" . basename($_FILES["image"]["name"]);
     $target = "../uploads/" . $fileName;
@@ -40,18 +31,28 @@ if(isset($_FILES['image']) && $_FILES['image']['error'] == 0){
 }
 
 try {
+    // Nếu có upload ảnh mới, ta Update luôn cột image_url
     if($image_url){
         $sql = "UPDATE products SET 
-            name=:name, brand=:brand, category_id=:category_id, color=:color, size=:size,
+            name=:name, brand=:brand, category_id=:category_id, 
             cost_price=:cost, profit_rate=:profit, quantity=:quantity,
             description=:description, status=:status, image_url=:image
             WHERE id=:id";
-
+        
         $data[':image'] = $image_url;
-
-    } else {
+    } 
+    // Nếu người dùng yêu cầu xóa ảnh
+    elseif ($remove_image == 1) {
         $sql = "UPDATE products SET 
-            name=:name, brand=:brand, category_id=:category_id, color=:color, size=:size,
+            name=:name, brand=:brand, category_id=:category_id, 
+            cost_price=:cost, profit_rate=:profit, quantity=:quantity,
+            description=:description, status=:status, image_url=NULL
+            WHERE id=:id";
+    }
+    // Nếu không thay đổi ảnh
+    else {
+        $sql = "UPDATE products SET 
+            name=:name, brand=:brand, category_id=:category_id, 
             cost_price=:cost, profit_rate=:profit, quantity=:quantity,
             description=:description, status=:status
             WHERE id=:id";
@@ -60,11 +61,9 @@ try {
     $stmt = $conn->prepare($sql);
     $stmt->execute($data);
 
-    echo json_encode(["success"=>true,"message"=>"Cập nhật thành công"]);
+    echo json_encode(["success"=>true, "message"=>"Cập nhật thành công"]);
 
 } catch(PDOException $e){
-    echo json_encode([
-        "success"=>false,
-        "message"=>"Lỗi: ".$e->getMessage()
-    ]);
+    echo json_encode(["success"=>false, "message"=>"Lỗi: ".$e->getMessage()]);
 }
+?>

@@ -18,8 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
             <td>${p.name}</td>
             <td>${p.category}</td>
             <td>${p.brand}</td>
-            <td>${p.color}</td>
-            <td>${p.size}</td>
             <td>${Number(p.cost_price)
               .toLocaleString('vi-VN', {minimumFractionDigits: 0, maximumFractionDigits: 0})}đ</td>
             <td>${p.profit_rate}%</td>

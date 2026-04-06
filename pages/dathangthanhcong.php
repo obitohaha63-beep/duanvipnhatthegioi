@@ -67,7 +67,7 @@
                           <a href="taikhoan.html">
                             <img class="logo-person" src="../assets/img/daidien4.png" alt="logo của brand" 
                           style="width:28px; height: 28px"></a>
-                          <a class="text-dangnhap" href="taikhoan.html"> Thông tin</a>
+                          <a class="text-dangnhap" href="../pages/taikhoan.php"> Thông tin</a>
                           <a class="text-dangky" style="opacity: 0.8;" 
                           href="../assets/php/logout.php">Đăng xuất</a>
                           

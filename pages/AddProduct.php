@@ -51,11 +51,6 @@
         <label>Tên sản phẩm</label>
         <input type="text" name="name" placeholder="VD: Vợt cầu lông..." required>
 
-        <label>Màu sắc</label>
-        <input type="text" name="color" placeholder="VD: Đỏ, Xanh">
-
-        <label>Thông số </label>
-        <input type="text" name="size" placeholder="VD: M, L, XL">
 
         <label>Giá nhập</label>
         <input type="number" name="cost_price" placeholder="VD: 500000" required>
