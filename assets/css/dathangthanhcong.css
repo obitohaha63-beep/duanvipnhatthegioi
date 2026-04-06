@@ -1,115 +1,151 @@
+/* Container chính */
 .order-success-page {
-  min-height: 70vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(to bottom, #e8f0ff, #f9fbff);
-  padding: 40px 20px;
-  padding-top: calc(108px + 40px);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f8fafc;
+    padding: 100px 15px 40px;
+    font-family: 'Inter', sans-serif;
 }
 
+/* Card Đơn hàng - Làm nhỏ lại ở đây */
 .order-success-card {
-  background: #fff;
-  max-width: 520px;
-  width: 100%;
-  padding: 40px 35px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  text-align: center;
+    background: #fff;
+    max-width: 420px; /* Thu nhỏ chiều rộng */
+    width: 100%;
+    padding: 25px; /* Giảm padding */
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    border: 1px solid #edf2f7;
 }
 
+/* Icon & Tiêu đề thu nhỏ */
 .success-icon {
-  width: 70px;
-  height: 70px;
-  background: #28a745;
-  color: white;
-  font-size: 36px;
-  border-radius: 50%;
-  margin: 0 auto 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: #10b981;
+    color: white;
+    font-size: 24px;
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .success-title {
-  font-size: 24px;
-  margin-bottom: 8px;
-  color: #1b1b1b;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 5px;
+    text-align: center;
 }
 
-.success-sub {
-  font-size: 14px;
-  color: #555;
-  margin-bottom: 25px;
+.order-success-card > p {
+    font-size: 14px;
+    color: #64748b;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.order-info {
-  text-align: left;
-  background: #f8f9fa;
-  padding: 18px 20px;
-  border-radius: 12px;
-  margin-bottom: 25px;
+/* Thông tin khách hàng gọn hơn */
+.user-info {
+    text-align: left;
+    border-top: 1px dashed #e2e8f0;
+    padding-top: 15px;
 }
 
-.info-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  font-size: 14px;
+.user-info h2, .order-items h2 {
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #94a3b8;
+    margin-bottom: 10px;
 }
 
-.info-row span {
-  color: #666;
+.user-info label {
+    display: block;
+    font-size: 12px;
+    color: #94a3b8;
+    margin-top: 8px;
 }
 
-.info-row strong {
-  color: #111;
-  text-align: right;
+.user-info input, .user-info textarea {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1e293b;
+    padding: 2px 0;
+    font-family: inherit;
+    outline: none;
 }
 
-.info-row.status {
-  margin-top: 12px;
+/* Chi tiết sản phẩm - Bỏ Table truyền thống cho gọn */
+.order-items {
+    margin-top: 20px;
+    border-top: 1px dashed #e2e8f0;
+    padding-top: 15px;
 }
 
-.badge.pending {
-  background: #fff3cd;
-  color: #856404;
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 600;
+.order-items table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.success-actions {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  margin-bottom: 15px;
+.order-items th {
+    display: none; /* Ẩn tiêu đề bảng cho đơn nhỏ */
 }
 
-.btn-outline {
-  border: 1px solid #ccc;
-  padding: 10px 18px;
-  border-radius: 10px;
-  color: #333;
-  text-decoration: none;
-  font-weight: 500;
+.order-items td {
+    padding: 8px 0;
+    font-size: 13.5px;
+    color: #334155;
+    border-bottom: 1px solid #f1f5f9;
 }
 
-.btn-primary {
-  background: #1331ab;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600;
+/* Căn chỉnh lại các cột trong bảng nhỏ */
+.order-items td:nth-child(1) { width: 60%; font-weight: 500; } /* Tên SP */
+.order-items td:nth-child(2) { width: 10%; text-align: center; color: #64748b; } /* SL */
+.order-items td:nth-child(3) { display: none; } /* Ẩn đơn giá để tiết kiệm diện tích */
+.order-items td:nth-child(4) { width: 30%; text-align: right; font-weight: 600; } /* Thành tiền */
+
+/* Tổng tiền */
+.order-items tfoot th {
+    text-align: left;
+    font-size: 14px;
+    padding-top: 15px;
+    color: #1e293b;
 }
 
-.btn-primary:hover {
-  background: #0f258a;
+#total {
+    text-align: right;
+    font-size: 18px;
+    color: #ef4444;
+    font-weight: 700;
 }
 
-.success-note {
-  font-size: 13px;
-  color: #666;
+/* Nút bấm nhỏ gọn */
+.back-home {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.back-home a {
+    display: block;
+    padding: 12px;
+    background: #1331ab;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.back-home a:hover {
+    background: #001e82;
+    opacity: 0.9;
 }

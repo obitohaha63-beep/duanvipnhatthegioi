@@ -1,7 +1,7 @@
 
 async function loadOrders() {
     try {
-        const response = await fetch('../assets/php/get_orders.php?status=confirmed');
+        const response = await fetch('../assets/php/get_orders.php?status=pending');
         const data = await response.json();
 
         if (data.success) {

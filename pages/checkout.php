@@ -258,7 +258,7 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
         <h4>Ghi chú đơn hàng: </h4>
         <input type="text" placeholder="Nhập ghi chú">
         <div class="button-group">
-          <a href="allsanpham1.html"><button class="btn-outline">Tiếp tục mua hàng</button></a>
+          <a href="../pages/haveaccount.php"><button class="btn-outline">Tiếp tục mua hàng</button></a>
           <button class="btn-primary" onclick="placeOrder()">Đặt hàng</button>
         </div>
       </div>

@@ -1,7 +1,8 @@
 
 async function loadOrders() {
     try {
-        const response = await fetch('../assets/php/get_orders.php?status=delivered');
+        // Thay đổi dòng fetch này
+        const response = await fetch('../assets/php/get_orders.php?status=delivered,confirmed');
         const data = await response.json();
 
         if (data.success) {

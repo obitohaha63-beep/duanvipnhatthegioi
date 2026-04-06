@@ -53,8 +53,6 @@
             <th>Tên sản phẩm</th>
             <th>Danh mục</th>
             <th>Thương hiệu</th>
-            <th>Màu sắc</th>
-            <th>Kích thước</th>
             <th>Giá nhập</th>
             <th>% Lợi nhuận</th>
             <th>Số lượng</th>

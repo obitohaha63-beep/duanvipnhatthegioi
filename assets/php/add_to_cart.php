@@ -1,91 +1,57 @@
 <?php
-session_start();
+session_start(); // Bắt buộc phải có để dùng $_SESSION
 header('Content-Type: application/json');
 require "db.php";
 
-// ✅ kiểm tra đăng nhập
+// BƯỚC 1: Kiểm tra xem người dùng đã đăng nhập chưa
 if (!isset($_SESSION['user'])) {
-    echo json_encode([
-        "success" => false,
-        "message" => "Chưa đăng nhập"
-    ]);
+    echo json_encode(["success" => false, "message" => "Chưa đăng nhập"]);
     exit;
 }
 
-$user_id = $_SESSION['user']['id']; // 🔥 sửa ở đây
+$user_id = $_SESSION['user']['id'];
 
+// Lấy dữ liệu gửi từ file Javascript (Fetch API)
 $data = json_decode(file_get_contents("php://input"), true);
 
 $product_id = $data['product_id'] ?? null;
 $quantity = $data['quantity'] ?? 1;
-$color = $data['color'] ?? null;
-$size = $data['size'] ?? null;
 
 if (!$product_id) {
-    echo json_encode([
-        "success" => false,
-        "message" => "Thiếu product_id"
-    ]);
+    echo json_encode(["success" => false, "message" => "Thiếu mã sản phẩm"]);
     exit;
 }
 
-// phần dưới giữ nguyên
-
 try {
-    // 🔥 kiểm tra đã tồn tại chưa (cùng product + size + color)
-    $sql = "SELECT * FROM cart 
-            WHERE user_id = :user_id 
-            AND product_id = :product_id 
-            AND color = :color 
-            AND size = :size";
-
+    // BƯỚC 2: Kiểm tra xem trong giỏ hàng của user này đã có sản phẩm này chưa
+    $sql = "SELECT id FROM cart WHERE user_id = :user_id AND product_id = :product_id";
     $stmt = $conn->prepare($sql);
     $stmt->execute([
         ":user_id" => $user_id,
-        ":product_id" => $product_id,
-        ":color" => $color,
-        ":size" => $size
+        ":product_id" => $product_id
     ]);
 
     $existing = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($existing) {
-        // 🔥 nếu đã có → cộng số lượng
-        $update = $conn->prepare("
-            UPDATE cart 
-            SET quantity = quantity + :quantity
-            WHERE id = :id
-        ");
-
+        // Nếu ĐÃ CÓ trong giỏ -> Cộng dồn số lượng
+        $update = $conn->prepare("UPDATE cart SET quantity = quantity + :quantity WHERE id = :id");
         $update->execute([
             ":quantity" => $quantity,
             ":id" => $existing['id']
         ]);
     } else {
-        // 🔥 chưa có → insert
-        $insert = $conn->prepare("
-            INSERT INTO cart (user_id, product_id, quantity, color, size)
-            VALUES (:user_id, :product_id, :quantity, :color, :size)
-        ");
-
+        // Nếu CHƯA CÓ trong giỏ -> Tạo mới một dòng
+        $insert = $conn->prepare("INSERT INTO cart (user_id, product_id, quantity) VALUES (:user_id, :product_id, :quantity)");
         $insert->execute([
             ":user_id" => $user_id,
             ":product_id" => $product_id,
-            ":quantity" => $quantity,
-            ":color" => $color,
-            ":size" => $size
+            ":quantity" => $quantity
         ]);
     }
 
-    echo json_encode([
-        "success" => true,
-        "message" => "Đã thêm vào giỏ hàng"
-    ]);
+    echo json_encode(["success" => true, "message" => "Đã thêm vào giỏ hàng"]);
 
 } catch (Exception $e) {
-    echo json_encode([
-        "success" => false,
-        "message" => "Lỗi server",
-        "error" => $e->getMessage()
-    ]);
+    echo json_encode(["success" => false, "message" => "Lỗi server", "error" => $e->getMessage()]);
 }
