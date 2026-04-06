@@ -31,7 +31,7 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
         <div class="container">
             <!---- LOGO-->
             <div class="containerlogo">
-              <div class="logo"><a href="html4.html"><img src="../assets/img/unnamed (5) 2.png" 
+              <div class="logo"><a href="../pages/haveaccount.php"><img src="../assets/img/unnamed (5) 2.png" 
                 style="width: 245px;"></a>
               </div>
             </div>

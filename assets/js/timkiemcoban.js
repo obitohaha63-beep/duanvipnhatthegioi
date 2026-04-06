@@ -11,9 +11,9 @@ function loadProducts(page = 1) {
   const params = new URLSearchParams({
     keyword: keyword || "",
     page: page,
-    price: filters.price.join(","), // Ví dụ: "1-2tr,2-3tr"
+    price: filters.price.join(","),
+    brand: filters.brand.join(","), // Thêm dòng này để gửi brand lên PHP
     sort: filters.sort
-    // Đã xóa phần weight ra khỏi params
   });
 
   fetch(`../assets/php/search_product.php?${params.toString()}`)
@@ -39,7 +39,8 @@ function loadProducts(page = 1) {
                 <a href="${productDetailPage}?id=${p.id}">
                   <img class="anh-arcsaber" src="${p.image}" alt="${p.name}">
                   <span class="text-arcsaber">${p.name}</span>
-                  <span class="gia">${Number(p.selling_price).toLocaleString("vi-VN")} đ</span>
+                  <span class="gia">${Number(p.selling_price)
+                    .toLocaleString('vi-VN', {minimumFractionDigits: 0, maximumFractionDigits: 0})} đ</span>
                   </a>
               </div>
               <a href="login.html">
@@ -58,14 +59,14 @@ function loadProducts(page = 1) {
 
 // Hàm lấy các giá trị người dùng đang chọn để lọc
 function getFilters() {
-  // Lấy các ô checkbox giá đang được đánh dấu (tick)
   const priceChecked = [...document.querySelectorAll(".price:checked")].map(cb => cb.value);
-  // Lấy giá trị sắp xếp
+  // Thêm dòng này để lấy các thương hiệu được chọn
+  const brandChecked = [...document.querySelectorAll(".brand:checked")].map(cb => cb.value);
   const sort = document.getElementById("idsapxep").value;
 
-  // Đã xóa logic lấy các ô checkbox weight
   return {
     price: priceChecked,
+    brand: brandChecked, // Đưa brand vào đối tượng trả về
     sort: sort
   };
 }
@@ -109,6 +110,11 @@ document.querySelectorAll(".price").forEach(cb => {
 document.getElementById("idsapxep").addEventListener("change", () => {
   loadProducts(1);
 });
-
+// Thêm bộ lắng nghe cho các checkbox thương hiệu
+document.querySelectorAll(".brand").forEach(cb => {
+  cb.addEventListener("change", () => {
+    loadProducts(1); 
+  });
+});
 // Chạy lần đầu khi vào trang
 loadProducts(currentPage);
