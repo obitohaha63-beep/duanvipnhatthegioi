@@ -71,6 +71,6 @@
   </main>
 </div>
 
-<script src="../assets/js/product_list.js"></script>
+<script src="../assets/js/quan_ly_san_pham.js"></script>
 </body>
 </html>

@@ -1,103 +1,223 @@
-const mode = document.body.dataset.mode;
+/**
+ * File: timkiemcoban.js
+ * Mục đích: Xử lý trang tìm kiếm sản phẩm cơ bản
+ * 
+ * Chức năng chính:
+ *   1. Lấy keyword tìm kiếm từ URL
+ *   2. Tải sản phẩm theo keyword và lọc
+ *   3. Hiển thị danh sách sản phẩm
+ *   4. Hỗ trợ phân trang
+ *   5. Hỗ trợ lọc theo giá, thương hiệu, sắp xếp
+ */
+
+// ========== BƯỚC 1: LẤY DỮ LIỆU TỪ URL ==========
+const userMode = document.body.dataset.mode;  // guest hoặc user
 const urlParams = new URLSearchParams(window.location.search);
-const keyword = urlParams.get("keyword");
-let currentPage = parseInt(urlParams.get("page")) || 1;
+const searchKeyword = urlParams.get("keyword");  // Từ khóa tìm kiếm
+let currentPageNumber = parseInt(urlParams.get("page")) || 1;  // Trang hiện tại
 
-// Hàm tải danh sách sản phẩm theo bộ lọc và phân trang
-function loadProducts(page = 1) {
-  const filters = getFilters();
+/**
+ * Hàm: Tải danh sách sản phẩm theo tìm kiếm + lọc + phân trang
+ * 
+ * Các bước:
+ *   1. Lấy các bộ lọc của người dùng
+ *   2. Tạo URL query parameters
+ *   3. Gọi API tìm kiếm
+ *   4. Hiển thị sản phẩm
+ *   5. Hiển thị phân trang
+ * 
+ * @param {number} pageNumber - Số trang hiện tại
+ */
+function loadProducts(pageNumber = 1) {
+    // ========== BƯỚC 1: LẤY CÁC BỘNC ==========
+    const filterSettings = getSelectedFilters();
 
-  // Tạo URL params chuẩn bị gửi lên server
-  const params = new URLSearchParams({
-    keyword: keyword || "",
-    page: page,
-    price: filters.price.join(","),
-    brand: filters.brand.join(","), // Thêm dòng này để gửi brand lên PHP
-    sort: filters.sort
-  });
-
-  fetch(`../assets/php/search_product.php?${params.toString()}`)
-    .then(res => res.json())
-    .then(res => {
-      const products = res.data;
-      const pagination = res.pagination;
-
-      // Render Tiêu đề
-      document.getElementById("timkiemcoban").innerHTML = 
-        `Kết quả tìm kiếm "<b>${keyword || ""}</b>" (${pagination.total_items} sản phẩm)`;
-      
-      // Kiểm tra xem là khách hay user để trỏ đúng link chi tiết
-      let productDetailPage = mode === "user" ? "SanPham1.php" : "SanPham.html";
-
-      // Render danh sách sản phẩm
-      let html = "";
-      products.forEach(p => {
-        html += `
-          <div class="box">
-            <div class="container-anh">
-              <div class="sanpham">
-                <a href="${productDetailPage}?id=${p.id}">
-                  <img class="anh-arcsaber" src="${p.image}" alt="${p.name}">
-                  <span class="text-arcsaber">${p.name}</span>
-                  <span class="gia">${Number(p.selling_price)
-                    .toLocaleString('vi-VN', {minimumFractionDigits: 0, maximumFractionDigits: 0})} đ</span>
-                  </a>
-              </div>
-              <a href="login.html">
-                <button>Mua ngay</button>
-              </a>
-            </div>
-          </div>
-        `;
-      });
-      document.getElementById("productList").innerHTML = html;
-
-      // Tạo các nút phân trang (1, 2, 3...)
-      renderPagination(pagination);
+    // ========== BƯỚC 2: CHUẨN BỊ URL QUERY ==========
+    // URLSearchParams = công cụ tạo query string
+    const queryParams = new URLSearchParams({
+        keyword: searchKeyword || "",        // Từ khóa tìm kiếm
+        page: pageNumber,                    // Số trang
+        price: filterSettings.price.join(","),    // Giá (ngăn cách bỳ dấu phẩy)
+        brand: filterSettings.brand.join(","),    // Thương hiệu
+        sort: filterSettings.sort            // Cách sắp xếp
     });
+
+    // ========== BƯỚC 3: GỌI API TÌNOẾM ==========
+    fetch(`../assets/php/search_product.php?${queryParams.toString()}`)
+        .then(response => response.json())
+        .then(apiData => {
+            const productList = apiData.data;      // Mảng sản phẩm
+            const paginationInfo = apiData.pagination;  // Thông tin phân trang
+
+            // ========== BƯỚC 4: HIỂN THỊ TIÊU ĐỀ ==========
+            document.getElementById("timkiemcoban").innerHTML = 
+                `Kết quả tìm kiếm "<b>${searchKeyword || ""}</b>" (${paginationInfo.total_items} sản phẩm)`;
+            
+            // ========== BƯỚC 5: CHỌN TRANG CHI TIẾT ==========
+            // Nếu là user đã login → dùng SanPham1.php
+            // Nếu là guest → dùng SanPham.html
+            const productDetailPageURL = userMode === "user" 
+                ? "SanPham1.php" 
+                : "SanPham.html";
+
+            // ========== BƯỚC 6: HIỂN THỊ DANH SÁCH SẢN PHẨM ==========
+            let productsHTML = "";
+            
+            productList.forEach(product => {
+                const formattedPrice = Number(product.selling_price)
+                    .toLocaleString('vi-VN', {
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 0
+                    });
+
+                productsHTML += `
+                    <div class="box">
+                        <div class="container-anh">
+                            <div class="sanpham">
+                                <!-- Link tới chi tiết sản phẩm -->
+                                <a href="${productDetailPageURL}?id=${product.id}">
+                                    <!-- Ảnh sản phẩm -->
+                                    <img class="anh-arcsaber" 
+                                         src="${product.image}" 
+                                         alt="${product.name}">
+                                    
+                                    <!-- Tên sản phẩm -->
+                                    <span class="text-arcsaber">${product.name}</span>
+                                    
+                                    <!-- Giá bán -->
+                                    <span class="gia">${formattedPrice} đ</span>
+                                </a>
+                            </div>
+                            
+                            <!-- Nút mua ngay -->
+                            <a href="login.html">
+                                <button>Mua ngay</button>
+                            </a>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById("productList").innerHTML = productsHTML;
+
+            // ========== BƯỚC 7: HIỂN THỊ PHÂN TRANG ==========
+            renderPaginationButtons(paginationInfo);
+        })
+        .catch(error => {
+            console.error("Lỗi tìm kiếm:", error);
+            document.getElementById("productList").innerHTML = 
+                "<p>❌ Lỗi tìm kiếm. Vui lòng thử lại.</p>";
+        });
 }
 
-// Hàm lấy các giá trị người dùng đang chọn để lọc
-function getFilters() {
-  const priceChecked = [...document.querySelectorAll(".price:checked")].map(cb => cb.value);
-  // Thêm dòng này để lấy các thương hiệu được chọn
-  const brandChecked = [...document.querySelectorAll(".brand:checked")].map(cb => cb.value);
-  const sort = document.getElementById("idsapxep").value;
+/**
+ * Hàm: Lấy các bộ lọc mà người dùng chọn
+ * 
+ * Bộ lọc bao gồm:
+ *   - price: giá bán (checkbox)
+ *   - brand: thương hiệu (checkbox)
+ *   - sort: cách sắp xếp (dropdown)
+ * 
+ * @returns {Object} Đối tượng chứa các bộ lọc được chọn
+ */
+function getSelectedFilters() {
+    // Lấy tất cả checkbox giá được check → lưu vào mảng giá
+    const selectedPrices = [...document.querySelectorAll(".price:checked")]
+        .map(checkbox => checkbox.value);
 
-  return {
-    price: priceChecked,
-    brand: brandChecked, // Đưa brand vào đối tượng trả về
-    sort: sort
-  };
+    // Lấy tất cả checkbox thương hiệu được check → lưu vào mảng brand
+    const selectedBrands = [...document.querySelectorAll(".brand:checked")]
+        .map(checkbox => checkbox.value);
+
+    // Lấy giá trị sắp xếp từ dropdown
+    const selectedSort = document.getElementById("idsapxep").value;
+
+    return {
+        price: selectedPrices,
+        brand: selectedBrands,
+        sort: selectedSort
+    };
 }
 
-// Hàm vẽ các nút phân trang
-function renderPagination(pagination) {
-  let html = "";
-  const total = pagination.total_pages;
-  const current = pagination.current_page;
+/**
+ * Hàm: Tạo các nút phân trang (1, 2, 3 ... Prev, Next)
+ * 
+ * Cấu trúc phân trang:
+ *   - Nút Previous (<<): lùi 1 trang
+ *   - Các nút số trang: 1, 2, 3, ...
+ *   - Nút Next (>>): tiến 1 trang
+ * 
+ * @param {Object} paginationInfo - Thông tin phân trang từ server
+ */
+function renderPaginationButtons(paginationInfo) {
+    let paginationHTML = "";
+    const totalPages = paginationInfo.total_pages;
+    const currentPage = paginationInfo.current_page;
 
-  // Nút Lùi (Prev)
-  html += `<a href="#" onclick="changePage(${current - 1})" ${current == 1 ? 'style="pointer-events:none;opacity:0.5"' : ''}>&laquo;</a>`;
+    // ========== NÚT PREVIOUS (LÙI) ==========
+    const isPrevDisabled = currentPage === 1;
+    paginationHTML += `
+        <a href="#" 
+           onclick="goToPage(${currentPage - 1})" 
+           style="${isPrevDisabled ? 'pointer-events: none; opacity: 0.5;' : ''}">
+            &laquo; Prev
+        </a>
+    `;
 
-  // Các trang số
-  for (let i = 1; i <= total; i++) {
-    html += `<a href="#" onclick="changePage(${i})" class="${i === current ? 'active' : ''}">${i}</a>`;
-  }
+    // ========== CÁC NÚT SỐ TRANG ==========
+    for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
+        const isCurrentPage = pageNum === currentPage;
+        paginationHTML += `
+            <a href="#" 
+               onclick="goToPage(${pageNum})" 
+               class="${isCurrentPage ? 'active' : ''}">
+                ${pageNum}
+            </a>
+        `;
+    }
 
-  // Nút Tới (Next)
-  html += `<a href="#" onclick="changePage(${current + 1})" ${current == total ? 'style="pointer-events:none;opacity:0.5"' : ''}>&raquo;</a>`;
+    // ========== NÚT NEXT (TIẾN) ==========
+    const isNextDisabled = currentPage === totalPages;
+    paginationHTML += `
+        <a href="#" 
+           onclick="goToPage(${currentPage + 1})" 
+           style="${isNextDisabled ? 'pointer-events: none; opacity: 0.5;' : ''}">
+            Next &raquo;
+        </a>
+    `;
 
-  document.querySelector(".pagination").innerHTML = html;
+    document.querySelector(".pagination").innerHTML = paginationHTML;
 }
 
-// Hàm chuyển trang
-function changePage(page) {
-  currentPage = page;
-  loadProducts(page);
-  // Cập nhật lại URL trên trình duyệt mà không cần tải lại trang
-  window.history.pushState({}, "", `?keyword=${encodeURIComponent(keyword || "")}&page=${page}`);
+/**
+ * Hàm: Chuyển sang trang khác
+ * 
+ * Ý tưởng:
+ *   - Cập nhật số trang hiện tại
+ *   - Tải lại danh sách sản phẩm theo trang mới
+ *   - Cập nhật URL mà không reload trang (dùng pushState)
+ * 
+ * @param {number} pageNumber - Số trang muốn đi
+ */
+function goToPage(pageNumber) {
+    currentPageNumber = pageNumber;
+    
+    // Tải lại sản phẩm cho trang mới
+    loadProducts(pageNumber);
+    
+    // Cập nhật URL trên trình duyệt mà không reload trang
+    // pushState = thêm vào history nhưng không reload
+    window.history.pushState(
+        {},  // state object (có thể để trống)
+        "",  // title (bị ignore ở hầu hết trình duyệt)
+        `?keyword=${encodeURIComponent(searchKeyword || "")}&page=${pageNumber}`
+    );
 }
+
+/**
+ * ========== CHẠY HÀM NGAY KHI TRANG TẢI ==========
+ */
+loadProducts(currentPageNumber);
 
 // Lắng nghe sự kiện khi đánh dấu vào các bộ lọc giá
 document.querySelectorAll(".price").forEach(cb => {
