@@ -57,7 +57,8 @@ fetch(`../assets/php/get_product_detail.php?id=${id}`)
         <pre class="trademark1">Thương hiệu: <a href="#">${p.brand}</a> | Loại: <a href="#">${p.category_name}</a></pre>
         <pre class="trademark1">ID sản phẩm: <a href="#">${p.id}</a></pre>
         
-        <p class="value">${Number(p.selling_price).toLocaleString("vi-VN")} đ</p>
+        <p class="value">${Number(p.selling_price)
+          .toLocaleString('vi-VN', {minimumFractionDigits: 0, maximumFractionDigits: 0})} đ</p>
 
         <div class="half-content">
           <hr>
