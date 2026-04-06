@@ -29,7 +29,11 @@
     <!-- Nội dung bên phải -->
     <main class="content">
       <h1>Quản lý tài khoản khách hàng và quản trị viên</h1>
-
+    <div class="action-bar" style="margin-bottom: 20px; text-align: right;">
+    <a href="themtaikhoan.html" class="btn-add-user">
+        <i class="fas fa-user-plus"></i> + Thêm tài khoản mới
+    </a>
+</div>
       <div class="khung-table">
         <div class="user-list">
           <h2>Danh sách người dùng</h2>
