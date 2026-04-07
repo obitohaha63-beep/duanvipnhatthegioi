@@ -46,6 +46,9 @@
           <option value="cancelled">Hủy đơn hàng</option>
         </select>
 
+        <label>Phường:</label>
+        <input type="text" id="wardFilter" placeholder="Nhập tên phường...">
+
         <button id="searchBtn">Tra cứu</button>
       </div>
 
@@ -55,6 +58,7 @@
             <th>Mã đơn</th>
             <th>Khách hàng</th>
             <th>Ngày đặt</th>
+            <th>Phường</th>
             <th>Tổng tiền</th>
             <th>Tình trạng</th>
             <th>Chi tiết</th>
