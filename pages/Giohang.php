@@ -118,15 +118,9 @@
             <div class="navmenu">
               
               <ul>
-                <li class><a href="allsanpham1.html" ><span class="icon">
-                  <img src="../assets/img/Get a Discount.png" style="width:24px"></span>
-                Sản phẩm khuyến mãi</a></li>
+                
 
-                <li class><a href="allsanpham1.html" ><span class="icon">
-                <img src="../assets/img/Megaphone.png" style="width:24px"></span>
-                Sản phẩm nổi bật</a></li>
-
-                <li class><a href="allsanpham1.html" ><span class="icon">
+                <li class><a href="allsanpham1.php" ><span class="icon">
                 <img src="../assets/img/unpacking.png" style="width:24px"></span>
                 Tất cả sản phẩm</a></li>
                 
@@ -157,7 +151,7 @@
 
     <!-- Action -->
     <div class="cart-actions">
-      <button onclick="window.location.href='haveaccount.php'">
+      <button onclick="window.location.href='../pages/allsanpham1.php'">
         Tiếp tục mua hàng
       </button>
 

@@ -9,7 +9,7 @@ $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
 $stmt->execute([$user_id]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Lấy địa chỉ
+
 $stmt2 = $conn->prepare("SELECT * FROM user_address WHERE user_id = ? AND is_default = 1 LIMIT 1");
 $stmt2->execute([$user_id]);
 $address = $stmt2->fetch(PDO::FETCH_ASSOC);
@@ -84,7 +84,7 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
             <a href="taikhoan.html">
               <img class="logo-person" src="../assets/img/daidien4.png" alt="logo của brand" 
                       style="width:28px; height: 28px"></a>
-            <a class="text-thongtin" href="taikhoan.html">Thông tin</a>
+            <a class="text-thongtin" href="../pages/taikhoan.php">Thông tin</a>
             <a class="text-dangky" style="opacity: 0.8;" href="../assets/php/logout.php">Đăng xuất</a>
           </div>
 
@@ -125,15 +125,9 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
             <div class="navmenu">
               
               <ul>
-                <li class><a href="allsanpham1.html" ><span class="icon">
-                  <img src="../assets/img/Get a Discount.png" style="width:24px"></span>
-                Sản phẩm khuyến mãi</a></li>
+               
 
-                <li class><a href="allsanpham1.html" ><span class="icon">
-                <img src="../assets/img/Megaphone.png" style="width:24px"></span>
-                Sản phẩm nổi bật</a></li>
-
-                <li class><a href="allsanpham1.html" ><span class="icon">
+                <li class><a href="../pages/allsanpham1.php" ><span class="icon">
                 <img src="../assets/img/unpacking.png" style="width:24px"></span>
                 Tất cả sản phẩm</a></li>
                 
@@ -150,9 +144,9 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
 </header>
 <main class="account-page">
   <div class="container-back">
-              <a href="haveaccount.html">Trang chủ </a>
+              <a href="../pages/haveaccount.php">Trang chủ </a>
               <span>/</span>
-              <a href="">Thông tin tài khoản </a>
+              <a href="../pages/taikhoan.php">Thông tin tài khoản </a>
             </div>
   <div class="account-wrapper">
     <!-- Cột trái -->

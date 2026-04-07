@@ -35,7 +35,7 @@ async function loadPurchaseOrders() {
         <td>${order.order_date}</td>
         <td>${order.product_count}</td>
         <td>
-          <a href="ChiTietPhieuNhap.html?id=${order.id}">
+          <a href="ChiTietPhieuNhap.php?id=${order.id}">
             <button class="btn-view">Xem</button>
           </a>
         </td>

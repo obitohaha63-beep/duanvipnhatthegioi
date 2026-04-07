@@ -135,15 +135,9 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
             <div class="navmenu">
               
               <ul>
-                <li class><a href="allsanpham1.html" ><span class="icon">
-                  <img src="../assets/img/Get a Discount.png" style="width:24px"></span>
-                Sản phẩm khuyến mãi</a></li>
+                
 
-                <li class><a href="allsanpham1.html" ><span class="icon">
-                <img src="../assets/img/Megaphone.png" style="width:24px"></span>
-                Sản phẩm nổi bật</a></li>
-
-                <li class><a href="allsanpham1.html" ><span class="icon">
+                <li class><a href="../pages/allsanpham1.php" ><span class="icon">
                 <img src="../assets/img/unpacking.png" style="width:24px"></span>
                 Tất cả sản phẩm</a></li>
                 
@@ -256,7 +250,7 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
         <h4>Ghi chú đơn hàng: </h4>
         <input type="text" placeholder="Nhập ghi chú">
         <div class="button-group">
-          <a href="../pages/haveaccount.php"><button class="btn-outline">Tiếp tục mua hàng</button></a>
+          <a href="../pages/allsanpham1.php"><button class="btn-outline">Tiếp tục mua hàng</button></a>
           <button class="btn-primary" onclick="placeOrder()">Đặt hàng</button>
         </div>
       </div>

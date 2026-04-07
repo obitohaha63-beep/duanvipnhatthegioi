@@ -65,7 +65,7 @@ function loadProductsToTable() {
                     <td>${product.created_at || ""}</td>
                     <td>
                         <div class="action-buttons">
-                            <a href="../pages/EditProduct.html?id=${product.id}" 
+                            <a href="../pages/EditProduct.php?id=${product.id}" 
                                class="btn-primary"> Sửa</a>
                             <button class="btn-danger btn-delete" 
                                     data-id="${product.id}" 

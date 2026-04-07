@@ -30,7 +30,7 @@
     <main class="content">
       <h1>Quản lý tài khoản khách hàng và quản trị viên</h1>
     <div class="action-bar" style="margin-bottom: 20px; text-align: right;">
-    <a href="themtaikhoan.html" class="btn-add-user">
+    <a href="themtaikhoan.php" class="btn-add-user">
         <i class="fas fa-user-plus"></i> + Thêm tài khoản mới
     </a>
 </div>

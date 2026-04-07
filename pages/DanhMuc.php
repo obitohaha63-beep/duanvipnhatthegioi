@@ -39,7 +39,7 @@
     <section class="card">
       <div class="card-header">
         <h2>Danh mục</h2>
-        <button onclick="location.href='ThemSanPham.html'" class="btn-primary">
+        <button onclick="location.href='ThemSanPham.php'" class="btn-primary">
           + Thêm loại
         </button>
       </div>

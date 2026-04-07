@@ -69,5 +69,5 @@ function formatDate(dateString) {
 }
 
 function xemchitiet(id) {
-  window.location.href = `Chitietdonhang.html?id=${id}`;
+  window.location.href = `Chitietdonhang.php?id=${id}`;
 }

@@ -107,24 +107,7 @@ if (!isset($_SESSION['user'])) {
 
             <div class="textmucluc">
               <span>DANH MỤC SẢN PHẨM</span>
-              <div class="khungtrangmenu khungtrangmenu-dropdown">
-                  <ul>
-                    <li><a href="../pages/allsanpham.html"><img src="../assets/img/badminton.png"
-                       style="width: 24px;"><span>Vợt cầu lông</span></a></li>
-
-                    <li><a href="../pages/allsanpham.html"><img src="../assets/img/sneakers.png"
-                       style="width: 24px;"><span>Giày cầu lông</span></a></li>
-
-                    <li><a href="../pages/allsanpham.html"><img src="../assets/img/piccolo.png"
-                       style="width: 24px;"><span>Ống cầu lông</span></a></li>
-
-                    <li><a href="../pages/allsanpham.html"><img src="../assets/img/t-shirt.png"
-                       style="width: 24px;"><span>Áo cầu lông</span></a></li>
-                       
-                    <li><a href="../pages/allsanpham.html"><img src="../assets/img/jeans.png" 
-                      style="width: 24px;"><span>Quần cầu lông</span></a></li>
-                  </ul>
-              </div>
+              
 
               
             </div>
@@ -161,28 +144,16 @@ if (!isset($_SESSION['user'])) {
           <div class="khungtrangmenu">
             <ul>
               <li>
-                <a href="../pages/allsanpham.html"><img src="../assets/img/badminton.png" style ="width: 24px;">
+                <a href="../pages/timkiemyonex1.php?keyword=vợt+cầu+lông"><img src="../assets/img/badminton.png" style ="width: 24px;">
                 <span>Vợt cầu lông</span></a>
               </li>
 
               <li>
-                <a href="../pages/allsanpham.html"><img src="../assets/img/sneakers.png" style ="width: 24px;">
+                <a href="../pages/timkiemyonex1.php?keyword=giày+cầu+lông"><img src="../assets/img/sneakers.png" style ="width: 24px;">
                 <span>Giày cầu lông</span></a>
               </li>
 
-              <li>
-                <a href="../pages/allsanpham.html"><img src="../assets/img/piccolo.png" style ="width: 24px;">
-                <span>Ống cầu lông</span></a>
-              </li>
-              <li>
-                  <a href="../pages/allsanpham.html"><img src="../assets/img/t-shirt.png" style ="width: 24px;">
-                  <span>Áo cầu lông </span></a>
-              </li>
-
-              <li>
-              <a href="../pages/allsanpham.html"><img src="../assets/img/jeans.png" style ="width: 24px;">
-                <span>Quần cầu lông</span></a>
-              </li>
+             
             </ul>
             
           </div>
@@ -250,7 +221,7 @@ if (!isset($_SESSION['user'])) {
 
           </div>
         </div>
-        <a href="../pages/timkiemyonex1.php?keyword=vợt+cầu+lông">
+        <a href="../pages/allsanpham1.php">
             <div class="xemtatca">
               Xem tất cả
             </div>
