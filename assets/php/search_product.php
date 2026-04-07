@@ -6,7 +6,8 @@ $keyword = trim($_GET['keyword'] ?? '');
 $page = intval($_GET['page'] ?? 1);
 $limit = 6;
 $price = $_GET['price'] ?? '';
-$brand_filter = $_GET['brand'] ?? ''; 
+$brand_filter = $_GET['brand'] ?? '';
+$category_filter = $_GET['category'] ?? '';  // Thêm category parameter
 $sort = $_GET['sort'] ?? '';
 $offset = ($page - 1) * $limit;
 
@@ -48,6 +49,18 @@ if (!empty($brand_filter)) {
     $where[] = "p.brand IN (" . implode(",", $brandPlaceholders) . ")";
 }
 
+// Xử lý category filter
+if (!empty($category_filter)) {
+    $categories = explode(',', $category_filter);
+    
+    $categoryPlaceholders = [];
+    foreach ($categories as $index => $categoryName) {
+        $key = ":category" . $index;
+        $categoryPlaceholders[] = $key;
+        $params[$key] = $categoryName;
+    }
+    $where[] = "c.name IN (" . implode(",", $categoryPlaceholders) . ")";
+}
 
 $whereClause = "WHERE " . implode(" AND ", $where);
 
