@@ -169,7 +169,7 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
             </ul>
         </div>
       </div>
-      <div class="detail-of-items" id="describe-Product">
+      
         
     </div>
 </main>

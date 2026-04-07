@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     if (!productContainer) {
         
-        console.log("⚠️ Không tìm thấy .container-sanphambot - bỏ qua product_list.js");
+        console.log(" Không tìm thấy .container-sanphambot - bỏ qua product_list.js");
         return;
     }
 
@@ -78,10 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div class="sanpham"
                              data-brand="${product.category_name || 'Chưa phân loại'}"
                              data-price="${sellingPrice}"
-                             data-weight="${attributesData['trọng-lượng'] || 'N/A'}"
-                             data-balance="${attributesData['điểm-cân-bằng'] || 'N/A'}"
-                             data-style="${attributesData['phong-cách-chơi'] || 'N/A'}"
-                             data-level="${attributesData['trình-độ-chơi'] || 'N/A'}"
                              data-date="${createdDate}">
                             
                             <!-- Link tới chi tiết sản phẩm -->
@@ -96,17 +92,16 @@ document.addEventListener("DOMContentLoaded", () => {
                                     ${product.name}
                                 </span>
                                 
-                                <!-- Badge số màu -->
-                                <span class="mausac-arsaber">+1 màu sắc</span>
+                                
                                 
                                 <!-- Giá bán -->
                                 <span class="gia">${sellingPrice}</span>
                             </a>
                         </div>
                         
-                        <!-- Nút mua ngay -->
+                        
                         <a href="login.html">
-                            <button class="btn-buy">Mua ngay</button>
+                            <button class="btn-buy">Chi tiết</button>
                         </a>
                     </div>
                 `;
