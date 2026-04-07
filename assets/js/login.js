@@ -1,61 +1,68 @@
+/**
+ * VALIDATION - ĐĂNG NHẬP
+ * Sử dụng hệ thống validation inline từ validation.js
+ */
 
+document.addEventListener("DOMContentLoaded", function () {
+    const loginForm = document.getElementById("loginForm");
 
+    // ============================================
+    // 1. CẤU HÌNH CÁC TRƯỜNG CẦN VALIDATE
+    // ============================================
+    const fieldConfigs = {
+        email: 'email',         // Email
+        password: 'password'    // Mật khẩu
+    };
 
+    // ============================================
+    // 2. THIẾT LẬP VALIDATION THỜI GIAN THỰC
+    // ============================================
+    // Validate ngay khi người dùng thoát/gõ trong trường
+    setupRealtimeValidation(loginForm, fieldConfigs);
 
+    // ============================================
+    // 3. XỬ LÝ SUBMIT FORM
+    // ============================================
+    loginForm.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-document.getElementById("loginForm").addEventListener("submit", function(event) {
-    
-    event.preventDefault();
-
-    
-    const emailInput = document.getElementById("email");
-    const passwordInput = document.getElementById("password");
-    
-    const email = emailInput.value.trim();        
-    const password = passwordInput.value.trim();
-
-    
-    if (!email || !password) {
-        alert("Vui lòng nhập email và mật khẩu");
-        return;
-    }
-
-    
-    
-    
-    
-    fetch("../assets/php/loginadmin.php", {
-        method: "POST",                           
-        headers: {
-            "Content-Type": "application/json"    
-        },
-        credentials: "include",                   
-        body: JSON.stringify({                    
-            email: email,
-            password: password
-        })
-    })
-    
-    .then(response => response.json())             
-    .then(responseData => {
-        
-        if (responseData.success) {
-            alert("Đăng nhập thành công!");
-            
-            
-            localStorage.setItem("user", JSON.stringify(responseData.user));
-            
-            
-            window.location.href = "../pages/haveaccount.php";
-        } 
-        
-        else {
-            alert("Lỗi: " + responseData.message);
+        // Validate toàn bộ form trước khi submit
+        if (!validateForm(loginForm, fieldConfigs)) {
+            alert("❌ Vui lòng kiểm tra lại các thông tin!");
+            return;
         }
-    })
-    
-    .catch(error => {
-        console.error("Chi tiết lỗi:", error);
-        alert("Lỗi kết nối server. Vui lòng thử lại!");
+
+        // Lấy dữ liệu từ form
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        // ============================================
+        // 4. GỬI DỮ LIỆU ĐẾN SERVER
+        // ============================================
+        fetch("../assets/php/loginadmin.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include",
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        })
+            .then(response => response.json())
+            .then(responseData => {
+                if (responseData.success) {
+                    alert("✅ Đăng nhập thành công!");
+                    localStorage.setItem("user", JSON.stringify(responseData.user));
+                    window.location.href = "../pages/haveaccount.php";
+                } else {
+                    alert("❌ Lỗi: " + responseData.message);
+                }
+            })
+            .catch(error => {
+                console.error("Lỗi chi tiết:", error);
+                alert("❌ Lỗi kết nối server. Vui lòng thử lại!");
+            });
     });
 });

@@ -227,9 +227,7 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
       <p><strong>Số tài khoản:</strong> 123456789</p>
       <p><strong>Chủ tài khoản:</strong> NGUYEN VAN A</p>
 
-      <h4>Thông tin người chuyển</h4>
-      <input type="text" id="bank_name" placeholder="Tên người chuyển">
-      <input type="text" id="bank_transaction_code" placeholder="Mã giao dịch">
+      
     </div>
 
     <!-- Online -->
