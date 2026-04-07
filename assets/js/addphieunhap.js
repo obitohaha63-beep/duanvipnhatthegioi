@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    // --- Khi thay đổi số sản phẩm ---
+    
     document.getElementById("so-san-pham").addEventListener("change", function () {
         const count = parseInt(this.value);
         if (!count || count < 1) return;
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         document.getElementById("product-list").innerHTML = html;
 
-        // Lưu dữ liệu sản phẩm theo index
+        
         const productDataMap = {};
 
         document.querySelectorAll(".category-select").forEach(select => {
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const productInput = document.querySelector(`.product-name[data-index='${index}']`);
             const productListDiv = document.getElementById(`product-list-${index}`);
 
-            // Mở input khi chọn loại
+            
             select.addEventListener("change", function () {
                 const categoryId = this.value;
                 productInput.value = "";
@@ -68,13 +68,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
             });
 
-            // Khi focus vào input → show tất cả sản phẩm của loại
+            
             productInput.addEventListener("focus", () => showProducts(index));
-            // Khi gõ → lọc
+            
             productInput.addEventListener("input", () => filterProducts(index));
         });
 
-        // --- Hàm hiển thị sản phẩm ---
+        
         function showProducts(index) {
             const productInput = document.querySelector(`.product-name[data-index='${index}']`);
             const productListDiv = document.getElementById(`product-list-${index}`);
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
             bindClickEvents(index);
         }
 
-        // --- Hàm lọc sản phẩm khi gõ ---
+        
         function filterProducts(index) {
             const productInput = document.querySelector(`.product-name[data-index='${index}']`);
             const productListDiv = document.getElementById(`product-list-${index}`);
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
             bindClickEvents(index);
         }
 
-        // --- Chọn sản phẩm từ dropdown ---
+        
         function bindClickEvents(index) {
             const productInput = document.querySelector(`.product-name[data-index='${index}']`);
             const productListDiv = document.getElementById(`product-list-${index}`);
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
 
-        // Ẩn dropdown khi click ngoài
+        
         document.addEventListener("click", e => {
             document.querySelectorAll(".product-list").forEach(div => {
                 if (!div.contains(e.target) && !div.previousElementSibling.contains(e.target)) {
@@ -130,13 +130,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-    // --- Hoàn tất phiếu nhập ---
+    
     const btnComplete = document.getElementById("btn-complete");
     if (!btnComplete) return;
 
-    // --- Hoàn tất phiếu nhập ---
+    
     btnComplete.addEventListener("click", function (e) {
-        e.preventDefault(); // tránh reload form
+        e.preventDefault(); 
 
         const ngayNhapInput = document.getElementById("ngay-nhap");
         const ngayNhap = ngayNhapInput ? ngayNhapInput.value : "";

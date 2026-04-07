@@ -7,10 +7,10 @@ document.getElementById('form-add-user').addEventListener('submit', function(e) 
         email: document.getElementById('email').value,
         phone: document.getElementById('phone').value,
         role: document.getElementById('role').value,
-        password: '123456' // Mật khẩu mặc định theo yêu cầu
+        password: '123456' 
     };
 
-    // Hiệu ứng UX: Đổi chữ nút khi đang xử lý
+    
     const btn = document.querySelector('.btn-submit');
     const originalText = btn.innerText;
     btn.innerText = "Đang xử lý...";
@@ -28,7 +28,7 @@ document.getElementById('form-add-user').addEventListener('submit', function(e) 
             msgDiv.className = 'message success';
             msgDiv.innerText = "Thêm tài khoản thành công!";
             document.getElementById('form-add-user').reset();
-            // Tự động quay về trang danh sách sau 1.5 giây
+            
             setTimeout(() => {
                 window.location.href = 'QuanLyuser.html'; 
             }, 1500);

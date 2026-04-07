@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-include 'db.php'; // Kết nối tới database quebshop2
+include 'db.php'; 
 
 $data = json_decode(file_get_contents("php://input"), true);
 
@@ -13,11 +13,11 @@ $name = $data['name'];
 $email = $data['email'];
 $phone = $data['phone'];
 $role = $data['role'];
-// Mã hóa mật khẩu '123456' bằng bcrypt như database hiện tại của em
+
 $hashed_password = password_hash($data['password'], PASSWORD_BCRYPT);
 
 try {
-    // Kiểm tra email tồn tại chưa
+    
     $checkEmail = $conn->prepare("SELECT id FROM users WHERE email = ?");
     $checkEmail->execute([$email]);
     if ($checkEmail->rowCount() > 0) {

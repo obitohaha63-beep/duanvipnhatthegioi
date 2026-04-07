@@ -4,7 +4,7 @@ include 'db.php';
 
 $fromDate = $_GET['fromDate'] ?? '';
 $toDate = $_GET['toDate'] ?? '';
-$status = $_GET['status'] ?? ''; // Giả sử JS gửi: 'delivered,confirmed'
+$status = $_GET['status'] ?? ''; 
 
 $sql = "
 SELECT 
@@ -30,20 +30,20 @@ if ($toDate) {
     $params[] = $toDate;
 }
 
-// --- PHẦN THAY ĐỔI Ở ĐÂY ---
+
 if ($status) {
-    // Chuyển chuỗi 'delivered,confirmed' thành mảng ['delivered', 'confirmed']
+    
     $statusList = explode(',', $status);
     
-    // Tạo chuỗi dấu hỏi chấm (?,?) tương ứng với số lượng phần tử
+    
     $placeholders = implode(',', array_fill(0, count($statusList), '?'));
     
     $sql .= " AND orders.status IN ($placeholders)";
     
-    // Gộp mảng status vào mảng params chung
+    
     $params = array_merge($params, $statusList);
 }
-// ---------------------------
+
 
 $sql .= " ORDER BY orders.id DESC";
 

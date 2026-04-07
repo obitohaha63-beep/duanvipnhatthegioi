@@ -1,7 +1,7 @@
 
 async function loadOrders() {
     try {
-        // Thay đổi dòng fetch này
+        
         const response = await fetch('../assets/php/get_orders.php?status=delivered,confirmed');
         const data = await response.json();
 
@@ -32,16 +32,16 @@ async function loadOrders() {
     }
 }
 
-// format ngày
+
 function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString('vi-VN');
 }
 
-// format tiền
+
 function formatMoney(amount) {
     return Number(amount).toLocaleString('vi-VN') + '₫';
 }
 
-// load khi mở trang
+
 loadOrders();

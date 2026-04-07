@@ -11,7 +11,7 @@ try {
         $dateTime = $date . ' 23:59:59';
     }
 
-    // 1. Lấy tất cả sản phẩm kèm tên danh mục
+    
     $sql = "SELECT p.id, p.name, c.name AS category FROM products p
             LEFT JOIN categories c ON p.category_id = c.id WHERE 1=1";
     $params = [];
@@ -23,7 +23,7 @@ try {
     $stmt->execute($params);
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // 2. Tổng số lượng nhập từ phiếu nhập completed
+    
     $sqlImport = "SELECT poi.product_id, SUM(poi.quantity) AS total_imported
                   FROM purchase_order_items poi
                   JOIN purchase_orders po ON poi.purchase_order_id = po.id
@@ -42,7 +42,7 @@ try {
         $importMap[$imp['product_id']] = (int)$imp['total_imported'];
     }
 
-    // 3. Tổng số lượng xuất từ đơn hàng confirmed (bỏ canceled/pending)
+    
     $sqlExport = "SELECT oi.product_id, SUM(oi.quantity) AS total_exported
                   FROM order_items oi
                   JOIN orders o ON oi.order_id = o.id
@@ -61,7 +61,7 @@ try {
         $exportMap[$exp['product_id']] = (int)$exp['total_exported'];
     }
 
-    // 4. Tính tồn kho
+    
     foreach ($products as &$p) {
         $in = $importMap[$p['id']] ?? 0;
         $out = $exportMap[$p['id']] ?? 0;

@@ -23,11 +23,11 @@ document.addEventListener('DOMContentLoaded', function () {
       headers: {
         'Content-Type': 'application/json'
       },
-      credentials: "include", // 🔥 QUAN TRỌNG
+      credentials: "include", 
       body: JSON.stringify({
         email: email,
         password: pass,
-        type: "admin" // 🔥 PHÂN BIỆT ADMIN
+        type: "admin" 
       })
     })
     .then(response => response.json())

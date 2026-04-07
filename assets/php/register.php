@@ -24,7 +24,7 @@ $detail_address = trim($data['detail_address']);
 $phone = trim($data['phone']);
 
 try {
-    // check email
+    
     $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
     $stmt->execute([$email]);
 
@@ -33,23 +33,23 @@ try {
         exit;
     }
 
-    // hash password
+    
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-    // transaction (RẤT QUAN TRỌNG)
+    
     $conn->beginTransaction();
 
-    // insert user
+    
     $stmt = $conn->prepare("
         INSERT INTO users (name, email, password,phone)
         VALUES (?, ?, ?,?)
     ");
     $stmt->execute([$name, $email, $hashedPassword,$phone]);
 
-    // lấy user_id vừa tạo
+    
     $user_id = $conn->lastInsertId();
 
-    // insert address
+    
     $stmt = $conn->prepare("
         INSERT INTO user_address (user_id, city, district, ward, detail_address, is_default)
         VALUES (?, ?, ?, ?, ?, 1)

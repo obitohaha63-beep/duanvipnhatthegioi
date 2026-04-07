@@ -4,7 +4,7 @@ require "db.php";
 
 $id = $_POST['productId'] ?? 0;
 
-// Gắn sẵn các dữ liệu cần cập nhật vào mảng (bỏ color và size)
+
 $data = [
     ':name' => $_POST['name'] ?? '',
     ':brand' => $_POST['brand'] ?? '',
@@ -20,7 +20,7 @@ $data = [
 $image_url = null;
 $remove_image = $_POST['remove_image'] ?? 0;
 
-// Xử lý upload ảnh mới nếu có
+
 if(isset($_FILES['image']) && $_FILES['image']['error'] == 0){
     $fileName = time() . "_" . basename($_FILES["image"]["name"]);
     $target = "../uploads/" . $fileName;
@@ -31,7 +31,7 @@ if(isset($_FILES['image']) && $_FILES['image']['error'] == 0){
 }
 
 try {
-    // Nếu có upload ảnh mới, ta Update luôn cột image_url
+    
     if($image_url){
         $sql = "UPDATE products SET 
             name=:name, brand=:brand, category_id=:category_id, 
@@ -41,7 +41,7 @@ try {
         
         $data[':image'] = $image_url;
     } 
-    // Nếu người dùng yêu cầu xóa ảnh
+    
     elseif ($remove_image == 1) {
         $sql = "UPDATE products SET 
             name=:name, brand=:brand, category_id=:category_id, 
@@ -49,7 +49,7 @@ try {
             description=:description, status=:status, image_url=NULL
             WHERE id=:id";
     }
-    // Nếu không thay đổi ảnh
+    
     else {
         $sql = "UPDATE products SET 
             name=:name, brand=:brand, category_id=:category_id, 

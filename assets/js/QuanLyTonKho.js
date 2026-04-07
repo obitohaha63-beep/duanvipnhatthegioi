@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("btnSearchWarningStock").addEventListener("click", loadWarningStock);
 });
 
-// ------------------- Load danh mục -------------------
+
 async function loadCategories() {
     try {
         const res = await fetch("../assets/php/get_categories.php");
@@ -27,13 +27,13 @@ async function loadCategories() {
     }
 }
 
-// ------------------- Tra cứu tồn kho theo mốc ngày -------------------
+
 async function loadStock() {
     const category = document.getElementById("categoryFilter").value;
     const date = document.getElementById("dateFilter").value;
 
     try {
-        // get_stock.php sẽ trừ số lượng chỉ từ các đơn hàng đã xác nhận, bỏ qua pending/hủy
+        
         const res = await fetch(`../assets/php/get_stock.php?category=${category}&date=${date}`);
         const result = await res.json();
 
@@ -60,7 +60,7 @@ async function loadStock() {
     }
 }
 
-// ------------------- Báo cáo nhập – xuất theo mốc ngày -------------------
+
 async function loadReport() {
     const keyword = document.getElementById("keyword").value;
     const from = document.getElementById("fromDate").value;
@@ -93,7 +93,7 @@ async function loadReport() {
     }
 }
 
-// ------------------- Sản phẩm cảnh báo tồn kho -------------------
+
 async function loadWarningStock() {
     const warning = parseInt(document.getElementById("warningLimit").value) || 5;
 

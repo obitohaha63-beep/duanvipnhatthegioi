@@ -1,31 +1,29 @@
 
-// DOMContentLoaded = chờ HTML tải xong mới chạy code
+
 document.addEventListener("DOMContentLoaded", () => {
     const productTableBody = document.getElementById("productTable");
 
-    // 🔴 KIỂM TRA: Nếu tbody không tồn tại, dừng script
+    
     if (!productTableBody) {
         console.error(" Lỗi: Không tìm thấy phần tử #productTable");
         return;
     }
 
-    /**
-     * ========== BƯỚC 2: TẢI DANH SÁCH SẢN PHẨM ==========
-     */
+    
+
     loadProductsToTable();
 });
 
-/**
- * Hàm: Tải danh sách sản phẩm vào bảng
- */
+
+
 function loadProductsToTable() {
     const productTableBody = document.getElementById("productTable");
 
-    // ========== BƯỚC 1: GỌI API ==========
+    
     fetch("../assets/php/get_products.php")
         .then(response => response.json())
         .then(apiData => {
-            // ========== BƯỚC 2: KIỂM TRA KẾT QUẢ ==========
+            
             if (!apiData.success) {
                 console.error(" Lỗi API:", apiData.message);
                 productTableBody.innerHTML = `
@@ -38,16 +36,16 @@ function loadProductsToTable() {
                 return;
             }
 
-            // Xóa dữ liệu cũ
+            
             productTableBody.innerHTML = "";
 
-            // ========== BƯỚC 3: DUYỆT QUA TỪNG SẢN PHẨM ==========
+            
             apiData.data.forEach(product => {
-                // Format giá
+                
                 const formattedCostPrice = Number(product.cost_price)
                     .toLocaleString('vi-VN', {minimumFractionDigits: 0, maximumFractionDigits: 0});
 
-                // Tạo hàng
+                
                 const productRow = document.createElement("tr");
                 productRow.innerHTML = `
                     <td>${product.id}</td>
@@ -93,26 +91,22 @@ function loadProductsToTable() {
         });
 }
 
-/**
- * Hàm: Xóa sản phẩm
- * 
- * Tham số:
- *   - productId: ID của sản phẩm cần xóa
- */
+
+
 function deleteProduct(productId) {
-    // ========== BƯỚC 1: HỎI XÁC NHẬN ==========
+    
     if (!confirm(" Bạn có chắc muốn xóa sản phẩm này?")) {
         return;
     }
 
-    // ========== BƯỚC 2: GỬI REQUEST LÊN SERVER ==========
+    
     fetch(`../assets/php/delete_product.php?id=${productId}`)
         .then(response => response.json())
         .then(deleteResult => {
-            // ========== BƯỚC 3: KIỂM TRA KẾT QUẢ ==========
+            
             if (deleteResult.success) {
                 alert(" " + deleteResult.message);
-                // Tải lại danh sách
+                
                 loadProductsToTable();
             } else {
                 alert(" Lỗi: " + deleteResult.message);

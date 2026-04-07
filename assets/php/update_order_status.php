@@ -18,7 +18,7 @@ if (!$id || !$newStatus) {
 try {
     $conn->beginTransaction();
 
-    // Lấy trạng thái cũ
+    
     $stmt = $conn->prepare("SELECT status FROM orders WHERE id = ?");
     $stmt->execute([$id]);
     $order = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -29,13 +29,13 @@ try {
 
     $oldStatus = $order['status'];
 
-    // Chỉ trừ kho khi pending -> confirmed hoặc delivered
+    
     if (
         $oldStatus === 'pending' &&
         ($newStatus === 'confirmed' || $newStatus === 'delivered')
     ) {
 
-        // Lấy danh sách sản phẩm
+        
         $stmtItems = $conn->prepare("
             SELECT product_id, quantity
             FROM order_items
@@ -46,7 +46,7 @@ try {
 
         foreach ($items as $item) {
 
-            // kiểm tra tồn kho hiện tại
+            
             $stmtCheck = $conn->prepare("
                 SELECT quantity
                 FROM products
@@ -63,7 +63,7 @@ try {
                 throw new Exception("Sản phẩm ID {$item['product_id']} không đủ tồn kho");
             }
 
-            // trừ kho
+            
             $stmtUpdateStock = $conn->prepare("
                 UPDATE products
                 SET quantity = quantity - ?
@@ -76,7 +76,7 @@ try {
         }
     }
 
-    // update trạng thái đơn
+    
     $stmtUpdate = $conn->prepare("
         UPDATE orders
         SET status = ?

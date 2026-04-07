@@ -36,7 +36,7 @@ try {
         exit;
     }
 
-    // 🔒 Check admin nếu login từ admin page
+    
     if (isset($data['type']) && $data['type'] === 'admin') {
         if ($user['role'] !== 'admin') {
             echo json_encode([
@@ -47,7 +47,7 @@ try {
         }
     }
 
-    // Check trạng thái
+    
     if ($user['status'] === 'locked') {
         echo json_encode([
             "success" => false,
@@ -56,7 +56,7 @@ try {
         exit;
     }
 
-    // Check password
+    
     if (!password_verify($password, $user['password'])) {
         echo json_encode([
             "success" => false,
@@ -65,7 +65,7 @@ try {
         exit;
     }
 
-    // Lưu session chung
+    
     $_SESSION['user'] = [
         "id" => $user['id'],
         "name" => $user['name'],

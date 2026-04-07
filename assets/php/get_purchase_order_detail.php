@@ -13,7 +13,7 @@ if (!$id) {
 }
 
 try {
-    // Lấy thông tin phiếu nhập
+    
     $stmt = $conn->prepare("
         SELECT id, order_date, status
         FROM purchase_orders
@@ -30,7 +30,7 @@ try {
         exit;
     }
 
-    // Lấy danh sách sản phẩm kèm số lần nhập lớn nhất
+    
     $stmt = $conn->prepare("
         SELECT 
             p.id AS product_id,

@@ -10,7 +10,7 @@ try {
     $fromDate = $from ? $from . " 00:00:00" : '';
     $toDate = $to ? $to . " 23:59:59" : '';
 
-    // 1. Lấy danh sách sản phẩm lọc theo từ khóa
+    
     $sql = "SELECT id, name FROM products WHERE 1=1";
     $params = [];
     if ($keyword !== '') {
@@ -26,7 +26,7 @@ try {
     foreach ($products as $p) {
         $id = $p['id'];
 
-        // Tổng nhập
+        
         $sqlImport = "SELECT SUM(poi.quantity) AS total_imported
                       FROM purchase_order_items poi
                       JOIN purchase_orders po ON poi.purchase_order_id = po.id
@@ -41,7 +41,7 @@ try {
         $stmtImport->execute(array_merge([$id], array_slice($paramsImport,1)));
         $imported = (int)$stmtImport->fetchColumn();
 
-        // Tổng xuất (chỉ confirmed)
+        
         $sqlExport = "SELECT SUM(oi.quantity) AS total_exported
                       FROM order_items oi
                       JOIN orders o ON oi.order_id = o.id

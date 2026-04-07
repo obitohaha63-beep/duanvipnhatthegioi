@@ -9,7 +9,7 @@ if (!$id) {
     exit;
 }
 
-// JOIN bảng products với bảng categories để lấy tên danh mục (category_name)
+
 $sql = "SELECT p.*, 
         c.name AS category_name,
         (p.cost_price * (1 + p.profit_rate/100)) AS selling_price
@@ -20,7 +20,7 @@ $sql = "SELECT p.*,
 $stmt = $conn->prepare($sql);
 $stmt->execute([':id' => $id]);
 
-// Dùng fetch() vì chỉ lấy 1 sản phẩm duy nhất
+
 $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$product) {
@@ -28,7 +28,7 @@ if (!$product) {
     exit;
 }
 
-// Trả về dữ liệu gọn gàng (đã bỏ color và size)
+
 $data = [
     "id" => $product["id"],
     "name" => $product["name"],

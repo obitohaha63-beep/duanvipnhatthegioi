@@ -205,7 +205,6 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
   <input type="text" name="ward"
          value="<?= htmlspecialchars($address['ward'] ?? '') ?>">
 
-  <button type="submit" class="update-btn">CẬP NHẬT</button>
 </form>
     </section>
   </div>

@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const data = await res.json();
       allProducts = data.products;
 
-      // Load dropdown
+      
       loaiSelect.innerHTML = '<option value="">Tất cả</option>';
       data.categories.forEach(cat => {
         const opt = document.createElement("option");
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderTable(filtered);
   }
 
-  // Event listeners
+  
   giaVonInput.addEventListener("input", filterProducts);
   loiNhuanInput.addEventListener("input", filterProducts);
   giaBanInput.addEventListener("input", filterProducts);

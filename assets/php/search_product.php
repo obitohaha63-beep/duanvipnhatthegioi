@@ -6,20 +6,20 @@ $keyword = trim($_GET['keyword'] ?? '');
 $page = intval($_GET['page'] ?? 1);
 $limit = 6;
 $price = $_GET['price'] ?? '';
-$brand_filter = $_GET['brand'] ?? ''; // Nhận brand từ JS
+$brand_filter = $_GET['brand'] ?? ''; 
 $sort = $_GET['sort'] ?? '';
 $offset = ($page - 1) * $limit;
 
 $where = ["p.status = 'visible'"];
 $params = [];
 
-// 1. Xử lý tìm kiếm keyword
+
 if (!empty($keyword)) {
     $where[] = "(p.name LIKE :kw OR p.brand LIKE :kw OR c.name LIKE :kw)";
     $params[":kw"] = "%$keyword%";
 }
 
-// 2. Xử lý lọc theo khoảng giá
+
 if (!empty($price)) {
     $priceArr = explode(',', $price);
     $priceConditions = [];
@@ -35,10 +35,10 @@ if (!empty($price)) {
     }
 }
 
-// 3. Xử lý lọc theo Thương hiệu (SỬA LỖI Ở ĐÂY)
+
 if (!empty($brand_filter)) {
     $brands = explode(',', $brand_filter);
-    // Tạo placeholder động cho PDO để bảo mật (ví dụ: :brand0, :brand1)
+    
     $brandPlaceholders = [];
     foreach ($brands as $index => $brandName) {
         $key = ":brand" . $index;
@@ -48,12 +48,12 @@ if (!empty($brand_filter)) {
     $where[] = "p.brand IN (" . implode(",", $brandPlaceholders) . ")";
 }
 
-// Nối các điều kiện
+
 $whereClause = "WHERE " . implode(" AND ", $where);
 
-// --- BẮT ĐẦU THỰC THI ---
 
-// 1. Đếm tổng số sản phẩm
+
+
 $countSql = "SELECT COUNT(*) FROM products p JOIN categories c ON p.category_id = c.id $whereClause";
 $stmtCount = $conn->prepare($countSql);
 foreach ($params as $key => $val) {
@@ -62,17 +62,17 @@ foreach ($params as $key => $val) {
 $stmtCount->execute();
 $totalItems = $stmtCount->fetchColumn();
 
-// 2. Lấy dữ liệu sản phẩm
+
 $sql = "SELECT p.*, c.name AS category_name, (p.cost_price * (1 + p.profit_rate/100)) AS selling_price 
         FROM products p JOIN categories c ON p.category_id = c.id $whereClause";
 
-// Sắp xếp
+
 if ($sort == "tangdan") $sql .= " ORDER BY selling_price ASC";
 elseif ($sort == "giamdan") $sql .= " ORDER BY selling_price DESC";
 elseif ($sort == "moinhat") $sql .= " ORDER BY p.created_at DESC";
 else $sql .= " ORDER BY p.id DESC";
 
-// Phân trang
+
 $sql .= " LIMIT :offset, :limit";
 
 $stmt = $conn->prepare($sql);

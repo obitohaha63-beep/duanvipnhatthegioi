@@ -18,13 +18,13 @@ if (!$orderDate || empty($items)) {
 try {
     $conn->beginTransaction();
 
-    // Tạo phiếu nhập
+    
     $stmt = $conn->prepare("INSERT INTO purchase_orders (order_date) VALUES (?)");
     $stmt->execute([$orderDate]);
     $orderId = $conn->lastInsertId();
 
     foreach ($items as $item) {
-        // Lấy product_id theo tên
+        
         $stmt = $conn->prepare("SELECT id, quantity, cost_price, number_import_times FROM products WHERE name = ? AND category = ?");
         $stmt->execute([$item['product_name'], $item['category']]);
         $product = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -39,11 +39,11 @@ try {
         $qty = (float)$item['quantity'];
         $price = (float)$item['import_price'];
 
-        // tính giá vốn bình quân
+        
         $newCost = ($oldStock * $oldCost + $qty * $price) / ($oldStock + $qty);
         $newStock = $oldStock + $qty;
 
-        // Cập nhật sản phẩm
+        
         $updateProduct = $conn->prepare("
             UPDATE products
             SET quantity = ?, cost_price = ?, number_import_times = number_import_times + 1
@@ -51,7 +51,7 @@ try {
         ");
         $updateProduct->execute([$newStock, $newCost, $productId]);
 
-        // Thêm chi tiết phiếu nhập
+        
         $insertItem = $conn->prepare("
             INSERT INTO purchase_order_items (purchase_order_id, product_id, quantity, import_price)
             VALUES (?, ?, ?, ?)

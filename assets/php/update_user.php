@@ -12,11 +12,11 @@ $district = $_POST['district'];
 $ward = $_POST['ward'];
 $detail_address = $_POST['detail_address'];
 
-// update users
+
 $stmt = $conn->prepare("UPDATE users SET name = ?, phone = ? WHERE id = ?");
 $stmt->execute([$name, $phone, $user_id]);
 
-// check address
+
 $check = $conn->prepare("SELECT id FROM user_address WHERE user_id = ? AND is_default = 1");
 $check->execute([$user_id]);
 

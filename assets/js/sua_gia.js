@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   form.dataset.id = productId;
 
-  // Load sản phẩm
+  
   async function loadProduct() {
     try {
       const res = await fetch("../assets/php/get_giaban.php");
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-  // Submit cập nhật
+  
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 

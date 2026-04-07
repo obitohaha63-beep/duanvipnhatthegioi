@@ -11,8 +11,8 @@ if (!isset($_SESSION['user'])) {
 $user_id = $_SESSION['user']['id'];
 
 try {
-    // JOIN 2 bảng: cart và products để lấy tên và ảnh sản phẩm
-    // Tính giá bán bằng công thức: Giá nhập + (Giá nhập * tỷ lệ lợi nhuận / 100)
+    
+    
     $sql = "SELECT 
                 c.id,
                 c.product_id,
@@ -27,7 +27,7 @@ try {
     $stmt = $conn->prepare($sql);
     $stmt->execute([":user_id" => $user_id]);
 
-    // Lấy toàn bộ danh sách giỏ hàng
+    
     $cart = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     echo json_encode(["success" => true, "cart" => $cart]);

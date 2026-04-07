@@ -13,7 +13,7 @@ if (!isset($_SESSION['user'])) {
 
 $user_id = $_SESSION['user']['id'];
 
-// 🔥 đổi từ SUM -> COUNT
+
 $sql = "SELECT COUNT(*) as count FROM cart WHERE user_id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->execute([$user_id]);

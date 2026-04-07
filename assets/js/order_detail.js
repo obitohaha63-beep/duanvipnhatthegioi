@@ -1,16 +1,16 @@
-// Lấy id từ URL
+
 function getOrderId() {
     const params = new URLSearchParams(window.location.search);
     return params.get("id");
 }
 
-// format ngày
+
 function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString('vi-VN');
 }
 
-// format tiền
+
 function formatMoney(amount) {
     return Number(amount).toLocaleString('vi-VN') + '₫';
 }
@@ -35,7 +35,7 @@ async function loadOrderDetail() {
         const order = data.order;
         const items = data.items;
 
-        // ===== Render thông tin đơn =====
+        
         document.getElementById("orderInfo").innerHTML = `
             <p><strong>Mã đơn:</strong> HD${String(order.id).padStart(3, '0')}</p>
             <p><strong>Khách hàng:</strong> ${order.customer_name}</p>
@@ -46,7 +46,7 @@ async function loadOrderDetail() {
             <p><strong>Trạng thái:</strong> ${order.status}</p>
         `;
 
-        // ===== Render sản phẩm =====
+        
         const tbody = document.getElementById("orderItems");
         tbody.innerHTML = "";
 
@@ -66,7 +66,7 @@ async function loadOrderDetail() {
             `;
         });
 
-        // ===== Tổng tiền =====
+        
         document.getElementById("totalAmount").innerText =
             "Tổng tiền: " + formatMoney(total);
 

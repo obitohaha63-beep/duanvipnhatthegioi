@@ -18,10 +18,10 @@ try {
     $stmt->execute(['category_id' => $category_id]);
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // luôn trả về mảng (tránh trả về NULL)
+    
     echo json_encode($products ?: []);
 
 } catch (PDOException $e) {
-    // Trả về JSON hợp lệ kể cả khi có lỗi
+    
     echo json_encode([]);
 }

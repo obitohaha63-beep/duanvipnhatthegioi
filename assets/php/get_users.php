@@ -4,7 +4,7 @@ header('Content-Type: application/json; charset=utf-8');
 
 require "db.php";
 
-// check login
+
 if (!isset($_SESSION['user'])) {
     echo json_encode([
         "success" => false,
@@ -17,12 +17,12 @@ $user_id = $_SESSION['user']['id'];
 
 try {
 
-    // lấy user
+    
     $stmt = $conn->prepare("SELECT id, name, phone FROM users WHERE id = ?");
     $stmt->execute([$user_id]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // lấy địa chỉ mặc định
+    
     $stmt2 = $conn->prepare("
         SELECT city, district, ward, detail_address
         FROM user_address
@@ -32,7 +32,7 @@ try {
     $stmt2->execute([$user_id]);
     $address = $stmt2->fetch(PDO::FETCH_ASSOC);
 
-    // ghép địa chỉ
+    
     $full_address = "";
 
     if ($address) {

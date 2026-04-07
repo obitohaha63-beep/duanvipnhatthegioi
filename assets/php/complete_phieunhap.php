@@ -14,7 +14,7 @@ try {
         throw new Exception("Dữ liệu phiếu nhập không hợp lệ!");
     }
 
-    // tạo phiếu nhập
+    
     $stmt = $conn->prepare("
         INSERT INTO purchase_orders (order_date)
         VALUES (?)
@@ -23,7 +23,7 @@ try {
 
     $purchaseOrderId = $conn->lastInsertId();
 
-    // thêm chi tiết sản phẩm: number_import_times = 0
+    
     $stmtItem = $conn->prepare("
         INSERT INTO purchase_order_items 
         (purchase_order_id, product_id, quantity, import_price, number_import_times)

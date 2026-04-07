@@ -19,7 +19,7 @@ if (!$id || !$order_date || empty($items)) {
 try {
     $conn->beginTransaction();
 
-    // kiểm tra status
+    
     $check = $conn->prepare("
         SELECT status
         FROM purchase_orders
@@ -39,7 +39,7 @@ try {
         $qty = $item['quantity'];
         $price = $item['import_price'];
 
-        // Lấy số lần nhập hiện tại (chỉ tính completed cũ)
+        
         $countStmt = $conn->prepare("
             SELECT COUNT(*)
             FROM purchase_order_items poi
@@ -51,7 +51,7 @@ try {
 
         $importTimes = $countStmt->fetchColumn() + 1;
 
-        // Cập nhật item
+        
         $stmtItem = $conn->prepare("
             UPDATE purchase_order_items
             SET quantity = ?, import_price = ?, number_import_times = ?
@@ -66,7 +66,7 @@ try {
             $productId
         ]);
 
-        // cập nhật tồn kho và giá vốn
+        
         $stmtOld = $conn->prepare("
             SELECT quantity, cost_price
             FROM products
@@ -96,7 +96,7 @@ try {
         ]);
     }
 
-    // update status sau cùng
+    
     $stmt = $conn->prepare("
         UPDATE purchase_orders
         SET order_date = ?, status = 'completed'

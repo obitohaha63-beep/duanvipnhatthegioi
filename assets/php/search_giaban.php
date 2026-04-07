@@ -2,7 +2,7 @@
 header('Content-Type: application/json; charset=utf-8');
 include __DIR__ . '/db.php';
 
-// Lấy giá trị filter từ query string
+
 $gia_von = $_GET['gia_von'] ?? '';
 $loi_nhuan = $_GET['loi_nhuan'] ?? '';
 $gia_ban = $_GET['gia_ban'] ?? '';
@@ -15,7 +15,7 @@ $sql = "SELECT p.id, p.name, p.cost_price, p.profit_rate,
         JOIN categories c ON p.category_id = c.id
         WHERE p.status='visible'";
 
-// Thêm điều kiện
+
 $conds = [];
 $params = [];
 
@@ -42,7 +42,7 @@ if(count($conds) > 0){
 
 $stmt = $conn->prepare($sql);
 
-// bind params nếu có
+
 if(count($params) > 0){
     $types = str_repeat("s", count($params));
     $stmt->bind_param($types, ...$params);
