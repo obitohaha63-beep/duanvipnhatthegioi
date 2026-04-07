@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function() {
     loadProducts(currentPageNumber);
 });
 
-// ========== LOAD CATEGORIES TỬ DATABASE ==========
+
 function loadCategories() {
     fetch(`../assets/php/get_categories.php`)
         .then(response => response.json())

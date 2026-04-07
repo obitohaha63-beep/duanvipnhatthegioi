@@ -1,3 +1,4 @@
+<?php include '../assets/php/check_user.php'; ?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -63,14 +64,16 @@
                       </li>
                 </ul>
                 <div class="container-login">
-                          <img class="logo-person" src="../assets/img/Person.png" alt="logo của brand" 
-                          style="width:24px; height: 24px">
+                          <a href="taikhoan.php">
+                            <img class="logo-person" src="../assets/img/daidien4.png" alt="logo của brand" 
+                          style="width:28px; height: 28px"></a>
 
-                          <a class="text-dangnhap" href="login.html">Đăng nhập</a>
-                          <a class="text-dangky" href="register.html">Đăng ký</a>
+                          <a class="text-dangnhap" href="taikhoan.php">Thông tin</a>
+                          <a class="text-dangky" style="opacity: 0.8;" 
+                          href="../assets/php/logout.php">Đăng xuất</a>
                           
                           
-                </div>
+                </div>	
             </div>
 
 
@@ -105,7 +108,7 @@
               <ul>
                 
 
-                <li class><a href="../pages/allsanpham.html" ><span class="icon">
+                <li class><a href="../pages/allsanpham1.php" ><span class="icon">
                 <img src="../assets/img/unpacking.png" style="width:24px"></span>
                 Tất cả sản phẩm</a></li>
                 
@@ -142,7 +145,7 @@
     <label>
       <input type="checkbox" class="category" value="Giày cầu lông"> Giày cầu lông
     </label><br>
-    <button onclick="window.location.href='../pages/timkiemyonex.html'">Tìm kiếm nâng cao</button>
+    <button onclick="window.location.href='../pages/timkiemyonex1.php'">Tìm kiếm nâng cao</button>
     
 
   </div>
