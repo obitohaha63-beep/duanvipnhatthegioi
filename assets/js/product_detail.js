@@ -61,9 +61,7 @@ fetch(`../assets/php/get_product_detail.php?id=${productId}`)
                 <div class="add-Gio-Hang" id="addToCartBtn">
                     <p>Thêm vào giỏ hàng</p>
                 </div>
-                <div class="communicate-with-us-on-zalo">
-                    <p>Mua hàng</p>
-                </div>
+                
             `;
         }
 
@@ -82,23 +80,23 @@ fetch(`../assets/php/get_product_detail.php?id=${productId}`)
                 
                 <!-- Thương hiệu và loại -->
                 <pre class="trademark1">
-Thương hiệu: <a href="#">${product.brand}</a> | 
-Loại: <a href="#">${product.category_name}</a>
+                Thương hiệu: <a href="#">${product.brand}</a> | 
+                Loại: <a href="#">${product.category_name}</a>
                 </pre>
                 
-                <!-- ID sản phẩm -->
+                
                 <pre class="trademark1">ID sản phẩm: <a href="#">${product.id}</a></pre>
                 
-                <!-- GIÁ BÁN -->
+                
                 <p class="value">${Number(product.selling_price)
                     .toLocaleString('vi-VN', {minimumFractionDigits: 0, maximumFractionDigits: 0})} đ
                 </p>
 
-                <!-- PHẦN TĂNG/GIẢM SỐ LƯỢNG VÀ NÚTCTION -->
+                
                 <div class="half-content">
                     <hr>
                     
-                    <!-- Tăng/giảm số lượng -->
+                    
                     <div class="countamountofitem" style="margin-top: 20px;">
                         <button class="minus">−</button>
                         <span class="numbercount">1</span>
@@ -112,7 +110,7 @@ Loại: <a href="#">${product.category_name}</a>
 
             <!-- PHầN MÔ TẢ SẢN PHẨM -->
             <div class="detail-of-items">
-                ${product.description || "⚠️ Chưa có mô tả cho sản phẩm này."}
+                <h2>MÔ TẢ SẢN PHẨM:</h2>${product.description}
             </div>
         `;
 

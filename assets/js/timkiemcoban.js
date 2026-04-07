@@ -70,9 +70,9 @@ function loadProducts(pageNumber = 1) {
                                 </a>
                             </div>
                             
-                            <!-- Nút mua ngay -->
-                            <a href="login.html">
-                                <button>Mua ngay</button>
+                            
+                            <a href="${productDetailPageURL}?id=${product.id}">
+                                <button>Chi tiết</button>
                             </a>
                         </div>
                     </div>
