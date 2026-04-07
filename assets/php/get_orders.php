@@ -4,7 +4,8 @@ include 'db.php';
 
 $fromDate = $_GET['fromDate'] ?? '';
 $toDate = $_GET['toDate'] ?? '';
-$status = $_GET['status'] ?? ''; 
+$status = $_GET['status'] ?? '';
+$ward = $_GET['ward'] ?? '';
 
 $sql = "
 SELECT 
@@ -12,9 +13,11 @@ SELECT
     orders.order_date,
     orders.total_amount,
     orders.status,
-    users.name AS customer_name
+    users.name AS customer_name,
+    ua.ward
 FROM orders
 JOIN users ON orders.user_id = users.id
+LEFT JOIN user_address ua ON users.id = ua.user_id AND ua.is_default = 1
 WHERE 1=1
 ";
 
@@ -30,7 +33,6 @@ if ($toDate) {
     $params[] = $toDate;
 }
 
-
 if ($status) {
     
     $statusList = explode(',', $status);
@@ -44,6 +46,10 @@ if ($status) {
     $params = array_merge($params, $statusList);
 }
 
+if ($ward) {
+    $sql .= " AND ua.ward LIKE ?";
+    $params[] = "%" . $ward . "%";
+}
 
 $sql .= " ORDER BY orders.id DESC";
 

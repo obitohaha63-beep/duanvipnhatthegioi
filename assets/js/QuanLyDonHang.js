@@ -8,8 +8,9 @@ async function loadOrders() {
   const fromDate = document.getElementById("fromDate").value;
   const toDate = document.getElementById("toDate").value;
   const status = document.getElementById("statusFilter").value;
+  const ward = document.getElementById("wardFilter").value;
 
-  let url = `../assets/php/get_orders.php?fromDate=${fromDate}&toDate=${toDate}&status=${status}`;
+  let url = `../assets/php/get_orders.php?fromDate=${fromDate}&toDate=${toDate}&status=${status}&ward=${encodeURIComponent(ward)}`;
 
   const response = await fetch(url);
   const data = await response.json();
@@ -20,7 +21,7 @@ async function loadOrders() {
   if (!data.success || data.orders.length === 0) {
     tbody.innerHTML = `
       <tr>
-        <td colspan="6">Không có đơn hàng</td>
+        <td colspan="7">Không có đơn hàng</td>
       </tr>
     `;
     return;
@@ -48,6 +49,7 @@ async function loadOrders() {
         <td>DH${String(order.id).padStart(3, "0")}</td>
         <td>${order.customer_name}</td>
         <td>${formatDate(order.order_date)}</td>
+        <td>${order.ward || "Chưa cập nhật"}</td>
         <td>${Number(order.total_amount)
           .toLocaleString('vi-VN', {minimumFractionDigits: 0, maximumFractionDigits: 0})}₫</td>
         <td><span class="result-box">${statusText}</span></td>
