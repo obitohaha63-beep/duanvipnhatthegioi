@@ -106,15 +106,9 @@
             <div class="navmenu">
               
               <ul>
-                <li class><a href="allsanpham.html" ><span class="icon">
-                  <img src="../assets/img/Get a Discount.png" style="width:24px"></span>
-                Sản phẩm khuyến mãi</a></li>
+                
 
-                <li class><a href="allsanpham.html" ><span class="icon">
-                <img src="../assets/img/Megaphone.png" style="width:24px"></span>
-                Sản phẩm nổi bật</a></li>
-
-                <li class><a href="allsanpham.html" ><span class="icon">
+                <li class><a href="../pages/allsanpham1.php" ><span class="icon">
                 <img src="../assets/img/unpacking.png" style="width:24px"></span>
                 Tất cả sản phẩm</a></li>
                 
@@ -143,6 +137,12 @@
             <div class="container-select">
                 <div class="filter-group">
                   <h3>Tìm kiếm nâng cao</h3>
+                  <label class="form-label">Tên sản phẩm</label>
+                  <div style="display: flex; gap: 8px; width: 100%;">
+                    <input type="text" id="productName" name="keyword" class="form-control" value="" placeholder="Nhập tên sản phẩm...">
+                    <button type="button" id="searchProductBtn" class="btn-search">Tìm kiếm</button>
+                  </div>
+                
                 <h3>CHỌN MỨC GIÁ</h3>
                  <label><input type="checkbox" class="price" value="500k-1tr"> 500.000đ - 1 triệu</label><br>
                  
@@ -153,7 +153,14 @@
                  <label><input type="checkbox" class="price" value=">3tr"> Giá trên 3 triệu</label><br>
   
                 
+               
+                    
                 
+                    <label class="form-label">Phân loại</label>
+                    <select id="categoryFilter" class="form-control" name="category">
+                        <option value="">-- Tất cả --</option>
+                    </select>
+                        
               
                 <h3>THƯƠNG HIỆU</h3>
                 <label><input type="checkbox" class="brand" value="Lining"> Lining</label><br>
