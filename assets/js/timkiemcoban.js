@@ -4,7 +4,7 @@
 
 const userMode = document.body.dataset.mode;  
 const urlParams = new URLSearchParams(window.location.search);
-const searchKeyword = urlParams.get("keyword");  
+let searchKeyword = urlParams.get("keyword") || "";
 let currentPageNumber = parseInt(urlParams.get("page")) || 1;  
 
 
@@ -19,7 +19,8 @@ function loadProducts(pageNumber = 1) {
         keyword: searchKeyword || "",        
         page: pageNumber,                    
         price: filterSettings.price.join(","),    
-        brand: filterSettings.brand.join(","),    
+        brand: filterSettings.brand.join(","),
+        category: filterSettings.category,
         sort: filterSettings.sort            
     });
 
@@ -105,9 +106,13 @@ function getSelectedFilters() {
     
     const selectedSort = document.getElementById("idsapxep").value;
 
+    
+    const selectedCategory = document.getElementById("categoryFilter").value;
+
     return {
         price: selectedPrices,
         brand: selectedBrands,
+        category: selectedCategory,
         sort: selectedSort
     };
 }
@@ -173,24 +178,94 @@ function goToPage(pageNumber) {
 
 
 
-loadProducts(currentPageNumber);
-
-
-document.querySelectorAll(".price").forEach(cb => {
-  cb.addEventListener("change", () => {
-    loadProducts(1); 
-  });
+document.addEventListener("DOMContentLoaded", function() {
+    loadCategories();
+    loadProducts(currentPageNumber);
 });
 
+// ========== LOAD CATEGORIES TỬ DATABASE ==========
+function loadCategories() {
+    fetch(`../assets/php/get_categories.php`)
+        .then(response => response.json())
+        .then(data => {
+            const categoryFilter = document.getElementById("categoryFilter");
+            
+            // Xóa các option cũ (giữ lại option "-- Tất cả --")
+            while (categoryFilter.options.length > 1) {
+                categoryFilter.remove(1);
+            }
+            
+            // Thêm các categories từ database
+            if (data.success && data.data) {
+                data.data.forEach(category => {
+                    const option = document.createElement("option");
+                    option.value = category.name;
+                    option.textContent = category.name;
+                    categoryFilter.appendChild(option);
+                });
+            }
+        })
+        .catch(error => console.error("Lỗi load categories:", error));
+}
 
-document.getElementById("idsapxep").addEventListener("change", () => {
-  loadProducts(1);
+// ========== WRAP TẤT CẢ EVENT LISTENERS TRONG DOMContentLoaded ==========
+document.addEventListener("DOMContentLoaded", function() {
+    
+    // Event listeners cho checkboxes giá
+    document.querySelectorAll(".price").forEach(cb => {
+        cb.addEventListener("change", () => {
+            loadProducts(1); 
+        });
+    });
+
+    // Event listener cho select sắp xếp
+    document.getElementById("idsapxep").addEventListener("change", () => {
+        loadProducts(1);
+    });
+
+    // Event listeners cho checkboxes thương hiệu
+    document.querySelectorAll(".brand").forEach(cb => {
+        cb.addEventListener("change", () => {
+            loadProducts(1); 
+        });
+    });
+
+    // Event listener cho select phân loại
+    document.getElementById("categoryFilter").addEventListener("change", () => {
+        loadProducts(1);
+    });
+
+    // Load categories từ database
+    loadCategories();
+    
+    // ========== XỬ LÝ NÚT TÌM KIẾM ==========
+    const productNameInput = document.getElementById("productName");
+    const searchProductBtn = document.getElementById("searchProductBtn");
+    
+    if (!searchProductBtn) {
+        console.error("Nút tìm kiếm không tìm thấy!");
+        return;
+    }
+
+    // Xử lý sự kiện click nút tìm kiếm
+    searchProductBtn.addEventListener("click", function() {
+          searchKeyword = productNameInput.value.trim();
+        loadProducts(1);
+        // Cập nhật searchKeyword và tải sản phẩm
+         window.history.pushState(
+        {},
+        "",
+        `?keyword=${encodeURIComponent(searchKeyword)}&page=1`
+    );
+        
+        
+    });
+
+    // Xử lý sự kiện Enter trong input
+    productNameInput.addEventListener("keypress", function(e) {
+        if (e.key === "Enter") {
+            searchProductBtn.click();
+        }
+    });
 });
-
-document.querySelectorAll(".brand").forEach(cb => {
-  cb.addEventListener("change", () => {
-    loadProducts(1); 
-  });
-});
-
-loadProducts(currentPage);
+loadCategories();

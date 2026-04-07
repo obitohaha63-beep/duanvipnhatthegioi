@@ -3,7 +3,7 @@ header("Content-Type: application/json");
 require "db.php";
 
 try {
-    $stmt = $conn->prepare("SELECT * FROM categories ORDER BY id ASC");
+    $stmt = $conn->prepare("SELECT id, name FROM categories ORDER BY name ASC");
     $stmt->execute();
     $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -17,3 +17,4 @@ try {
         'message' => 'Lỗi DB: ' . $e->getMessage()
     ]);
 }
+?>
