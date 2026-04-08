@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 08, 2026 at 04:56 AM
+-- Generation Time: Apr 08, 2026 at 05:34 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -169,7 +169,6 @@ INSERT INTO `products` (`id`, `name`, `description`, `category_id`, `brand`, `im
 (25, 'Giày cầu lông Yonex Cascade Accel 2026', 'Mẫu giày tầm trung tối ưu cho lực bật nhảy. Thiết kế trẻ trung, hiện đại kết hợp với đế Radial Blade Sole giúp tăng cường độ bám sân theo mọi hướng, hỗ trợ người chơi thực hiện những cú nhảy đập cầu uy lực.', 2, 'Yonex', 'assets/uploads/image_1775290752650.jpg', 8, 550000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
 (26, 'Giày cầu lông Yonex Strider Flow 2026', 'Sự kết hợp hoàn hảo giữa độ bền và sự thoải mái. Với lớp lưới thoát khí lớn trên thân giày, Strider Flow giúp đôi chân luôn khô thoáng ngay cả trong những trận cầu căng thẳng nhất, phù hợp cho tập luyện cường độ cao.', 2, 'Yonex', 'assets/uploads/image_1775294624544.jpg', 10, 600000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
 (27, 'Giày cầu lông Yonex Power Cushion Infinity 2', 'Đỉnh cao của công nghệ giày cầu lông với hệ thống điều chỉnh độ ôm 3D tự động. Infinity 2 không chỉ bảo vệ đôi chân mà còn là một tác phẩm công nghệ, mang lại trải nghiệm thi đấu đẳng cấp và khác biệt hoàn toàn.', 2, 'Yonex', 'assets/uploads/image_1775294168805.jpg', 0, 0.00, 20.00, 'hidden', '2026-03-28 19:51:01');
-
 
 -- --------------------------------------------------------
 
