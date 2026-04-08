@@ -1,7 +1,7 @@
 
 async function loadOrders() {
     try {
-        
+
         const response = await fetch('../assets/php/get_orders.php?status=delivered,confirmed');
         const data = await response.json();
 
@@ -16,11 +16,9 @@ async function loadOrders() {
                         <td>${formatDate(order.order_date)}</td>
                         <td>${formatMoney(order.total_amount)}</td>
                         <td>
-                            <button class="btn-xem">
-                                <a href="donhangcuaban.html?id=${order.id}" style="color:white;">
-                                    Xem
-                                </a>
-                            </button>
+                            <button class="btn-xem" data-order-id="${order.id}" type="button">
+                Xem
+            </button>
                         </td>
                     </tr>
                 `;
@@ -32,7 +30,11 @@ async function loadOrders() {
     }
 }
 
-
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('btn-xem')) {
+        window.location.href = `donhangcuaban.html?id=${e.target.dataset.orderId}`;
+    }
+});
 function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString('vi-VN');
