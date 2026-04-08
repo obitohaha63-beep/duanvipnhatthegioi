@@ -1,7 +1,18 @@
 <?php
+session_start();
 header('Content-Type: application/json; charset=utf-8');
 include 'db.php';
 
+// Kiểm tra đăng nhập
+if (!isset($_SESSION['user'])) {
+    echo json_encode([
+        "success" => false,
+        "message" => "Chưa đăng nhập"
+    ]);
+    exit;
+}
+
+$user_id = $_SESSION['user']['id'];
 $id = $_GET['id'] ?? null;
 
 if (!$id) {
@@ -15,29 +26,29 @@ if (!$id) {
 try {
 
     $stmt = $conn->prepare("
-        SELECT 
+        SELECT
     o.*,
     u.name AS customer_name,
     u.phone,
     o.delivery_address AS full_address
 FROM orders o
 JOIN users u ON o.user_id = u.id
-WHERE o.id = ?
+WHERE o.id = ? AND o.user_id = ?
     ");
 
-    $stmt->execute([$id]);
+    $stmt->execute([$id, $user_id]);
     $order = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$order) {
         echo json_encode([
             "success" => false,
-            "message" => "Không tìm thấy đơn hàng"
+            "message" => "Không tìm thấy đơn hàng hoặc bạn không có quyền xem"
         ]);
         exit;
     }
 
     $stmt2 = $conn->prepare("
-        SELECT 
+        SELECT
             order_items.*,
             products.name AS product_name
         FROM order_items
