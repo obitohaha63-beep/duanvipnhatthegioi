@@ -1,34 +1,28 @@
-/**
- * VALIDATION - ĐĂNG NHẬP
- * Sử dụng hệ thống validation inline từ validation.js
- */
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const loginForm = document.getElementById("loginForm");
 
-    // ============================================
-    // 1. CẤU HÌNH CÁC TRƯỜNG CẦN VALIDATE
-    // ============================================
+    //  CẤU HÌNH CÁC TRƯỜNG CẦN VALIDATE
     const fieldConfigs = {
-        email: 'email',         // Email
-        password: 'password'    // Mật khẩu
+        email: 'email',         
+        password: 'password'    
     };
 
-    // ============================================
-    // 2. THIẾT LẬP VALIDATION THỜI GIAN THỰC
-    // ============================================
-    // Validate ngay khi người dùng thoát/gõ trong trường
+  
+    //  THIẾT LẬP VALIDATION THỜI GIAN THỰC
+
+
     setupRealtimeValidation(loginForm, fieldConfigs);
 
-    // ============================================
-    // 3. XỬ LÝ SUBMIT FORM
-    // ============================================
+// XỬ LÝ SUBMIT FORM
+
     loginForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
         // Validate toàn bộ form trước khi submit
         if (!validateForm(loginForm, fieldConfigs)) {
-            alert("❌ Vui lòng kiểm tra lại các thông tin!");
+            alert(" Vui lòng kiểm tra lại các thông tin!");
             return;
         }
 
@@ -36,9 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value.trim();
 
-        // ============================================
-        // 4. GỬI DỮ LIỆU ĐẾN SERVER
-        // ============================================
         fetch("../assets/php/loginadmin.php", {
             method: "POST",
             headers: {
@@ -53,16 +44,16 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(responseData => {
                 if (responseData.success) {
-                    alert("✅ Đăng nhập thành công!");
+                    alert(" Đăng nhập thành công!");
                     localStorage.setItem("user", JSON.stringify(responseData.user));
                     window.location.href = "../pages/haveaccount.php";
                 } else {
-                    alert("❌ Lỗi: " + responseData.message);
+                    alert(" Lỗi: " + responseData.message);
                 }
             })
             .catch(error => {
                 console.error("Lỗi chi tiết:", error);
-                alert("❌ Lỗi kết nối server. Vui lòng thử lại!");
+                alert(" Lỗi kết nối server. Vui lòng thử lại!");
             });
     });
 });

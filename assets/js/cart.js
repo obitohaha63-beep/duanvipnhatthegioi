@@ -4,18 +4,27 @@ function loadCart() {
     fetch("../assets/php/get_cart.php")
         .then(response => response.json())  
         .then(apiData => {
-            
-            
-            if (!apiData.success) {
-                console.error("Lỗi tải giỏ hàng:", apiData.message);
-                return;
-            }
 
-            const cartListContainer = document.getElementById("cart-list");
-            const cartItems = apiData.cart; 
+    if (!apiData.success) {
+        console.error("Lỗi tải giỏ hàng:", apiData.message);
+        return;
+    }
 
-            
-            cartListContainer.innerHTML = "";
+    const cartListContainer = document.getElementById("cart-list");
+    const cartItems = apiData.cart;
+
+    
+    const checkoutBtn = document.getElementById("checkout-btn");
+
+    if (cartItems.length === 0) {
+        checkoutBtn.disabled = true;
+        checkoutBtn.innerText = "Giỏ hàng trống";
+    } else {
+        checkoutBtn.disabled = false;
+        checkoutBtn.innerText = "Thanh toán";
+    }
+
+    cartListContainer.innerHTML = "";
 
             
             let totalPrice = 0; 

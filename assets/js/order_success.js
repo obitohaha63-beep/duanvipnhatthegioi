@@ -41,13 +41,13 @@ async function loadOrderDetail() {
         
         switch (order.payment_method) {
             case "cash":
-                paymentMethodText = "💵 Thanh toán khi nhận hàng";
+                paymentMethodText = " Thanh toán khi nhận hàng";
                 break;
             case "bank_transfer":
-                paymentMethodText = "🏦 Chuyển khoản ngân hàng";
+                paymentMethodText = " Chuyển khoản ngân hàng";
                 break;
             case "online":
-                paymentMethodText = "💳 Thanh toán online";
+                paymentMethodText = " Thanh toán online";
                 break;
             default:
                 paymentMethodText = order.payment_method;

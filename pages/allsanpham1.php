@@ -189,8 +189,10 @@
 </section>
 </main>
 
-
+<script src="../assets/js/load_cart.js"></script>
 <script src="../assets/js/allsanpham.js"></script>
+
+
 </body>
 <footer>
   <div class="container-footer">
