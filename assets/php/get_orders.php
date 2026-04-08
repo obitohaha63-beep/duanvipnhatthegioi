@@ -1,6 +1,18 @@
 <?php
+session_start();
 header('Content-Type: application/json; charset=utf-8');
 include 'db.php';
+
+// Kiểm tra đăng nhập
+if (!isset($_SESSION['user'])) {
+    echo json_encode([
+        "success" => false,
+        "message" => "Chưa đăng nhập"
+    ]);
+    exit;
+}
+
+$user_id = $_SESSION['user']['id'];
 
 $fromDate = $_GET['fromDate'] ?? '';
 $toDate = $_GET['toDate'] ?? '';
@@ -8,7 +20,7 @@ $status = $_GET['status'] ?? '';
 $ward = $_GET['ward'] ?? '';
 
 $sql = "
-SELECT 
+SELECT
     orders.id,
     orders.order_date,
     orders.total_amount,
@@ -18,10 +30,10 @@ SELECT
 FROM orders
 JOIN users ON orders.user_id = users.id
 LEFT JOIN user_address ua ON users.id = ua.user_id AND ua.is_default = 1
-WHERE 1=1
+WHERE orders.user_id = ?
 ";
 
-$params = [];
+$params = [$user_id];
 
 if ($fromDate) {
     $sql .= " AND DATE(orders.order_date) >= ?";
@@ -34,15 +46,15 @@ if ($toDate) {
 }
 
 if ($status) {
-    
+
     $statusList = explode(',', $status);
-    
-    
+
+
     $placeholders = implode(',', array_fill(0, count($statusList), '?'));
-    
+
     $sql .= " AND orders.status IN ($placeholders)";
-    
-    
+
+
     $params = array_merge($params, $statusList);
 }
 
