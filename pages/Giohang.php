@@ -155,7 +155,7 @@
         Tiếp tục mua hàng
       </button>
 
-      <button onclick="window.location.href='checkout.php'">
+      <button id="checkout-btn" onclick="window.location.href='checkout.php'">
         Thanh toán
       </button>
     </div>

@@ -181,23 +181,23 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
   <input type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" readonly>
 
   <label>Số điện thoại</label>
-  <input type="tel" name="phone" value="<?= htmlspecialchars($user['phone']) ?>">
+  <input type="tel" name="phone" value="<?= htmlspecialchars($user['phone']) ?>"readonly>
 
   <label>Địa chỉ</label>
   <input type="text" name="detail_address"
-         value="<?= htmlspecialchars($address['detail_address'] ?? '') ?>">
+         value="<?= htmlspecialchars($address['detail_address'] ?? '') ?>"readonly>
 
   <label>Thành phố</label>
   <input type="text" name="city"
-         value="<?= htmlspecialchars($address['city'] ?? '') ?>">
+         value="<?= htmlspecialchars($address['city'] ?? '') ?>"readonly>
 
   <label>Quận</label>
   <input type="text" name="district"
-         value="<?= htmlspecialchars($address['district'] ?? '') ?>">
+         value="<?= htmlspecialchars($address['district'] ?? '') ?>"readonly>
 
   <label>Phường</label>
   <input type="text" name="ward"
-         value="<?= htmlspecialchars($address['ward'] ?? '') ?>">
+         value="<?= htmlspecialchars($address['ward'] ?? '') ?>"readonly>
 
 </form>
     </section>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2026 at 05:58 PM
+-- Generation Time: Apr 08, 2026 at 04:56 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -83,11 +83,11 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `order_date`, `delivery_address`, `payment_method`, `status`, `total_amount`) VALUES
-(1, 9, '2026-03-28 10:15:00', '25 Nguyễn Trãi, Quận 1, TP.HCM', 'cash', 'confirmed', 8584615.38),
-(2, 11, '2026-03-28 14:20:00', '88 Lê Lợi, Quận 3, TP.HCM', 'bank_transfer', 'cancelled', 3600000.00),
-(3, 9, '2026-03-29 09:30:00', '25 Nguyễn Trãi, Quận 1, TP.HCM', 'online', 'confirmed', 4320000.00),
-(5, 14, '2026-04-03 15:11:35', '66 Thảo Điền, Phú Mỹ, Q2, TP.HCM', 'cash', 'pending', 0.00),
-(10, 14, '2026-04-04 13:14:59', '66 Thảo Điền, Phú Mỹ, Q2, TP.HCM', 'cash', 'delivered', 48000000.00);
+(13, 14, '2026-04-08 09:50:30', '66 Thảo Điền, Phú Mỹ, Q2, TP.HCM', 'cash', 'pending', 2600000.00),
+(14, 14, '2026-04-08 09:51:40', '66 Thảo Điền, Phú Mỹ, Q2, TP.HCM', 'cash', 'confirmed', 3900000.00),
+(15, 14, '2026-04-08 09:52:12', '66 Thảo Điền, Phú Mỹ, Q2, TP.HCM', 'cash', 'pending', 1300000.00),
+(16, 9, '2026-04-08 09:53:30', '12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP.HCM', 'cash', 'delivered', 7860000.00),
+(17, 9, '2026-04-08 09:53:51', '12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP.HCM', 'cash', 'confirmed', 2860000.00);
 
 -- --------------------------------------------------------
 
@@ -108,16 +108,14 @@ CREATE TABLE `order_items` (
 --
 
 INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `selling_price`) VALUES
-(1, 1, 1, 2, 4134615.38),
-(2, 1, 6, 1, 2340000.00),
-(3, 2, 27, 1, 3600000.00),
-(4, 3, 2, 1, 3900000.00),
-(5, 3, 6, 1, 2340000.00),
-(7, 5, 24, 1, 0.00),
-(8, 5, 17, 3, 0.00),
-(9, 5, 3, 1, 0.00),
-(10, 5, 4, 3, 0.00),
-(15, 10, 28, 2, 24000000.00);
+(18, 13, 2, 1, 650000.00),
+(19, 13, 7, 1, 1950000.00),
+(20, 14, 19, 1, 960000.00),
+(21, 14, 20, 1, 2940000.00),
+(22, 15, 6, 1, 1300000.00),
+(23, 16, 17, 1, 4560000.00),
+(24, 16, 23, 1, 3300000.00),
+(25, 17, 4, 1, 2860000.00);
 
 -- --------------------------------------------------------
 
@@ -147,7 +145,7 @@ INSERT INTO `products` (`id`, `name`, `description`, `category_id`, `brand`, `im
 (1, 'Vợt cầu lông Lining Axforce 100', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'Lining', 'assets/uploads/axforce-100-bla.jpg', 15, 666666.67, 25.00, 'visible', '2026-03-28 19:51:01'),
 (2, 'Vợt cầu lông Lining Aeronaut 9000C', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'Lining', 'assets/uploads/image_1775289991847.jpg', 5, 500000.00, 30.00, 'visible', '2026-03-28 19:51:01'),
 (3, 'Vợt cầu lông Lining Aeronaut 7000C', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'Lining', 'assets/uploads/aeronaut_7000b.jpg', 0, 0.00, 20.00, 'hidden', '2026-03-28 19:51:01'),
-(4, 'Vợt cầu lông Lining Turbo Charging 75', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'Lining', 'assets/uploads/image_1775290083372.jpg', 5, 2200000.00, 30.00, 'visible', '2026-03-28 19:51:01'),
+(4, 'Vợt cầu lông Lining Turbo Charging 75', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'Lining', 'assets/uploads/image_1775290083372.jpg', 4, 2200000.00, 30.00, 'visible', '2026-03-28 19:51:01'),
 (5, 'Vợt cầu lông Lining 3D Calibar 900', 'Vợt cầu lông cao cấp dòng Calibar', 1, 'Lining', 'assets/uploads/image_1775290136981.jpg', 5, 2000000.00, 30.00, 'visible', '2026-03-28 19:51:01'),
 (6, 'Vợt cầu lông Lining Windstorm 78', 'Vợt thiên công cao cấp dành cho vận động viên chuyên nghiệp', 1, 'Lining', 'assets/uploads/image_1775290182474.jpg', 10, 1000000.00, 30.00, 'visible', '2026-03-28 19:51:01'),
 (7, 'Vợt cầu lông Lining N7-II', 'Vợt cầu lông cao cấp N7 phiên bản 2', 1, 'Lining', 'assets/uploads/image_1775290245841.jpg', 8, 1500000.00, 30.00, 'visible', '2026-03-28 19:51:01'),
@@ -160,13 +158,13 @@ INSERT INTO `products` (`id`, `name`, `description`, `category_id`, `brand`, `im
 (14, 'Vợt cầu lông Yonex Arcsaber 11 Pro', 'Vợt công thủ toàn diện huyền thoại, khả năng điều cầu chính xác', 1, 'Yonex', 'assets/uploads/image_1775290463796.jpg', 14, 2671428.57, 20.00, 'visible', '2026-03-28 19:51:01'),
 (15, 'Vợt cầu lông Yonex Nanoflare 800 Pro', 'Thiết kế khung Sonic Flare System cho những pha phản tạt chớp nhoáng', 1, 'Yonex', 'assets/uploads/image_1775290498133.jpg', 31, 1958064.52, 20.00, 'visible', '2026-03-28 19:51:01'),
 (16, 'Vợt cầu lông Yonex Astrox 77 Pro', 'Vợt thiên công linh hoạt, phù hợp cho cả đơn và đôi', 1, 'Yonex', 'assets/uploads/image_1775290523126.jpg', 10, 3400000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
-(17, 'Vợt cầu lông Yonex Nanoflare 700 Pro 2025', 'Phiên bản cải tiến giúp giảm rung chấn tối đa', 1, 'Yonex', 'assets/uploads/image_1775290555122.jpg', 6, 3800000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
+(17, 'Vợt cầu lông Yonex Nanoflare 700 Pro 2025', 'Phiên bản cải tiến giúp giảm rung chấn tối đa', 1, 'Yonex', 'assets/uploads/image_1775290555122.jpg', 5, 3800000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
 (18, 'Vợt cầu lông Yonex Arcsaber 11 Play', 'Phiên bản phổ thông của Arc 11 Pro, cực kỳ dễ chơi', 1, 'Yonex', 'assets/uploads/image_1775290578337.jpg', 10, 750000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
-(19, 'Giày cầu lông Yonex Subaxia GT Men 2026', 'Dòng giày cao cấp mới nhất 2026, tối ưu sự ổn định', 2, 'Yonex', 'assets/uploads/image_1775290609764.jpg', 15, 800000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
-(20, 'Giày cầu lông Yonex Power Cushion 65Z4 VA', 'Phiên bản đặc biệt Viktor Axelsen 2026', 2, 'Yonex', 'assets/uploads/image_1775290638382.jpg', 10, 2450000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
+(19, 'Giày cầu lông Yonex Subaxia GT Men 2026', 'Dòng giày cao cấp mới nhất 2026, tối ưu sự ổn định', 2, 'Yonex', 'assets/uploads/image_1775290609764.jpg', 14, 800000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
+(20, 'Giày cầu lông Yonex Power Cushion 65Z4 VA', 'Phiên bản đặc biệt Viktor Axelsen 2026', 2, 'Yonex', 'assets/uploads/image_1775290638382.jpg', 9, 2450000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
 (21, 'Giày cầu lông Yonex Power Cushion Aerus Z3', 'Đôi giày nhẹ nhất thế giới năm 2026', 1, 'Yonex', 'assets/uploads/image_1775290663494.jpg', 0, 0.00, 20.00, 'hidden', '2026-03-28 19:51:01'),
 (22, 'Giày cầu lông Yonex Eclipsion Z3 Men 2026', 'Chuyên gia bảo vệ cổ chân với độ bám sân cực cao', 2, 'Yonex', 'assets/uploads/image_1775290686630.jpg', 13, 2353846.15, 20.00, 'visible', '2026-03-28 19:51:01'),
-(23, 'Giày cầu lông Yonex Power Cushion 88 Dial 3', 'Hệ thống thắt dây BOA kép thế hệ 3', 2, 'Yonex', 'assets/uploads/image_1775290728032.jpg', 6, 2750000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
+(23, 'Giày cầu lông Yonex Power Cushion 88 Dial 3', 'Hệ thống thắt dây BOA kép thế hệ 3', 2, 'Yonex', 'assets/uploads/image_1775290728032.jpg', 5, 2750000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
 (24, 'Giày cầu lông Yonex Comfort Z3 Wide Mid', 'Thiết kế cổ cao bảo vệ toàn diện cổ chân', 2, 'Yonex', 'assets/uploads/image_1775294961935.jpg', 12, 1650000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
 (25, 'Giày cầu lông Yonex Cascade Accel 2026', 'Dòng giày tầm trung hỗ trợ lực bật nhảy tốt', 2, 'Yonex', 'assets/uploads/image_1775290752650.jpg', 8, 550000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
 (26, 'Giày cầu lông Yonex Strider Flow 2026', 'Mẫu giày tập luyện chuyên nghiệp, bền bỉ', 2, 'Yonex', 'assets/uploads/image_1775294624544.jpg', 10, 600000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
@@ -283,9 +281,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `phone`, `role`, `status`, `created_at`, `is_reset`) VALUES
 (1, 'Admin Chính', 'admin@gmail.com', '$2y$10$gTq4Ot/Xf6GMVwM7ZuTeqONYPhAPWuDBHXWgcYolUR411vWhxO0P.', NULL, 'admin', 'active', '2026-03-28 09:38:04', 1),
 (7, 'Admin Phụ', 'admin2@gmail.com', '$2y$10$YkmURMDW5jbJJS9FItidjO5cRYyZgNscIBjBrwXq9iyBj/KJy7U3q', '0987654321', 'admin', 'active', '2026-03-28 09:50:08', 1),
-(8, 'Admin Phụ', 'admin3@gmail.com', '$2y$10$0Fcg5mEnFLlkfjwfFI3nBuSD8MrWta.4i5x48bWQg08h3ZFmCWb2u', '0912345678', 'admin', 'active', '2026-03-28 09:50:08', 1),
 (9, 'Nguyễn Văn A', 'user1@gmail.com', '$2y$10$nz0r1oHd7.7Dcljd59wareLDCmHo2qIoG4MQ9PMGohHP2p1.1WHHW', '0978123456', 'customer', 'active', '2026-03-28 09:50:08', 1),
-(10, 'Trần Thị B', 'user2@gmail.com', '$2y$10$TEqEfxOmOWn6vbrFkxngK./qX7BQ5KpbXmCsBxaO2WCA4ZGh3.vvO', '0934567890', 'customer', 'active', '2026-03-28 09:50:08', 1),
 (11, 'Lê Minh C', 'user3@gmail.com', '$2y$10$/x/xYvnLZOFCA5rGGN2GK.HRI9W8rxy6UJIqpo5FUDBVQ/STVMPAu', '0965432109', 'customer', 'active', '2026-03-28 09:50:08', 1),
 (14, 'Đinh Công Thành', 'obitohaha63@gmail.com', '$2y$10$zh1VEJmqoBHJZzA3sozcNekmEjYlOojk0pjTeSAIVdXJvVqXYEf3O', '0796556438', 'customer', 'active', '2026-04-03 13:57:45', 0);
 
@@ -312,8 +308,6 @@ CREATE TABLE `user_address` (
 
 INSERT INTO `user_address` (`id`, `user_id`, `city`, `district`, `ward`, `detail_address`, `is_default`, `created_at`) VALUES
 (1, 9, 'TP.HCM', 'Quận 1', 'Phường Bến Nghé', '12 Nguyễn Huệ', 1, '2026-03-29 23:20:06'),
-(2, 10, 'TP.HCM', 'Quận Bình Thạnh', 'Phường Gia Định', '36 AB đỏ', 0, '2026-03-29 23:29:23'),
-(3, 11, 'TP.HCM', 'Quận dây', 'Phường phố đã lên đèn', '36 AB đỏ', 1, '2026-03-29 23:39:21'),
 (5, 14, 'TP.HCM', 'Q2', 'Phú Mỹ', '66 Thảo Điền', 1, '2026-04-03 13:57:45');
 
 --
@@ -392,7 +386,7 @@ ALTER TABLE `user_address`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -404,13 +398,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `products`
