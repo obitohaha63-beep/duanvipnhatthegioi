@@ -16,13 +16,13 @@
         <div class="container">
             <!---- LOGO-->
             <div class="containerlogo">
-              <div class="logo"><a href="../pages/haveaccount.php"><img src="../assets/img/unnamed (5) 2.png" 
+              <div class="logo"><a href="../pages/haveaccount.php"><img src="../assets/img/unnamed (5) 2.png"
                 style="width: 245px;"></a>
               </div>
             </div>
-           
+
             <!---- search-->
-            
+
             <div class="containerSearch"><div class="search">
               <form action="timkiemyonex.html" target="_blank">
                 <input type="text" placeholder="Tìm kiếm...">
@@ -36,20 +36,20 @@
             <!---- contact------------------------------------------------------------>
             <div class="containercontac">
                 <ul class="thongitn">
-                    <li class="listitemcall"> 
+                    <li class="listitemcall">
                         <a class="groupitemcall" href="#"><span class="boxicon">
                             <img src="../assets/img/ringer-volume.png" style="width:24px">
                           </span>
                           <span class="boxtext column">
-                            Hotline 
+                            Hotline
                             <span class="smalltext">0796556438</span>
                           </span>
                         </a>
                       </li>
 
-                      
 
-                      <li class="listitemcart"> 
+
+                      <li class="listitemcart">
                         <a class="groupitemcart" href="Giohang.php">
                           <div class="containercart">
                             <button>
@@ -65,15 +65,15 @@
                 </ul>
                 <div class="container-login">
                           <a href="taikhoan.php">
-                            <img class="logo-person" src="../assets/img/daidien4.png" alt="logo của brand" 
+                            <img class="logo-person" src="../assets/img/daidien4.png" alt="logo của brand"
                           style="width:28px; height: 28px"></a>
 
                           <a class="text-dangnhap" href="taikhoan.php">Thông tin</a>
-                          <a class="text-dangky" style="opacity: 0.8;" 
+                          <a class="text-dangky" style="opacity: 0.8;"
                           href="../assets/php/logout.php">Đăng xuất</a>
-                          
-                          
-                </div>	
+
+
+                </div>
             </div>
 
 
@@ -88,35 +88,26 @@
 
            <div class="textmucluc">
               <span>DANH MỤC SẢN PHẨM</span>
-              <div class="khungtrangmenu khungtrangmenu-dropdown">
-                  <ul>
-                    <li><a href="allsanpham.html"><img src="../assets/img/badminton.png" style="width: 24px;"><span>Vợt cầu lông</span></a></li>
-                    <li><a href="allsanpham.html"><img src="../assets/img/sneakers.png" style="width: 24px;"><span>Giày cầu lông</span></a></li>
-                    <li><a href="allsanpham.html"><img src="../assets/img/piccolo.png" style="width: 24px;"><span>Ống cầu lông</span></a></li>
-                    <li><a href="allsanpham.html"><img src="../assets/img/t-shirt.png" style="width: 24px;"><span>Áo cầu lông</span></a></li>
-                    <li><a href="allsanpham.html"><img src="../assets/img/jeans.png" style="width: 24px;"><span>Quần cầu lông</span></a></li>
-                  </ul>
-              </div>
+              
 
-              
             </div>
-            
-            
-            
+
+
+
             <div class="navmenu">
-              
+
               <ul>
-                
+
 
                 <li class><a href="../pages/allsanpham1.php" ><span class="icon">
                 <img src="../assets/img/unpacking.png" style="width:24px"></span>
                 Tất cả sản phẩm</a></li>
-                
+
               </ul>
             </div>
 
-            
-              
+
+
             </div>
         </div>
 
@@ -129,7 +120,7 @@
       <div class="containerhome">
 
             <div class="container-back" id="timkiemcoban">
-              
+
 
 
             </div>
@@ -142,37 +133,37 @@
                     <input type="text" id="productName" name="keyword" class="form-control" value="" placeholder="Nhập tên sản phẩm...">
                     <button type="button" id="searchProductBtn" class="btn-search">Tìm kiếm</button>
                   </div>
-                
+
                 <h3>CHỌN MỨC GIÁ</h3>
                  <label><input type="checkbox" class="price" value="500k-1tr"> 500.000đ - 1 triệu</label><br>
-                 
+
                  <label><input type="checkbox" class="price" value="1-2tr"> 1 - 2 triệu</label><br>
-                 
+
                  <label><input type="checkbox" class="price" value="2-3tr"> 2 - 3 triệu</label><br>
-                 
+
                  <label><input type="checkbox" class="price" value=">3tr"> Giá trên 3 triệu</label><br>
-  
-                
-               
-                    
-                
+
+
+
+
+
                     <label class="form-label">Phân loại</label>
                     <select id="categoryFilter" class="form-control" name="category">
                         <option value="">-- Tất cả --</option>
                     </select>
-                        
-              
+
+
                 <h3>THƯƠNG HIỆU</h3>
                 <label><input type="checkbox" class="brand" value="Lining"> Lining</label><br>
                 <label><input type="checkbox" class="brand" value="Yonex"> Yonex</label><br>
-                
-                
-                
-               
-               
-                
+
+
+
+
+
+
                 </div>
-               
+
             </div>
             <div class="container-sanpham">
                 <div class="khung-sapxep">
@@ -183,14 +174,14 @@
                     <option value="moinhat">Mới nhất</option>
                  </select>
 
-                 
+
                 </div>
-                
+
 
                 <div class="container-sanphambot" id="productList">
-                  
+
                 </div>
-                
+
                 <div class="container-phantrang">
                   <div class="pagination">
                       <a href="#">&laquo;</a>   <!-- nút Previous -->
@@ -207,7 +198,7 @@
                   <h3>COOLNET – Cửa Hàng Vợt Cầu Lông Chính Hãng Uy Tín Toàn Quốc</h3>
                   <span><b>Bạn đang tìm nơi bán vợt cầu lông chính hãng?</b></span>
                   <br>
-                  <span><b>COOLNET</b> là hệ thống chuyên vợt cầu lông uy tín, cung cấp <b>vợt cầu lông chính hãng giá rẻ</b>, 
+                  <span><b>COOLNET</b> là hệ thống chuyên vợt cầu lông uy tín, cung cấp <b>vợt cầu lông chính hãng giá rẻ</b>,
                   mẫu mã đa dạng, dịch vụ.</span>
                   <br>
                   <h3>Tại sao nên mua vợt tại COOLNET?</h3>
@@ -235,10 +226,10 @@
                 </div>
             </div>
 
-            
-            
+
+
       </div>
-    </div>    
+    </div>
 
 </section>
 </main>
@@ -254,7 +245,7 @@
           <div class="khung-col1">
             <img class="logo-footer" src="../assets/img/unnamed (5) 2.png">
             <div class="gioithieu-footer">
-              <p>COOLNET - Hệ thống cửa hàng chuyên 
+              <p>COOLNET - Hệ thống cửa hàng chuyên
                   cung cấp các sản phẩm cầu lông
                   chính hãng: vợt, giày, quần áo, phụ kiện.</p>
             </div>
@@ -274,9 +265,9 @@
               </ul>
             </div>
           </div>
-        </div>     
+        </div>
         <div class="col">
-          
+
             <div class="tittle-footer">
               <div class="chinhsach">CHÍNH SÁCH</div>
             </div>
@@ -297,11 +288,11 @@
               <li><a href="">• Kiểm tra đơn hàng</a></li>
             </ul>
           </div>
-        </div>     
+        </div>
         <div class="col">
           <div class="tittle-footer">
               <div class="hoidap">HỎI ĐÁP - DỊCH VỤ</div>
-          </div> 
+          </div>
           <div class="thongtin-col3">
             <ul>
               <li><a href="">• Sản phẩm khuyến mãi</a></li>
@@ -311,13 +302,13 @@
               <li><a href="">• Tất cả sản phẩm</a></li>
             </ul>
           </div>
-          
-        </div>     
+
+        </div>
         <!----- cột 4-->
         <div class="col">
           <div class="tittle-footer">
               <div class="mocua">THỜI GIAN - MỞ CỬA</div>
-          </div> 
+          </div>
 
           <div class="thongtin-col4">
             <ul>
@@ -330,7 +321,7 @@
               <img class="bo-cong-thuong" src="../assets/img/bct.png">
             </ul>
           </div>
-        </div>     
+        </div>
     </div>
   </div>
   <div class="copyright">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 08, 2026 at 07:18 AM
+-- Generation Time: Apr 09, 2026 at 06:19 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -78,7 +78,8 @@ INSERT INTO `orders` (`id`, `user_id`, `order_date`, `delivery_address`, `paymen
 (14, 14, '2026-04-08 09:51:40', '66 Thảo Điền, Phú Mỹ, Q2, TP.HCM', 'cash', 'confirmed', 3900000.00),
 (15, 14, '2026-04-08 09:52:12', '66 Thảo Điền, Phú Mỹ, Q2, TP.HCM', 'cash', 'pending', 1300000.00),
 (16, 9, '2026-04-08 09:53:30', '12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP.HCM', 'cash', 'delivered', 7860000.00),
-(17, 9, '2026-04-08 09:53:51', '12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP.HCM', 'cash', 'confirmed', 2860000.00);
+(17, 9, '2026-04-08 09:53:51', '12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP.HCM', 'cash', 'confirmed', 2860000.00),
+(18, 14, '2026-04-09 11:42:15', '12 nguyễn, Bình Hưng Hòa, bình tân, hồ chí minh', 'cash', 'cancelled', 900000.00);
 
 -- --------------------------------------------------------
 
@@ -106,7 +107,8 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `selling_
 (22, 15, 6, 1, 1300000.00),
 (23, 16, 17, 1, 4560000.00),
 (24, 16, 23, 1, 3300000.00),
-(25, 17, 4, 1, 2860000.00);
+(25, 17, 4, 1, 2860000.00),
+(26, 18, 18, 1, 900000.00);
 
 -- --------------------------------------------------------
 
@@ -375,7 +377,7 @@ ALTER TABLE `user_address`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -387,13 +389,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -417,13 +419,13 @@ ALTER TABLE `purchase_order_items`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `user_address`
 --
 ALTER TABLE `user_address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
