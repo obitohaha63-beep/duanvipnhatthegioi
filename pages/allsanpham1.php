@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="../assets/css/fontinter.css">
   <link rel="icon" type="image/png" href="../assets/css/favicon-logo.ico">
 </head>
-<body data-mode="guest">
+<body data-mode="user">
 <header>
     <div class="headertop">
         <div class="container">
@@ -88,7 +88,7 @@
 
            <div class="textmucluc">
               <span>DANH MỤC SẢN PHẨM</span>
-              
+
 
 
             </div>

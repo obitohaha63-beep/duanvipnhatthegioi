@@ -81,7 +81,7 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
                 </ul>
 
           <div class="container-login">
-            <a href="taikhoan.html">
+            <a href="../pages/taikhoan.php">
               <img class="logo-person" src="../assets/img/daidien4.png" alt="logo của brand"
                       style="width:28px; height: 28px"></a>
             <a class="text-thongtin" href="../pages/taikhoan.php">Thông tin</a>
