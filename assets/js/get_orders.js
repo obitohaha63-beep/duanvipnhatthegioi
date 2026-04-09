@@ -32,7 +32,7 @@ async function loadOrders() {
 
 document.addEventListener('click', function(e) {
     if (e.target.classList.contains('btn-xem')) {
-        window.location.href = `donhangcuaban.html?id=${e.target.dataset.orderId}`;
+        window.location.href = `../pages/donhangcuaban.php?id=${e.target.dataset.orderId}`;
     }
 });
 function formatDate(dateString) {

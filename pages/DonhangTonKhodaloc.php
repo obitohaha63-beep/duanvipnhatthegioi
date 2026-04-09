@@ -1,3 +1,4 @@
+  <?php include '../assets/php/check_admin.php'; ?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -19,17 +20,17 @@
       <li><a href="../pages/QuanLyuser.php">Quản lý người dùng</a></li>
       <li><a href="../pages/DanhMuc.php">Danh mục</a></li>
       <li><a href="../pages/QuanLySanPham.php">Sản phẩm</a></li>
-      <li><a href="../pages/NhaphangGiaban.php">Quản lý nhập hàng</a></li> 
-      <li><a href="../pages/NhaphangGiaban2.php">Quản lý giá bán</a></li> 
-      <li><a href="../pages/QuanLyDonHang.php" > Quản lý đơn đặt hàng </a></li> 
-      <li><a href="../pages/QuanLyTonKho.html">Quản lý tồn kho</a></li> </ul>
-      <li><a href="../assets/php/logout.php">Đăng xuất</a></li> 
+      <li><a href="../pages/NhaphangGiaban.php">Quản lý nhập hàng</a></li>
+      <li><a href="../pages/NhaphangGiaban2.php">Quản lý giá bán</a></li>
+      <li><a href="../pages/QuanLyDonHang.php" > Quản lý đơn đặt hàng </a></li>
+      <li><a href="../pages/QuanLyTonKho.php">Quản lý tồn kho</a></li> </ul>
+      <li><a href="../assets/php/logout.php">Đăng xuất</a></li>
   </nav>
 
     <!-- Nội dung bên phải -->
     <main class="content">
       <div class="page-container">
-        
+
         <!-- ==================== QUẢN LÝ ĐƠN HÀNG ==================== -->
         <div class="card">
           <h2>Quản lý đơn đặt hàng</h2>
@@ -67,7 +68,7 @@
               <td><span class="result-box">Mới đặt</span></td>
               <td><button style="background-color: #4caf50;">Xem</button></td>
             </tr>
-           
+
           </table>
 
           <!-- ====== CHI TIẾT ĐƠN HÀNG ====== -->
@@ -97,7 +98,7 @@
                 <td>3.200.000₫</td>
                 <td>3.200.000₫</td>
               </tr>
-              
+
               <tr>
                 <th colspan="4">Tổng cộng</th>
                 <th>3.200.000₫</th>
@@ -188,7 +189,7 @@
           <td>8</td>
           <td>12</td>
         </tr>
-        
+
       </table>
     </section>
       </div>

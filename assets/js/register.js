@@ -1,41 +1,27 @@
-/**
- * VALIDATION - ĐĂNG KÝ ACCOUNTS
- * Sử dụng hệ thống validation inline từ validation.js
- */
+
 
 document.addEventListener("DOMContentLoaded", function () {
   const registerForm = document.getElementById("registerForm");
 
-  // ============================================
-  // 1. CẤU HÌNH CÁC TRƯỜNG CẦN VALIDATE
-  // ============================================
   const fieldConfigs = {
-    name: "fullname", // Họ tên
-    email: "email", // Email
-    password: "password", // Mật khẩu
-    confirm_password: "confirmPassword", // Xác nhận mật khẩu
-    city: "required", // Thành phố
-    district: "required", // Quận
-    ward: "required", // Phường
-    detail_address: "address", // Chi tiết địa chỉ
-    phone: "phone", // Số điện thoại
+    name: "fullname",
+    email: "email",
+    password: "password",
+    confirm_password: "confirmPassword",
+    city: "required",
+    district: "required",
+    ward: "required",
+    detail_address: "address",
+    phone: "phone",
   };
 
-  // ============================================
-  // 2. THIẾT LẬP VALIDATION THỜI GIAN THỰC
-  // ============================================
-  // Validate ngay khi người dùng thoát/gõ trong trường
+
   setupRealtimeValidation(registerForm, fieldConfigs);
 
-  // ============================================
-  // 3. XỬ LÝ SUBMIT FORM
-  // ============================================
   registerForm.addEventListener("submit", async function (event) {
     event.preventDefault();
 
-    // ============================================
-    // KIỂM TRA ĐỊA CHỈ - Tất cả các trường phải được điền đầy đủ
-    // ============================================
+
     const city = document.getElementById("city").value.trim();
     const district = document.getElementById("district").value.trim();
     const ward = document.getElementById("ward").value.trim();
@@ -62,11 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const userPassword = document.getElementById("password-register").value;
     const phoneNumber = document.getElementById("phone").value.trim();
 
-    // (Các biến địa chỉ đã khai báo ở phía trên)
 
-    // ============================================
-    // 4. GỬI DỮ LIỆU ĐẾN SERVER
-    // ============================================
     try {
       const serverResponse = await fetch("../assets/php/register.php", {
         method: "POST",
@@ -89,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (responseData.success) {
         alert(" Đăng ký thành công! Vui lòng đăng nhập.");
-        window.location.href = "login.html";
+        window.location.href = "../pages/login.html";
       } else {
         alert(" Lỗi: " + responseData.message);
       }

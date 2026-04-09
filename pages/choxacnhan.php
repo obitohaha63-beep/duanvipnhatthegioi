@@ -1,26 +1,49 @@
+<?php include '../assets/php/check_user.php'; ?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chi tiết đơn hàng</title>
-
-    <!-- Giữ hệ thống style đồng bộ -->
-    <link rel="stylesheet" href="../assets/css/style4.css">
-    <link rel="stylesheet" href="../assets/css/root.css">
-    <link rel="stylesheet" href="../assets/css/Donhangphanloai.css">
-    <link rel="stylesheet" href="../assets/css/fontinter.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CoolNet</title>
+  <link rel="stylesheet" href="../assets/css/style4.css">
+  <link rel="stylesheet" href="../assets/css/root.css">
+  <link rel="stylesheet" href="../assets/css/Donhangphanloai.css">
+  <link rel="stylesheet" href="../assets/css/fontinter.css">
+  <link rel="icon" type="image/png" href="../assets/img/favicon-logo.ico">
 </head>
 
-<body>
+<style>
+  .khung-tablist .khung-text-choxacnhan{
+  position: relative;
+  width: 200px;
+  height: 40px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
 
-<!-- ===== HEADER (giữ giống trang chính) ===== -->
+   border-bottom: 3px solid #1331ab;
+   color: #1B1B1B;
+}
+
+.khung-tablist .khung-text-hoanthanh{
+  position: relative;
+  width: 200px;
+  height: 40px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+
+   border-bottom: 3px solid #BABABC;
+   color: #1B1B1B;
+}
+</style>
+<body>
 <header>
     <div class="headertop">
         <div class="container">
             <!---- LOGO-->
             <div class="containerlogo">
-              <div class="logo"><a href="haveaccount.php"><img src="../assets/img/unnamed (5) 2.png"
+              <div class="logo"><a href="../pages/haveaccount.php"><img src="../assets/img/unnamed (5) 2.png"
                 style="width: 245px;"></a>
               </div>
             </div>
@@ -60,7 +83,9 @@
                                 <img src="../assets/img/shopping-cart.png" style="width:24px">
                                 <span class="jscart">0</span>
                               </span>
-                              <a href="Giohang.html"><span class="boxtext">Giỏ hàng</span></a>
+                              <a href="../pages/Giohang.php">
+                              <span class="boxtext">Giỏ hàng</span>
+                              </a>
                             </button>
                           </div>
                         </a>
@@ -68,11 +93,11 @@
                 </ul>
 
 <div class="container-login">
-   <a href="taikhoan.html">
-       <img class="logo-person" src="../assets/img/daidien4.png" alt="logo của brand"
-         style="width:28px; height: 28px"></a>
-  <a class="text-thongtin" href="taikhoan.html">Thông tin</a>
-  <a class="text-dangky" style="opacity: 0.8;" href="html4.html">Đăng xuất</a>
+ <a href="../pages/taikhoan.php">
+        <img class="logo-person" src="../assets/img/daidien4.png" alt="logo của brand"
+            style="width:28px; height: 28px"></a>
+  <a class="text-thongtin" href="../pages/taikhoan.php">Thông tin</a>
+  <a class="text-dangky" style="opacity: 0.8;" href="../assets/php/logout.php">Đăng xuất</a>
 </div>
 
 
@@ -141,89 +166,77 @@
       </div>
     </div>
 </header>
-
-<!-- ===== MAIN ===== -->
 <main class="account-page">
-
-    <!-- Breadcrumb -->
-    <div class="container-back">
-        <a href="haveaccount.html">Trang chủ</a>
-        <span>/</span>
-        <a href="taikhoan.html">Thông tin tài khoản</a>
-        <span>/</span>
-        <a href="Donhangphanloai.html">Đơn hàng của bạn</a>
-        <span>/</span>
-        <span>Chi tiết đơn hàng</span>
-    </div>
-
-    <div class="account-wrapper">
-
-        <!-- Sidebar -->
-        <aside class="account-sidebar">
-            <div class="account-user">
-                <div class="avatar-circle">Avatar</div>
-                <h2>Email</h2>
+  <div class="container-back">
+              <a href="../pages/haveaccount.php">Trang chủ </a>
+              <span>/</span>
+              <a href="../pages/taikhoan.php">Thông tin tài khoản </a>
+              <span>/</span>
+              <a href="">Đơn hàng của bạn </a>
             </div>
+  <div class="account-wrapper">
+    <!-- Cột trái -->
+    <aside class="account-sidebar">
+      <div class="account-user">
+        <div class="avatar-circle" style="font-size: 18px;">Avatar</div>
+        <h2 id="account-email">Email</h2>
+      </div>
+      <nav class="account-menu">
+        <a href="../pages/taikhoan.php">
+        <div class="box-thongtincanhan">
+          Thông tin cá nhân
+        </div>
+        </a>
+        <a href="../pages/donhangcuaban.php">
+        <div class="box-thongtindonhang">
+          Đơn hàng của bạn
+        </div>
+        </a>
+      </nav>
+    </aside>
 
-            <nav class="account-menu">
-                <a href="taikhoan.php">
-                    <div class="box-thongtincanhan">Thông tin cá nhân</div>
-                </a>
-                <a href="Donhangphanloai.html">
-                    <div class="box-thongtindonhang active">Đơn hàng của bạn</div>
-                </a>
-            </nav>
-        </aside>
+    <!-- Cột phải -->
+    <section class="account-content">
+      <div class="khung-tablist">
+        <a href="../pages/Donhangphanloai.php">
+        <div class="khung-text-hoanthanh">
+          Hoàn tất
+        </div>
+        </a>
+        <a href="#">
+        <div class="khung-text-choxacnhan">
+          Đang chờ xử lý
+        </div>
+        </a>
+      </div>
+      <div class="vien-boc-account-form">
+      <form class="account-form">
+        <div class="sanpham">
+  <table class="table-donhang">
+  <thead>
+    <tr>
+      <th>Mã hóa đơn</th>
+      <th>Ngày hoàn thành</th>
+      <th>Tổng giá tiền</th>
+      <th>Thao tác</th>
+    </tr>
+  </thead>
+  <tbody id="orderTableBody">
+    <!-- Dữ liệu sẽ được render ở đây -->
+  </tbody>
+</table>
+</div>
 
-        <!-- Content -->
-        <section class="account-content">
+      </form>
+      </div>
+    </section>
+  </div>
 
-            <!-- Tiêu đề -->
-            <div class="page-title">
-                <h2>Chi tiết đơn hàng</h2>
-            </div>
-
-            <!-- Thông tin đơn -->
-            <div class="order-info-card" id="orderInfo">
-                <!-- Render JS -->
-            </div>
-
-            <!-- Danh sách sản phẩm -->
-            <div class="order-table-wrapper">
-                <h3>Danh sách sản phẩm</h3>
-
-                <table class="table-donhang">
-                    <thead>
-                        <tr>
-                            <th>Tên sản phẩm</th>
-                            <th>Số lượng</th>
-                            <th>Giá</th>
-                            <th>Thành tiền</th>
-                        </tr>
-                    </thead>
-                    <tbody id="orderItems">
-                        <!-- Render JS -->
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Tổng tiền -->
-            <div class="order-total">
-                <h3 id="totalAmount"></h3>
-            </div>
-
-            <!-- Nút hành động -->
-            <div class="order-actions">
-                <a href="../pages/choxacnhan.html" class="btn-back">
-                    ← Quay lại đơn hàng
-                </a>
-            </div>
-
-        </section>
-    </div>
 </main>
 
-<!-- ===== FOOTER ===== -->
+  <script src="../assets/js/wait.js"></script>
+  <script src="../assets/js/load_cart.js"></script>
+</body>
 <footer>
   <div class="container-footer">
     <div class="khungchinh">
@@ -316,8 +329,4 @@
     </div>
   </div>
 </footer>
-
-<script src="../assets/js/order_detail.js"></script>
-<script src="../assets/js/load_cart.js"></script>
-</body>
 </html>
