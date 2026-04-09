@@ -13,6 +13,7 @@ if (!isset($_SESSION['user'])) {
 }
 
 $user_id = $_SESSION['user']['id'];
+$user_role = $_SESSION['user']['role'] ?? '';
 $id = $_GET['id'] ?? null;
 
 if (!$id) {
@@ -33,16 +34,25 @@ try {
     o.delivery_address AS full_address
 FROM orders o
 JOIN users u ON o.user_id = u.id
-WHERE o.id = ? AND o.user_id = ?
+WHERE o.id = ?
     ");
 
-    $stmt->execute([$id, $user_id]);
+    $stmt->execute([$id]);
     $order = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$order) {
         echo json_encode([
             "success" => false,
-            "message" => "Không tìm thấy đơn hàng hoặc bạn không có quyền xem"
+            "message" => "Không tìm thấy đơn hàng"
+        ]);
+        exit;
+    }
+
+    // Kiểm tra quyền: Nếu không phải admin, chỉ cho xem đơn hàng của chính mình
+    if ($user_role !== 'admin' && $order['user_id'] != $user_id) {
+        echo json_encode([
+            "success" => false,
+            "message" => "Bạn không có quyền xem đơn hàng này"
         ]);
         exit;
     }
