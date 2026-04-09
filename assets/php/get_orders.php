@@ -13,6 +13,7 @@ if (!isset($_SESSION['user'])) {
 }
 
 $user_id = $_SESSION['user']['id'];
+$user_role = $_SESSION['user']['role'] ?? '';
 
 $fromDate = $_GET['fromDate'] ?? '';
 $toDate = $_GET['toDate'] ?? '';
@@ -30,10 +31,16 @@ SELECT
 FROM orders
 JOIN users ON orders.user_id = users.id
 LEFT JOIN user_address ua ON users.id = ua.user_id AND ua.is_default = 1
-WHERE orders.user_id = ?
+WHERE 1=1
 ";
 
-$params = [$user_id];
+$params = [];
+
+// Nếu không phải admin, chỉ xem đơn hàng của chính mình
+if ($user_role !== 'admin') {
+    $sql .= " AND orders.user_id = ?";
+    $params[] = $user_id;
+}
 
 if ($fromDate) {
     $sql .= " AND DATE(orders.order_date) >= ?";

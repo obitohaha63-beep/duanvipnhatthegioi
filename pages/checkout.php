@@ -24,6 +24,7 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
   <link rel="stylesheet" href="../assets/css/checkout.css">
   <link rel="stylesheet" href="../assets/css/fontinter.css">
   <link rel="stylesheet" href="../assets/css/root.css">
+  <link rel="stylesheet" href="../assets/css/validation-styles.css">
   <link rel="icon" type="image/png" href="../assets/img/favicon-logo.ico">
 </head>
 <body>
@@ -34,11 +35,11 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
         <div class="container">
             <!---- LOGO-->
             <div class="containerlogo">
-              <div class="logo"><a href="haveaccount.php"><img src="../assets/img/unnamed (5) 2.png" 
+              <div class="logo"><a href="haveaccount.php"><img src="../assets/img/unnamed (5) 2.png"
                 style="width: 245px;"></a>
               </div>
             </div>
-           
+
             <!---- search-->
             <div class="containerSearch"><div class="search">
               <form action="timkiemyonex1.html" target="_blank">
@@ -53,20 +54,20 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
             <!---- contact------------------------------------------------------------>
             <div class="containercontac">
                 <ul class="thongitn">
-                    <li class="listitemcall"> 
+                    <li class="listitemcall">
                         <a class="groupitemcall" href="#"><span class="boxicon">
                             <img src="../assets/img/ringer-volume.png" style="width:24px">
                           </span>
                           <span class="boxtext column">
-                            Hotline 
+                            Hotline
                             <span class="smalltext">0796556438</span>
                           </span>
                         </a>
                       </li>
 
-                      
 
-                      <li class="listitemcart"> 
+
+                      <li class="listitemcart">
                         <a class="groupitemcart" href="../pages/Giohang.php">
                           <div class="containercart">
                             <button>
@@ -82,13 +83,13 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
                 </ul>
                 <div class="container-login">
                           <a href="../pages/taikhoan.php">
-                            <img class="logo-person" src="../assets/img/daidien4.png" alt="logo của brand" 
+                            <img class="logo-person" src="../assets/img/daidien4.png" alt="logo của brand"
                           style="width:28px; height: 28px"></a>
 
                           <a class="text-dangnhap" href="../pages/taikhoan.php">Thông tin</a>
                           <a class="text-dangky" style="opacity: 0.8;" href="../assets/php/logout.php">Đăng xuất</a>
-                          
-                          
+
+
                 </div>
             </div>
 
@@ -100,7 +101,7 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
         <div class="khungxanhmucluc">
 
             <div class="js-menu">
-              
+
             </div>
             <div class="icon">
               <img src="../assets/img/Medium Icons.png" type="width:24px" >
@@ -127,25 +128,25 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
                   </ul>
               </div>
 
-              
+
             </div>
-            
-            
-            
+
+
+
             <div class="navmenu">
-              
+
               <ul>
-                
+
 
                 <li class><a href="../pages/allsanpham1.php" ><span class="icon">
                 <img src="../assets/img/unpacking.png" style="width:24px"></span>
                 Tất cả sản phẩm</a></li>
-                
+
               </ul>
             </div>
 
-            
-              
+
+
             </div>
         </div>
 
@@ -190,10 +191,10 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
 
       <!-- FORM địa chỉ mới -->
       <div id="new-address-form" style="display:none;">
-        <input type="text" id="detail_address" placeholder="Số nhà, tên đường">
-        <input type="text" id="ward" placeholder="Phường/Xã">
-        <input type="text" id="district" placeholder="Quận/Huyện">
-        <input type="text" id="city" placeholder="Tỉnh/Thành phố">
+        <input type="text" name="detail_address" id="detail_address" placeholder="Số nhà, tên đường">
+        <input type="text" name="ward" id="ward" placeholder="Phường/Xã">
+        <input type="text" name="district" id="district" placeholder="Quận/Huyện">
+        <input type="text" name="city" id="city" placeholder="Tỉnh/Thành phố">
       </div>
 
     </div>
@@ -221,7 +222,7 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
       <p><strong>Số tài khoản:</strong> 123456789</p>
       <p><strong>Chủ tài khoản:</strong> NGUYEN VAN A</p>
 
-      
+
     </div>
 
     <!-- Online -->
@@ -246,9 +247,6 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
 <p><strong>Tổng tiền hàng:</strong> <span id="subtotal"></span></p>
 <p><strong>Phí vận chuyển:</strong> Miễn phí</p>
 <p class="total"><strong>Tổng thanh toán: </strong><span id="total"></span></p>
-        <p><input type="checkbox"> Xuất hóa đơn</p>
-        <h4>Ghi chú đơn hàng: </h4>
-        <input type="text" placeholder="Nhập ghi chú">
         <div class="button-group">
           <a href="../pages/allsanpham1.php"><button class="btn-outline">Tiếp tục mua hàng</button></a>
           <button class="btn-primary" onclick="placeOrder()">Đặt hàng</button>
@@ -267,7 +265,7 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
           <div class="khung-col1">
             <img class="logo-footer" src="../assets/img/unnamed (5) 2.png">
             <div class="gioithieu-footer">
-              <p>COOLNET - Hệ thống cửa hàng chuyên 
+              <p>COOLNET - Hệ thống cửa hàng chuyên
                   cung cấp các sản phẩm cầu lông
                   chính hãng: vợt, giày, quần áo, phụ kiện.</p>
             </div>
@@ -287,9 +285,9 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
               </ul>
             </div>
           </div>
-        </div>     
+        </div>
         <div class="col">
-          
+
             <div class="tittle-footer">
               <div class="chinhsach">CHÍNH SÁCH</div>
             </div>
@@ -310,11 +308,11 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
               <li><a href="">• Kiểm tra đơn hàng</a></li>
             </ul>
           </div>
-        </div>     
+        </div>
         <div class="col">
           <div class="tittle-footer">
               <div class="hoidap">HỎI ĐÁP - DỊCH VỤ</div>
-          </div> 
+          </div>
           <div class="thongtin-col3">
             <ul>
               <li><a href="allsanpham1.html">• Sản phẩm khuyến mãi</a></li>
@@ -324,13 +322,13 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
               <li><a href="allsanpham1.html">• Tất cả sản phẩm</a></li>
             </ul>
           </div>
-          
-        </div>     
+
+        </div>
         <!----- cột 4-->
         <div class="col">
           <div class="tittle-footer">
               <div class="mocua">THỜI GIAN - MỞ CỬA</div>
-          </div> 
+          </div>
 
           <div class="thongtin-col4">
             <ul>
@@ -343,7 +341,7 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
               <img class="bo-cong-thuong" src="../assets/img/bct.png">
             </ul>
           </div>
-        </div>     
+        </div>
     </div>
   </div>
   <div class="copyright">
