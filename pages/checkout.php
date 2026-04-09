@@ -109,24 +109,7 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
 
             <div class="textmucluc">
               <span>DANH MỤC SẢN PHẨM</span>
-              <div class="khungtrangmenu khungtrangmenu-dropdown">
-                  <ul>
-                    <li><a href="allsanpham1.html">
-                      <img src="../assets/img/badminton.png" style="width: 24px;"><span>Vợt cầu lông</span></a></li>
-
-                    <li><a href="allsanpham1.html">
-                      <img src="../assets/img/sneakers.png" style="width: 24px;"><span>Giày cầu lông</span></a></li>
-
-                    <li><a href="allsanpham1.html">
-                      <img src="../assets/img/piccolo.png" style="width: 24px;"><span>Ống cầu lông</span></a></li>
-
-                    <li><a href="allsanpham1.html">
-                      <img src="../assets/img/t-shirt.png" style="width: 24px;"><span>Áo cầu lông</span></a></li>
-
-                    <li><a href="allsanpham1.html">
-                      <img src="../assets/img/jeans.png" style="width: 24px;"><span>Quần cầu lông</span></a></li>
-                  </ul>
-              </div>
+              
 
 
             </div>
@@ -315,11 +298,9 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
           </div>
           <div class="thongtin-col3">
             <ul>
-              <li><a href="allsanpham1.html">• Sản phẩm khuyến mãi</a></li>
 
-              <li><a href="allsanpham1.html">• Sản phẩm nổi bật</a></li>
 
-              <li><a href="allsanpham1.html">• Tất cả sản phẩm</a></li>
+              <li><a href="../pages/allsanpham1.php">• Tất cả sản phẩm</a></li>
             </ul>
           </div>
 

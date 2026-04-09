@@ -161,7 +161,7 @@ $address = $stmt2->fetch(PDO::FETCH_ASSOC);
           Thông tin cá nhân
         </div>
         </a>
-        <a href="Donhangphanloai.html">
+        <a href="../pages/Donhangphanloai.php">
         <div class="box-thongtindonhang">
           Đơn hàng của bạn
         </div>

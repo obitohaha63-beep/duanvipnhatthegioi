@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const data = await res.json();
       allProducts = data.products;
 
-      
+
       loaiSelect.innerHTML = '<option value="">Tất cả</option>';
       data.categories.forEach(cat => {
         const opt = document.createElement("option");
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <td>${p.profit_rate}%</td>
         <td>${Number(p.selling_price)
           .toLocaleString('vi-VN', {minimumFractionDigits: 0, maximumFractionDigits: 0})}</td>
-        <td><button class="btn-add" onclick="location.href='FormSuaGia.html?id=${p.id}'">Sửa</button></td>
+        <td><button class="btn-add" onclick="location.href='../pages/FormSuaGia.php?id=${p.id}'">Sửa</button></td>
       `;
       tableBody.appendChild(tr);
     });
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderTable(filtered);
   }
 
-  
+
   giaVonInput.addEventListener("input", filterProducts);
   loiNhuanInput.addEventListener("input", filterProducts);
   giaBanInput.addEventListener("input", filterProducts);

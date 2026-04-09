@@ -16,11 +16,11 @@
         <div class="container">
             <!---- LOGO-->
             <div class="containerlogo">
-              <div class="logo"><a href="haveaccount.php"><img src="../assets/img/unnamed (5) 2.png" 
+              <div class="logo"><a href="haveaccount.php"><img src="../assets/img/unnamed (5) 2.png"
                 style="width: 245px;"></a>
               </div>
             </div>
-           
+
             <!---- search-->
             <div class="containerSearch"><div class="search">
               <form action="timkiemyonex1.html" target="_blank">
@@ -35,20 +35,20 @@
             <!---- contact------------------------------------------------------------>
             <div class="containercontac">
                 <ul class="thongitn">
-                    <li class="listitemcall"> 
+                    <li class="listitemcall">
                         <a class="groupitemcall" href="#"><span class="boxicon">
                             <img src="../assets/img/ringer-volume.png" style="width:24px">
                           </span>
                           <span class="boxtext column">
-                            Hotline 
+                            Hotline
                             <span class="smalltext">0796556438</span>
                           </span>
                         </a>
                       </li>
 
-                      
 
-                      <li class="listitemcart"> 
+
+                      <li class="listitemcart">
                         <a class="groupitemcart" href="">
                           <div class="containercart">
                             <button>
@@ -64,14 +64,14 @@
                 </ul>
                 <div class="container-login">
                           <a href="taikhoan.php">
-                            <img class="logo-person" src="../assets/img/daidien4.png" alt="logo của brand" 
+                            <img class="logo-person" src="../assets/img/daidien4.png" alt="logo của brand"
                           style="width:28px; height: 28px"></a>
 
                           <a class="text-dangnhap" href="taikhoan.php">Thông tin</a>
-                          <a class="text-dangky" style="opacity: 0.8;" 
+                          <a class="text-dangky" style="opacity: 0.8;"
                           href="../assets/php/logout.php">Đăng xuất</a>
-                          
-                          
+
+
                 </div>
             </div>
 
@@ -83,7 +83,7 @@
         <div class="khungxanhmucluc">
 
             <div class="js-menu">
-              
+
             </div>
             <div class="icon">
               <img src="../assets/img/Medium Icons.png" type="width:24px" >
@@ -91,44 +91,27 @@
 
             <div class="textmucluc">
               <span>DANH MỤC SẢN PHẨM</span>
-              <div class="khungtrangmenu khungtrangmenu-dropdown">
-                  <ul>
-                    <li><a href="allsanpham1.html">
-                      <img src="../assets/img/badminton.png" style="width: 24px;"><span>Vợt cầu lông</span></a></li>
 
-                    <li><a href="allsanpham1.html">
-                      <img src="../assets/img/sneakers.png" style="width: 24px;"><span>Giày cầu lông</span></a></li>
 
-                    <li><a href="allsanpham1.html">
-                      <img src="../assets/img/piccolo.png" style="width: 24px;"><span>Ống cầu lông</span></a></li>
 
-                    <li><a href="allsanpham1.html">
-                      <img src="../assets/img/t-shirt.png" style="width: 24px;"><span>Áo cầu lông</span></a></li>
-
-                    <li><a href="allsanpham1.html">
-                      <img src="../assets/img/jeans.png" style="width: 24px;"><span>Quần cầu lông</span></a></li>
-                  </ul>
-              </div>
-
-              
             </div>
-            
-            
-            
+
+
+
             <div class="navmenu">
-              
+
               <ul>
-                
+
 
                 <li class><a href="allsanpham1.php" ><span class="icon">
                 <img src="../assets/img/unpacking.png" style="width:24px"></span>
                 Tất cả sản phẩm</a></li>
-                
+
               </ul>
             </div>
 
-            
-              
+
+
             </div>
         </div>
 
@@ -161,7 +144,7 @@
     </div>
 
   </div>
-</main> 
+</main>
 <script src="../assets/js/cart.js"></script>
 
 </body>
@@ -172,7 +155,7 @@
           <div class="khung-col1">
             <img class="logo-footer" src="../assets/img/unnamed (5) 2.png">
             <div class="gioithieu-footer">
-              <p>COOLNET - Hệ thống cửa hàng chuyên 
+              <p>COOLNET - Hệ thống cửa hàng chuyên
                   cung cấp các sản phẩm cầu lông
                   chính hãng: vợt, giày, quần áo, phụ kiện.</p>
             </div>
@@ -192,9 +175,9 @@
               </ul>
             </div>
           </div>
-        </div>     
+        </div>
         <div class="col">
-          
+
             <div class="tittle-footer">
               <div class="chinhsach">CHÍNH SÁCH</div>
             </div>
@@ -215,11 +198,11 @@
               <li><a href="">• Kiểm tra đơn hàng</a></li>
             </ul>
           </div>
-        </div>     
+        </div>
         <div class="col">
           <div class="tittle-footer">
               <div class="hoidap">HỎI ĐÁP - DỊCH VỤ</div>
-          </div> 
+          </div>
           <div class="thongtin-col3">
             <ul>
               <li><a href="allsanpham1.html">• Sản phẩm khuyến mãi</a></li>
@@ -229,13 +212,13 @@
               <li><a href="allsanpham1.html">• Tất cả sản phẩm</a></li>
             </ul>
           </div>
-          
-        </div>     
+
+        </div>
         <!----- cột 4-->
         <div class="col">
           <div class="tittle-footer">
               <div class="mocua">THỜI GIAN - MỞ CỬA</div>
-          </div> 
+          </div>
 
           <div class="thongtin-col4">
             <ul>
@@ -248,7 +231,7 @@
               <img class="bo-cong-thuong" src="../assets/img/bct.png">
             </ul>
           </div>
-        </div>     
+        </div>
     </div>
   </div>
   <div class="copyright">
@@ -257,4 +240,4 @@
     </div>
   </div>
 </footer>
-</html> 
+</html>
