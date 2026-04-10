@@ -55,7 +55,7 @@ async function loadUserInformation() {
   document.getElementById("phone").value = user.phone || "";
 
   document.getElementById("default-address").innerText =
-    user.default_address || "⚠️ Chưa cập nhật địa chỉ";
+    user.default_address || " Chưa cập nhật địa chỉ";
 }
 
 async function placeOrder() {
@@ -83,14 +83,14 @@ async function placeOrder() {
       .value.trim();
 
     if (!city || !district || !ward || !detailAddress) {
-      alert("🚨 Yêu cầu nhập đầy đủ địa chỉ");
+      alert(" Yêu cầu nhập đầy đủ địa chỉ");
       return;
     }
 
     const words = detailAddress.split(/\s+/).filter((word) => word.length > 0);
     if (words.length < 2) {
       alert(
-        "❌ Số nhà/tên đường phải có ít nhất 1 khoảng trắng giữa nội dung (VD: 12 Nguyễn Huệ)",
+        " Số nhà/tên đường phải có ít nhất 1 khoảng trắng giữa nội dung (VD: 12 Nguyễn Huệ)",
       );
       return;
     }
@@ -187,7 +187,7 @@ function showAddressError(inputElement, errorMessage) {
   // Tạo thẻ hiển thị lỗi
   const errorDiv = document.createElement("div");
   errorDiv.className = "error-message";
-  errorDiv.textContent = "❌ " + errorMessage;
+  errorDiv.textContent = " " + errorMessage;
 
   // Chèn thẻ lỗi ngay sau input
   inputElement.parentNode.insertBefore(errorDiv, inputElement.nextSibling);

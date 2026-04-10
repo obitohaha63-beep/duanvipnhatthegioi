@@ -238,7 +238,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Load categories từ database
     loadCategories();
 
-    // ========== XỬ LÝ NÚT TÌM KIẾM ==========
+    //XỬ LÝ NÚT TÌM KIẾM
     const productNameInput = document.getElementById("productName");
     const searchProductBtn = document.getElementById("searchProductBtn");
 

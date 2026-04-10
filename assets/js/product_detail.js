@@ -103,12 +103,12 @@ fetch(`../assets/php/get_product_detail.php?id=${productId}`)
                         <button class="plus">+</button>
                     </div>
 
-                    <!-- Nút hành động (login hoặc add to cart) -->
+
                     ${actionButtonHTML}
                 </div>
             </div>
 
-            <!-- PHầN MÔ TẢ SẢN PHẨM -->
+            
             <div class="detail-of-items">
                 <h2>MÔ TẢ SẢN PHẨM:</h2>${product.description}
             </div>
