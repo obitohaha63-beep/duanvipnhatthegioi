@@ -7,7 +7,7 @@ async function checkLoginStatus() {
         const response = await fetch('../assets/php/check_login.php');
         const result = await response.json();
         isLoggedIn = result.isLoggedIn;
-        console.log('✓ Trạng thái đăng nhập:', isLoggedIn ? 'Đã đăng nhập' : 'Chưa đăng nhập');
+        console.log(' Trạng thái đăng nhập:', isLoggedIn ? 'Đã đăng nhập' : 'Chưa đăng nhập');
     } catch (error) {
         console.error('Lỗi kiểm tra đăng nhập:', error);
         isLoggedIn = false;
@@ -79,7 +79,7 @@ async function loadLatestProducts() {
 
         container.innerHTML = '';
 
-        // Bước 3: Lặp qua từng sản phẩm và thêm vào DOM
+        
         // (createProductHTML sẽ tự động set URL dựa trên isLoggedIn)
         result.data.forEach(product => {
             container.innerHTML += createProductHTML(product);

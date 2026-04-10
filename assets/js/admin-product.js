@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Validate toàn bộ form trước khi submit
         if (!validateForm(productForm, fieldConfigs)) {
-            alert("❌ Vui lòng kiểm tra lại các thông tin!");
+            alert(" Vui lòng kiểm tra lại các thông tin!");
             return;
         }
 
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .catch(err => {
                 console.error("Lỗi:", err);
-                alert("❌ Lỗi kết nối server!");
+                alert(" Lỗi kết nối server!");
             });
     });
 });

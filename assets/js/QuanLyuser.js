@@ -3,28 +3,28 @@
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    
+
     loadUserList();
 });
 
 
 
 function loadUserList() {
-    
+
     fetch('../assets/php/get_users_admin.php')
         .then(response => response.json())
         .then(userList => {
-            
+
             const userTableBody = document.getElementById('user-table');
             const adminTableBody = document.getElementById('admin-table');
 
-            
+
             userTableBody.innerHTML = '';
             adminTableBody.innerHTML = '';
 
-            
+
             userList.forEach(user => {
-                
+
                 if (user.role === 'admin') {
                     renderUserRow(user, adminTableBody);
                 } else {
@@ -41,20 +41,20 @@ function loadUserList() {
 
 
 function renderUserRow(user, tableElement) {
-    
+
     const tableRow = document.createElement('tr');
 
-    
-    
+
+
     const statusButtonHTML = user.status === 'active'
         ? `<button onclick="changeUserStatus(${user.id}, 'locked')" class="btn-lock">
               Khóa Tài Khoản
            </button>`
         : `<button onclick="changeUserStatus(${user.id}, 'active')" class="btn-unlock">
-             🔓 Mở Tài Khoản
+              Mở Tài Khoản
            </button>`;
 
-    
+
     tableRow.innerHTML = `
         <td>${user.id}</td>
         <td>${user.name}</td>
@@ -70,14 +70,14 @@ function renderUserRow(user, tableElement) {
         </td>
     `;
 
-    
+
     tableElement.appendChild(tableRow);
 }
 
 
 
 function changeUserStatus(userId, newStatus) {
-    
+
     fetch('../assets/php/update_user_status.php', {
         method: 'POST',
         headers: {
@@ -90,10 +90,10 @@ function changeUserStatus(userId, newStatus) {
     })
     .then(response => response.json())
     .then(updateResult => {
-        
+
         if (updateResult.success) {
             alert(" " + updateResult.message);
-            
+
             loadUserList();
         } else {
             alert(" Lỗi: " + updateResult.message);
@@ -108,12 +108,12 @@ function changeUserStatus(userId, newStatus) {
 
 
 function resetUserPassword(userId) {
-    
+
     if (!confirm("⚠️ Bạn có chắc muốn reset mật khẩu của user này?")) {
-        return;  
+        return;
     }
 
-    
+
     fetch("../assets/php/reset_password.php", {
         method: "POST",
         headers: {
@@ -123,18 +123,18 @@ function resetUserPassword(userId) {
             userId: userId
         })
     })
-    .then(response => response.text())  
+    .then(response => response.text())
     .then(responseText => {
-        
+
         console.log("Phản hồi từ server:", responseText);
 
         try {
             const resetResult = JSON.parse(responseText);
 
-            
+
             if (resetResult.success) {
                 alert(" " + resetResult.message);
-                loadUserList();  
+                loadUserList();
             } else {
                 alert(" Lỗi: " + resetResult.message);
             }
