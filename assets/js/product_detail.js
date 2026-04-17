@@ -73,12 +73,12 @@ fetch(`../assets/php/get_product_detail.php?id=${productId}`)
                      alt="${product.name}">
             </div>
 
-            <!-- PHầN THÔNG TIN VÀ GIÁ -->
+            
             <div class="aboutproduct">
                 <!-- Tên sản phẩm -->
                 <p class="racket-name">${product.name}</p>
 
-                <!-- Thương hiệu và loại -->
+
                 <pre class="trademark1">
                 Thương hiệu: <a href="#">${product.brand}</a> |
                 Loại: <a href="#">${product.category_name}</a>
@@ -108,7 +108,7 @@ fetch(`../assets/php/get_product_detail.php?id=${productId}`)
                 </div>
             </div>
 
-            
+
             <div class="detail-of-items">
                 <h2>MÔ TẢ SẢN PHẨM:</h2>${product.description}
             </div>

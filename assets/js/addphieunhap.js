@@ -1,9 +1,26 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     
-    document.getElementById("so-san-pham").addEventListener("change", function () {
+    document.getElementById("so-san-pham").addEventListener("change", async function () {
         const count = parseInt(this.value);
         if (!count || count < 1) return;
+
+        // Lấy danh sách loại sản phẩm từ database
+        let categories = [];
+        try {
+            const res = await fetch("../assets/php/get_categories.php");
+            const result = await res.json();
+            if (result.success && Array.isArray(result.data)) {
+                categories = result.data;
+            }
+        } catch (err) {
+            console.error("Lỗi khi lấy danh mục:", err);
+        }
+
+        // Tạo các option từ dữ liệu database
+        const categoryOptions = categories.map(cat =>
+            `<option value="${cat.id}">${cat.name}</option>`
+        ).join("");
 
         let html = "";
         for (let i = 1; i <= count; i++) {
@@ -12,8 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <label>Loại sản phẩm ${i}</label>
                 <select class="category-select" data-index="${i}" required>
                     <option value="">-- Chọn loại --</option>
-                    <option value="1">Vợt cầu lông</option>
-                    <option value="2">Giày cầu lông</option>
+                    ${categoryOptions}
                 </select>
             </div>
 

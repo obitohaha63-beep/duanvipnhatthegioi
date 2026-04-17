@@ -11,7 +11,7 @@ try {
         $dateTime = $date . ' 23:59:59';
     }
 
-    
+
     $sql = "SELECT p.id, p.name, c.name AS category FROM products p
             LEFT JOIN categories c ON p.category_id = c.id WHERE 1=1";
     $params = [];
@@ -23,7 +23,7 @@ try {
     $stmt->execute($params);
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    
+
     $sqlImport = "SELECT poi.product_id, SUM(poi.quantity) AS total_imported
                   FROM purchase_order_items poi
                   JOIN purchase_orders po ON poi.purchase_order_id = po.id
@@ -42,16 +42,19 @@ try {
         $importMap[$imp['product_id']] = (int)$imp['total_imported'];
     }
 
-    
+
     $sqlExport = "SELECT oi.product_id, SUM(oi.quantity) AS total_exported
-                  FROM order_items oi
-                  JOIN orders o ON oi.order_id = o.id
-                  WHERE o.status = 'confirmed'";
-    $paramsExport = [];
-    if ($dateTime !== '') {
-        $sqlExport .= " AND o.order_date <= ?";
-        $paramsExport[] = $dateTime;
-    }
+              FROM order_items oi
+              JOIN orders o ON oi.order_id = o.id
+              WHERE o.status = 'delivered'";
+$paramsExport = [];
+
+if ($dateTime !== '') {
+    $sqlExport .= " AND o.order_date <= ?";
+    $paramsExport[] = $dateTime;
+}
+
+
     $sqlExport .= " GROUP BY oi.product_id";
     $stmtExport = $conn->prepare($sqlExport);
     $stmtExport->execute($paramsExport);
@@ -61,12 +64,15 @@ try {
         $exportMap[$exp['product_id']] = (int)$exp['total_exported'];
     }
 
-    
+
     foreach ($products as &$p) {
-        $in = $importMap[$p['id']] ?? 0;
-        $out = $exportMap[$p['id']] ?? 0;
-        $p['quantity'] = max(0, $in - $out);
-    }
+    $in = $importMap[$p['id']] ?? 0;
+    $out = $exportMap[$p['id']] ?? 0;
+
+    $p['total_imported'] = $in;
+    $p['total_exported'] = $out;
+    $p['quantity'] = max(0, $in - $out);
+}
 
     echo json_encode([
         'success' => true,
