@@ -7,7 +7,7 @@ document.getElementById('form-add-user').addEventListener('submit', function(e) 
         email: document.getElementById('email').value,
         phone: document.getElementById('phone').value,
         role: document.getElementById('role').value,
-        password: '123456'
+        password: document.getElementById('password').value
     };
 
 

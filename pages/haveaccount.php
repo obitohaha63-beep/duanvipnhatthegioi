@@ -170,7 +170,7 @@ if (!isset($_SESSION['user'])) {
         </div>
 
         <div class="sanphambanchay">
-          <span class="textbanchay">SẢN PHẨM MỚI NHẤT</span>
+          <span class="textbanchay">SẢN PHẨM MỚI THÊM VÀO CỬA HÀNG</span>
           <!-- Container động - sẽ được điền bởi JavaScript -->
           <div class="containerhot">
             <!-- Sản phẩm sẽ được tải động từ API -->

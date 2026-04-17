@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2026 at 06:19 PM
+-- Generation Time: Apr 10, 2026 at 06:15 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -79,7 +79,9 @@ INSERT INTO `orders` (`id`, `user_id`, `order_date`, `delivery_address`, `paymen
 (15, 14, '2026-04-08 09:52:12', '66 Thảo Điền, Phú Mỹ, Q2, TP.HCM', 'cash', 'pending', 1300000.00),
 (16, 9, '2026-04-08 09:53:30', '12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP.HCM', 'cash', 'delivered', 7860000.00),
 (17, 9, '2026-04-08 09:53:51', '12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP.HCM', 'cash', 'confirmed', 2860000.00),
-(18, 14, '2026-04-09 11:42:15', '12 nguyễn, Bình Hưng Hòa, bình tân, hồ chí minh', 'cash', 'cancelled', 900000.00);
+(18, 14, '2026-04-09 11:42:15', '12 nguyễn, Bình Hưng Hòa, bình tân, hồ chí minh', 'cash', 'cancelled', 900000.00),
+(19, 14, '2026-04-10 09:38:49', '66 Thảo Điền, Phú Mỹ, Q2, TP.HCM', 'cash', 'delivered', 2940000.00),
+(20, 9, '2026-04-10 10:04:04', '153 đường số 8, Bình Hưng Hòa, BT, BT', 'cash', 'delivered', 2730000.00);
 
 -- --------------------------------------------------------
 
@@ -108,7 +110,9 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `selling_
 (23, 16, 17, 1, 4560000.00),
 (24, 16, 23, 1, 3300000.00),
 (25, 17, 4, 1, 2860000.00),
-(26, 18, 18, 1, 900000.00);
+(26, 18, 18, 1, 900000.00),
+(27, 19, 20, 1, 2940000.00),
+(28, 20, 8, 1, 2730000.00);
 
 -- --------------------------------------------------------
 
@@ -142,7 +146,7 @@ INSERT INTO `products` (`id`, `name`, `description`, `category_id`, `brand`, `im
 (5, 'Vợt cầu lông Lining 3D Calibar 900', 'Áp dụng công nghệ khung đa giác 3D giúp cắt giảm sức cản không khí, tối ưu hóa lực đánh. Đây là cây vợt cao cấp mang lại sự ổn định cực cao, phù hợp cho lối chơi bao sân và kiểm soát trận đấu một cách chủ động.', 1, 'Lining', 'assets/uploads/image_1775290136981.jpg', 5, 2000000.00, 30.00, 'visible', '2026-03-28 19:51:01'),
 (6, 'Vợt cầu lông Lining Windstorm 78', 'Siêu phẩm trong phân khúc vợt nhẹ nhưng vẫn giữ được khả năng tấn công đáng nể. Công nghệ Super Light giúp người chơi xoay chuyển vợt linh hoạt, lý tưởng cho phái nữ hoặc người chơi thích lối đánh nhanh, kỹ thuật.', 1, 'Lining', 'assets/uploads/image_1775290182474.jpg', 10, 1000000.00, 30.00, 'visible', '2026-03-28 19:51:01'),
 (7, 'Vợt cầu lông Lining N7-II', 'Mẫu vợt huyền thoại được nâng cấp với sợi Carbon liên kết mật độ cao. N7-II mang lại cảm giác đánh chắc chắn, không rung đầu, cực kỳ hiệu quả trong những pha điều cầu sát sạt và tấn công cuối sân uy lực.', 1, 'Lining', 'assets/uploads/image_1775290245841.jpg', 8, 1500000.00, 30.00, 'visible', '2026-03-28 19:51:01'),
-(8, 'Vợt cầu lông Lining G-Force Superlite 80', 'Dòng vợt siêu nhẹ được thiết kế dựa trên vật liệu carbon siêu bền. Với đầu vợt hơi nặng, G-Force Superlite 80 hỗ trợ lực đập cầu cực tốt trong khi vẫn đảm bảo sự nhẹ nhàng, giảm áp lực lên vai và cổ tay người chơi.', 1, 'Lining', 'assets/uploads/vot-cau-long-lining-axforce-80.jpg', 12, 2100000.00, 30.00, 'visible', '2026-03-28 19:51:01'),
+(8, 'Vợt cầu lông Lining G-Force Superlite 80', 'Dòng vợt siêu nhẹ được thiết kế dựa trên vật liệu carbon siêu bền. Với đầu vợt hơi nặng, G-Force Superlite 80 hỗ trợ lực đập cầu cực tốt trong khi vẫn đảm bảo sự nhẹ nhàng, giảm áp lực lên vai và cổ tay người chơi.', 1, 'Lining', 'assets/uploads/vot-cau-long-lining-axforce-80.jpg', 11, 2100000.00, 30.00, 'visible', '2026-03-28 19:51:01'),
 (9, 'Vợt cầu lông Lining Super Series 26', 'Mẫu vợt phổ thông kinh điển của Lining với khung vợt linh hoạt và độ bền vượt trội. Đây là lựa chọn số 1 cho người chơi phong trào nhờ khả năng trợ lực tốt, dễ thuần và phù hợp với nhiều phong cách thi đấu khác nhau.', 1, 'Lining', 'assets/uploads/axforce-cannon-3.jpg', 10, 1900000.00, 30.00, 'visible', '2026-03-28 19:51:01'),
 (10, 'Vợt cầu lông Yonex Astrox 100VA ZZ', 'Siêu phẩm kết hợp cùng Viktor Axelsen, sử dụng vật liệu Namd giúp tăng lực liên kết giữa các sợi carbon. Công nghệ Rotational Generator System phân bổ trọng lượng thông minh, giúp vợt phục hồi nhanh chóng sau mỗi cú đập.', 1, 'Yonex', 'assets/uploads/image_1775290365403.jpg', 6, 4200000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
 (11, 'Vợt cầu lông Yonex Nanoflare 1000Z', 'Thiết lập kỷ lục về tốc độ vung vợt nhờ khung Wide Profile Frame. Sản phẩm dành cho người chơi trình độ cao, yêu cầu tốc độ ra đòn nhanh như chớp và khả năng xử lý cầu trong phạm vi hẹp với độ chính xác tuyệt đối.', 1, 'Yonex', 'assets/uploads/image_1775290394716.jpg', 8, 3900000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
@@ -154,7 +158,7 @@ INSERT INTO `products` (`id`, `name`, `description`, `category_id`, `brand`, `im
 (17, 'Vợt cầu lông Yonex Nanoflare 700 Pro 2025', 'Phiên bản cải tiến mới nhất cho năm 2025 với khung vợt Aero Frame siêu nhẹ. Công nghệ giảm rung chấn thế hệ mới giúp người chơi cảm nhận cầu tốt hơn, mang lại những đường cầu mượt mà và thoát tay trong mọi tình huống.', 1, 'Yonex', 'assets/uploads/image_1775290555122.jpg', 5, 3800000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
 (18, 'Vợt cầu lông Yonex Arcsaber 11 Play', 'Phiên bản phổ thông dễ chơi nhất trong dòng Arcsaber. Vợt có khung Carbon cứng cáp nhưng thân dẻo trợ lực tốt, cực kỳ phù hợp cho người mới tập chơi hoặc người chơi phong trào cần một cây vợt bền bỉ và dễ điều khiển.', 1, 'Yonex', 'assets/uploads/image_1775290578337.jpg', 10, 750000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
 (19, 'Giày cầu lông Yonex Subaxia GT Men 2026', 'Dòng giày cao cấp thế hệ mới 2026 tích hợp công nghệ đệm khí cải tiến. Thiết kế ôm sát bàn chân giúp tăng cường sự ổn định khi di chuyển ngang và bảo vệ tối đa vùng gót chân khỏi những va chạm mạnh.', 2, 'Yonex', 'assets/uploads/image_1775290609764.jpg', 14, 800000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
-(20, 'Giày cầu lông Yonex Power Cushion 65Z4 VA', 'Phiên bản đặc biệt mang chữ ký của Viktor Axelsen 2026. Sở hữu công nghệ Power Cushion+ độc quyền cho khả năng hấp thụ sốc gấp 3 lần, giúp những bước chạy trở nên nhẹ nhàng và hỗ trợ lực bật nhảy cực tốt.', 2, 'Yonex', 'assets/uploads/image_1775290638382.jpg', 9, 2450000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
+(20, 'Giày cầu lông Yonex Power Cushion 65Z4 VA', 'Phiên bản đặc biệt mang chữ ký của Viktor Axelsen 2026. Sở hữu công nghệ Power Cushion+ độc quyền cho khả năng hấp thụ sốc gấp 3 lần, giúp những bước chạy trở nên nhẹ nhàng và hỗ trợ lực bật nhảy cực tốt.', 2, 'Yonex', 'assets/uploads/image_1775290638382.jpg', 8, 2450000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
 (21, 'Giày cầu lông Yonex Power Cushion Aerus Z3', 'Mẫu giày nhẹ nhất lịch sử Yonex phiên bản 2026. Với vật liệu thân giày liền mạch và đế cao su siêu bám, Aerus Z3 giúp vận động viên bùng nổ tốc độ trong những pha di chuyển cứu cầu khó nhất.', 1, 'Yonex', 'assets/uploads/image_1775290663494.jpg', 0, 0.00, 20.00, 'hidden', '2026-03-28 19:51:01'),
 (22, 'Giày cầu lông Yonex Eclipsion Z3 Men 2026', 'Dòng giày chuyên dụng cho sự ổn định (Stability). Thiết kế khung Lateral Shell giúp chống lật cổ chân và giữ thăng bằng tuyệt vời, là sự lựa chọn hàng đầu cho những người chơi có lối di chuyển mạnh mẽ và liên tục.', 2, 'Yonex', 'assets/uploads/image_1775290686630.jpg', 13, 2353846.15, 20.00, 'visible', '2026-03-28 19:51:01'),
 (23, 'Giày cầu lông Yonex Power Cushion 88 Dial 3', 'Sở hữu hệ thống thắt dây BOA kép thế hệ thứ 3, cho phép điều chỉnh độ ôm ở cả vùng mũi chân và cổ chân. Giày mang lại sự tiện lợi tối đa và độ vừa vặn hoàn hảo như được đo đóng riêng cho từng cá nhân.', 2, 'Yonex', 'assets/uploads/image_1775290728032.jpg', 5, 2750000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
@@ -377,7 +381,7 @@ ALTER TABLE `user_address`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -389,13 +393,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -419,7 +423,7 @@ ALTER TABLE `purchase_order_items`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `user_address`

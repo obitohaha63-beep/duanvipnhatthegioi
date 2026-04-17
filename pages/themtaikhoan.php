@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thêm tài khoản mới</title>
     <link rel="stylesheet" href="../assets/css/style.css"> <style>
-        
+
         .container { max-width: 500px; margin: 50px auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
@@ -53,15 +53,16 @@
         </div>
 
         <div class="form-group">
-            <label for="password">Mật khẩu khởi tạo</label>
-            <input type="text" id="password" value="123456" readonly>
-            <small style="color: #666;">(Mặc định cho tài khoản mới)</small>
-        </div>
+    <label for="password">Mật khẩu khởi tạo</label>
+    <input type="text" id="password" name="password" value="123456">
+    <small style="color: #666;">(Mặc định là 123456)</small>
+</div>
 
         <button type="submit" class="btn-submit">Tạo tài khoản</button>
     </form>
 </div>
 
 <script src="../assets/js/themtaikhoan.js"></script>
+
 </body>
 </html>
