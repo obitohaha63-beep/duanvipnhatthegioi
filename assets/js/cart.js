@@ -1,8 +1,8 @@
 
 function loadCart() {
-    
+
     fetch("../assets/php/get_cart.php")
-        .then(response => response.json())  
+        .then(response => response.json())
         .then(apiData => {
 
     if (!apiData.success) {
@@ -13,7 +13,7 @@ function loadCart() {
     const cartListContainer = document.getElementById("cart-list");
     const cartItems = apiData.cart;
 
-    
+
     const checkoutBtn = document.getElementById("checkout-btn");
 
     if (cartItems.length === 0) {
@@ -26,17 +26,17 @@ function loadCart() {
 
     cartListContainer.innerHTML = "";
 
-            
-            let totalPrice = 0; 
 
-            
-            
+            let totalPrice = 0;
+
+
+
             cartItems.forEach(product => {
-                
-                const productPrice = product.price * product.quantity;
-                totalPrice += productPrice; 
 
-                
+                const productPrice = product.price * product.quantity;
+                totalPrice += productPrice;
+
+
                 const productHTML = `
                     <div class="cart-item">
                         <!-- Hình ảnh sản phẩm -->
@@ -47,7 +47,8 @@ function loadCart() {
                         <!-- Thông tin sản phẩm (tên, giá) -->
                         <div class="cart-info">
                             <h3>${product.name}</h3>
-                            <p>${Number(product.price).toLocaleString("vi-VN")}₫</p>
+                            <p>${Number(product.price)
+                                .toLocaleString('vi-VN', {minimumFractionDigits: 0, maximumFractionDigits: 0})}₫</p>
                         </div>
 
                         <!-- Nút tăng/giảm số lượng -->
@@ -70,18 +71,18 @@ function loadCart() {
                     </div>
                 `;
 
-                
+
                 cartListContainer.innerHTML += productHTML;
             });
 
-            
-            
+
+
             const totalPriceElement = document.querySelector(".total-price");
-            totalPriceElement.innerText = totalPrice.toLocaleString("vi-VN") + "₫";
+            totalPriceElement.innerText = totalPrice.toLocaleString('vi-VN', {minimumFractionDigits: 0, maximumFractionDigits: 0}) + "₫";
 
         })
         .catch(error => {
-            
+
             console.error("Lỗi kết nối server:", error);
             alert("Không thể tải giỏ hàng. Vui lòng tải lại trang.");
         });
@@ -90,13 +91,13 @@ function loadCart() {
 
 
 function changeQuantity(productId, newQuantity) {
-    
+
     if (newQuantity < 1) {
         alert("Số lượng không thể nhỏ hơn 1");
         return;
     }
 
-    
+
     fetch("../assets/php/update_cart.php", {
         method: "POST",
         headers: {
@@ -109,9 +110,9 @@ function changeQuantity(productId, newQuantity) {
     })
     .then(response => response.json())
     .then(responseData => {
-        
+
         if (responseData.success) {
-            
+
             loadCart();
         } else {
             alert("Lỗi cập nhật: " + responseData.message);
@@ -126,12 +127,12 @@ function changeQuantity(productId, newQuantity) {
 
 
 function removeProductFromCart(productId) {
-    
+
     if (!confirm("Bạn chắc chắn muốn xóa sản phẩm này?")) {
-        return; 
+        return;
     }
 
-    
+
     fetch("../assets/php/delete_cart.php", {
         method: "POST",
         headers: {
@@ -144,10 +145,10 @@ function removeProductFromCart(productId) {
     .then(response => response.json())
     .then(responseData => {
         if (responseData.success) {
-            
+
             loadCart();
-            
-            
+
+
             updateCartBadgeCount();
         } else {
             alert("Lỗi xóa sản phẩm: " + responseData.message);
@@ -162,13 +163,13 @@ function removeProductFromCart(productId) {
 
 
 function updateCartBadgeCount() {
-    
+
     fetch("../assets/php/get_cart_count.php")
         .then(response => response.json())
         .then(responseData => {
-            
+
             if (responseData.success) {
-                
+
                 const cartBadge = document.querySelector(".jscart");
                 cartBadge.innerText = responseData.count;
             }
@@ -180,5 +181,5 @@ function updateCartBadgeCount() {
 
 
 
-loadCart();              
-updateCartBadgeCount();  
+loadCart();
+updateCartBadgeCount();

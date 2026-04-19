@@ -31,18 +31,44 @@ function loadProducts(pageNumber = 1) {
             const productList = apiData.data;
             const paginationInfo = apiData.pagination;
 
-
+            // ---- Cập nhật dòng tiêu đề kết quả ----
             document.getElementById("timkiemcoban").innerHTML =
                 `Kết quả tìm kiếm "<b>${searchKeyword || ""}</b>" (${paginationInfo.total_items} sản phẩm)`;
-
-
-
 
             const productDetailPageURL = userMode === "user"
                 ? "../pages/SanPham1.php"
                 : "../pages/SanPham.html";
 
+            // ---- Kiểm tra kết quả rỗng ----
+            if (!productList || productList.length === 0) {
+                document.getElementById("productList").innerHTML = `
+                    <div class="no-result-message" style="
+                        width: 100%;
+                        padding: 48px 24px;
+                        text-align: center;
+                        color: #666;
+                        font-size: 16px;
+                        font-family: inherit;
+                        background: #f9f9f9;
+                        border: 1.5px dashed #d0d0d0;
+                        border-radius: 10px;
+                        margin: 24px 0;
+                    ">
+                        <div style="font-size: 48px; margin-bottom: 12px;">🔍</div>
+                        <p style="margin: 0; font-weight: 600; color: #333; font-size: 17px;">
+                            Không tìm thấy sản phẩm nào phù hợp với tiêu chí của bạn.
+                        </p>
+                        <p style="margin: 8px 0 0; color: #888; font-size: 14px;">
+                            Vui lòng thử thay đổi bộ lọc hoặc từ khóa tìm kiếm.
+                        </p>
+                    </div>
+                `;
+                // Ẩn phân trang khi không có kết quả
+                document.querySelector(".pagination").innerHTML = "";
+                return;
+            }
 
+            // ---- Render danh sách sản phẩm ----
             let productsHTML = "";
 
             productList.forEach(product => {
@@ -71,7 +97,6 @@ function loadProducts(pageNumber = 1) {
                                 </a>
                             </div>
 
-
                             <a href="${productDetailPageURL}?id=${product.id}">
                                 <button>Chi tiết</button>
                             </a>
@@ -82,7 +107,7 @@ function loadProducts(pageNumber = 1) {
 
             document.getElementById("productList").innerHTML = productsHTML;
 
-
+            // ---- Render phân trang ----
             renderPaginationButtons(paginationInfo);
         })
         .catch(error => {

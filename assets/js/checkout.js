@@ -18,14 +18,14 @@ async function loadCheckout() {
     const productHTML = `
             <p>
                 <strong>${product.name}</strong><br>
-                Số lượng: x${product.quantity} - ${Number(product.price).toLocaleString()}₫
+                Số lượng: x${product.quantity} - ${Number(product.price).toLocaleString("vi-VN", { minimumFractionDigits: 0, maximumFractionDigits: 0 })}₫
             </p>
         `;
 
     checkoutItemsContainer.innerHTML += productHTML;
   });
 
-  const formattedTotal = totalPrice.toLocaleString() + "₫";
+  const formattedTotal = totalPrice.toLocaleString('vi-VN', {minimumFractionDigits: 0, maximumFractionDigits: 0}) + "₫";
 
   document.getElementById("subtotal").innerText = formattedTotal;
   document.getElementById("total").innerText = formattedTotal;
