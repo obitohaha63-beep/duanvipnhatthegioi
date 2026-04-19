@@ -3,13 +3,13 @@
 document.addEventListener("DOMContentLoaded", () => {
     const productTableBody = document.getElementById("productTable");
 
-    
+
     if (!productTableBody) {
         console.error(" Lỗi: Không tìm thấy phần tử #productTable");
         return;
     }
 
-    
+
 
     loadProductsToTable();
 });
@@ -19,11 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
 function loadProductsToTable() {
     const productTableBody = document.getElementById("productTable");
 
-    
+
     fetch("../assets/php/get_products.php")
         .then(response => response.json())
         .then(apiData => {
-            
+
             if (!apiData.success) {
                 console.error(" Lỗi API:", apiData.message);
                 productTableBody.innerHTML = `
@@ -36,21 +36,21 @@ function loadProductsToTable() {
                 return;
             }
 
-            
+
             productTableBody.innerHTML = "";
 
-            
-            apiData.data.forEach(product => {
-                
-                const formattedCostPrice = Number(product.cost_price)
-                    .toLocaleString('vi-VN', {minimumFractionDigits: 0, maximumFractionDigits: 0});
 
-                
+            apiData.data.forEach(product => {
+
+                const formattedCostPrice = Number(product.cost_price)
+                    .toLocaleString('vi-VN');
+
+
                 const productRow = document.createElement("tr");
                 productRow.innerHTML = `
                     <td>${product.id}</td>
                     <td>
-                        <img src="../${product.image_url}?t=${Date.now()}" 
+                        <img src="../${product.image_url}?t=${Date.now()}"
                              style="max-width: 50px; height: auto;"
                              alt="${product.name}">
                     </td>
@@ -65,10 +65,10 @@ function loadProductsToTable() {
                     <td>${product.created_at || ""}</td>
                     <td>
                         <div class="action-buttons">
-                            <a href="../pages/EditProduct.php?id=${product.id}" 
+                            <a href="../pages/EditProduct.php?id=${product.id}"
                                class="btn-primary"> Sửa</a>
-                            <button class="btn-danger btn-delete" 
-                                    data-id="${product.id}" 
+                            <button class="btn-danger btn-delete"
+                                    data-id="${product.id}"
                                     onclick="deleteProduct(${product.id})">
                                  Xóa
                             </button>
@@ -94,19 +94,19 @@ function loadProductsToTable() {
 
 
 function deleteProduct(productId) {
-    
+
     if (!confirm(" Bạn có chắc muốn xóa sản phẩm này?")) {
         return;
     }
 
-    
+
     fetch(`../assets/php/delete_product.php?id=${productId}`)
         .then(response => response.json())
         .then(deleteResult => {
-            
+
             if (deleteResult.success) {
                 alert(" " + deleteResult.message);
-                
+
                 loadProductsToTable();
             } else {
                 alert(" Lỗi: " + deleteResult.message);
