@@ -19,6 +19,7 @@ try {
                 c.quantity,
                 p.name,
                 p.image_url,
+                p.quantity AS stock,
                 (p.cost_price + (p.cost_price * p.profit_rate / 100)) AS price
             FROM cart c
             JOIN products p ON c.product_id = p.id
