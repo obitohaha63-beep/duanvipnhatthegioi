@@ -78,11 +78,11 @@ Tìm đến file kết nối cơ sở dữ liệu trong source code (thường n
 $servername = "localhost";
 $username = "root";
 $password = ""; // Tùy thuộc vào thiết lập XAMPP của bạn
-$dbname = "quebshop2"; // Tên CSDL bạn vừa tạo
+$dbname = "duan_ecommerce"; // Tên CSDL bạn vừa tạo
 ```
 
 **Bước 4: Chạy ứng dụng**
-*   **Trang khách hàng:** Truy cập `http://localhost/do_an_web02/duanvipnhatthegioi/pages/SanPham.html`
+*   **Trang khách hàng:** Truy cập `http://localhost/do_an_web02/duanvipnhatthegioi/pages/html4.html`
 *   **Trang quản trị:** Truy cập `http://localhost/do_an_web02/duanvipnhatthegioi/pages/admindangnhap.php`
 
 ## 🔒 Ghi chú về luồng Dữ liệu & Bảo mật
