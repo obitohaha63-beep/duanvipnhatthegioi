@@ -10,6 +10,23 @@
   <link rel="stylesheet" href="../assets/css/QuanLySanPham.css">
   <style>
     .preview-img { max-width: 150px; margin-top: 10px; display: block; }
+
+    /* Trường chỉ đọc – không cho sửa thủ công */
+    input[readonly] {
+      background-color: #e9ecef;
+      color: #6c757d;
+      cursor: not-allowed;
+      border: 1px solid #ced4da;
+      pointer-events: none; /* chặn cả click lẫn focus */
+    }
+    .readonly-note {
+      font-size: 0.75rem;
+      color: #e05c00;
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
   </style>
 </head>
 <body>
@@ -54,14 +71,32 @@
         <input type="text" name="name" id="nameInput" required>
 
 
-        <label>Giá nhập</label>
-        <input type="number" name="cost_price" id="costInput" required>
+        <label>Giá vốn (Giá nhập)
+          <span title="Giá vốn được tính tự động theo phương pháp bình quân gia quyền khi nhập hàng. Không được sửa trực tiếp."></span>
+        </label>
+        <input type="number" name="cost_price" id="costInput"
+               readonly
+               tabindex="-1"
+               title="🔒 Không thể sửa tại đây. Giá vốn chỉ được cập nhật qua quy trình Nhập hàng.">
+        <p class="readonly-note">🔒 Chỉ cập nhật qua <a href="NhaphangGiaban.php">Quản lý nhập hàng</a></p>
 
-        <label>% Lợi nhuận</label>
-        <input type="number" name="profit_rate" id="profitInput">
+        <label>% Lợi nhuận
+          <span title="Tỉ lệ lợi nhuận chỉ được điều chỉnh qua quy trình Quản lý giá bán để đảm bảo tính nhất quán."></span>
+        </label>
+        <input type="number" name="profit_rate" id="profitInput"
+               readonly
+               tabindex="-1"
+               title="🔒 Không thể sửa tại đây. % Lợi nhuận chỉ được cập nhật qua trang Quản lý giá bán.">
+        <p class="readonly-note">🔒 Chỉ cập nhật qua <a href="NhaphangGiaban2.php">Quản lý giá bán</a></p>
 
-        <label>Số lượng</label>
-        <input type="number" name="quantity" id="quantityInput">
+        <label>Tồn kho (Số lượng)
+          <span title="Tồn kho được cập nhật tự động theo từng phiếu nhập hàng. Không được sửa trực tiếp."></span>
+        </label>
+        <input type="number" name="quantity" id="quantityInput"
+               readonly
+               tabindex="-1"
+               title="🔒 Không thể sửa tại đây. Tồn kho chỉ được cập nhật qua quy trình Nhập hàng.">
+        <p class="readonly-note">🔒 Chỉ cập nhật qua <a href="NhaphangGiaban.php">Quản lý nhập hàng</a></p>
 
         <label>Ảnh sản phẩm</label>
         <div id="imagePreviewContainer" style="display:none; position:relative;">
