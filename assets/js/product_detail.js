@@ -97,7 +97,10 @@ fetch(`../assets/php/get_product_detail.php?id=${productId}`)
                     <hr>
 
 
-                    <div class="countamountofitem" style="margin-top: 20px;">
+                    <div class="stock-info" style="margin-top: 16px; margin-bottom: 6px; font-size: 14px; color: #555;">
+                        Tồn kho: <strong style="color: ${product.quantity > 0 ? '#27ae60' : '#e74c3c'}">${product.quantity}</strong> sản phẩm
+                    </div>
+                    <div class="countamountofitem" data-stock="${product.quantity}" style="margin-top: 10px;">
                         <button class="minus">−</button>
                         <span class="numbercount">1</span>
                         <button class="plus">+</button>
@@ -133,7 +136,14 @@ document.addEventListener("click", function(event) {
 
 
         if (event.target.classList.contains("plus")) {
-            quantityValueElement.innerText = currentQuantity + 1;
+            const stockLimit = parseInt(
+                document.querySelector(".countamountofitem")?.dataset.stock ?? Infinity
+            );
+            if (currentQuantity < stockLimit) {
+                quantityValueElement.innerText = currentQuantity + 1;
+            } else {
+                alert(`Số lượng tối đa có thể mua là ${stockLimit} sản phẩm (theo tồn kho).`);
+            }
         }
 
 
