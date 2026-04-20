@@ -82,8 +82,8 @@ $dbname = "duan_ecommerce"; // Tên CSDL bạn vừa tạo
 ```
 
 **Bước 4: Chạy ứng dụng**
-*   **Trang khách hàng:** Truy cập `http://localhost/do_an_web02/duanvipnhatthegioi/pages/html4.html`
-*   **Trang quản trị:** Truy cập `http://localhost/do_an_web02/duanvipnhatthegioi/pages/admindangnhap.php`
+*   **Trang khách hàng:** Truy cập `/pages/html4.html`
+*   **Trang quản trị:** Truy cập `/pages/admindangnhap.php`
 
 ## 🔒 Ghi chú về luồng Dữ liệu & Bảo mật
 *   **Tồn kho & Giá vốn:** Không được phép chỉnh sửa trực tiếp thông qua chức năng sửa sản phẩm (`EditProduct.php`). Mọi thay đổi về số lượng và giá trị tồn kho bắt buộc phải thông qua luồng **Nhập hàng** để đảm bảo hệ thống kế toán chính xác.
