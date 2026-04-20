@@ -114,6 +114,11 @@ async function placeOrder() {
     return;
   }
 
+  if (selectedPaymentMethod === "online") {
+    alert(" Chức năng thanh toán trực tuyến đang được phát triển. Vui lòng chọn phương thức khác!");
+    return;
+  }
+
   const response = await fetch("../assets/php/place_order.php", {
     method: "POST",
     headers: {
