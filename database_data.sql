@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2026 at 06:15 AM
+-- Generation Time: Apr 22, 2026 at 05:59 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -21,30 +21,6 @@ SET time_zone = "+00:00";
 -- Database: `quebshop2`
 --
 
--- --------------------------------------------------------
-
---
--- Table structure for table `cart`
---
-
-CREATE TABLE `cart` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `quantity` int(11) DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `categories`
---
-
-CREATE TABLE `categories` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 --
 -- Dumping data for table `categories`
 --
@@ -52,22 +28,6 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`id`, `name`) VALUES
 (1, 'Vợt cầu lông'),
 (2, 'Giày cầu lông');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `orders`
---
-
-CREATE TABLE `orders` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `order_date` datetime DEFAULT current_timestamp(),
-  `delivery_address` text NOT NULL,
-  `payment_method` enum('cash','bank_transfer','online') NOT NULL,
-  `status` enum('pending','confirmed','delivered','cancelled') DEFAULT 'pending',
-  `total_amount` decimal(12,2) DEFAULT 0.00
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
@@ -82,20 +42,6 @@ INSERT INTO `orders` (`id`, `user_id`, `order_date`, `delivery_address`, `paymen
 (18, 14, '2026-04-09 11:42:15', '12 nguyễn, Bình Hưng Hòa, bình tân, hồ chí minh', 'cash', 'cancelled', 900000.00),
 (19, 14, '2026-04-10 09:38:49', '66 Thảo Điền, Phú Mỹ, Q2, TP.HCM', 'cash', 'delivered', 2940000.00),
 (20, 9, '2026-04-10 10:04:04', '153 đường số 8, Bình Hưng Hòa, BT, BT', 'cash', 'delivered', 2730000.00);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `order_items`
---
-
-CREATE TABLE `order_items` (
-  `id` int(11) NOT NULL,
-  `order_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `selling_price` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `order_items`
@@ -113,26 +59,6 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `selling_
 (26, 18, 18, 1, 900000.00),
 (27, 19, 20, 1, 2940000.00),
 (28, 20, 8, 1, 2730000.00);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `products`
---
-
-CREATE TABLE `products` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `description` text DEFAULT NULL,
-  `category_id` int(11) NOT NULL,
-  `brand` varchar(50) DEFAULT NULL,
-  `image_url` varchar(50) DEFAULT NULL,
-  `quantity` int(11) DEFAULT 0,
-  `cost_price` decimal(10,2) DEFAULT 0.00,
-  `profit_rate` decimal(5,2) DEFAULT 20.00,
-  `status` enum('hidden','visible') DEFAULT 'visible',
-  `created_at` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `products`
@@ -167,19 +93,6 @@ INSERT INTO `products` (`id`, `name`, `description`, `category_id`, `brand`, `im
 (26, 'Giày cầu lông Yonex Strider Flow 2026', 'Sự kết hợp hoàn hảo giữa độ bền và sự thoải mái. Với lớp lưới thoát khí lớn trên thân giày, Strider Flow giúp đôi chân luôn khô thoáng ngay cả trong những trận cầu căng thẳng nhất, phù hợp cho tập luyện cường độ cao.', 2, 'Yonex', 'assets/uploads/image_1775294624544.jpg', 10, 600000.00, 20.00, 'visible', '2026-03-28 19:51:01'),
 (27, 'Giày cầu lông Yonex Power Cushion Infinity 2', 'Đỉnh cao của công nghệ giày cầu lông với hệ thống điều chỉnh độ ôm 3D tự động. Infinity 2 không chỉ bảo vệ đôi chân mà còn là một tác phẩm công nghệ, mang lại trải nghiệm thi đấu đẳng cấp và khác biệt hoàn toàn.', 2, 'Yonex', 'assets/uploads/image_1775294168805.jpg', 0, 0.00, 20.00, 'hidden', '2026-03-28 19:51:01');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `purchase_orders`
---
-
-CREATE TABLE `purchase_orders` (
-  `id` int(11) NOT NULL,
-  `order_date` datetime DEFAULT current_timestamp(),
-  `supplier_name` varchar(255) DEFAULT NULL,
-  `status` enum('pending','completed') DEFAULT 'pending'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 --
 -- Dumping data for table `purchase_orders`
 --
@@ -201,21 +114,6 @@ INSERT INTO `purchase_orders` (`id`, `order_date`, `supplier_name`, `status`) VA
 (45, '2026-04-05 22:16:00', NULL, 'completed'),
 (46, '2026-04-02 22:17:00', NULL, 'completed'),
 (47, '2026-04-04 22:39:00', NULL, 'completed');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `purchase_order_items`
---
-
-CREATE TABLE `purchase_order_items` (
-  `id` int(11) NOT NULL,
-  `purchase_order_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `import_price` decimal(10,2) NOT NULL,
-  `number_import_times` int(11) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `purchase_order_items`
@@ -252,24 +150,6 @@ INSERT INTO `purchase_order_items` (`id`, `purchase_order_id`, `product_id`, `qu
 (81, 47, 25, 8, 550000.00, 1),
 (82, 47, 26, 10, 600000.00, 1);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `phone` varchar(20) DEFAULT NULL,
-  `role` enum('customer','admin') DEFAULT 'customer',
-  `status` enum('active','locked') DEFAULT 'active',
-  `created_at` datetime DEFAULT current_timestamp(),
-  `is_reset` tinyint(1) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 --
 -- Dumping data for table `users`
 --
@@ -280,23 +160,6 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `phone`, `role`, `status
 (9, 'Nguyễn Văn A', 'user1@gmail.com', '$2y$10$nz0r1oHd7.7Dcljd59wareLDCmHo2qIoG4MQ9PMGohHP2p1.1WHHW', '0978123456', 'customer', 'active', '2026-03-28 09:50:08', 1),
 (14, 'Đinh Công Thành', 'obitohaha63@gmail.com', '$2y$10$zh1VEJmqoBHJZzA3sozcNekmEjYlOojk0pjTeSAIVdXJvVqXYEf3O', '0796556438', 'customer', 'active', '2026-04-03 13:57:45', 0);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `user_address`
---
-
-CREATE TABLE `user_address` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `city` varchar(100) NOT NULL,
-  `district` varchar(100) NOT NULL,
-  `ward` varchar(100) NOT NULL,
-  `detail_address` text DEFAULT NULL,
-  `is_default` tinyint(1) DEFAULT 0,
-  `created_at` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 --
 -- Dumping data for table `user_address`
 --
@@ -304,175 +167,6 @@ CREATE TABLE `user_address` (
 INSERT INTO `user_address` (`id`, `user_id`, `city`, `district`, `ward`, `detail_address`, `is_default`, `created_at`) VALUES
 (1, 9, 'TP.HCM', 'Quận 1', 'Phường Bến Nghé', '12 Nguyễn Huệ', 1, '2026-03-29 23:20:06'),
 (5, 14, 'TP.HCM', 'Q2', 'Phú Mỹ', '66 Thảo Điền', 1, '2026-04-03 13:57:45');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `cart`
---
-ALTER TABLE `cart`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `product_id` (`product_id`);
-
---
--- Indexes for table `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `order_items`
---
-ALTER TABLE `order_items`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `order_id` (`order_id`),
-  ADD KEY `product_id` (`product_id`);
-
---
--- Indexes for table `products`
---
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `products_ibfk_1` (`category_id`);
-
---
--- Indexes for table `purchase_orders`
---
-ALTER TABLE `purchase_orders`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `purchase_order_items`
---
-ALTER TABLE `purchase_order_items`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `purchase_order_id` (`purchase_order_id`),
-  ADD KEY `product_id` (`product_id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- Indexes for table `user_address`
---
-ALTER TABLE `user_address`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `cart`
---
-ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
---
--- AUTO_INCREMENT for table `categories`
---
-ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `orders`
---
-ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT for table `order_items`
---
-ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
-
---
--- AUTO_INCREMENT for table `products`
---
-ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
-
---
--- AUTO_INCREMENT for table `purchase_orders`
---
-ALTER TABLE `purchase_orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
-
---
--- AUTO_INCREMENT for table `purchase_order_items`
---
-ALTER TABLE `purchase_order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- AUTO_INCREMENT for table `user_address`
---
-ALTER TABLE `user_address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `cart`
---
-ALTER TABLE `cart`
-  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
-
---
--- Constraints for table `orders`
---
-ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
---
--- Constraints for table `order_items`
---
-ALTER TABLE `order_items`
-  ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
-
---
--- Constraints for table `products`
---
-ALTER TABLE `products`
-  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
-
---
--- Constraints for table `purchase_order_items`
---
-ALTER TABLE `purchase_order_items`
-  ADD CONSTRAINT `purchase_order_items_ibfk_1` FOREIGN KEY (`purchase_order_id`) REFERENCES `purchase_orders` (`id`),
-  ADD CONSTRAINT `purchase_order_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
-
---
--- Constraints for table `user_address`
---
-ALTER TABLE `user_address`
-  ADD CONSTRAINT `user_address_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
