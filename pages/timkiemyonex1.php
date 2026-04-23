@@ -23,14 +23,21 @@
 
             <!---- search-->
 
-            <div class="containerSearch"><div class="search">
-              <form action="timkiemyonex.html" target="_blank">
-                <input type="text" placeholder="Tìm kiếm...">
-                <a href="timkiemyonex.html" target="_blank"><div class = "containerSearch2">
-                   <img src="../assets/img/0e3ea1f4af7bdc0353252fa8af7de9366406fd82 (1).png" class="search-icon"> </div>
-              </div>
-              </a>
-              </form>
+            <div class="containerSearch">
+                <div class="search">
+
+                  <form action="../pages/timkiemyonex1.php" method="GET">
+
+                    <input
+                    type="text"
+                    placeholder="Tìm sản phẩm..."
+                    id="searchBassic"
+                    name="keyword"
+                    required>
+
+                  </form>
+
+                </div>
             </div>
 
             <!---- contact------------------------------------------------------------>
@@ -88,7 +95,7 @@
 
            <div class="textmucluc">
               <span>DANH MỤC SẢN PHẨM</span>
-              
+
 
             </div>
 
@@ -235,8 +242,9 @@
 </main>
 
 
-<script src="../assets/js/timkiemcoban.js"></script>
+
 <script src="../assets/js/load_cart.js"></script>
+<script src="../assets/js/timkiemcoban.js"></script>
 </body>
 <footer>
   <div class="container-footer">
